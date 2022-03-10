@@ -8,27 +8,29 @@ using namespace std;
 
 int lcs_info(string s, string t, int n, int m, int* vs, int* vt);
 
-void toporel(string s, string t);
+void toporel(string a, string b);
 
 string det_relation(int n, int m, int* vs, int* vt, int lcs);
 
 
+int KMPSearch(string pat, string txt);
+
+void computeLPSArray(string pat, int M, int* lps);
+
+
 int main(){
     //string s = "etiSweNOldSites:GeeksforGeeks.org";
-    //string t = "NewSite:GeeksQuiz.com";
+    //string t = "Geeka";
     string s = "ABCD";
     string t = "ABCE";
- 
-    if(s.length() < t.length()){
-        toporel(s,t);
-    }else{
-        toporel(t,s);
-    }
 
+    cout << "s: " << s << " - t: " << t << endl;
+
+    toporel(s,t);
+    KMPSearch(s,t);
+    
     return 0;
 }
-
-
 
 
 int lcs_info(string s, string t, int n, int m, int* vs, int* vt){
@@ -78,17 +80,69 @@ int lcs_info(string s, string t, int n, int m, int* vs, int* vt){
 
 
 
-void toporel(string s, string t){
+void toporel(string a, string b){
+    /*
+        Se define cuál es la relación topológica entre dos secuencias representadas por string.
+        Las relaciones se comprueban según la complejidad que implica el identificarlas:
+        - Equals: comparación lineal de las dos strings (considerando que pudiera estar en inverso)
+        - Contención (Covered, Covers, Includes, Inside): comparación mediante algoritmo KMP (Knuth-Morris-Pratt)
+        - Otras: Por medio de algoritmo de DP para LCS (Longest Common Substring)
+    */
+
+    string s, t;
+    if(a.length() < b.length()){
+        s = a;
+        t = b;
+    }else{
+        t = a;
+        s = b;
+    }
+
     // Se asume que |s| < |t|
     int n = s.length();
     int m = t.length();
+    
+    // ------- EQUALS -------
+
+    string rt = t;
+    reverse(rt.begin(), rt.end());
+    // "Verificación de Igualdad"
+    if(n == m && (s == t || s == rt)){
+        cout << "Equals " << endl;
+        return;
+    }
+
+    // ------- CONTENCION -------
+    int kmp = KMPSearch(s, t);
+    int kmpR = KMPSearch(s, rt);
+    if(kmp != -1 || kmpR != -1){
+        int index = (kmp != -1) ? kmp : kmpR;
+        if(index == 0 || index == m-n){
+            if(s == a){
+                cout << "CoveredBy" << endl;
+            }else{
+                cout << "Covers" << endl;
+            }
+        }else{
+            if(s == a){
+                cout << "Inside" << endl;
+            }else{
+                cout << "Includes" << endl;
+            }
+        }
+        return;
+    }
+
+
+    // ------- OTRAS -------
+
+
     int* vs = new int[n];
     int* vt = new int[m];
 
     int res = lcs_info(s, t, n, m, vs, vt);
 
-    string rt = t;
-    reverse(rt.begin(), rt.end());
+    
     int* vs2 = new int[n];
     int* vt2 = new int[m];
 
@@ -154,4 +208,78 @@ string det_relation(int n, int m, int* vs, int* vt, int lcs){
         // Hay una contención
     }
     return "Unknown";
+}
+
+// Prints occurrences of txt[] in pat[]
+int KMPSearch(string pat, string txt){
+    int M = pat.length();
+    int N = txt.length();
+  
+    // create lps[] that will hold the longest prefix suffix
+    // values for pattern
+    int lps[M];
+  
+    // Preprocess the pattern (calculate lps[] array)
+    computeLPSArray(pat, M, lps);
+  
+    int i = 0; // index for txt[]
+    int j = 0; // index for pat[]
+    while (i < N) {
+        if (pat[j] == txt[i]) {
+            j++;
+            i++;
+        }
+  
+        if (j == M) {
+            // cout << "Found pattern at index " << (i - j) << endl;
+            return i-j;
+            //j = lps[j - 1];
+        }
+  
+        // mismatch after j matches
+        else if (i < N && pat[j] != txt[i]) {
+            // Do not match lps[0..lps[j-1]] characters,
+            // they will match anyway
+            if (j != 0)
+                j = lps[j - 1];
+            else
+                i = i + 1;
+        }
+    }
+    return -1;
+}
+  
+// Fills lps[] for given patttern pat[0..M-1]
+void computeLPSArray(string pat, int M, int* lps){
+    // length of the previous longest prefix suffix
+    int len = 0;
+  
+    lps[0] = 0; // lps[0] is always 0
+  
+    // the loop calculates lps[i] for i = 1 to M-1
+    int i = 1;
+    while (i < M) {
+        if (pat[i] == pat[len]) {
+            len++;
+            lps[i] = len;
+            i++;
+        }
+        else // (pat[i] != pat[len])
+        {
+            // This is tricky. Consider the example.
+            // AAACAAAA and i = 7. The idea is similar
+            // to search step.
+            if (len != 0) {
+                len = lps[len - 1];
+  
+                // Also, note that we do not increment
+                // i here
+            }
+            else // if (len == 0)
+            {
+                lps[i] = 0;
+                i++;
+            }
+        }
+    }
 }
