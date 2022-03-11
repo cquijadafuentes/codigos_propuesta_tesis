@@ -21,8 +21,8 @@ void computeLPSArray(string pat, int M, int* lps);
 int main(){
     //string s = "etiSweNOldSites:GeeksforGeeks.org";
     //string t = "Geeka";
-    string s = "ABCD";
-    string t = "ABCE";
+    string s = "ADHI";
+    string t = "ABCEFG";
 
     cout << "s: " << s << " - t: " << t << endl;
 
@@ -40,11 +40,12 @@ int lcs_info(string s, string t, int n, int m, int* vs, int* vt){
     }
     for(int i=0; i<m; i++){
         vt[i] = 0;
-    }    
+    }
 
     // Create DP table
     int dp[2][m + 1];
     int res = 0;
+    bool ii_intersect = false;
 
     cout << "************** Tabla PD **************" << endl;
     cout << endl << "+ ";
@@ -66,6 +67,9 @@ int lcs_info(string s, string t, int n, int m, int* vs, int* vt){
                 if(dp[i % 2][j] > vt[j-1]){
                     vt[j-1] = dp[i % 2][j];
                 }
+                if(i > 1 && i < n && j > 1 && j < m){
+                    ii_intersect = true;
+                }
             }
             else{
                 dp[i % 2][j] = 0;
@@ -74,6 +78,8 @@ int lcs_info(string s, string t, int n, int m, int* vs, int* vt){
         }
         cout << endl;
     }
+
+    cout << "Intersección interior-interior: " << ii_intersect << endl;
 
     return res;
 }
@@ -86,7 +92,9 @@ void toporel(string a, string b){
         Las relaciones se comprueban según la complejidad que implica el identificarlas:
         - Equals: comparación lineal de las dos strings (considerando que pudiera estar en inverso)
         - Contención (Covered, Covers, Includes, Inside): comparación mediante algoritmo KMP (Knuth-Morris-Pratt)
-        - Otras: Por medio de algoritmo de DP para LCS (Longest Common Substring)
+        - Otras: Por medio de algoritmo de DP para LCS (Longest Common Substring). En este caso no es relevante
+            el orden de las intersecciones. Ya se ha revisado la contención y sólo queda verificar la cantidad
+            de coincidencias entre las secuencias para determinar entre Touches, Overlaps y Disjoint.
     */
 
     string s, t;
@@ -136,17 +144,29 @@ void toporel(string a, string b){
 
     // ------- OTRAS -------
 
+    //
 
     int* vs = new int[n];
     int* vt = new int[m];
 
     int res = lcs_info(s, t, n, m, vs, vt);
 
+    if(res == 0){
+        cout << "Disjoint" << endl;
+        return;
+    }
     
     int* vs2 = new int[n];
     int* vt2 = new int[m];
 
     int res2 = lcs_info(s, rt, n, m, vs2, vt2);
+
+    if(res > 1 || res2 > 1){
+        // Caso en que las secuencias de paradas tienen una coincidencia en algún tramo
+        // por lo que se puede descartar touches.
+        cout << "Overlaps" << endl;
+        return;
+    }
 
     cout << "************** Valores VS **************" << endl;
     for(int i=0; i<n; i++){
