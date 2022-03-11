@@ -6,14 +6,11 @@ using namespace std;
 
 
 
-int lcs_info(string s, string t, int n, int m, int* vs, int* vt);
+pair<int,bool> lcs_info(string s, string t, int n, int m);
 
 void toporel(string a, string b);
 
-string det_relation(int n, int m, int* vs, int* vt, int lcs);
-
-
-int KMPSearch(string pat, string txt);
+pair<int,int> KMPSearch(string pat, string txt);
 
 void computeLPSArray(string pat, int M, int* lps);
 
@@ -21,8 +18,8 @@ void computeLPSArray(string pat, int M, int* lps);
 int main(){
     //string s = "etiSweNOldSites:GeeksforGeeks.org";
     //string t = "Geeka";
-    string s = "ADHI";
-    string t = "ABCEFG";
+    string s = "ABCD";
+    string t = "ABCD";
 
     cout << "s: " << s << " - t: " << t << endl;
 
@@ -33,14 +30,7 @@ int main(){
 }
 
 
-int lcs_info(string s, string t, int n, int m, int* vs, int* vt){
-    // Iniciar valores en 0 para vs y vm
-    for(int i=0; i<n; i++){
-        vs[i] = 0;
-    }
-    for(int i=0; i<m; i++){
-        vt[i] = 0;
-    }
+pair<int,bool> lcs_info(string s, string t, int n, int m){
 
     // Create DP table
     int dp[2][m + 1];
@@ -48,7 +38,7 @@ int lcs_info(string s, string t, int n, int m, int* vs, int* vt){
     bool ii_intersect = false;
 
     cout << "************** Tabla PD **************" << endl;
-    cout << endl << "+ ";
+    cout << endl << " +";
     for (int i=0; i<m; i++){
         cout << " " << t[i];
     }
@@ -60,12 +50,6 @@ int lcs_info(string s, string t, int n, int m, int* vs, int* vt){
                 dp[i % 2][j] = dp[(i - 1) % 2][j - 1] + 1;
                 if (dp[i % 2][j] > res){
                     res = dp[i % 2][j];
-                }
-                if(dp[i % 2][j] > vs[i-1]){
-                    vs[i-1] = dp[i % 2][j];
-                }
-                if(dp[i % 2][j] > vt[j-1]){
-                    vt[j-1] = dp[i % 2][j];
                 }
                 if(i > 1 && i < n && j > 1 && j < m){
                     ii_intersect = true;
@@ -81,7 +65,7 @@ int lcs_info(string s, string t, int n, int m, int* vs, int* vt){
 
     cout << "Intersección interior-interior: " << ii_intersect << endl;
 
-    return res;
+    return make_pair(res,ii_intersect);
 }
 
 
@@ -121,10 +105,10 @@ void toporel(string a, string b){
     }
 
     // ------- CONTENCION -------
-    int kmp = KMPSearch(s, t);
-    int kmpR = KMPSearch(s, rt);
-    if(kmp != -1 || kmpR != -1){
-        int index = (kmp != -1) ? kmp : kmpR;
+    pair<int,int> kmp = KMPSearch(s, t);
+    pair<int,int> kmpR = KMPSearch(s, rt);
+    if(kmp.first != -1 || kmpR.first != -1){
+        int index = (kmp.first != -1) ? kmp.first : kmpR.first;
         if(index == 0 || index == m-n){
             if(s == a){
                 cout << "CoveredBy" << endl;
@@ -141,97 +125,36 @@ void toporel(string a, string b){
         return;
     }
 
-
-    // ------- OTRAS -------
-
-    //
-
-    int* vs = new int[n];
-    int* vt = new int[m];
-
-    int res = lcs_info(s, t, n, m, vs, vt);
-
-    if(res == 0){
-        cout << "Disjoint" << endl;
-        return;
-    }
-    
-    int* vs2 = new int[n];
-    int* vt2 = new int[m];
-
-    int res2 = lcs_info(s, rt, n, m, vs2, vt2);
-
-    if(res > 1 || res2 > 1){
-        // Caso en que las secuencias de paradas tienen una coincidencia en algún tramo
-        // por lo que se puede descartar touches.
+    if(kmp.second > 1 || kmpR.second > 1){
         cout << "Overlaps" << endl;
         return;
     }
 
-    cout << "************** Valores VS **************" << endl;
-    for(int i=0; i<n; i++){
-        cout << " " << s[i];
-    }
-    cout << endl;
-    for(int i=0; i<n; i++){
-        cout << " " << vs[i];
-    }
-    cout << endl;
-    for(int i=0; i<n; i++){
-        cout << " " << vs2[i];
-    }
-    cout << "\t reverso" << endl;
 
-    
-    cout << "************** Valores VT **************" << endl;
-    for(int i=0; i<m; i++){
-        cout << " " << t[i];
-    }
-    cout << endl;
-    for(int i=0; i<m; i++){
-        cout << " " << vt[i];
-    }
-    cout << endl;
-    for(int i=0; i<m; i++){
-        cout << " " << vt2[m-1-i];
-    }
-    cout << "\t reverso" << endl;
+    // ------- OTRAS -------
 
+    pair<int,bool> res = lcs_info(s, t, n, m);
+
+    if(res.first == 0){
+        cout << "Disjoint" << endl;
+        return;
+    }
+
+    if(res.second){
+        // Caso en el que hay intersección interior-interior
+        cout << "Overlaps" << endl;
+        return;
+    }
+
+    cout << "Touches" << endl;
 
     cout << "************** LCS **************" << endl;
-    cout << res << endl;
+    cout << res.first << endl;
 
-    cout << "************** LCS 2 **************" << endl;
-    cout << res2 << endl;
-
-    cout << "************** RELATION **************" << endl;
-    if(res < res2){
-        cout << det_relation(n, m, vs2, vt2, res2) << endl;
-    }else{
-        cout << det_relation(n, m, vs, vt, res) << endl;
-    }
-
-
-    delete vs;
-    delete vt;
-    delete vs2;
-    delete vt2;
-}
-
-string det_relation(int n, int m, int* vs, int* vt, int lcs){
-    // Se asume que n <= m
-    if(lcs == n && n == m){
-        return "Equals";
-    }
-
-    if(lcs == n){
-        // Hay una contención
-    }
-    return "Unknown";
 }
 
 // Prints occurrences of txt[] in pat[]
-int KMPSearch(string pat, string txt){
+pair<int,int> KMPSearch(string pat, string txt){
     int M = pat.length();
     int N = txt.length();
   
@@ -244,15 +167,19 @@ int KMPSearch(string pat, string txt){
   
     int i = 0; // index for txt[]
     int j = 0; // index for pat[]
+    int maxJ = 0;
     while (i < N) {
         if (pat[j] == txt[i]) {
             j++;
             i++;
+            if(j > maxJ){
+                maxJ = j;
+            }
         }
   
         if (j == M) {
             // cout << "Found pattern at index " << (i - j) << endl;
-            return i-j;
+            return make_pair(i-j, maxJ);
             //j = lps[j - 1];
         }
   
@@ -266,7 +193,7 @@ int KMPSearch(string pat, string txt){
                 i = i + 1;
         }
     }
-    return -1;
+    return make_pair(-1,maxJ);
 }
   
 // Fills lps[] for given patttern pat[0..M-1]
