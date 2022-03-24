@@ -4,7 +4,7 @@ PREFLAGS=-std=c++11 -O3 -DNDEBUG -I ~/include -L ~/lib
 
 POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
-BINS=test_csa test_cst my_test_cst pc rt_lcs
+BINS=test_csa test_cst my_test_cst pc rt_lcs test_alfabeto_ext
 
 all: clean bin
 
@@ -24,6 +24,10 @@ pc:
 
 rt_lcs:
 	$(CPP) rt_lcs.cpp -o rt_lcs
+
+test_alfabeto_ext:
+	$(CPP) $(PREFLAGS) test_alfabeto_ext.cpp -o test_alfabeto_ext $(POSFLAGS)
+	
 
 clean:
 	rm -f $(BINS)
