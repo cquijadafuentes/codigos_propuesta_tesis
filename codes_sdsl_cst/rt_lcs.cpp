@@ -24,7 +24,7 @@ int main(){
     cout << "s: " << s << " - t: " << t << endl;
 
     toporel(s,t);
-    KMPSearch(s,t);
+    //KMPSearch(s,t);
     
     return 0;
 }
