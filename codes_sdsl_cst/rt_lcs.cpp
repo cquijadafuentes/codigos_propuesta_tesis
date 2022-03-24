@@ -4,16 +4,10 @@
 
 using namespace std;
 
-
-
-pair<int,bool> lcs_info(string s, string t, int n, int m);
-
 void toporel(string a, string b);
-
 pair<int,int> KMPSearch(string pat, string txt);
-
 void computeLPSArray(string pat, int M, int* lps);
-
+pair<int,bool> lcs_info(string s, string t, int n, int m);
 
 int main(){
     //string s = "etiSweNOldSites:GeeksforGeeks.org";
@@ -24,51 +18,8 @@ int main(){
     cout << "s: " << s << " - t: " << t << endl;
 
     toporel(s,t);
-    //KMPSearch(s,t);
-    
     return 0;
 }
-
-
-pair<int,bool> lcs_info(string s, string t, int n, int m){
-
-    // Create DP table
-    int dp[2][m + 1];
-    int res = 0;
-    bool ii_intersect = false;
-
-    cout << "************** Tabla PD **************" << endl;
-    cout << endl << " +";
-    for (int i=0; i<m; i++){
-        cout << " " << t[i];
-    }
-    cout << endl;
-    for (int i = 1; i <= n; i++) {
-        cout << " " << s[i-1];
-        for (int j = 1; j <= m; j++) {
-            if (s[i - 1] == t[j - 1]) {
-                dp[i % 2][j] = dp[(i - 1) % 2][j - 1] + 1;
-                if (dp[i % 2][j] > res){
-                    res = dp[i % 2][j];
-                }
-                if(i > 1 && i < n && j > 1 && j < m){
-                    ii_intersect = true;
-                }
-            }
-            else{
-                dp[i % 2][j] = 0;
-            }
-            cout << " " << dp[i % 2][j] ;
-        }
-        cout << endl;
-    }
-
-    cout << "Intersección interior-interior: " << ii_intersect << endl;
-
-    return make_pair(res,ii_intersect);
-}
-
-
 
 void toporel(string a, string b){
     /*
@@ -229,4 +180,42 @@ void computeLPSArray(string pat, int M, int* lps){
             }
         }
     }
+}
+
+pair<int,bool> lcs_info(string s, string t, int n, int m){
+
+    // Create DP table
+    int dp[2][m + 1];
+    int res = 0;
+    bool ii_intersect = false;
+
+    cout << "************** Tabla PD **************" << endl;
+    cout << endl << " +";
+    for (int i=0; i<m; i++){
+        cout << " " << t[i];
+    }
+    cout << endl;
+    for (int i = 1; i <= n; i++) {
+        cout << " " << s[i-1];
+        for (int j = 1; j <= m; j++) {
+            if (s[i - 1] == t[j - 1]) {
+                dp[i % 2][j] = dp[(i - 1) % 2][j - 1] + 1;
+                if (dp[i % 2][j] > res){
+                    res = dp[i % 2][j];
+                }
+                if(i > 1 && i < n && j > 1 && j < m){
+                    ii_intersect = true;
+                }
+            }
+            else{
+                dp[i % 2][j] = 0;
+            }
+            cout << " " << dp[i % 2][j] ;
+        }
+        cout << endl;
+    }
+
+    cout << "Intersección interior-interior: " << ii_intersect << endl;
+
+    return make_pair(res,ii_intersect);
 }
