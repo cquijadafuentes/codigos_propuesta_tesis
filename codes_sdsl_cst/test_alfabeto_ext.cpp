@@ -5,14 +5,31 @@
 #include <fstream>      // std::fstream
 #include <map>
 #include <vector>
+#include <sdsl/vectors.hpp>
+#include <sdsl/suffix_trees.hpp>
+#include <sdsl/bit_vectors.hpp>
+#include <sdsl/cst_iterators.hpp>
 
 using namespace std;
+using namespace sdsl;
+
+const string COVEREDBY = "CoveredBy";
+const string COVERS = "Covers";
+const string DISJOINT = "Disjoint";
+const string EQUALS = "Equals";
+const string INCLUDES = "Includes";
+const string INSIDE = "Inside";
+const string OVERLAPS = "Overlaps";
+const string TOUCHES = "Touches";
+
+void relaciones_nn_naive(vector<vector<int>> &routes);
+void relaciones_nn_gst(vector<vector<int>> &routes);
 
 // RELACIONES TOPOLÓGICAS NAIVE
-void toporel(vector<int> a, vector<int> b);
-pair<int,int> KMPSearch(vector<int> pat, vector<int> txt);
-void computeLPSArray(vector<int> pat, int M, int* lps);
-pair<int,bool> lcs_info(vector<int> s, vector<int> t, int n, int m);
+string toporel(vector<int> &a, vector<int> &b);
+pair<int,int> KMPSearch(vector<int> &pat, vector<int> &txt);
+void computeLPSArray(vector<int> &pat, int M, int* lps);
+pair<int,bool> lcs_info(vector<int> &s, vector<int> &t, int n, int m);
 
 
 int main(int argc, char const *argv[]){
@@ -31,7 +48,7 @@ int main(int argc, char const *argv[]){
 	for(int i = 1; i <= n_stops; i++){
 		string id_stop;
 		entrada >> id_stop;
-		mapa_stops[id_stop] = i;
+		mapa_stops[id_stop] = 32+i;
 //		cout << id_stop << " - " << i << endl;
 	}
 
@@ -70,6 +87,7 @@ int main(int argc, char const *argv[]){
 //		cout << endl << "-----------------" << endl;
 		routes.push_back(vr);
 	}
+/*
 	cout << "Total rutas: " << routes.size() << endl;
 	cout << "Ruta 1: ";
 	for(int i = 0; i < routes[0].size(); i++){
@@ -81,10 +99,104 @@ int main(int argc, char const *argv[]){
 		cout << routes[n_routes-1][i] << " ";
 	}
 	cout << endl;
-	toporel(routes[0],routes[n_routes-1]);
+	string res = toporel(routes[0],routes[n_routes-1]);
+	cout << res << endl;
+*/
+
+	relaciones_nn_naive(routes);
+
+    relaciones_nn_gst(routes);
+
     return 0;
 
-	
+}
+
+
+void relaciones_nn_naive(vector<vector<int>> &routes){
+    cout << "********** Naive Algorithm **********" << endl;
+	map<string, int> mrt;
+	for(int i = 0; i < routes.size(); i++){
+		for(int j = 0; j < routes.size(); j++){
+			string r = toporel(routes[i], routes[j]);
+			mrt[r]++;
+		}
+	}
+
+	cout << COVEREDBY << ": " << mrt[COVEREDBY] << endl;
+	cout << COVERS << ": " << mrt[COVERS] << endl;
+	cout << DISJOINT << ": " << mrt[DISJOINT] << endl;
+	cout << EQUALS << ": " << mrt[EQUALS] << endl;
+	cout << INCLUDES << ": " << mrt[INCLUDES] << endl;
+	cout << INSIDE << ": " << mrt[INSIDE] << endl;
+	cout << OVERLAPS << ": " << mrt[OVERLAPS] << endl;
+	cout << TOUCHES << ": " << mrt[TOUCHES] << endl;
+
+}
+
+
+void relaciones_nn_gst(vector<vector<int>> &routes){
+    int n_concat = 0;
+    for(int i = 0; i < 5; i++){
+        n_concat += routes[i].size();
+    }
+    int_vector<> iv(n_concat);
+    int pv = 0;
+    int tr = routes.size();
+    for(int i = tr - 2; i < tr; i++){
+        for(int j = 0; j < routes[i].size(); j++){
+            iv[pv++] = routes[i][j];
+            cout << routes[i][j] << " ";
+        }
+    }
+    cout << endl;
+    
+    cst_sct3<csa_wt<wt_int<rrr_vector<>>>> cst;
+    construct_im(cst, iv);
+    cout << "********** Compressed Suffix Tree **********" << endl;
+    cout << "inner nodes : " << cst.nodes() - cst.csa.size() << endl;
+    auto v = cst.select_child(cst.child(cst.root(), 930),1);
+    auto d = cst.depth(v);
+    cout << "v : " << d << "-[" << cst.lb(v) << "," << cst.rb(v) << "]" << endl;
+    cout << "extract(cst, v) : " << extract(cst, v) << endl;
+
+    v = cst.root();
+    cout << "root\tid: " << cst.id(v) << endl;
+    for(int i=0; i < routes[0].size(); i++){
+        v = cst.child(v, routes[0][i]);
+        cout << routes[0][i] << "\tid: " << cst.id(v) << endl;
+    }
+
+
+
+
+
+
+    cout << "BFS del CompressedSuffixTree:" << endl;
+    cout << "id\ted_1\tdeg\tdep\tndep\tsize\tlb\trb\tsun\tleaf\ttext" << endl;
+    typedef cst_bfs_iterator<cst_sct3<csa_wt<wt_int<rrr_vector<>>>>> iterator;
+    iterator begin = iterator(&cst, cst.root());
+    iterator end   = iterator(&cst, cst.root(), true, true);
+    int count = 0;
+    for (iterator it = begin; it != end; ++it) {
+        cout << cst.id(*it) << "\t";
+        cout << "'" << cst.edge(*it, 1) << "'" << "\t";     // D-th char of the edge-label
+        cout << cst.degree(*it) << "\t";        // Number of children
+        cout << cst.depth(*it) << "\t";         // String depth
+        cout << cst.node_depth(*it) << "\t";    // 
+        cout << cst.size(*it) << "\t";          // Number of leaves in the subtree
+        cout << cst.lb(*it) << "\t";            // Leftmost leaf
+        cout << cst.rb(*it) << "\t";            // Rightmost leaf
+        cout << cst.sn(*it) << "\t";            // Suffix number
+        cout << cst.is_leaf(*it) << "\t";       // IsLeaf
+        for(int i=1; i<=cst.depth(*it); i++){
+            cout << cst.edge(*it, i) << " ";
+        }
+        cout << "\t" << endl;
+
+        if(++count % 5 == 0){
+            cout << endl;
+        }
+    }
 }
 
 
@@ -93,7 +205,7 @@ int main(int argc, char const *argv[]){
 // ************* RELACIONES TOPOLÓGICAS NAIVE ************* //
 //////////////////////////////////////////////////////////////
 
-bool iguales(vector<int> a, vector<int> b){
+bool iguales(vector<int> &a, vector<int> &b){
 	if(a.size() != b.size()){
 		return false;
 	}
@@ -107,7 +219,7 @@ bool iguales(vector<int> a, vector<int> b){
 	return true;
 }
 
-void toporel(vector<int> a, vector<int> b){
+string toporel(vector<int> &a, vector<int> &b){
     /*
         Se define cuál es la relación topológica entre dos secuencias representadas por vector<int>.
         Las relaciones se comprueban según la complejidad que implica el identificarlas:
@@ -141,8 +253,7 @@ void toporel(vector<int> a, vector<int> b){
     reverse(rt.begin(), rt.end());
     // "Verificación de Igualdad"
     if(n == m && (iguales(s,t) || iguales(s,rt))){
-        cout << "Equals " << endl;
-        return;
+        return EQUALS;
     }
 
     // ------- CONTENCION -------
@@ -152,23 +263,21 @@ void toporel(vector<int> a, vector<int> b){
         int index = (kmp.first != -1) ? kmp.first : kmpR.first;
         if(index == 0 || index == m-n){
             if(sa){
-                cout << "CoveredBy" << endl;
+                return COVEREDBY;
             }else{
-                cout << "Covers" << endl;
+                return COVERS;
             }
         }else{
             if(sa){
-                cout << "Inside" << endl;
+                return INSIDE;
             }else{
-                cout << "Includes" << endl;
+                return INCLUDES;
             }
         }
-        return;
     }
 
     if(kmp.second > 1 || kmpR.second > 1){
-        cout << "Overlaps" << endl;
-        return;
+        return OVERLAPS;
     }
 
 
@@ -177,25 +286,23 @@ void toporel(vector<int> a, vector<int> b){
     pair<int,bool> res = lcs_info(s, t, n, m);
 
     if(res.first == 0){
-        cout << "Disjoint" << endl;
-        return;
+        return DISJOINT;
     }
 
     if(res.second){
         // Caso en el que hay intersección interior-interior
-        cout << "Overlaps" << endl;
-        return;
+        return OVERLAPS;
     }
 
-    cout << "Touches" << endl;
+    return TOUCHES;
 
-    cout << "************** LCS **************" << endl;
-    cout << res.first << endl;
+//    cout << "************** LCS **************" << endl;
+//    cout << res.first << endl;
 
 }
 
 // Prints occurrences of txt[] in pat[]
-pair<int,int> KMPSearch(vector<int> pat, vector<int> txt){
+pair<int,int> KMPSearch(vector<int> &pat, vector<int> &txt){
     int M = pat.size();
     int N = txt.size();
   
@@ -238,7 +345,7 @@ pair<int,int> KMPSearch(vector<int> pat, vector<int> txt){
 }
   
 // Fills lps[] for given patttern pat[0..M-1]
-void computeLPSArray(vector<int> pat, int M, int* lps){
+void computeLPSArray(vector<int> &pat, int M, int* lps){
     // length of the previous longest prefix suffix
     int len = 0;
   
@@ -272,21 +379,21 @@ void computeLPSArray(vector<int> pat, int M, int* lps){
     }
 }
 
-pair<int,bool> lcs_info(vector<int> s, vector<int> t, int n, int m){
+pair<int,bool> lcs_info(vector<int> &s, vector<int> &t, int n, int m){
 
     // Create DP table
     int dp[2][m + 1];
     int res = 0;
     bool ii_intersect = false;
 
-    cout << "************** Tabla PD **************" << endl;
-    cout << endl << " +";
-    for (int i=0; i<m; i++){
-        cout << " " << t[i];
-    }
-    cout << endl;
+//    cout << "************** Tabla PD **************" << endl;
+//    cout << endl << " +";
+//    for (int i=0; i<m; i++){
+//        cout << " " << t[i];
+//    }
+//    cout << endl;
     for (int i = 1; i <= n; i++) {
-        cout << " " << s[i-1];
+//        cout << " " << s[i-1];
         for (int j = 1; j <= m; j++) {
             if (s[i - 1] == t[j - 1]) {
                 dp[i % 2][j] = dp[(i - 1) % 2][j - 1] + 1;
@@ -300,12 +407,12 @@ pair<int,bool> lcs_info(vector<int> s, vector<int> t, int n, int m){
             else{
                 dp[i % 2][j] = 0;
             }
-            cout << " " << dp[i % 2][j] ;
+//            cout << " " << dp[i % 2][j] ;
         }
-        cout << endl;
+//        cout << endl;
     }
 
-    cout << "Intersección interior-interior: " << ii_intersect << endl;
+//    cout << "Intersección interior-interior: " << ii_intersect << endl;
 
     return make_pair(res,ii_intersect);
 }
