@@ -113,7 +113,7 @@ int main(int argc, char const *argv[]){
     }
 
     // Marcas en bitvectors
-    vector<bit_vector> marcas(n_nodos*2, bit_vector(cst.nodes(), 0));
+    vector<bit_vector> marcas(n_trips*2, bit_vector(cst.nodes(), 0));
 //    mostrar_marcas(marcas, n_trips, cst.nodes());
 
     for(int i=0; i<trips.size(); i++){
