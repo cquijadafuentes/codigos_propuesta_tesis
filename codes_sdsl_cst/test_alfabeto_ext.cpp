@@ -32,6 +32,195 @@ void computeLPSArray(vector<int> &pat, int M, int* lps);
 pair<int,bool> lcs_info(vector<int> &s, vector<int> &t, int n, int m);
 
 
+// *********************** CLASE TOPORELGST ***********************
+//  --------------------Inicio clase TopoRelGST-------------------
+class TopoRelGST{
+public:
+    cst_sct3<csa_wt<wt_int<rrr_vector<>>>> cst;
+    vector<vector<int>> routes;
+    vector<vector<int>> routes_rev;
+    vector<bit_vector> marcas;
+    vector<cst_sct3<>::node_type> mapa;
+    int n_routes;
+    int n_concat;
+    int n_stops;
+    TopoRelGST(vector<vector<int>>&, int);
+    string obtenerRelacion(int, int);
+private:
+
+};
+
+TopoRelGST::TopoRelGST(vector<vector<int>> &rutas, int cant_rutas){
+    routes = rutas;
+    n_stops = cant_rutas;
+    n_concat = 0;
+    n_routes = routes.size();
+    for(int i = 0; i < n_routes; i++){
+        n_concat += routes[i].size();
+    }
+    int_vector<> iv(n_concat*2);
+    int pv = 0;
+    int tr = n_routes;
+    // Concatenar rutas
+    for(int i = 0; i < n_routes; i++){
+        for(int j = 0; j < routes[i].size(); j++){
+            iv[pv++] = routes[i][j];
+        }
+    }
+//    cout << "Rutas... concatenadas" << endl;
+
+    // Concatenar rutas reversas
+    for(int i = 0; i < n_routes; i++){
+        routes_rev.push_back(routes[i]);
+        reverse(routes_rev[i].begin(), routes_rev[i].end());
+        for(int j = routes_rev[i].size() - 1; j >= 0; j--){
+            iv[pv++] = routes_rev[i][j];
+        }
+    }
+//    cout << "Rutas reversas... concatenadas" << endl;
+/*
+    for(int i=0; i<iv.size(); i++){
+        cout << iv[i] << " ";
+    }
+    cout << endl;
+*/
+
+    //cst_sct3<csa_wt<wt_int<rrr_vector<>>>> cst;
+    construct_im(cst, iv);
+    cout << "********** Compressed Suffix Tree **********" << endl;
+/*
+    cout << "inner nodes : " << cst.nodes() - cst.csa.size() << endl;
+    auto v = cst.select_child(cst.child(cst.root(), 930),1);
+    auto d = cst.depth(v);
+    cout << "v : " << d << "-[" << cst.lb(v) << "," << cst.rb(v) << "]" << endl;
+    cout << "extract(cst, v) : " << extract(cst, v) << endl;
+
+    v = cst.root();
+    cout << "root\tid: " << cst.id(v) << endl;
+    for(int i=0; i < routes[0].size(); i++){
+        v = cst.child(v, routes[0][i]);
+        cout << routes[0][i] << "\tid: " << cst.id(v) << endl;
+    }
+*/
+    // Marcas en bitvectors
+    marcas = vector<bit_vector>(n_routes * 2, bit_vector(cst.nodes(), 0));
+    for(int i = 0; i < n_routes; i++){
+        for(int j = 0; j < routes[i].size(); j++){
+            // La primera mitad de marcas es para routes
+            auto v = cst.child(cst.root(), routes[i][j]);
+            while(v != cst.root() && cst.depth(v) <= routes[i].size()-j){
+                marcas[i][cst.id(v)] = 1;
+                if(cst.depth(v) < routes[i].size()-j){
+                    v = cst.child(v, routes[i][cst.depth(v)+j]);
+                }else{
+                    break;
+                }
+            }
+            // La segunda mitad de marcas es para routes_rev
+            v = cst.child(cst.root(), routes_rev[i][j]);
+            while(v != cst.root() && cst.depth(v) <= routes_rev[i].size()-j){
+                marcas[n_routes + i][cst.id(v)] = 1;
+                if(cst.depth(v) < routes_rev[i].size()-j){
+                    v = cst.child(v, routes_rev[i][cst.depth(v)+j]);
+                }else{
+                    break;
+                }
+            }
+
+        }
+    }
+//    cout << "Marcas en bitvector... OK" << endl;
+
+    // MAP en un vector
+    mapa = vector<cst_sct3<>::node_type>(n_routes * 2);
+    for(int i = 0; i < n_routes; i++){
+        // La primera mitad de mapa para routes
+        auto v = cst.child(cst.root(), routes[i][0]);
+        while(v != cst.root() && cst.depth(v) < routes[i].size()){
+            v = cst.child(v, routes[i][cst.depth(v)]);
+        }
+        mapa[i] = v;
+        // La segunda mitad de mapa para routes_rev
+        v = cst.child(cst.root(), routes_rev[i][0]);
+        while(v != cst.root() && cst.depth(v) < routes_rev[i].size()){
+            v = cst.child(v, routes_rev[i][cst.depth(v)]);
+        }
+        mapa[n_routes + i] = v;
+    }
+//    cout << "Map... OK" << endl;
+}
+
+string TopoRelGST::obtenerRelacion(int x, int y){
+    // Identificar contención según nodo
+    // Equal, inside, includes, coveredBy, covers
+    int corto, largo;
+    if(routes[x].size() < routes[y].size()){
+        corto = x;
+        largo = y;
+    }else{
+        corto = y;
+        largo = x;
+    }
+    if(mapa[largo] == mapa[corto]){
+        return EQUALS;
+    }
+    if(mapa[largo] == mapa[corto+n_routes]){
+        return EQUALS;
+    }
+    int id_corto = cst.id(mapa[corto]);
+    if(marcas[largo][id_corto] == 1 || marcas[largo + n_routes][id_corto] == 1){
+        // Hay contensión
+        auto v1 = cst.lca(mapa[corto], mapa[largo]);
+        auto v2 = cst.lca(mapa[corto], mapa[largo+n_routes]);
+        auto v3 = cst.lca(mapa[corto+n_routes], mapa[largo]);
+        auto v4 = cst.lca(mapa[corto+n_routes], mapa[largo+n_routes]);
+        auto v12 = (cst.depth(v1) > cst.depth(v2)) ? v1 : v2;
+        auto v34 = (cst.depth(v3) > cst.depth(v4)) ? v3 : v4;
+        auto v1234 = (cst.depth(v12) > cst.depth(v34)) ? v12 : v34;
+
+        if(v1234 == mapa[corto] || v1234 == mapa[corto + n_routes]){
+            if(corto == x){
+                return COVEREDBY;
+            }
+            return COVERS;
+        }
+        if(corto == x){
+            return INSIDE;
+        }
+        return INCLUDES;
+    }
+    // Identificar otras
+    // Touches, Overlaps, Disjoint
+    bool touches = false;
+    bool overlaps = false;
+    auto root = cst.root();
+    for(int i = 1; i < routes[corto].size() - 1; i++){
+        auto ch = cst.child(root, routes[corto][i]);
+        if(ch != root && marcas[largo][cst.id(ch)]){
+            if(routes[corto][i] == routes[largo][0] ||
+                    routes[corto][i] == routes_rev[largo][0]){
+                touches = true;
+            }else{
+                return OVERLAPS;
+            }
+        }
+    }
+    int idch = cst.id(cst.child(root, routes[corto][0]));
+    if(marcas[largo][idch] == 1){
+        touches = true;
+    }
+    idch = cst.id(cst.child(root, routes_rev[corto][0]));
+    if(marcas[largo][idch] == 1){
+        touches = true;
+    }
+    if(!overlaps && touches){
+        return TOUCHES;
+    }
+    return DISJOINT;
+}
+
+//  ---------------------Fin clase TopoRelGST--------------------
+
 int main(int argc, char const *argv[]){
 	if(argc < 2){
 		cout << "Error! falta nombre archivo a procesar como entrada." << endl;
@@ -48,7 +237,7 @@ int main(int argc, char const *argv[]){
 	for(int i = 1; i <= n_stops; i++){
 		string id_stop;
 		entrada >> id_stop;
-		mapa_stops[id_stop] = 32+i;
+		mapa_stops[id_stop] = i;
 //		cout << id_stop << " - " << i << endl;
 	}
 
@@ -135,191 +324,16 @@ void relaciones_nn_naive(vector<vector<int>> &routes){
 
 
 void relaciones_nn_gst(vector<vector<int>> &routes, int n_stops){
-    int n_concat = 0;
-    int n_routes = routes.size();
-    for(int i = 0; i < n_routes; i++){
-        n_concat += routes[i].size();
-    }
-    cout << "n_concat: " << n_concat << endl;
-    int_vector<> iv(n_concat*2);
-    int pv = 0;
-    int tr = n_routes;
-    // Concatenar rutas
-    for(int i = 0; i < n_routes; i++){
-        for(int j = 0; j < routes[i].size(); j++){
-            iv[pv++] = routes[i][j];
-        }
-    }
-    cout << "Rutas... concatenadas" << endl;
-    vector<vector<int>> routes_rev;
-    // Concatenar rutas reversas
-    for(int i = 0; i < n_routes; i++){
-        routes_rev.push_back(routes[i]);
-        reverse(routes_rev[i].begin(), routes_rev[i].end());
-        for(int j = routes_rev[i].size() - 1; j >= 0; j--){
-            iv[pv++] = routes_rev[i][j];
-        }
-    }
-    cout << "Rutas reversas... concatenadas" << endl;
-/*
-    for(int i=0; i<iv.size(); i++){
-        cout << iv[i] << " ";
-    }
-    cout << endl;
-*/
-
-    cst_sct3<csa_wt<wt_int<rrr_vector<>>>> cst;
-    construct_im(cst, iv);
-    cout << "********** Compressed Suffix Tree **********" << endl;
-    cout << "inner nodes : " << cst.nodes() - cst.csa.size() << endl;
-    auto v = cst.select_child(cst.child(cst.root(), 930),1);
-    auto d = cst.depth(v);
-    cout << "v : " << d << "-[" << cst.lb(v) << "," << cst.rb(v) << "]" << endl;
-    cout << "extract(cst, v) : " << extract(cst, v) << endl;
-
-    v = cst.root();
-    cout << "root\tid: " << cst.id(v) << endl;
-    for(int i=0; i < routes[0].size(); i++){
-        v = cst.child(v, routes[0][i]);
-        cout << routes[0][i] << "\tid: " << cst.id(v) << endl;
-    }
-
-    // Marcas en bitvectors
-    vector<bit_vector> marcas(n_routes * 2, bit_vector(cst.nodes(), 0));
-    for(int i = 0; i < n_routes; i++){
-        for(int j = 0; j < routes[i].size(); j++){
-            // La primera mitad de marcas es para routes
-            auto v = cst.child(cst.root(), routes[i][j]);
-            while(v != cst.root() && cst.depth(v) <= routes[i].size()-j){
-                marcas[i][cst.id(v)] = 1;
-                if(cst.depth(v) < routes[i].size()-j){
-                    v = cst.child(v, routes[i][cst.depth(v)+j]);
-                }else{
-                    break;
-                }
-            }
-            // La segunda mitad de marcas es para routes_rev
-            v = cst.child(cst.root(), routes_rev[i][j]);
-            while(v != cst.root() && cst.depth(v) <= routes_rev[i].size()-j){
-                marcas[n_routes + i][cst.id(v)] = 1;
-                if(cst.depth(v) < routes_rev[i].size()-j){
-                    v = cst.child(v, routes_rev[i][cst.depth(v)+j]);
-                }else{
-                    break;
-                }
-            }
-
-        }
-    }
-    cout << "Marcas en bitvector... OK" << endl;
-
-    // MAP en un vector
-    vector<cst_sct3<>::node_type> mapa(n_routes * 2);
-    for(int i = 0; i < n_routes; i++){
-        // La primera mitad de mapa para routes
-        auto v = cst.child(cst.root(), routes[i][0]);
-        while(v != cst.root() && cst.depth(v) < routes[i].size()){
-            v = cst.child(v, routes[i][cst.depth(v)]);
-        }
-        mapa[i] = v;
-        // La segunda mitad de mapa para routes_rev
-        v = cst.child(cst.root(), routes_rev[i][0]);
-        while(v != cst.root() && cst.depth(v) < routes_rev[i].size()){
-            v = cst.child(v, routes_rev[i][cst.depth(v)]);
-        }
-        mapa[n_routes + i] = v;
-    }
-    cout << "Map... OK" << endl;
+    TopoRelGST tt(routes, n_stops);   
 
     map<string, int> mrt;
     // Relaciones topológicas
-    for(int x = 0; x < n_routes; x++){
-        for(int y = 0; y < n_routes; y++){
-            // Identificar contención según nodo
-            // Equal, inside, includes, coveredBy, covers
-            int corto, largo;
-            if(routes[x].size() < routes[y].size()){
-                corto = x;
-                largo = y;
-            }else{
-                corto = y;
-                largo = x;
-            }
-            if(mapa[largo] == mapa[corto]){
-                //cout << "Equals" << endl;
-                mrt[EQUALS]++;
-            }else if(mapa[largo] == mapa[corto+n_routes]){
-                //cout << "Equals (reverse)" << endl;
-                mrt[EQUALS]++;
-            }else{
-                int id_corto = cst.id(mapa[corto]);
-                if(marcas[largo][id_corto] == 1 || marcas[largo + n_routes][id_corto] == 1){
-                    // Hay contensión
-                    auto v1 = cst.lca(mapa[corto], mapa[largo]);
-                    auto v2 = cst.lca(mapa[corto], mapa[largo+n_routes]);
-                    auto v3 = cst.lca(mapa[corto+n_routes], mapa[largo]);
-                    auto v4 = cst.lca(mapa[corto+n_routes], mapa[largo+n_routes]);
-                    auto v12 = (cst.depth(v1) > cst.depth(v2)) ? v1 : v2;
-                    auto v34 = (cst.depth(v3) > cst.depth(v4)) ? v3 : v4;
-                    auto v1234 = (cst.depth(v12) > cst.depth(v34)) ? v12 : v34;
-
-                    if(v1234 == mapa[corto] || v1234 == mapa[corto + n_routes]){
-                        if(corto == x){
-                            //cout << "CoveredBy" << endl;
-                            mrt[COVEREDBY]++;
-                        }else{
-                            //cout << "Covers" << endl;
-                            mrt[COVERS]++;
-                        }
-                    }else{
-                        if(corto == x){
-                            //cout << "Inside" << endl;
-                            mrt[INSIDE]++;
-                        }else{
-                            //cout << "Includes" << endl;
-                            mrt[INCLUDES]++;
-                        }
-                    }
-                }else{
-                    // Identificar otras
-                    // Touches, Overlaps, Disjoint
-                    bool touches = false;
-                    bool overlaps = false;
-                    auto root = cst.root();
-                    for(int i = 1; i < routes[corto].size() - 1; i++){
-                        auto ch = cst.child(root, routes[corto][i]);
-                        if(ch != root && marcas[largo][cst.id(ch)]){
-                            if(routes[corto][i] == routes[largo][0] ||
-                                    routes[corto][i] == routes_rev[largo][0]){
-                                touches = true;
-                            }else{
-                                //cout << "Overlaps" << endl;
-                                mrt[OVERLAPS]++;
-                                overlaps = true;
-                            }
-                        }
-                    }
-                    int idch = cst.id(cst.child(root, routes[corto][0]));
-                    if(marcas[largo][idch] == 1){
-                        touches = true;
-                    }
-                    idch = cst.id(cst.child(root, routes_rev[corto][0]));
-                    if(marcas[largo][idch] == 1){
-                        touches = true;
-                    }
-                    if(!overlaps && touches){
-                        //cout << "Touches" << endl;
-                        mrt[TOUCHES]++;
-                    }else if(!overlaps && !touches){
-                        //cout << "Disjoint" << endl;
-                        mrt[DISJOINT]++;
-                    }
-                }
-            }
+    for(int x = 0; x < tt.n_routes; x++){
+        for(int y = 0; y < tt.n_routes; y++){
+            string r = tt.obtenerRelacion(x, y);
+            mrt[r]++;
         }
     }
-
-
 
     cout << COVEREDBY << ": " << mrt[COVEREDBY] << endl;
     cout << COVERS << ": " << mrt[COVERS] << endl;
