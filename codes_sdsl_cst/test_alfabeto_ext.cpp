@@ -9,6 +9,7 @@
 #include <sdsl/suffix_trees.hpp>
 #include <sdsl/bit_vectors.hpp>
 #include <sdsl/cst_iterators.hpp>
+#include <ctime>
 
 using namespace std;
 using namespace sdsl;
@@ -170,15 +171,12 @@ string TopoRelGST::obtenerRelacion(int x, int y){
     int id_corto = cst.id(mapa[corto]);
     if(marcas[largo][id_corto] == 1 || marcas[largo + n_routes][id_corto] == 1){
         // Hay contensión
-        auto v1 = cst.lca(mapa[corto], mapa[largo]);
-        auto v2 = cst.lca(mapa[corto], mapa[largo+n_routes]);
-        auto v3 = cst.lca(mapa[corto+n_routes], mapa[largo]);
-        auto v4 = cst.lca(mapa[corto+n_routes], mapa[largo+n_routes]);
-        auto v12 = (cst.depth(v1) > cst.depth(v2)) ? v1 : v2;
-        auto v34 = (cst.depth(v3) > cst.depth(v4)) ? v3 : v4;
-        auto v1234 = (cst.depth(v12) > cst.depth(v34)) ? v12 : v34;
-
-        if(v1234 == mapa[corto] || v1234 == mapa[corto + n_routes]){
+        bool borde = false;
+        borde = borde || routes[x][0] == routes[y][0];
+        borde = borde || routes[x][0] == routes_rev[y][0];
+        borde = borde || routes_rev[x][0] == routes[y][0];
+        borde = borde || routes_rev[x][0] == routes_rev[y][0];
+        if(borde){
             if(corto == x){
                 return COVEREDBY;
             }
@@ -201,6 +199,7 @@ string TopoRelGST::obtenerRelacion(int x, int y){
                     routes[corto][i] == routes_rev[largo][0]){
                 touches = true;
             }else{
+
                 return OVERLAPS;
             }
         }
@@ -220,6 +219,17 @@ string TopoRelGST::obtenerRelacion(int x, int y){
 }
 
 //  ---------------------Fin clase TopoRelGST--------------------
+
+bool verificaRuta(vector<int> v){
+    for(int j = 0; j < v.size() - 1; j++){
+        for(int k = j + 1; k < v.size(); k++){
+            if(v[j] == v[k]){
+                return false;
+            }
+        }
+    }
+    return true;
+}
 
 int main(int argc, char const *argv[]){
 	if(argc < 2){
@@ -274,7 +284,9 @@ int main(int argc, char const *argv[]){
 //			cout << vr[i] << " ";
 //		}
 //		cout << endl << "-----------------" << endl;
-		routes.push_back(vr);
+		if(verificaRuta(vr)){
+            routes.push_back(vr);
+        }
 	}
 /*
 	cout << "Total rutas: " << routes.size() << endl;
@@ -303,6 +315,7 @@ int main(int argc, char const *argv[]){
 
 void relaciones_nn_naive(vector<vector<int>> &routes){
     cout << "********** Naive Algorithm **********" << endl;
+    unsigned t0 = clock();
 	map<string, int> mrt;
 	for(int i = 0; i < routes.size(); i++){
 		for(int j = 0; j < routes.size(); j++){
@@ -310,8 +323,9 @@ void relaciones_nn_naive(vector<vector<int>> &routes){
 			mrt[r]++;
 		}
 	}
-
-	cout << COVEREDBY << ": " << mrt[COVEREDBY] << endl;
+    unsigned t1 = clock();
+	
+    cout << COVEREDBY << ": " << mrt[COVEREDBY] << endl;
 	cout << COVERS << ": " << mrt[COVERS] << endl;
 	cout << DISJOINT << ": " << mrt[DISJOINT] << endl;
 	cout << EQUALS << ": " << mrt[EQUALS] << endl;
@@ -319,13 +333,16 @@ void relaciones_nn_naive(vector<vector<int>> &routes){
 	cout << INSIDE << ": " << mrt[INSIDE] << endl;
 	cout << OVERLAPS << ": " << mrt[OVERLAPS] << endl;
 	cout << TOUCHES << ": " << mrt[TOUCHES] << endl;
-
+    
+    double tiempo = (double)(t1 - t0)/CLOCKS_PER_SEC;
+    cout << "Tiempo total: " << tiempo << " segs." << endl;
 }
 
 
 void relaciones_nn_gst(vector<vector<int>> &routes, int n_stops){
+    unsigned t0 = clock();
     TopoRelGST tt(routes, n_stops);   
-
+    unsigned t1 = clock();
     map<string, int> mrt;
     // Relaciones topológicas
     for(int x = 0; x < tt.n_routes; x++){
@@ -334,6 +351,7 @@ void relaciones_nn_gst(vector<vector<int>> &routes, int n_stops){
             mrt[r]++;
         }
     }
+    unsigned t2 = clock();
 
     cout << COVEREDBY << ": " << mrt[COVEREDBY] << endl;
     cout << COVERS << ": " << mrt[COVERS] << endl;
@@ -343,6 +361,13 @@ void relaciones_nn_gst(vector<vector<int>> &routes, int n_stops){
     cout << INSIDE << ": " << mrt[INSIDE] << endl;
     cout << OVERLAPS << ": " << mrt[OVERLAPS] << endl;
     cout << TOUCHES << ": " << mrt[TOUCHES] << endl;
+
+    double tiempoTotal = (double)(t2 - t0)/CLOCKS_PER_SEC;
+    double tiempoCons = (double)(t1 - t0)/CLOCKS_PER_SEC;
+    double tiempoOps = (double)(t2 - t1)/CLOCKS_PER_SEC;
+    cout << "Tiempo total: " << tiempoTotal << " segs." << endl;
+    cout << "Construccion: " << tiempoCons << " segs." << endl;
+    cout << "Operaciones: " << tiempoOps << " segs." << endl;
 }
 
 
@@ -389,7 +414,7 @@ string toporel(vector<int> &a, vector<int> &b){
         sb = true;
     }
 
-    // Se asume que |s| < |t|
+    // Se tiene que |s| < |t|
     int n = s.size();
     int m = t.size();
     
@@ -439,11 +464,7 @@ string toporel(vector<int> &a, vector<int> &b){
         // Caso en el que hay intersección interior-interior
         return OVERLAPS;
     }
-
     return TOUCHES;
-
-//    cout << "************** LCS **************" << endl;
-//    cout << res.first << endl;
 
 }
 
