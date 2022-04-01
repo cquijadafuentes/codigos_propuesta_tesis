@@ -236,7 +236,7 @@ int main(int argc, char const *argv[]){
 		cout << "Error! falta nombre archivo a procesar como entrada." << endl;
 		return -1;
 	}
-
+    
 	fstream entrada;
 	entrada.open(argv[1], fstream::in);
 	int n_stops;

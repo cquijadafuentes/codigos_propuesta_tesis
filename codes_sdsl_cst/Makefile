@@ -6,9 +6,12 @@ POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
 BINS=test_csa test_cst my_test_cst pc rt_lcs test_alfabeto_ext
 
+%.o: %.cpp
+	$(CPP) $(PREFLAGS) -c $< -o $@ $(POSFLAGS)
+
 all: clean bin
 
-bin: $(BINS)
+bin: $(OBJECTS) $(BINS)
 
 test_csa:
 	$(CPP) $(PREFLAGS) test_csa.cpp -o test_csa $(POSFLAGS)
