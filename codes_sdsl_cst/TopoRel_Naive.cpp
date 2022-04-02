@@ -75,7 +75,7 @@ string toporel(vector<int> &a, vector<int> &b){
         }
     }
 
-    if(kmp.second > 1 || kmpR.second > 1){
+    if(kmp.second > 2 || kmpR.second > 2){
         return OVERLAPS;
     }
 
@@ -180,15 +180,16 @@ pair<int,bool> lcs_info(vector<int> &s, vector<int> &t, int n, int m){
     int dp[2][m + 1];
     int res = 0;
     bool ii_intersect = false;
-
+/*
     cout << "************** Tabla PD **************" << endl;
     cout << endl << " +";
     for (int i=0; i<m; i++){
         cout << " " << t[i];
     }
     cout << endl;
+*/
     for (int i = 1; i <= n; i++) {
-        cout << " " << s[i-1];
+//        cout << " " << s[i-1];
         for (int j = 1; j <= m; j++) {
             if (s[i - 1] == t[j - 1]) {
                 dp[i % 2][j] = dp[(i - 1) % 2][j - 1] + 1;
@@ -197,17 +198,18 @@ pair<int,bool> lcs_info(vector<int> &s, vector<int> &t, int n, int m){
                 }
                 if(i > 1 && i < n && j > 1 && j < m){
                     ii_intersect = true;
+//                    cout << "ii_intersect: true por " << i << " " << j << endl;
                 }
             }
             else{
                 dp[i % 2][j] = 0;
             }
-            cout << " " << dp[i % 2][j] ;
+//            cout << " " << dp[i % 2][j] ;
         }
-        cout << endl;
+//        cout << endl;
     }
 
-    cout << "Intersección interior-interior: " << ii_intersect << endl;
+//    cout << "Intersección interior-interior: " << ii_intersect << endl;
 
     return make_pair(res,ii_intersect);
 }

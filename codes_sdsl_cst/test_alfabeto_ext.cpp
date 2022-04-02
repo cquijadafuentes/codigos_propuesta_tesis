@@ -18,6 +18,7 @@ using namespace sdsl;
 
 void relaciones_nn_naive(vector<vector<int>> &routes);
 void relaciones_nn_gst(vector<vector<int>> &routes, int n_stops);
+void compara_relaciones(vector<vector<int>> &routes, int n_stops);
 
 // *********************** CLASE TOPORELGST ***********************
 //  --------------------Inicio clase TopoRelGST-------------------
@@ -74,7 +75,6 @@ TopoRelGST::TopoRelGST(vector<vector<int>> &rutas, int cant_rutas){
 
     //cst_sct3<csa_wt<wt_int<rrr_vector<>>>> cst;
     construct_im(cst, iv);
-    cout << "********** Compressed Suffix Tree **********" << endl;
 /*
     cout << "inner nodes : " << cst.nodes() - cst.csa.size() << endl;
     auto v = cst.select_child(cst.child(cst.root(), 930),1);
@@ -326,6 +326,7 @@ void relaciones_nn_naive(vector<vector<int>> &routes){
 
 
 void relaciones_nn_gst(vector<vector<int>> &routes, int n_stops){
+    cout << "********** Compressed Suffix Tree **********" << endl;
     unsigned t0 = clock();
     TopoRelGST tt(routes, n_stops);   
     unsigned t1 = clock();
@@ -358,7 +359,36 @@ void relaciones_nn_gst(vector<vector<int>> &routes, int n_stops){
 
 
 
+void compara_relaciones(vector<vector<int>> &routes, int n_stops){
+    vector<vector<string>> res_naive(routes.size(), vector<string>(routes.size(), ""));
+    for(int i = 0; i < routes.size(); i++){
+        for(int j = 0; j < routes.size(); j++){
+            string r = toporel(routes[i], routes[j]);
+            res_naive[i][j] = r;
+        }
+    }
 
+    TopoRelGST tt(routes, n_stops);   
+    map<string, int> mrt;
+    for(int x = 0; x < tt.n_routes; x++){
+        for(int y = 0; y < tt.n_routes; y++){
+            string r = tt.obtenerRelacion(x, y);
+            if(r != res_naive[x][y]){
+                cout << x << " - " << y << " - Naive: " << res_naive[x][y] << " - GST: " << r << endl;
+                cout << x << " |" << routes[x].size() << "| : ";
+                for(int k = 0; k < routes[x].size(); k++) {
+                    cout << routes[x][k] << " ";
+                }
+                cout << endl;
+                cout << y << " |" << routes[y].size() << "| : ";
+                for(int k = 0; k < routes[y].size(); k++) {
+                    cout << routes[y][k] << " ";
+                }
+                cout << endl;
+            }
+        }
+    }
+}
 
 
 
