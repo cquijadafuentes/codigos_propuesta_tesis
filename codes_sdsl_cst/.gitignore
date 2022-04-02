@@ -4,3 +4,5 @@ my_test_cst
 pc
 rt_lcs
 test_alfabeto_ext
+TopoRel_Naive_test
+*.o

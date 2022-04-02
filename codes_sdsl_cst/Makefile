@@ -4,7 +4,9 @@ PREFLAGS=-std=c++11 -O3 -DNDEBUG -I ~/include -L ~/lib
 
 POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
-BINS=test_csa test_cst my_test_cst pc rt_lcs test_alfabeto_ext
+BINS=test_csa test_cst my_test_cst pc rt_lcs test_alfabeto_ext TopoRel_Naive_test
+
+OBJECTS=TopoRel_Naive.o
 
 %.o: %.cpp
 	$(CPP) $(PREFLAGS) -c $< -o $@ $(POSFLAGS)
@@ -29,8 +31,10 @@ rt_lcs:
 	$(CPP) rt_lcs.cpp -o rt_lcs
 
 test_alfabeto_ext:
-	$(CPP) $(PREFLAGS) test_alfabeto_ext.cpp -o test_alfabeto_ext $(POSFLAGS)
-	
+	$(CPP) $(PREFLAGS) test_alfabeto_ext.cpp -o test_alfabeto_ext $(POSFLAGS) $(OBJECTS)
+
+TopoRel_Naive_test:
+	$(CPP) $(PREFLAGS) TopoRel_Naive_test.cpp -o TopoRel_Naive_test $(OBJECTS)
 
 clean:
 	rm -f $(BINS)
