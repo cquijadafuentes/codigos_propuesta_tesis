@@ -82,7 +82,7 @@ string toporel(vector<int> &a, vector<int> &b){
 
     // ------- OTRAS -------
 
-    pair<int,bool> res = lcs_info(s, t, n, m);
+    pair<int,bool> res = lcs_info(s, t);
 
     if(res.first == 0){
         return DISJOINT;
@@ -174,8 +174,9 @@ void computeLPSArray(vector<int> &pat, int M, int* lps){
     }
 }
 
-pair<int,bool> lcs_info(vector<int> &s, vector<int> &t, int n, int m){
-
+pair<int,bool> lcs_info(vector<int> &s, vector<int> &t){
+    int n = s.size();
+    int m = t.size();
     // Create DP table
     int dp[2][m + 1];
     int res = 0;
@@ -212,4 +213,133 @@ pair<int,bool> lcs_info(vector<int> &s, vector<int> &t, int n, int m){
 //    cout << "Intersección interior-interior: " << ii_intersect << endl;
 
     return make_pair(res,ii_intersect);
+}
+
+
+bool tr_equals(vector<int> &a, vector<int> &b){
+    return iguales(a, b);
+}
+
+bool tr_coveredby(vector<int> &a, vector<int> &b){
+    if(a.size() >= b.size()){
+        return false;
+    }
+    int n = a.size();
+    int m = b.size();
+    
+    // ------- EQUALS -------
+
+    vector<int> rb = b;
+    reverse(rb.begin(), rb.end());
+    
+    pair<int,int> kmp = KMPSearch(a, b);
+    pair<int,int> kmpR = KMPSearch(a, rb);
+    if(kmp.first != -1 || kmpR.first != -1){
+        int index = (kmp.first != -1) ? kmp.first : kmpR.first;
+        if(index == 0 || index == m-n){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool tr_covers(vector<int> &a, vector<int> &b){
+    if(b.size() >= a.size()){
+        return false;
+    }
+    int n = a.size();
+    int m = b.size();
+    
+    // ------- EQUALS -------
+
+    vector<int> ra = a;
+    reverse(ra.begin(), ra.end());
+    
+    pair<int,int> kmp = KMPSearch(b, a);
+    pair<int,int> kmpR = KMPSearch(b, ra);
+    if(kmp.first != -1 || kmpR.first != -1){
+        int index = (kmp.first != -1) ? kmp.first : kmpR.first;
+        if(index == 0 || index == m-n){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool tr_disjoint(vector<int> &a, vector<int> &b){
+    pair<int,bool> res = lcs_info(a, b);
+
+    if(res.first == 0){
+        return true;
+    }
+    
+    return false;
+}
+
+bool tr_includes(vector<int> &a, vector<int> &b){
+    if(b.size() >= a.size()){
+        return false;
+    }
+    int n = a.size();
+    int m = b.size();
+    
+    // ------- EQUALS -------
+
+    vector<int> ra = a;
+    reverse(ra.begin(), ra.end());
+    
+    pair<int,int> kmp = KMPSearch(b, a);
+    pair<int,int> kmpR = KMPSearch(b, ra);
+    if(kmp.first != -1 || kmpR.first != -1){
+        int index = (kmp.first != -1) ? kmp.first : kmpR.first;
+        if(index != 0 && index != m-n){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool tr_inside(vector<int> &a, vector<int> &b){
+    if(a.size() >= b.size()){
+        return false;
+    }
+    int n = a.size();
+    int m = b.size();
+    
+    // ------- EQUALS -------
+
+    vector<int> rb = b;
+    reverse(rb.begin(), rb.end());
+    
+    pair<int,int> kmp = KMPSearch(a, b);
+    pair<int,int> kmpR = KMPSearch(a, rb);
+    if(kmp.first != -1 || kmpR.first != -1){
+        int index = (kmp.first != -1) ? kmp.first : kmpR.first;
+        if(index != 0 && index != m-n){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool tr_overlaps(vector<int> &a, vector<int> &b){
+    int min_size = a.size() > b.size() ? b.size() : a.size();
+    pair<int,bool> res = lcs_info(a, b);
+
+    if(res.first < min_size && res.second){
+        return true;
+    }
+    
+    return false;
+}
+
+bool tr_touches(vector<int> &a, vector<int> &b){
+
+    pair<int,bool> res = lcs_info(a, b);
+
+    if(res.first != 0 && !res.second){
+        return true;
+    }
+
+    return false;
 }

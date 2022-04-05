@@ -319,9 +319,60 @@ void relaciones_nn_naive(vector<vector<int>> &routes){
 	cout << INSIDE << ": " << mrt[INSIDE] << endl;
 	cout << OVERLAPS << ": " << mrt[OVERLAPS] << endl;
 	cout << TOUCHES << ": " << mrt[TOUCHES] << endl;
-    
+    cout << "Total relaciones: " ;
+    int tr = mrt[COVEREDBY] + mrt[COVERS] + mrt[DISJOINT] + mrt[EQUALS] + mrt[INCLUDES] + mrt[INSIDE] + mrt[OVERLAPS] + mrt[TOUCHES];
+    cout << tr << endl;
     double tiempo = (double)(t1 - t0)/CLOCKS_PER_SEC;
     cout << "Tiempo total: " << tiempo << " segs." << endl;
+
+    cout << "Relaciones individuales:" << endl;
+    mrt[COVEREDBY] = 0;
+    mrt[COVERS] = 0;
+    mrt[DISJOINT] = 0;
+    mrt[EQUALS] = 0;
+    mrt[INCLUDES] = 0;
+    mrt[INSIDE] = 0;
+    mrt[OVERLAPS] = 0;
+    mrt[TOUCHES] = 0;
+    for(int i = 0; i < routes.size(); i++){
+        for(int j = 0; j < routes.size(); j++){
+            if(tr_coveredby(routes[i], routes[j])){
+                mrt[COVEREDBY]++;
+            }
+            if(tr_covers(routes[i], routes[j])){
+                mrt[COVERS]++;
+            }
+            if(tr_disjoint(routes[i], routes[j])){
+                mrt[DISJOINT]++;
+            }
+            if(tr_equals(routes[i], routes[j])){
+                mrt[EQUALS]++;
+            }
+            if(tr_includes(routes[i], routes[j])){
+                mrt[INCLUDES]++;
+            }
+            if(tr_inside(routes[i], routes[j])){
+                mrt[INSIDE]++;
+            }
+            if(tr_overlaps(routes[i], routes[j])){
+                mrt[OVERLAPS]++;
+            }
+            if(tr_touches(routes[i], routes[j])){
+                mrt[TOUCHES]++;
+            }
+        }
+    }
+    cout << COVEREDBY << ": " << mrt[COVEREDBY] << endl;
+    cout << COVERS << ": " << mrt[COVERS] << endl;
+    cout << DISJOINT << ": " << mrt[DISJOINT] << endl;
+    cout << EQUALS << ": " << mrt[EQUALS] << endl;
+    cout << INCLUDES << ": " << mrt[INCLUDES] << endl;
+    cout << INSIDE << ": " << mrt[INSIDE] << endl;
+    cout << OVERLAPS << ": " << mrt[OVERLAPS] << endl;
+    cout << TOUCHES << ": " << mrt[TOUCHES] << endl;
+    cout << "Total relaciones: " ;
+    tr = mrt[COVEREDBY] + mrt[COVERS] + mrt[DISJOINT] + mrt[EQUALS] + mrt[INCLUDES] + mrt[INSIDE] + mrt[OVERLAPS] + mrt[TOUCHES];
+    cout << tr << endl;
 }
 
 

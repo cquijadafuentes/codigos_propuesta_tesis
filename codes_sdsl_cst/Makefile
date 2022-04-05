@@ -37,4 +37,4 @@ TopoRel_Naive_test:
 	$(CPP) $(PREFLAGS) TopoRel_Naive_test.cpp -o TopoRel_Naive_test $(OBJECTS)
 
 clean:
-	rm -f $(BINS)
+	rm -f $(BINS) $(OBJECTS)
