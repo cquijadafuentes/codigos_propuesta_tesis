@@ -35,6 +35,14 @@ public:
     int n_stops;
     TopoRelGST(vector<vector<int>>&, int);
     string obtenerRelacion(int, int);
+    bool tr_equals(int, int);
+    bool tr_coveredby(int, int);
+    bool tr_covers(int, int);
+    bool tr_inside(int, int);
+    bool tr_includes(int, int);
+    bool tr_disjoint(int, int);
+    bool tr_touches(int, int);
+    bool tr_overlaps(int, int);
 private:
 
 };
@@ -177,7 +185,6 @@ string TopoRelGST::obtenerRelacion(int x, int y){
     // Identificar otras
     // Touches, Overlaps, Disjoint
     bool touches = false;
-    bool overlaps = false;
     auto root = cst.root();
     for(int i = 1; i < routes[corto].size() - 1; i++){
         auto ch = cst.child(root, routes[corto][i]);
@@ -186,7 +193,6 @@ string TopoRelGST::obtenerRelacion(int x, int y){
                     routes[corto][i] == routes_rev[largo][0]){
                 touches = true;
             }else{
-
                 return OVERLAPS;
             }
         }
@@ -196,13 +202,215 @@ string TopoRelGST::obtenerRelacion(int x, int y){
         touches = true;
     }
     idch = cst.id(cst.child(root, routes_rev[corto][0]));
-    if(marcas[largo][idch] == 1){
-        touches = true;
-    }
-    if(!overlaps && touches){
+    if(marcas[largo][idch] == 1 || touches){
         return TOUCHES;
     }
     return DISJOINT;
+}
+
+bool TopoRelGST::tr_equals(int x, int y){
+    if(mapa[x] == mapa[y] || mapa[x] == mapa[y+n_routes]){
+        return true;
+    }
+    return false;
+}
+
+bool TopoRelGST::tr_coveredby(int x, int y){
+    if(routes[x].size() >= routes[y].size()){
+        return false;
+    }
+    int id_x = cst.id(mapa[x]);
+    if(marcas[y][id_x] == 1 || marcas[y + n_routes][id_x] == 1){
+        // Hay contensión
+        bool borde = false;
+        borde = borde || routes[x][0] == routes[y][0];
+        borde = borde || routes[x][0] == routes_rev[y][0];
+        borde = borde || routes_rev[x][0] == routes[y][0];
+        borde = borde || routes_rev[x][0] == routes_rev[y][0];
+        if(borde){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool TopoRelGST::tr_covers(int x, int y){
+    if(routes[x].size() <= routes[y].size()){
+        return false;
+    }
+    int id_y = cst.id(mapa[y]);
+    if(marcas[x][id_y] == 1 || marcas[x + n_routes][id_y] == 1){
+        // Hay contensión
+        bool borde = false;
+        borde = borde || routes[x][0] == routes[y][0];
+        borde = borde || routes[x][0] == routes_rev[y][0];
+        borde = borde || routes_rev[x][0] == routes[y][0];
+        borde = borde || routes_rev[x][0] == routes_rev[y][0];
+        if(borde){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool TopoRelGST::tr_inside(int x, int y){
+    if(routes[x].size() >= routes[y].size()){
+        return false;
+    }
+    int id_x = cst.id(mapa[x]);
+    if(marcas[y][id_x] == 1 || marcas[y + n_routes][id_x] == 1){
+        // Hay contensión
+        bool borde = false;
+        borde = borde || routes[x][0] == routes[y][0];
+        borde = borde || routes[x][0] == routes_rev[y][0];
+        borde = borde || routes_rev[x][0] == routes[y][0];
+        borde = borde || routes_rev[x][0] == routes_rev[y][0];
+        if(!borde){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool TopoRelGST::tr_includes(int x, int y){
+    if(routes[x].size() <= routes[y].size()){
+        return false;
+    }
+    int id_y = cst.id(mapa[y]);
+    if(marcas[x][id_y] == 1 || marcas[x + n_routes][id_y] == 1){
+        // Hay contensión
+        bool borde = false;
+        borde = borde || routes[x][0] == routes[y][0];
+        borde = borde || routes[x][0] == routes_rev[y][0];
+        borde = borde || routes_rev[x][0] == routes[y][0];
+        borde = borde || routes_rev[x][0] == routes_rev[y][0];
+        if(!borde){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool TopoRelGST::tr_disjoint(int x, int y){
+    int corto, largo;
+    if(routes[x].size() < routes[y].size()){
+        corto = x;
+        largo = y;
+    }else{
+        corto = y;
+        largo = x;
+    }
+    if(mapa[largo] == mapa[corto] || mapa[largo] == mapa[corto+n_routes]){
+        return false;
+    }
+    int id_corto = cst.id(mapa[corto]);
+    if(marcas[largo][id_corto] == 1 || marcas[largo + n_routes][id_corto] == 1){
+        return false;
+    }
+    // Identificar otras
+    // Touches, Overlaps, Disjoint
+    bool touches = false;
+    auto root = cst.root();
+    for(int i = 1; i < routes[corto].size() - 1; i++){
+        auto ch = cst.child(root, routes[corto][i]);
+        if(ch != root && marcas[largo][cst.id(ch)]){
+            if(routes[corto][i] == routes[largo][0] ||
+                    routes[corto][i] == routes_rev[largo][0]){
+                touches = true;
+            }else{
+                return false;
+            }
+        }
+    }
+    int idch = cst.id(cst.child(root, routes[corto][0]));
+    if(marcas[largo][idch] == 1){
+        touches = true;
+    }
+    idch = cst.id(cst.child(root, routes_rev[corto][0]));
+    if(marcas[largo][idch] == 1 || touches){
+        return false;
+    }
+    return true;
+}
+
+bool TopoRelGST::tr_touches(int x, int y){
+    int corto, largo;
+    if(routes[x].size() < routes[y].size()){
+        corto = x;
+        largo = y;
+    }else{
+        corto = y;
+        largo = x;
+    }
+    if(mapa[largo] == mapa[corto] || mapa[largo] == mapa[corto+n_routes]){
+        return false;
+    }
+    int id_corto = cst.id(mapa[corto]);
+    if(marcas[largo][id_corto] == 1 || marcas[largo + n_routes][id_corto] == 1){
+        return false;
+    }
+    // Identificar otras
+    // Touches, Overlaps, Disjoint
+    bool touches = false;
+    auto root = cst.root();
+    for(int i = 1; i < routes[corto].size() - 1; i++){
+        auto ch = cst.child(root, routes[corto][i]);
+        if(ch != root && marcas[largo][cst.id(ch)]){
+            if(routes[corto][i] == routes[largo][0] ||
+                    routes[corto][i] == routes_rev[largo][0]){
+                touches = true;
+            }else{
+                return false;
+            }
+        }
+    }
+    if(touches){
+        return true;
+    }
+    int idch = cst.id(cst.child(root, routes[corto][0]));
+    if(marcas[largo][idch] == 1){
+        return true;
+    }
+    idch = cst.id(cst.child(root, routes_rev[corto][0]));
+    if(marcas[largo][idch] == 1){
+        return true;
+    }
+    return false;
+}
+
+bool TopoRelGST::tr_overlaps(int x, int y){
+    int corto, largo;
+    if(routes[x].size() < routes[y].size()){
+        corto = x;
+        largo = y;
+    }else{
+        corto = y;
+        largo = x;
+    }
+    if(mapa[largo] == mapa[corto] || mapa[largo] == mapa[corto+n_routes]){
+        return false;
+    }
+    int id_corto = cst.id(mapa[corto]);
+    if(marcas[largo][id_corto] == 1 || marcas[largo + n_routes][id_corto] == 1){
+        return false;
+    }
+    // Identificar otras
+    // Touches, Overlaps, Disjoint
+    bool touches = false;
+    auto root = cst.root();
+    for(int i = 1; i < routes[corto].size() - 1; i++){
+        auto ch = cst.child(root, routes[corto][i]);
+        if(ch != root && marcas[largo][cst.id(ch)]){
+            if(routes[corto][i] == routes[largo][0] ||
+                    routes[corto][i] == routes_rev[largo][0]){
+                touches = true;
+            }else{
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 //  ---------------------Fin clase TopoRelGST--------------------
@@ -326,7 +534,7 @@ void relaciones_nn_naive(vector<vector<int>> &routes){
     double tiempo = (double)(t1 - t0)/CLOCKS_PER_SEC;
     cout << "Tiempo total: " << tiempo << " segs." << endl;
 
-    cout << "Relaciones individuales:" << endl;
+    cout << "=== Relaciones individuales ===" << endl;
     mrt[COVEREDBY] = 0;
     mrt[COVERS] = 0;
     mrt[DISJOINT] = 0;
@@ -431,6 +639,57 @@ void relaciones_nn_gst(vector<vector<int>> &routes, int n_stops){
     cout << "Tiempo total: " << tiempoTotal << " segs." << endl;
     cout << "Construccion: " << tiempoCons << " segs." << endl;
     cout << "Operaciones: " << tiempoOps << " segs." << endl;
+
+
+    cout << "=== Relaciones individuales ===" << endl;
+    mrt[COVEREDBY] = 0;
+    mrt[COVERS] = 0;
+    mrt[DISJOINT] = 0;
+    mrt[EQUALS] = 0;
+    mrt[INCLUDES] = 0;
+    mrt[INSIDE] = 0;
+    mrt[OVERLAPS] = 0;
+    mrt[TOUCHES] = 0;
+    int tr = 0;
+    for(int x = 0; x < tt.n_routes; x++){
+        for(int y = 0; y < tt.n_routes; y++){
+            if(tt.tr_equals(x, y)){
+                mrt[EQUALS]++;
+            }
+            if(tt.tr_coveredby(x, y)){
+                mrt[COVEREDBY]++;
+            }
+            if(tt.tr_covers(x, y)){
+                mrt[COVERS]++;
+            }
+            if(tt.tr_inside(x, y)){
+                mrt[INSIDE]++;
+            }
+            if(tt.tr_includes(x, y)){
+                mrt[INCLUDES]++;
+            }
+            if(tt.tr_disjoint(x, y)){
+                mrt[DISJOINT]++;
+            }
+            if(tt.tr_touches(x, y)){
+                mrt[TOUCHES]++;
+            }
+            if(tt.tr_overlaps(x, y)){
+                mrt[OVERLAPS]++;
+            }
+        }
+    }
+    cout << COVEREDBY << ": " << mrt[COVEREDBY] << endl;
+    cout << COVERS << ": " << mrt[COVERS] << endl;
+    cout << DISJOINT << ": " << mrt[DISJOINT] << endl;
+    cout << EQUALS << ": " << mrt[EQUALS] << endl;
+    cout << INCLUDES << ": " << mrt[INCLUDES] << endl;
+    cout << INSIDE << ": " << mrt[INSIDE] << endl;
+    cout << OVERLAPS << ": " << mrt[OVERLAPS] << endl;
+    cout << TOUCHES << ": " << mrt[TOUCHES] << endl;
+    cout << "Total relaciones: " ;
+    tr = mrt[COVEREDBY] + mrt[COVERS] + mrt[DISJOINT] + mrt[EQUALS] + mrt[INCLUDES] + mrt[INSIDE] + mrt[OVERLAPS] + mrt[TOUCHES];
+    cout << tr << endl;
 }
 
 
