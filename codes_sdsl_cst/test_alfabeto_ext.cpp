@@ -19,6 +19,7 @@ using namespace sdsl;
 void relaciones_nn_naive(vector<vector<int>> &routes);
 void relaciones_nn_gst(vector<vector<int>> &routes, int n_stops);
 void compara_relaciones(vector<vector<int>> &routes, int n_stops);
+void mostrar_rutas(vector<int> &a, vector<int> &b);
 
 // *********************** CLASE TOPORELGST ***********************
 //  --------------------Inicio clase TopoRelGST-------------------
@@ -336,29 +337,53 @@ void relaciones_nn_naive(vector<vector<int>> &routes){
     mrt[TOUCHES] = 0;
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
+            int cant_relaciones = 0;
+            string resultados = "";
             if(tr_coveredby(routes[i], routes[j])){
                 mrt[COVEREDBY]++;
+                cant_relaciones++;
+                resultados += COVEREDBY + " ";
             }
             if(tr_covers(routes[i], routes[j])){
                 mrt[COVERS]++;
+                cant_relaciones++;
+                resultados += COVERS + " ";
             }
             if(tr_disjoint(routes[i], routes[j])){
                 mrt[DISJOINT]++;
+                cant_relaciones++;
+                resultados += DISJOINT + " ";
             }
             if(tr_equals(routes[i], routes[j])){
                 mrt[EQUALS]++;
+                cant_relaciones++;
+                resultados += EQUALS + " ";
             }
             if(tr_includes(routes[i], routes[j])){
                 mrt[INCLUDES]++;
+                cant_relaciones++;
+                resultados += INCLUDES + " ";
             }
             if(tr_inside(routes[i], routes[j])){
                 mrt[INSIDE]++;
+                cant_relaciones++;
+                resultados += INSIDE + " ";
             }
             if(tr_overlaps(routes[i], routes[j])){
                 mrt[OVERLAPS]++;
+                cant_relaciones++;
+                resultados += OVERLAPS + " ";
             }
             if(tr_touches(routes[i], routes[j])){
                 mrt[TOUCHES]++;
+                cant_relaciones++;
+                resultados += TOUCHES + " ";
+            }
+            if(cant_relaciones != 1){
+                cout << "Cantidad de relaciones: " << cant_relaciones << endl;
+                cout << "Relación Topológica: " << toporel(routes[i], routes[j]) << endl;
+                cout << "Resultados: " << resultados << endl;
+                mostrar_rutas(routes[i], routes[j]);
             }
         }
     }
@@ -442,9 +467,15 @@ void compara_relaciones(vector<vector<int>> &routes, int n_stops){
 }
 
 
-
-
-/////////////////////////////////////////////////////////////
-// ************* RELACIONES TOPOLÓGICAS GST_ ************* //
-/////////////////////////////////////////////////////////////
-
+void mostrar_rutas(vector<int> &a, vector<int> &b){
+    cout << "------------" << endl;
+    cout << a.size() << " -> ";
+    for(int i = 0; i < a.size(); i++){
+        cout << a[i] << " ";
+    }
+    cout << endl << b.size() << " -> ";
+    for(int i = 0; i < b.size(); i++){
+        cout << b[i] << " ";
+    }
+    cout << endl << "------------" << endl;
+}

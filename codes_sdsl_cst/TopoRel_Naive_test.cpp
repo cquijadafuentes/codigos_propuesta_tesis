@@ -21,7 +21,7 @@ int main(){
 	}
 	cout << toporel(lx, ly) << endl;
 	cout << toporel(ly, lx) << endl;
-
+	cout << endl;
 	cout << COVEREDBY << ": ";
 	if(tr_coveredby(lx, ly)){
 		cout << "true" << endl;

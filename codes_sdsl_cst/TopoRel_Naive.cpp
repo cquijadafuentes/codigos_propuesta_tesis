@@ -194,7 +194,7 @@ pair<int,bool> lcs_info(vector<int> &s, vector<int> &t){
         for (int j = 1; j <= m; j++) {
             if (s[i - 1] == t[j - 1]) {
                 dp[i % 2][j] = dp[(i - 1) % 2][j - 1] + 1;
-                if (dp[i % 2][j] > res){
+                if (dp[i % 2][j] == res + 1){
                     res = dp[i % 2][j];
                 }
                 if(i > 1 && i < n && j > 1 && j < m){
@@ -209,7 +209,7 @@ pair<int,bool> lcs_info(vector<int> &s, vector<int> &t){
         }
 //        cout << endl;
     }
-
+//    cout << "Resultado devuelto: " << res << endl;
 //    cout << "Intersección interior-interior: " << ii_intersect << endl;
 
     return make_pair(res,ii_intersect);
@@ -247,8 +247,8 @@ bool tr_covers(vector<int> &a, vector<int> &b){
     if(b.size() >= a.size()){
         return false;
     }
-    int n = a.size();
-    int m = b.size();
+    int n = b.size();
+    int m = a.size();
     
     // ------- EQUALS -------
 
@@ -267,8 +267,13 @@ bool tr_covers(vector<int> &a, vector<int> &b){
 }
 
 bool tr_disjoint(vector<int> &a, vector<int> &b){
-    pair<int,bool> res = lcs_info(a, b);
+    vector<int> ra(a);
+    reverse(ra.begin(), ra.end());
+    if(iguales(a, b) || iguales(ra, b)){
+        return false;
+    }
 
+    pair<int,bool> res = lcs_info(a, b);
     if(res.first == 0){
         return true;
     }
@@ -280,8 +285,8 @@ bool tr_includes(vector<int> &a, vector<int> &b){
     if(b.size() >= a.size()){
         return false;
     }
-    int n = a.size();
-    int m = b.size();
+    int n = b.size();
+    int m = a.size();
     
     // ------- EQUALS -------
 
@@ -335,8 +340,13 @@ bool tr_overlaps(vector<int> &a, vector<int> &b){
 
 bool tr_touches(vector<int> &a, vector<int> &b){
 
-    pair<int,bool> res = lcs_info(a, b);
+    vector<int> ra(a);
+    reverse(ra.begin(), ra.end());
+    if(iguales(a, b) || iguales(ra, b)){
+        return false;
+    }
 
+    pair<int,bool> res = lcs_info(a, b);
     if(res.first != 0 && !res.second){
         return true;
     }

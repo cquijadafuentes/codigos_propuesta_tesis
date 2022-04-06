@@ -1,0 +1,50 @@
+rm -f test_csa test_cst my_test_cst pc rt_lcs test_alfabeto_ext TopoRel_Naive_test TopoRel_Naive.o
+g++ -std=c++11 -O3 -DNDEBUG -I ~/include -L ~/lib -c TopoRel_Naive.cpp -o TopoRel_Naive.o -lsdsl -ldivsufsort -ldivsufsort64
+g++ -std=c++11 -O3 -DNDEBUG -I ~/include -L ~/lib test_alfabeto_ext.cpp -o test_alfabeto_ext -lsdsl -ldivsufsort -ldivsufsort64 TopoRel_Naive.o
+********** Naive Algorithm **********
+CoveredBy: 15
+Covers: 15
+Disjoint: 143280
+Equals: 391
+Includes: 6
+Inside: 6
+Overlaps: 8176
+Touches: 992
+Total relaciones: 152881
+Tiempo total: 0.404904 segs.
+Relaciones individuales:
+Cantidad de relaciones: 0
+Relación Topológica: Overlaps
+Resultados: 
+------------
+96 -> 973 974 1307 1374 1343 1376 1377 1378 1379 1380 1381 1382 1185 1186 1008 1384 1385 1386 1387 1388 1389 892 1242 1197 1198 1199 1200 1201 990 1202 1203 1204 1205 1206 1207 1208 1209 1210 295 505 389 236 422 307 169 171 172 1794 224 225 226 332 256 222 227 1211 889 1212 1213 1214 1215 1216 1217 1218 899 1219 1220 1221 1222 1223 1224 1225 1226 1298 1243 1340 1390 1391 1392 1393 1395 1007 975 1238 1239 1396 1397 1398 1399 1400 1401 1362 1336 926 971 972 
+6 -> 1374 1343 1378 1186 1387 464 
+------------
+Cantidad de relaciones: 0
+Relación Topológica: Overlaps
+Resultados: 
+------------
+31 -> 973 974 1307 1374 1343 1376 1377 1378 1379 1380 1381 1382 1185 1186 1008 1384 1385 1386 1387 1388 1389 892 1242 295 505 389 236 422 307 169 171 
+6 -> 1374 1343 1378 1186 1387 464 
+------------
+CoveredBy: 15
+Covers: 15
+Disjoint: 143280
+Equals: 391
+Includes: 6
+Inside: 6
+Overlaps: 8174
+Touches: 992
+Total relaciones: 152879
+********** Compressed Suffix Tree **********
+CoveredBy: 15
+Covers: 15
+Disjoint: 143280
+Equals: 391
+Includes: 6
+Inside: 6
+Overlaps: 8176
+Touches: 992
+Tiempo total: 86.6918 segs.
+Construccion: 14.4832 segs.
+Operaciones: 72.2086 segs.
