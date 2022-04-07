@@ -535,6 +535,7 @@ void relaciones_nn_naive(vector<vector<int>> &routes){
     cout << "Tiempo total: " << tiempo << " segs." << endl;
 
     cout << "=== Relaciones individuales ===" << endl;
+    map<string, double> trt;
     mrt[COVEREDBY] = 0;
     mrt[COVERS] = 0;
     mrt[DISJOINT] = 0;
@@ -543,46 +544,86 @@ void relaciones_nn_naive(vector<vector<int>> &routes){
     mrt[INSIDE] = 0;
     mrt[OVERLAPS] = 0;
     mrt[TOUCHES] = 0;
+    trt[COVEREDBY] = 0.0;
+    trt[COVERS] = 0.0;
+    trt[DISJOINT] = 0.0;
+    trt[EQUALS] = 0.0;
+    trt[INCLUDES] = 0.0;
+    trt[INSIDE] = 0.0;
+    trt[OVERLAPS] = 0.0;
+    trt[TOUCHES] = 0.0;
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
             int cant_relaciones = 0;
             string resultados = "";
+            t0 = clock();
             if(tr_coveredby(routes[i], routes[j])){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[COVEREDBY] += tiempo;
                 mrt[COVEREDBY]++;
                 cant_relaciones++;
                 resultados += COVEREDBY + " ";
             }
+            t0 = clock();
             if(tr_covers(routes[i], routes[j])){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[COVERS] += tiempo;
                 mrt[COVERS]++;
                 cant_relaciones++;
                 resultados += COVERS + " ";
             }
+            t0 = clock();
             if(tr_disjoint(routes[i], routes[j])){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[DISJOINT] += tiempo;
                 mrt[DISJOINT]++;
                 cant_relaciones++;
                 resultados += DISJOINT + " ";
             }
+            t0 = clock();
             if(tr_equals(routes[i], routes[j])){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[EQUALS] += tiempo;
                 mrt[EQUALS]++;
                 cant_relaciones++;
                 resultados += EQUALS + " ";
             }
+            t0 = clock();
             if(tr_includes(routes[i], routes[j])){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[INCLUDES] += tiempo;
                 mrt[INCLUDES]++;
                 cant_relaciones++;
                 resultados += INCLUDES + " ";
             }
+            t0 = clock();
             if(tr_inside(routes[i], routes[j])){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[INSIDE] += tiempo;
                 mrt[INSIDE]++;
                 cant_relaciones++;
                 resultados += INSIDE + " ";
             }
+            t0 = clock();
             if(tr_overlaps(routes[i], routes[j])){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[OVERLAPS] += tiempo;
                 mrt[OVERLAPS]++;
                 cant_relaciones++;
                 resultados += OVERLAPS + " ";
             }
+            t0 = clock();
             if(tr_touches(routes[i], routes[j])){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[TOUCHES] += tiempo;
                 mrt[TOUCHES]++;
                 cant_relaciones++;
                 resultados += TOUCHES + " ";
@@ -595,14 +636,24 @@ void relaciones_nn_naive(vector<vector<int>> &routes){
             }
         }
     }
-    cout << COVEREDBY << ": " << mrt[COVEREDBY] << endl;
-    cout << COVERS << ": " << mrt[COVERS] << endl;
-    cout << DISJOINT << ": " << mrt[DISJOINT] << endl;
-    cout << EQUALS << ": " << mrt[EQUALS] << endl;
-    cout << INCLUDES << ": " << mrt[INCLUDES] << endl;
-    cout << INSIDE << ": " << mrt[INSIDE] << endl;
-    cout << OVERLAPS << ": " << mrt[OVERLAPS] << endl;
-    cout << TOUCHES << ": " << mrt[TOUCHES] << endl;
+
+    trt[COVEREDBY] = ((trt[COVEREDBY]/CLOCKS_PER_SEC) / mrt[COVEREDBY]) * 1000000;
+    trt[COVERS] = ((trt[COVERS]/CLOCKS_PER_SEC) / mrt[COVERS]) * 1000000;
+    trt[DISJOINT] = ((trt[DISJOINT]/CLOCKS_PER_SEC) / mrt[DISJOINT]) * 1000000;
+    trt[EQUALS] = ((trt[EQUALS]/CLOCKS_PER_SEC) / mrt[EQUALS]) * 1000000;
+    trt[INCLUDES] = ((trt[INCLUDES]/CLOCKS_PER_SEC) / mrt[INCLUDES]) * 1000000;
+    trt[INSIDE] = ((trt[INSIDE]/CLOCKS_PER_SEC) / mrt[INSIDE]) * 1000000;
+    trt[OVERLAPS] = ((trt[OVERLAPS]/CLOCKS_PER_SEC) / mrt[OVERLAPS]) * 1000000;
+    trt[TOUCHES] = ((trt[TOUCHES]/CLOCKS_PER_SEC) / mrt[TOUCHES]) * 1000000;
+
+    cout << COVEREDBY << "\t" << mrt[COVEREDBY] << "\t" << trt[COVEREDBY] << "[us]" << endl;
+    cout << COVERS << "\t\t" << mrt[COVERS] << "\t" << trt[COVERS] << "[us]" << endl;
+    cout << DISJOINT << "\t" << mrt[DISJOINT] << "\t" << trt[DISJOINT] << "[us]" << endl;
+    cout << EQUALS << "\t\t" << mrt[EQUALS] << "\t" << trt[EQUALS] << "[us]" << endl;
+    cout << INCLUDES << "\t" << mrt[INCLUDES] << "\t" << trt[INCLUDES] << "[us]" << endl;
+    cout << INSIDE << "\t\t" << mrt[INSIDE] << "\t" << trt[INSIDE] << "[us]" << endl;
+    cout << OVERLAPS << "\t" << mrt[OVERLAPS] << "\t" << trt[OVERLAPS] << "[us]" << endl;
+    cout << TOUCHES << "\t\t" << mrt[TOUCHES] << "\t" << trt[TOUCHES] << "[us]" << endl;
     cout << "Total relaciones: " ;
     tr = mrt[COVEREDBY] + mrt[COVERS] + mrt[DISJOINT] + mrt[EQUALS] + mrt[INCLUDES] + mrt[INSIDE] + mrt[OVERLAPS] + mrt[TOUCHES];
     cout << tr << endl;
@@ -642,6 +693,8 @@ void relaciones_nn_gst(vector<vector<int>> &routes, int n_stops){
 
 
     cout << "=== Relaciones individuales ===" << endl;
+    map<string, double> trt;
+    double tiempo;
     mrt[COVEREDBY] = 0;
     mrt[COVERS] = 0;
     mrt[DISJOINT] = 0;
@@ -650,43 +703,92 @@ void relaciones_nn_gst(vector<vector<int>> &routes, int n_stops){
     mrt[INSIDE] = 0;
     mrt[OVERLAPS] = 0;
     mrt[TOUCHES] = 0;
+    trt[COVEREDBY] = 0.0;
+    trt[COVERS] = 0.0;
+    trt[DISJOINT] = 0.0;
+    trt[EQUALS] = 0.0;
+    trt[INCLUDES] = 0.0;
+    trt[INSIDE] = 0.0;
+    trt[OVERLAPS] = 0.0;
+    trt[TOUCHES] = 0.0;
     int tr = 0;
     for(int x = 0; x < tt.n_routes; x++){
         for(int y = 0; y < tt.n_routes; y++){
+            t0 = clock();
             if(tt.tr_equals(x, y)){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[EQUALS] += tiempo;
                 mrt[EQUALS]++;
             }
+            t0 = clock();
             if(tt.tr_coveredby(x, y)){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[COVEREDBY] += tiempo;
                 mrt[COVEREDBY]++;
             }
+            t0 = clock();
             if(tt.tr_covers(x, y)){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[COVERS] += tiempo;
                 mrt[COVERS]++;
             }
+            t0 = clock();
             if(tt.tr_inside(x, y)){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[INSIDE] += tiempo;
                 mrt[INSIDE]++;
             }
+            t0 = clock();
             if(tt.tr_includes(x, y)){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[INCLUDES] += tiempo;
                 mrt[INCLUDES]++;
             }
+            t0 = clock();
             if(tt.tr_disjoint(x, y)){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[DISJOINT] += tiempo;
                 mrt[DISJOINT]++;
             }
+            t0 = clock();
             if(tt.tr_touches(x, y)){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[TOUCHES] += tiempo;
                 mrt[TOUCHES]++;
             }
+            t0 = clock();
             if(tt.tr_overlaps(x, y)){
+                t1 = clock();
+                tiempo = (double)(t1 - t0);
+                trt[OVERLAPS] += tiempo;
                 mrt[OVERLAPS]++;
             }
         }
     }
-    cout << COVEREDBY << ": " << mrt[COVEREDBY] << endl;
-    cout << COVERS << ": " << mrt[COVERS] << endl;
-    cout << DISJOINT << ": " << mrt[DISJOINT] << endl;
-    cout << EQUALS << ": " << mrt[EQUALS] << endl;
-    cout << INCLUDES << ": " << mrt[INCLUDES] << endl;
-    cout << INSIDE << ": " << mrt[INSIDE] << endl;
-    cout << OVERLAPS << ": " << mrt[OVERLAPS] << endl;
-    cout << TOUCHES << ": " << mrt[TOUCHES] << endl;
+    trt[COVEREDBY] = ((trt[COVEREDBY]/CLOCKS_PER_SEC) / mrt[COVEREDBY]) * 1000000;
+    trt[COVERS] = ((trt[COVERS]/CLOCKS_PER_SEC) / mrt[COVERS]) * 1000000;
+    trt[DISJOINT] = ((trt[DISJOINT]/CLOCKS_PER_SEC) / mrt[DISJOINT]) * 1000000;
+    trt[EQUALS] = ((trt[EQUALS]/CLOCKS_PER_SEC) / mrt[EQUALS]) * 1000000;
+    trt[INCLUDES] = ((trt[INCLUDES]/CLOCKS_PER_SEC) / mrt[INCLUDES]) * 1000000;
+    trt[INSIDE] = ((trt[INSIDE]/CLOCKS_PER_SEC) / mrt[INSIDE]) * 1000000;
+    trt[OVERLAPS] = ((trt[OVERLAPS]/CLOCKS_PER_SEC) / mrt[OVERLAPS]) * 1000000;
+    trt[TOUCHES] = ((trt[TOUCHES]/CLOCKS_PER_SEC) / mrt[TOUCHES]) * 1000000;
+
+    cout << COVEREDBY << "\t" << mrt[COVEREDBY] << "\t" << trt[COVEREDBY] << "[us]" << endl;
+    cout << COVERS << "\t\t" << mrt[COVERS] << "\t" << trt[COVERS] << "[us]" << endl;
+    cout << DISJOINT << "\t" << mrt[DISJOINT] << "\t" << trt[DISJOINT] << "[us]" << endl;
+    cout << EQUALS << "\t\t" << mrt[EQUALS] << "\t" << trt[EQUALS] << "[us]" << endl;
+    cout << INCLUDES << "\t" << mrt[INCLUDES] << "\t" << trt[INCLUDES] << "[us]" << endl;
+    cout << INSIDE << "\t\t" << mrt[INSIDE] << "\t" << trt[INSIDE] << "[us]" << endl;
+    cout << OVERLAPS << "\t" << mrt[OVERLAPS] << "\t" << trt[OVERLAPS] << "[us]" << endl;
+    cout << TOUCHES << "\t\t" << mrt[TOUCHES] << "\t" << trt[TOUCHES] << "[us]" << endl;
     cout << "Total relaciones: " ;
     tr = mrt[COVEREDBY] + mrt[COVERS] + mrt[DISJOINT] + mrt[EQUALS] + mrt[INCLUDES] + mrt[INSIDE] + mrt[OVERLAPS] + mrt[TOUCHES];
     cout << tr << endl;

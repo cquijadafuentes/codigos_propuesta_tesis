@@ -1,0 +1,43 @@
+********** Naive Algorithm **********
+CoveredBy: 15
+Covers: 15
+Disjoint: 143280
+Equals: 391
+Includes: 6
+Inside: 6
+Overlaps: 8176
+Touches: 992
+Total relaciones: 152881
+Tiempo total: 0.386217 segs.
+=== Relaciones individuales ===
+CoveredBy	15	1.33333[us]
+Covers		15	1.26667[us]
+Disjoint	143280	2.63086[us]
+Equals		391	0.716113[us]
+Includes	6	2[us]
+Inside		6	1.5[us]
+Overlaps	8176	3.95878[us]
+Touches		992	2.61996[us]
+Total relaciones: 152881
+********** Compressed Suffix Tree **********
+CoveredBy: 15
+Covers: 15
+Disjoint: 143280
+Equals: 391
+Includes: 6
+Inside: 6
+Overlaps: 8176
+Touches: 992
+Tiempo total: 88.7419 segs.
+Construccion: 14.552 segs.
+Operaciones: 74.1899 segs.
+=== Relaciones individuales ===
+CoveredBy	15	0.933333[us]
+Covers		15	1.06667[us]
+Disjoint	143280	513.665[us]
+Equals		391	0.762148[us]
+Includes	6	0.833333[us]
+Inside		6	0.833333[us]
+Overlaps	8176	290.203[us]
+Touches		992	505.483[us]
+Total relaciones: 152881
