@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "TopoRel_Naive.hpp"
+#include "TopoRel_GST.hpp"
 
 using namespace std;
 

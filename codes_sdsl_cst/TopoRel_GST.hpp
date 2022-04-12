@@ -1,3 +1,6 @@
+#ifndef TopoRel_GST
+#define TopoRel_GST
+
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -36,3 +39,5 @@ public:
 private:
 
 };
+
+#endif

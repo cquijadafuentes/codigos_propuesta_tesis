@@ -1,7 +1,7 @@
 using namespace std;
 
-#ifndef CONSTANTS_H
-#define CONSTANTS_H
+#ifndef TopoRel_Cons
+#define TopoRel_Cons
 	const string COVEREDBY = "CoveredBy";
 	const string COVERS = "Covers";
 	const string DISJOINT = "Disjoint";
