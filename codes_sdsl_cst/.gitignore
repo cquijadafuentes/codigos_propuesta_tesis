@@ -5,4 +5,5 @@ pc
 rt_lcs
 test_alfabeto_ext
 TopoRel_Naive_test
+TopoRel_GST_test
 *.o

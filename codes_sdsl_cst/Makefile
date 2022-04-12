@@ -1,6 +1,6 @@
 CPP=g++
 
-PREFLAGS=-std=c++11 -O3 -DNDEBUG -I ~/include -L ~/lib
+PREFLAGS=-std=c++11 -g -O0 -DNDEBUG -I ~/include -L ~/lib
 
 POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
