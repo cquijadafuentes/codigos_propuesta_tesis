@@ -4,8 +4,7 @@ PREFLAGS=-std=c++11 -g -O0 -DNDEBUG -I ~/include -L ~/lib
 
 POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
-BINS=test_csa test_cst my_test_cst pc rt_lcs test_alfabeto_ext\
-		TopoRel_Naive_test TopoRel_GST_test
+BINS=test_alfabeto_ext TopoRel_Naive_test TopoRel_GST_test
 
 OBJECTS=TopoRel_Naive.o TopoRel_GST.o
 
