@@ -5,7 +5,11 @@ using namespace std;
 using namespace sdsl;
 
 int main(int argc, char const *argv[]){
-	cout << "Hola Mundo! " << endl;
+	cout << "Input:" << endl;
+	cout << "cant_rutas" << endl;
+	cout << "cant_stops_r1 r1_st1 r1_st2 ···" << endl;
+	cout << "cant_stops_r2 r2_st1 r2_st2 ···" << endl;
+	cout << "···" << endl;
 	int nr;
 	cin >> nr;
 	vector<vector<int>> vi;
@@ -19,7 +23,7 @@ int main(int argc, char const *argv[]){
 		}
 		vi.push_back(v);
 	}
-	cout << "funciona" << endl;
+	
 	cout << vi.size() << endl;
 	for(int i = 0; i < vi.size(); i++){
 		cout << vi[i].size() << " -> ";
