@@ -42,137 +42,60 @@ Overlaps	8176	290.203[us]
 Touches		992	505.483[us]
 Total relaciones: 152881
 
-carlos@carlosubuntudsktp:codes_sdsl_cst$ valgrind --leak-check=yes ./test_alfabeto_ext info_stops.txt
-==10057== Memcheck, a memory error detector
-==10057== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==10057== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==10057== Command: ./test_alfabeto_ext info_stops.txt
-==10057== 
-********** Naive Algorithm **********
-==10057== Conditional jump or move depends on uninitialised value(s)
-==10057==    at 0x12945C: lcs_info(std::vector<int, std::allocator<int> >&, std::vector<int, std::allocator<int> >&) (TopoRel_Naive.cpp:197)
-==10057==    by 0x128DD5: toporel[abi:cxx11](std::vector<int, std::allocator<int> >&, std::vector<int, std::allocator<int> >&) (TopoRel_Naive.cpp:85)
-==10057==    by 0x111076: relaciones_nn_naive(std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >&) (test_alfabeto_ext.cpp:124)
-==10057==    by 0x110DFC: main (test_alfabeto_ext.cpp:109)
-==10057== 
-==10057== Conditional jump or move depends on uninitialised value(s)
-==10057==    at 0x128DDF: toporel[abi:cxx11](std::vector<int, std::allocator<int> >&, std::vector<int, std::allocator<int> >&) (TopoRel_Naive.cpp:87)
-==10057==    by 0x111076: relaciones_nn_naive(std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >&) (test_alfabeto_ext.cpp:124)
-==10057==    by 0x110DFC: main (test_alfabeto_ext.cpp:109)
-==10057== 
-CoveredBy: 15
-Covers: 15
-Disjoint: 143708
-Equals: 391
-Includes: 6
-Inside: 6
-Overlaps: 8089
-Touches: 651
+
+
+
+********** Naive Algorithm ********** (sin repeticiones)
+
+TopoRelation		cantidad	Time_true	Time_all
+CoveredBy	15	4.93333 [us]	2.04445 [us]
+Covers		15	5.53333 [us]	2.05409 [us]
+Disjoint	143280	25.6098 [us]	25.8336 [us]
+Equals		391	1.19182 [us]	0.031554 [us]
+Includes	6	6 [us]	2.01951 [us]
+Inside		6	6.5 [us]	1.94163 [us]
+Overlaps	8176	40.8263 [us]	24.9743 [us]
+Touches		992	26.1018 [us]	26.0905 [us]
 Total relaciones: 152881
-Tiempo total: 125.647 segs.
-=== Relaciones individuales ===
-==10057== Conditional jump or move depends on uninitialised value(s)
-==10057==    at 0x12945C: lcs_info(std::vector<int, std::allocator<int> >&, std::vector<int, std::allocator<int> >&) (TopoRel_Naive.cpp:197)
-==10057==    by 0x129C54: tr_overlaps(std::vector<int, std::allocator<int> >&, std::vector<int, std::allocator<int> >&) (TopoRel_Naive.cpp:332)
-==10057==    by 0x111EE3: relaciones_nn_naive(std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >&) (test_alfabeto_ext.cpp:221)
-==10057==    by 0x110DFC: main (test_alfabeto_ext.cpp:109)
-==10057== 
-Cantidad de relaciones: 2
-Relación Topológica: Equals
-Resultados: Equals Overlaps 
-------------
-76 -> 527 1062 1112 1180 1271 1363 1447 1516 1593 528 602 920 805 871 930 1023 849 904 1071 1076 1077 1083 586 7118 7434 7523 7605 7686 7783 7878 7913 7968 7119 7170 7177 7184 7189 7195 7220 7233 7312 7388 6153 6437 6694 6778 6837 6900 6941 7009 7072 6154 6209 6276 6312 6378 6403 6446 6505 6554 6569 6592 6602 6612 6318 6320 6640 6650 6533 6532 6531 6528 6530 6940 6296 6297 
-76 -> 527 1062 1112 1180 1271 1363 1447 1516 1593 528 602 920 805 871 930 1023 849 904 1071 1076 1077 1083 586 7118 7434 7523 7605 7686 7783 7878 7913 7968 7119 7170 7177 7184 7189 7195 7220 7233 7312 7388 6153 6437 6694 6778 6837 6900 6941 7009 7072 6154 6209 6276 6312 6378 6403 6446 6505 6554 6569 6592 6602 6612 6318 6320 6640 6650 6533 6532 6531 6528 6530 6940 6296 6297 
-------------
-Cantidad de relaciones: 2
-Relación Topológica: Equals
-Resultados: Equals Overlaps 
-------------
-43 -> 6325 6279 6869 7076 7078 6201 6202 6203 7388 6153 6437 6694 6778 6837 6900 6941 7009 7072 6154 6209 6276 6312 6378 6403 6446 6505 6554 6569 6592 6602 6612 6318 6320 6640 6650 6533 6532 6531 6528 6530 6940 6296 6297 
-43 -> 6325 6279 6869 7076 7078 6201 6202 6203 7388 6153 6437 6694 6778 6837 6900 6941 7009 7072 6154 6209 6276 6312 6378 6403 6446 6505 6554 6569 6592 6602 6612 6318 6320 6640 6650 6533 6532 6531 6528 6530 6940 6296 6297 
-------------
-==10057== Conditional jump or move depends on uninitialised value(s)
-==10057==    at 0x12945C: lcs_info(std::vector<int, std::allocator<int> >&, std::vector<int, std::allocator<int> >&) (TopoRel_Naive.cpp:197)
-==10057==    by 0x1298CD: tr_disjoint(std::vector<int, std::allocator<int> >&, std::vector<int, std::allocator<int> >&) (TopoRel_Naive.cpp:276)
-==10057==    by 0x111A73: relaciones_nn_naive(std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >&) (test_alfabeto_ext.cpp:185)
-==10057==    by 0x110DFC: main (test_alfabeto_ext.cpp:109)
-==10057== 
-==10057== Conditional jump or move depends on uninitialised value(s)
-==10057==    at 0x129C5F: tr_overlaps(std::vector<int, std::allocator<int> >&, std::vector<int, std::allocator<int> >&) (TopoRel_Naive.cpp:334)
-==10057==    by 0x111EE3: relaciones_nn_naive(std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >&) (test_alfabeto_ext.cpp:221)
-==10057==    by 0x110DFC: main (test_alfabeto_ext.cpp:109)
-==10057== 
-==10057== Conditional jump or move depends on uninitialised value(s)
-==10057==    at 0x12945C: lcs_info(std::vector<int, std::allocator<int> >&, std::vector<int, std::allocator<int> >&) (TopoRel_Naive.cpp:197)
-==10057==    by 0x129D30: tr_touches(std::vector<int, std::allocator<int> >&, std::vector<int, std::allocator<int> >&) (TopoRel_Naive.cpp:349)
-==10057==    by 0x111FFF: relaciones_nn_naive(std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >&) (test_alfabeto_ext.cpp:230)
-==10057==    by 0x110DFC: main (test_alfabeto_ext.cpp:109)
-==10057== 
-Cantidad de relaciones: 2
-Relación Topológica: Overlaps
-Resultados: Disjoint Overlaps 
-------------
-43 -> 6325 6279 6869 7076 7078 6201 6202 6203 7388 6153 6437 6694 6778 6837 6900 6941 7009 7072 6154 6209 6276 6312 6378 6403 6446 6505 6554 6569 6592 6602 6612 6318 6320 6640 6650 6533 6532 6531 6528 6530 6940 6296 6297 
-67 -> 6325 6279 6869 7076 7078 6201 6202 6203 7388 6153 6601 6826 6838 6845 6851 6355 6870 6871 5754 5828 5910 5966 6012 5653 6070 6128 6142 5599 5609 5619 5628 5638 5687 5713 5734 5739 5748 5655 5678 5758 5768 3429 3479 3572 3660 3717 3315 3839 3908 3951 3268 3272 3279 3321 3391 3427 3439 3450 3461 3469 3480 3490 3500 3957 4072 4162 4219 
-------------
-==10057== Conditional jump or move depends on uninitialised value(s)
-==10057==    at 0x1298D7: tr_disjoint(std::vector<int, std::allocator<int> >&, std::vector<int, std::allocator<int> >&) (TopoRel_Naive.cpp:277)
-==10057==    by 0x111A73: relaciones_nn_naive(std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >&) (test_alfabeto_ext.cpp:185)
-==10057==    by 0x110DFC: main (test_alfabeto_ext.cpp:109)
-==10057== 
-==10057== Conditional jump or move depends on uninitialised value(s)
-==10057==    at 0x129D3A: tr_touches(std::vector<int, std::allocator<int> >&, std::vector<int, std::allocator<int> >&) (TopoRel_Naive.cpp:350)
-==10057==    by 0x111FFF: relaciones_nn_naive(std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >&) (test_alfabeto_ext.cpp:230)
-==10057==    by 0x110DFC: main (test_alfabeto_ext.cpp:109)
-==10057== 
-Cantidad de relaciones: 2
-==10057== Conditional jump or move depends on uninitialised value(s)
-==10057==    at 0x12945C: lcs_info(std::vector<int, std::allocator<int> >&, std::vector<int, std::allocator<int> >&) (TopoRel_Naive.cpp:197)
-==10057==    by 0x128DD5: toporel[abi:cxx11](std::vector<int, std::allocator<int> >&, std::vector<int, std::allocator<int> >&) (TopoRel_Naive.cpp:85)
-==10057==    by 0x112178: relaciones_nn_naive(std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >&) (test_alfabeto_ext.cpp:240)
-==10057==    by 0x110DFC: main (test_alfabeto_ext.cpp:109)
-==10057== 
-Relación Topológica: Disjoint
-Resultados: Disjoint Overlaps 
-------------
-43 -> 6325 6279 6869 7076 7078 6201 6202 6203 7388 6153 6437 6694 6778 6837 6900 6941 7009 7072 6154 6209 6276 6312 6378 6403 6446 6505 6554 6569 6592 6602 6612 6318 6320 6640 6650 6533 6532 6531 6528 6530 6940 6296 6297 
-75 -> 7076 7078 6728 6729 6795 6576 164 279 280 202 167 168 169 171 172 173 174 175 176 511 177 179 5755 5756 5757 5759 2669 5760 5761 5762 5763 5764 5765 3426 3281 3282 3283 3284 3420 3285 3293 3303 3314 3322 3327 3330 3336 3345 3353 3360 3949 3805 3806 3807 3601 3602 3416 3990 3991 4262 4263 4264 4265 4266 4267 4268 4175 4176 4177 4178 4179 4551 4552 4527 4525 
+
+
+********** Naive Algorithm ********** (15 repeticiones)
+TopoRelation	cantidad	Time_true	Time_all
+CoveredBy	15	3.84889 [us]	1.72408 [us]
+Covers		15	3.87556 [us]	1.71711 [us]
+Disjoint	143280	22.6154 [us]	22.443 [us]
+Equals		391	0.478602 [us]	0.0222591 [us]
+Includes	6	4.56667 [us]	1.71043 [us]
+Inside		6	4.54444 [us]	1.72519 [us]
+Overlaps	8176	35.0339 [us]	21.3641 [us]
+Touches		992	21.3297 [us]	22.1562 [us]
+Total relaciones: 152881
 
 
 
+/////////////////////////////////////////////////
 
 
 
-Cantidad de relaciones: 2
-Relación Topológica: Disjoint
-Resultados: Disjoint Overlaps 
-------------
-40 -> 1665 1836 1903 1976 2042 2124 2200 2281 2340 1666 1728 3002 3087 3145 3201 2405 2468 2523 2567 2616 2658 2664 2676 2684 2694 2704 2713 2718 2726 2732 2743 2754 2764 2774 2785 2500 2875 3202 5770 5932 
-24 -> 1753 1837 1838 1839 1665 1836 1840 1841 1842 1843 1844 1845 1846 1847 1848 1849 1850 1851 1852 1853 1854 1855 1856 1858 
-------------
-Cantidad de relaciones: 2
-==10057== Conditional jump or move depends on uninitialised value(s)
-==10057==    at 0x128DDF: toporel[abi:cxx11](std::vector<int, std::allocator<int> >&, std::vector<int, std::allocator<int> >&) (TopoRel_Naive.cpp:87)
-==10057==    by 0x112178: relaciones_nn_naive(std::vector<std::vector<int, std::allocator<int> >, std::allocator<std::vector<int, std::allocator<int> > > >&) (test_alfabeto_ext.cpp:240)
-==10057==    by 0x110DFC: main (test_alfabeto_ext.cpp:109)
-==10057== 
-Relación Topológica: Overlaps
-Resultados: Disjoint Overlaps 
-------------
-40 -> 1665 1836 1903 1976 2042 2124 2200 2281 2340 1666 1728 3002 3087 3145 3201 2405 2468 2523 2567 2616 2658 2664 2676 2684 2694 2704 2713 2718 2726 2732 2743 2754 2764 2774 2785 2500 2875 3202 5770 5932 
-81 -> 7354 7171 7172 7173 7263 7174 7175 7176 7313 7178 7179 7321 7180 7181 7336 7372 7182 7349 7183 7359 7367 7373 7185 7381 7389 7186 7398 7187 7697 7188 7716 7722 118 423 192 303 455 304 306 281 422 282 307 284 308 1835 1837 1838 1839 1665 1836 1841 1842 1843 1803 1804 1805 1806 1807 1808 1809 1810 1811 1705 1813 1885 1886 1888 1889 1890 1891 1892 1893 1894 1895 1874 1875 1876 1896 1897 1898 
-------------
-
-
-
-
-==10057== 
-==10057== HEAP SUMMARY:
-==10057==     in use at exit: 0 bytes in 0 blocks
-==10057==   total heap usage: 1,795,284 allocs, 1,795,284 frees, 348,024,762 bytes allocated
-==10057== 
-==10057== All heap blocks were freed -- no leaks are possible
-==10057== 
-==10057== Use --track-origins=yes to see where uninitialised values come from
-==10057== For lists of detected and suppressed errors, rerun with: -s
-==10057== ERROR SUMMARY: 53173 errors from 10 contexts (suppressed: 0 from 0)
+********** Naive Algorithm **********
+TopoRelation	cant	Time_true	Time_all
+CoveredBy	15	3.80889 [us]	1.68056 [us]
+Covers		15	3.96444 [us]	1.74265 [us]
+Disjoint	143280	21.7846 [us]	22.8512 [us]
+Equals		391	0.46087 [us]	0.0216639 [us]
+Includes	6	4.44444 [us]	1.71927 [us]
+Inside		6	4.44444 [us]	1.90497 [us]
+Overlaps	8176	34.777 [us]	22.0575 [us]
+Touches		992	21.3655 [us]	22.4496 [us]
+Total relaciones: 152881
+********** Compressed Suffix Tree **********
+TopoRelation	cant	Time_true	Time_all
+CoveredBy	15	0.28 [us]	0.167797 [us]
+Covers		15	0.257778 [us]	0.162806 [us]
+Disjoint	143280	1871.78 [us]	1818.4 [us]
+Equals		391	0.0219949 [us]	0.0244046 [us]
+Includes	6	0.277778 [us]	0.132463 [us]
+Inside		6	0.255556 [us]	0.125398 [us]
+Overlaps	8176	1046.69 [us]	1700.88 [us]
+Touches		992	1809.35 [us]	1815.12 [us]
+Total relaciones: 152881

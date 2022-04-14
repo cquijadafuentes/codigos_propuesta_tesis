@@ -1,4 +1,5 @@
 test_alfabeto_ext
 TopoRel_Naive_test
 TopoRel_GST_test
+time_TopoRel_boolean
 *.o

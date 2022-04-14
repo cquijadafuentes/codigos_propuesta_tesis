@@ -181,6 +181,11 @@ pair<int,bool> lcs_info(vector<int> &s, vector<int> &t){
     int dp[2][m + 1];
     int res = 0;
     bool ii_intersect = false;
+
+    for(int i = 0; i <= m; i++){
+        dp[0][i] = 0;
+        dp[1][i] = 0;
+    }
 /*
     cout << "************** Tabla PD **************" << endl;
     cout << endl << " +";
