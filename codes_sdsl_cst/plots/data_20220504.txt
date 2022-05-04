@@ -1,0 +1,6 @@
+Inter R Core TM i5-2430M CUP@2.40 GHz x 4
+Intel R HD Graphics 3000 (SNB GT2)
+
+Ubuntu 20.04.4 LTS 64 bits
+
+gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0
