@@ -1,5 +1,0 @@
-%X			Tiempo[s]
-NaiveOP	0.386217
-GSTAll		88.7419
-GSTConst	14.5520
-GSTOP		74.1899
