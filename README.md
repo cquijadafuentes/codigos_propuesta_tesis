@@ -9,3 +9,6 @@ v3 -> Tiempos de relaciones y verificación de correctitud en resultados. Intent
 v4 -> Tiempos para funciones bool donde siempre es TRUE. Separa clase para implementación GST (sdsl)
 
 v5 -> Limpieza del proyecto: elimina pruebas de librería y versiones previas a las clases TopoRel_GST y TopoRel_Naive.
+
+v6 -> Experimentación para la propuesta de tesis. Gráficas en folders 
+
