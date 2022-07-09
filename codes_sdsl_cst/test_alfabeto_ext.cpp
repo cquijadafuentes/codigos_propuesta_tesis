@@ -34,79 +34,79 @@ bool verificaRuta(vector<int> v){
 }
 
 int main(int argc, char const *argv[]){
-	if(argc < 2){
-		cout << "Error! falta nombre archivo a procesar como entrada." << endl;
-		return -1;
-	}
+    if(argc < 2){
+        cout << "Error! falta nombre archivo a procesar como entrada." << endl;
+        return -1;
+    }
     
-	fstream entrada;
-	entrada.open(argv[1], fstream::in);
-	int n_stops;
-	entrada >> n_stops;
-//	cout << n_stops << endl;
+    fstream entrada;
+    entrada.open(argv[1], fstream::in);
+    int n_stops;
+    entrada >> n_stops;
+//  cout << n_stops << endl;
 
-	map<string,int> mapa_stops;
-	for(int i = 1; i <= n_stops; i++){
-		string id_stop;
-		entrada >> id_stop;
-		mapa_stops[id_stop] = i;
-//		cout << id_stop << " - " << i << endl;
-	}
+    map<string,int> mapa_stops;
+    for(int i = 1; i <= n_stops; i++){
+        string id_stop;
+        entrada >> id_stop;
+        mapa_stops[id_stop] = i;
+//      cout << id_stop << " - " << i << endl;
+    }
 
-	int n_routes, n_t;
-	string l, t;
-	entrada >> n_routes;
-//	cout << n_routes << endl;
-	vector<vector<int>> routes;
+    int n_routes, n_t;
+    string l, t;
+    entrada >> n_routes;
+//  cout << n_routes << endl;
+    vector<vector<int>> routes;
 
-	for(int j = 0; j < n_routes; j++){
-		entrada >> l;
-//		cout << "-----------------" << endl;
-//		cout << l << endl;
-		n_t = 1;
-		for(int i = 0; i < l.length(); i++){
-			if(l[i] == ','){
-				l[i] = ' ';
-				n_t++;
-			}
-		}
+    for(int j = 0; j < n_routes; j++){
+        entrada >> l;
+//      cout << "-----------------" << endl;
+//      cout << l << endl;
+        n_t = 1;
+        for(int i = 0; i < l.length(); i++){
+            if(l[i] == ','){
+                l[i] = ' ';
+                n_t++;
+            }
+        }
 
-		vector<int> vr(n_t, 0);
-//		cout << "-----------------" << endl;
-//		cout << l << endl;
-		stringstream ss(l);
-//		cout << "-----------------" << endl;
-		for(int i = 0; i < n_t; i++){
-			ss >> t;
-//			cout << t << " ";
-			vr[i] = mapa_stops[t];
-		}
-//		cout << endl << "-----------------" << endl;
-//		for(int i = 0; i < n_t; i++){
-//			cout << vr[i] << " ";
-//		}
-//		cout << endl << "-----------------" << endl;
-		if(verificaRuta(vr)){
+        vector<int> vr(n_t, 0);
+//      cout << "-----------------" << endl;
+//      cout << l << endl;
+        stringstream ss(l);
+//      cout << "-----------------" << endl;
+        for(int i = 0; i < n_t; i++){
+            ss >> t;
+//          cout << t << " ";
+            vr[i] = mapa_stops[t];
+        }
+//      cout << endl << "-----------------" << endl;
+//      for(int i = 0; i < n_t; i++){
+//          cout << vr[i] << " ";
+//      }
+//      cout << endl << "-----------------" << endl;
+        if(verificaRuta(vr)){
             routes.push_back(vr);
         }
-	}
+    }
 /*
-	cout << "Total rutas: " << routes.size() << endl;
-	cout << "Ruta 1: ";
-	for(int i = 0; i < routes[0].size(); i++){
-		cout << routes[0][i] << " ";
-	}
-	cout << endl;
-	cout << "Ruta 2: ";
-	for(int i = 0; i < routes[n_routes-1].size(); i++){
-		cout << routes[n_routes-1][i] << " ";
-	}
-	cout << endl;
-	string res = toporel(routes[0],routes[n_routes-1]);
-	cout << res << endl;
+    cout << "Total rutas: " << routes.size() << endl;
+    cout << "Ruta 1: ";
+    for(int i = 0; i < routes[0].size(); i++){
+        cout << routes[0][i] << " ";
+    }
+    cout << endl;
+    cout << "Ruta 2: ";
+    for(int i = 0; i < routes[n_routes-1].size(); i++){
+        cout << routes[n_routes-1][i] << " ";
+    }
+    cout << endl;
+    string res = toporel(routes[0],routes[n_routes-1]);
+    cout << res << endl;
 */
 
-	relaciones_nn_naive(routes);
+    relaciones_nn_naive(routes);
 
     relaciones_nn_gst(routes, n_stops);
 
@@ -118,23 +118,23 @@ int main(int argc, char const *argv[]){
 void relaciones_nn_naive(vector<vector<int>> &routes){
     cout << "********** Naive Algorithm **********" << endl;
     unsigned t0 = clock();
-	map<string, int> mrt;
-	for(int i = 0; i < routes.size(); i++){
-		for(int j = 0; j < routes.size(); j++){
-			string r = toporel(routes[i], routes[j]);
-			mrt[r]++;
-		}
-	}
+    map<string, int> mrt;
+    for(int i = 0; i < routes.size(); i++){
+        for(int j = 0; j < routes.size(); j++){
+            string r = toporel(routes[i], routes[j]);
+            mrt[r]++;
+        }
+    }
     unsigned t1 = clock();
-	
+    
     cout << COVEREDBY << ": " << mrt[COVEREDBY] << endl;
-	cout << COVERS << ": " << mrt[COVERS] << endl;
-	cout << DISJOINT << ": " << mrt[DISJOINT] << endl;
-	cout << EQUALS << ": " << mrt[EQUALS] << endl;
-	cout << INCLUDES << ": " << mrt[INCLUDES] << endl;
-	cout << INSIDE << ": " << mrt[INSIDE] << endl;
-	cout << OVERLAPS << ": " << mrt[OVERLAPS] << endl;
-	cout << TOUCHES << ": " << mrt[TOUCHES] << endl;
+    cout << COVERS << ": " << mrt[COVERS] << endl;
+    cout << DISJOINT << ": " << mrt[DISJOINT] << endl;
+    cout << EQUALS << ": " << mrt[EQUALS] << endl;
+    cout << INCLUDES << ": " << mrt[INCLUDES] << endl;
+    cout << INSIDE << ": " << mrt[INSIDE] << endl;
+    cout << OVERLAPS << ": " << mrt[OVERLAPS] << endl;
+    cout << TOUCHES << ": " << mrt[TOUCHES] << endl;
     cout << "Total relaciones: " ;
     int tr = mrt[COVEREDBY] + mrt[COVERS] + mrt[DISJOINT] + mrt[EQUALS] + mrt[INCLUDES] + mrt[INSIDE] + mrt[OVERLAPS] + mrt[TOUCHES];
     cout << tr << endl;
