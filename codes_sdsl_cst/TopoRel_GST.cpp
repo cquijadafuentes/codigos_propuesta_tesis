@@ -164,6 +164,12 @@ string TopoRelGST::obtenerRelacion(int x, int y){
     return DISJOINT;
 }
 
+
+/*******************************************************
+            8 Relaciones topológicas básicas
+*******************************************************/
+
+
 bool TopoRelGST::tr_equals(int x, int y){
     if(mapa[x] == mapa[y] || mapa[x] == mapa[y+n_routes]){
         return true;
@@ -363,6 +369,64 @@ bool TopoRelGST::tr_overlaps(int x, int y){
             }else{
                 return true;
             }
+        }
+    }
+
+    return false;
+}
+
+
+/*******************************************************
+            Relaciones topológicas agregadas
+*******************************************************/
+
+
+bool TopoRelGST::tr_within(int x, int y){
+    if(routes[x].size() > routes[y].size()){
+        return false;
+    }
+    int id_x = cst.id(mapa[x]);
+    if(marcas[y][id_x] == 1 || marcas[y + n_routes][id_x] == 1){
+        // Hay contensión
+        return true;
+    }
+    return false;
+}
+
+bool TopoRelGST::tr_contains(int x, int y){
+    if(routes[x].size() < routes[y].size()){
+        return false;
+    }
+    int id_y = cst.id(mapa[y]);
+    if(marcas[x][id_y] == 1 || marcas[x + n_routes][id_y] == 1){
+        // Hay contensión
+        return true;
+    }
+    return false;
+}
+
+bool TopoRelGST::tr_intersects(int x, int y){
+    int corto, largo;
+    if(routes[x].size() < routes[y].size()){
+        corto = x;
+        largo = y;
+    }else{
+        corto = y;
+        largo = x;
+    }
+    if(mapa[largo] == mapa[corto] || mapa[largo] == mapa[corto+n_routes]){
+        return false;
+    }
+    int id_corto = cst.id(mapa[corto]);
+    if(marcas[largo][id_corto] == 1 || marcas[largo + n_routes][id_corto] == 1){
+        return false;
+    }
+    
+    auto root = cst.root();
+    for(int i = 1; i < routes[corto].size() - 1; i++){
+        auto ch = cst.child(root, routes[corto][i]);
+        if(ch != root && marcas[largo][cst.id(ch)]){
+            return true;
         }
     }
 

@@ -5,6 +5,15 @@
 
 using namespace std;
 
+void print_bool(bool x){
+	if(x){
+		cout << "true";
+	}else{
+		cout << "false";
+	}
+}
+
+
 int main(){
 	cout << "Ingrese datos de las dos listas indicando, por cada una, la cantidad de elementos y los elementos." << endl;
 	cout << "|LA| LA_1 LA_2 ... LA_|LA| |LB| LB_1 LB_2 .. LB_|LB|" << endl;
@@ -20,64 +29,55 @@ int main(){
 	for(int i = 0; i < y; i++){
 		cin >> ly[i];
 	}
+	cout << "Toporel A,B: ";
 	cout << toporel(lx, ly) << endl;
+	cout << "Toporel B,A: ";
 	cout << toporel(ly, lx) << endl;
 	cout << endl;
+	
 	cout << COVEREDBY << ": ";
-	if(tr_coveredby(lx, ly)){
-		cout << "true" << endl;
-	}else{
-		cout << "false" << endl;
-	}
+	print_bool(tr_coveredby(lx, ly));
+	cout << endl;
 
 	cout << COVERS << ": ";
-	if(tr_covers(lx, ly)){
-		cout << "true" << endl;
-	}else{
-		cout << "false" << endl;
-	}
+	print_bool(tr_covers(lx, ly));
+	cout << endl;
 
 	cout << DISJOINT << ": ";
-	if(tr_disjoint(lx, ly)){
-		cout << "true" << endl;
-	}else{
-		cout << "false" << endl;
-	}
+	print_bool(tr_disjoint(lx, ly));
+	cout << endl;
 
 	cout << EQUALS << ": ";
-	if(tr_equals(lx, ly)){
-		cout << "true" << endl;
-	}else{
-		cout << "false" << endl;
-	}
+	print_bool(tr_equals(lx, ly));
+	cout << endl;
 
 	cout << INCLUDES << ": ";
-	if(tr_includes(lx, ly)){
-		cout << "true" << endl;
-	}else{
-		cout << "false" << endl;
-	}
+	print_bool(tr_includes(lx, ly));
+	cout << endl;
 
 	cout << INSIDE << ": ";
-	if(tr_inside(lx, ly)){
-		cout << "true" << endl;
-	}else{
-		cout << "false" << endl;
-	}
+	print_bool(tr_inside(lx, ly));
+	cout << endl;
 
 	cout << OVERLAPS << ": ";
-	if(tr_overlaps(lx, ly)){
-		cout << "true" << endl;
-	}else{
-		cout << "false" << endl;
-	}
+	print_bool(tr_overlaps(lx, ly));
+	cout << endl;
 
 	cout << TOUCHES << ": ";
-	if(tr_touches(lx, ly)){
-		cout << "true" << endl;
-	}else{
-		cout << "false" << endl;
-	}
+	print_bool(tr_touches(lx, ly));
+	cout << endl;
+
+	cout << "WITHIN: ";
+	print_bool(tr_within(lx, ly));
+	cout << endl;
+
+	cout << "CONTAINS: ";
+	print_bool(tr_contains(lx, ly));
+	cout << endl;
+
+	cout << "INTERSECTS: ";
+	print_bool(tr_intersects(lx, ly));
+	cout << endl;
 	
 	return 0;
 }

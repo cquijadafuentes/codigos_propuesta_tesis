@@ -96,7 +96,8 @@ string toporel(vector<int> &a, vector<int> &b){
 
 }
 
-// Prints occurrences of txt[] in pat[]
+// Find occurrences of txt[] in pat[]
+// Retorna: <posición,largo> de la coincidencia
 pair<int,int> KMPSearch(vector<int> &pat, vector<int> &txt){
     int M = pat.size();
     int N = txt.size();
@@ -174,6 +175,7 @@ void computeLPSArray(vector<int> &pat, int M, int* lps){
     }
 }
 
+// Retorna: <largo_mayor_coindicencia,intersección_interior-interio>;
 pair<int,bool> lcs_info(vector<int> &s, vector<int> &t){
     int n = s.size();
     int m = t.size();
@@ -219,6 +221,11 @@ pair<int,bool> lcs_info(vector<int> &s, vector<int> &t){
 
     return make_pair(res,ii_intersect);
 }
+
+
+/*******************************************************
+            8 Relaciones topológicas básicas
+*******************************************************/
 
 
 bool tr_equals(vector<int> &a, vector<int> &b){
@@ -357,4 +364,51 @@ bool tr_touches(vector<int> &a, vector<int> &b){
     }
 
     return false;
+}
+
+
+/*******************************************************
+            Relaciones topológicas agregadas
+*******************************************************/
+
+
+bool tr_within(vector<int> &a, vector<int> &b){
+    if(a.size() > b.size()){
+        return false;
+    }
+    int n = a.size();
+    int m = b.size();
+    
+    // ------- EQUALS -------
+
+    vector<int> rb = b;
+    reverse(rb.begin(), rb.end());
+    
+    pair<int,int> kmp = KMPSearch(a, b);
+    pair<int,int> kmpR = KMPSearch(a, rb);
+    
+    return (kmp.first != -1 || kmpR.first != -1);
+}
+
+bool tr_contains(vector<int> &a, vector<int> &b){
+    if(b.size() > a.size()){
+        return false;
+    }
+    int n = b.size();
+    int m = a.size();
+    
+    // ------- EQUALS -------
+
+    vector<int> ra = a;
+    reverse(ra.begin(), ra.end());
+    
+    pair<int,int> kmp = KMPSearch(b, a);
+    pair<int,int> kmpR = KMPSearch(b, ra);
+    return (kmp.first != -1 || kmpR.first != -1);
+}
+
+bool tr_intersects(vector<int> &a, vector<int> &b){
+    pair<int,bool> res = lcs_info(a, b);
+    
+    return (res.first != 0);
 }

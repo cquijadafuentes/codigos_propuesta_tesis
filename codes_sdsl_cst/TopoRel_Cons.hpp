@@ -10,4 +10,13 @@ using namespace std;
 	const string INSIDE = "Inside";
 	const string OVERLAPS = "Overlaps";
 	const string TOUCHES = "Touches";
+
+	const string COVEREDBY_res = "CB";
+	const string COVERS_res = "CV";
+	const string DISJOINT_res = "D";
+	const string EQUALS_res = "EQ";
+	const string INCLUDES_res = "IC";
+	const string INSIDE_res = "IS";
+	const string OVERLAPS_res = "O";
+	const string TOUCHES_res = "TO";	
 #endif

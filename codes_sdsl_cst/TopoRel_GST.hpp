@@ -28,6 +28,8 @@ public:
     int n_stops;
     TopoRelGST(vector<vector<int>>&, int);
     string obtenerRelacion(int, int);
+
+    // 8 relaciones topológicas básicas
     bool tr_equals(int, int);
     bool tr_coveredby(int, int);
     bool tr_covers(int, int);
@@ -36,6 +38,11 @@ public:
     bool tr_disjoint(int, int);
     bool tr_touches(int, int);
     bool tr_overlaps(int, int);
+
+    // Relaciones topológicas binarias agregadas
+    bool tr_within(int, int);
+    bool tr_contains(int, int);
+    bool tr_intersects(int, int);
 private:
 
 };
