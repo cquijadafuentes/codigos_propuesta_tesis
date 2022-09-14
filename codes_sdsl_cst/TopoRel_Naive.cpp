@@ -175,7 +175,7 @@ void computeLPSArray(vector<int> &pat, int M, int* lps){
     }
 }
 
-// Retorna: <largo_mayor_coindicencia,intersección_interior-interio>;
+// Retorna: <largo_mayor_coindicencia,intersección_interior-interior>;
 pair<int,bool> lcs_info(vector<int> &s, vector<int> &t){
     int n = s.size();
     int m = t.size();
@@ -229,7 +229,21 @@ pair<int,bool> lcs_info(vector<int> &s, vector<int> &t){
 
 
 bool tr_equals(vector<int> &a, vector<int> &b){
-    return iguales(a, b);
+    if(a.size() != b.size()){
+        return false;
+    }
+    int fallasAB = 0;
+    int fallasBA = 0;
+    int aS = a.size();
+    for(int i = 0; i < aS; i++){
+        if(a[i] != b[i]){
+            fallasAB++;
+        }
+        if(a[i] != b[aS-1-i]){
+            fallasBA++;
+        }
+    }
+    return !(fallasAB && fallasBA);
 }
 
 bool tr_coveredby(vector<int> &a, vector<int> &b){
@@ -279,18 +293,38 @@ bool tr_covers(vector<int> &a, vector<int> &b){
 }
 
 bool tr_disjoint(vector<int> &a, vector<int> &b){
-    vector<int> ra(a);
-    reverse(ra.begin(), ra.end());
-    if(iguales(a, b) || iguales(ra, b)){
+    // Bordes de las secuencias
+    int a_bi = a[0];
+    int b_bi = b[0];
+    int a_bf = a[a.size()-1];
+    int b_bf = b[b.size()-1];
+    // Verificar intersección bordes-bordes
+    if(a_bi == b_bi || a_bi == b_bf){
         return false;
     }
-
-    pair<int,bool> res = lcs_info(a, b);
-    if(res.first == 0){
-        return true;
+    if(a_bf == b_bi || a_bf == b_bf){
+        return false;
     }
-    
-    return false;
+    // Copia de los vectores
+    vector<int> ca(a.begin(), a.end());
+    vector<int> cb(b.begin(), b.end());
+    // Ordenar los vectores
+    sort(ca.begin(), ca.end());
+    sort(cb.begin(), cb.end());
+    // Verificar intersección
+    int i=0, j=0;
+    while(i<ca.size() && j<cb.size()){
+        if(ca[i] == cb[j]){
+            // Intersección interior-interior detectada
+            return false;
+        }else if(ca[i] < cb[j]){
+            i++;
+        }else{
+            j++;
+        }
+    }
+
+    return true;
 }
 
 bool tr_includes(vector<int> &a, vector<int> &b){
@@ -340,26 +374,113 @@ bool tr_inside(vector<int> &a, vector<int> &b){
 }
 
 bool tr_overlaps(vector<int> &a, vector<int> &b){
-    int min_size = a.size() > b.size() ? b.size() : a.size();
-    pair<int,bool> res = lcs_info(a, b);
+    // Descartar contención
+    int n,m;
+    pair<int,int> kmp;
+    pair<int,int> kmpR;
 
-    if(res.first < min_size && res.second){
-        return true;
+    if(a.size() < b.size()){
+        n = a.size();   
+        m = b.size();
+        vector<int> rb = b;
+        reverse(rb.begin(), rb.end());
+        kmp = KMPSearch(a, b);
+        kmpR = KMPSearch(a, rb);
+    }else{
+        n = b.size();   
+        m = a.size();
+        vector<int> ra = a;
+        reverse(ra.begin(), ra.end());
+        kmp = KMPSearch(b, a);
+        kmpR = KMPSearch(b, ra);
+    }
+    if(kmp.first != -1 || kmpR.first != -1){
+        int index = (kmp.first != -1) ? kmp.first : kmpR.first;
+        // Hay contención
+        return false;
     }
     
+    /*
+        A este punto existe intersección exterior-exterior entre 
+        las secuencias ya que no hay contensión entre ellas.
+        Si hubiera intersección interior-interior se determina la
+        relación overlap.
+    */
+
+    // Verificar intersección interior-interior
+    // Copia de los vectores sin los extremos
+    vector<int> aInt(a.begin()+1, a.end()-1);
+    vector<int> bInt(b.begin()+1, b.end()-1);
+    // Ordenar los vectores
+    sort(aInt.begin(), aInt.end());
+    sort(bInt.begin(), bInt.end());
+    // Verificar intersección interior-interior
+    int i=0, j=0;
+    while(i<aInt.size() && j<bInt.size()){
+        if(aInt[i] == bInt[j]){
+            // Intersección interior-interior detectada
+            return true;
+        }else if(aInt[i] < bInt[j]){
+            i++;
+        }else{
+            j++;
+        }
+    }
+
     return false;
 }
 
 bool tr_touches(vector<int> &a, vector<int> &b){
-
-    vector<int> ra(a);
-    reverse(ra.begin(), ra.end());
-    if(iguales(a, b) || iguales(ra, b)){
-        return false;
+    // Descartar igualdad
+    if(a.size() == b.size()){
+        vector<int> ra(a);
+        reverse(ra.begin(), ra.end());
+        if(iguales(a, b) || iguales(ra, b)){
+            return false;
+        }
     }
 
-    pair<int,bool> res = lcs_info(a, b);
-    if(res.first != 0 && !res.second){
+    // Copia de los vectores sin los extremos
+    vector<int> aInt(a.begin()+1, a.end()-1);
+    vector<int> bInt(b.begin()+1, b.end()-1);
+    // Ordenar los vectores
+    sort(aInt.begin(), aInt.end());
+    sort(bInt.begin(), bInt.end());
+    // Verificar intersección interior-interior
+    int i=0, j=0;
+    while(i<aInt.size() && j<bInt.size()){
+        if(aInt[i] == bInt[j]){
+            // Intersección interior-interior detectada
+            return false;
+        }else if(aInt[i] < bInt[j]){
+            i++;
+        }else{
+            j++;
+        }
+    }
+    // Bordes de las secuencias
+    int a_bi = a[0];
+    int b_bi = b[0];
+    int a_bf = a[a.size()-1];
+    int b_bf = b[b.size()-1];
+    // Verificar intersección bordes-bordes
+    if(a_bi == b_bi || a_bi == b_bf){
+        return true;
+    }
+    if(a_bf == b_bi || a_bf == b_bf){
+        return true;
+    }
+    // Verificar intersección bordes-interior
+    if(binary_search(bInt.begin(), bInt.end(), a_bi)){
+        return true;
+    }
+    if(binary_search(bInt.begin(), bInt.end(), a_bf)){
+        return true;
+    }
+    if(binary_search(aInt.begin(), aInt.end(), b_bi)){
+        return true;
+    }
+    if(binary_search(aInt.begin(), aInt.end(), b_bf)){
         return true;
     }
 

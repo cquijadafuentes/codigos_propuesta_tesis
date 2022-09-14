@@ -262,36 +262,23 @@ bool TopoRelGST::tr_disjoint(int x, int y){
         corto = y;
         largo = x;
     }
+    // Descarta igualdad
     if(mapa[largo] == mapa[corto] || mapa[largo] == mapa[corto+n_routes]){
         return false;
     }
     int id_corto = cst.id(mapa[corto]);
+    // Descarta contención
     if(marcas[largo][id_corto] == 1 || marcas[largo + n_routes][id_corto] == 1){
         return false;
     }
-    // Identificar otras
-    // Touches, Overlaps, Disjoint
-    bool touches = false;
+    // Identificar alguna intersección
     auto root = cst.root();
-    for(int i = 1; i < routes[corto].size() - 1; i++){
+    for(int i = 0; i < routes[corto].size(); i++){
         auto ch = cst.child(root, routes[corto][i]);
         if(ch != root && marcas[largo][cst.id(ch)]){
-            if(routes[corto][i] == routes[largo][0] ||
-                    routes[corto][i] == routes_rev[largo][0]){
-                touches = true;
-            }else{
-                return false;
-            }
+            return false;
         }
-    }
-    int idch = cst.id(cst.child(root, routes[corto][0]));
-    if(marcas[largo][idch] == 1){
-        touches = true;
-    }
-    idch = cst.id(cst.child(root, routes_rev[corto][0]));
-    if(marcas[largo][idch] == 1 || touches){
-        return false;
-    }
+    }    
     return true;
 }
 

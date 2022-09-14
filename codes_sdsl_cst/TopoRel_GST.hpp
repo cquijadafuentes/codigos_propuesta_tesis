@@ -26,6 +26,7 @@ public:
     int n_routes;
     int n_concat;
     int n_stops;
+    
     TopoRelGST(vector<vector<int>>&, int);
     string obtenerRelacion(int, int);
 

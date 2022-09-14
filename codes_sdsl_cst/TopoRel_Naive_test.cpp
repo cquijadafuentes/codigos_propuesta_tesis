@@ -29,12 +29,23 @@ int main(){
 	for(int i = 0; i < y; i++){
 		cin >> ly[i];
 	}
+
 	cout << "Toporel A,B: ";
 	cout << toporel(lx, ly) << endl;
 	cout << "Toporel B,A: ";
 	cout << toporel(ly, lx) << endl;
 	cout << endl;
-	
+
+	cout << "x: ";
+	for(int i = 0; i < x; i++){
+		cout << lx[i] << " ";
+	}
+	cout << endl << "y: ";
+	for(int i = 0; i < y; i++){
+		cout << ly[i] << " ";
+	}
+	cout << endl << endl;
+
 	cout << COVEREDBY << ": ";
 	print_bool(tr_coveredby(lx, ly));
 	cout << endl;
@@ -65,7 +76,7 @@ int main(){
 
 	cout << TOUCHES << ": ";
 	print_bool(tr_touches(lx, ly));
-	cout << endl;
+	cout << endl << endl;
 
 	cout << "WITHIN: ";
 	print_bool(tr_within(lx, ly));
