@@ -18,6 +18,28 @@ bool iguales(vector<int> &a, vector<int> &b){
 	return true;
 }
 
+bool bordesSeg_touches(vector<int> &a, vector<int> &b){
+    // Comprueba si hay segmentos finales que se intersecan
+    // Esto implica una intersección Interior-Interior entre los bordes
+    // que se considera como un touches falso-positivo
+
+    int bff = b.size() - 1;
+    int bpf = bff - 1;
+    if((a[0] == b[1] && a[1] == b[0]) ||
+            (a[0] == b[bpf] && a[1] == b[bff])){
+        return true;
+    }
+
+    int aff = a.size() - 1;
+    int apf = aff - 1;
+    if((a[aff] == b[1] && a[apf] == b[0]) ||
+            (a[aff] == b[bpf] && a[apf] == b[bff])){
+        return true;
+    }
+
+    return false;
+}
+
 string toporel(vector<int> &a, vector<int> &b){
     /*
         Se define cuál es la relación topológica entre dos secuencias representadas por vector<int>.
@@ -88,7 +110,7 @@ string toporel(vector<int> &a, vector<int> &b){
         return DISJOINT;
     }
 
-    if(res.second){
+    if(res.second || bordesSeg_touches(a,b)){
         // Caso en el que hay intersección interior-interior
         return OVERLAPS;
     }
