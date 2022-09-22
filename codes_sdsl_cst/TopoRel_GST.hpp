@@ -46,6 +46,7 @@ public:
     bool tr_intersects(int, int);
 
     void navega(int);
+    void sizeEstructura();
 private:
 
 };

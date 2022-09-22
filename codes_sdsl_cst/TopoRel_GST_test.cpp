@@ -1,5 +1,4 @@
 #include <iostream>
-#include <set>
 #include "TopoRel_GST.hpp"
 
 using namespace std;
@@ -20,8 +19,7 @@ int main(int argc, char const *argv[]){
 	cout << "cant_stops_r2 r2_st1 r2_st2 ···" << endl;
 	cout << "···" << endl << endl;
 	
-	int nr, maxStop = 0;
-	set<int> paradas;
+	int nr, max = 0;
 	cin >> nr;
 	vector<vector<int>> vi;
 	for(int i = 0; i < nr; i++){
@@ -31,9 +29,8 @@ int main(int argc, char const *argv[]){
 		for(int j = 0; j < n; j++){
 			cin >> x;
 			v.push_back(x);
-			paradas.insert(x);
-			if(x>maxStop){
-				maxStop = x;
+			if(x>max){
+				max = x;
 			}
 		}
 		vi.push_back(v);
@@ -49,7 +46,6 @@ int main(int argc, char const *argv[]){
 	}
 	cout << endl;
 	
-	int max = (paradas.size() > maxStop) ? paradas.size() : maxStop;
 	TopoRelGST tr_gst(vi, max);
 	
 	cout << "Relaciones:" << endl;

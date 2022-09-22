@@ -5,7 +5,7 @@ PREFLAGS=-std=c++11 -g -O0 -DNDEBUG -I ~/include -L ~/lib
 POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
 BINS=test_alfabeto_ext TopoRel_Naive_test TopoRel_GST_test\
-		time_TopoRel_boolean
+		time_TopoRel_boolean TopoRel_GST_test_size
 
 OBJECTS=TopoRel_Naive.o TopoRel_GST.o
 
@@ -39,6 +39,9 @@ TopoRel_Naive_test:
 
 TopoRel_GST_test:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_test TopoRel_GST_test.cpp $(OBJECTS) $(POSFLAGS)
+
+TopoRel_GST_test_size:
+	$(CPP) $(PREFLAGS) -o TopoRel_GST_test_size TopoRel_GST_test_size.cpp $(OBJECTS) $(POSFLAGS)
 
 time_TopoRel_boolean:
 	$(CPP) $(PREFLAGS) -o time_TopoRel_boolean time_TopoRel_boolean.cpp $(OBJECTS) $(POSFLAGS)

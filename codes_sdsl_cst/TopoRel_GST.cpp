@@ -447,3 +447,32 @@ bool TopoRelGST::tr_intersects(int x, int y){
 void TopoRelGST::navega(int x){
 
 }
+
+void TopoRelGST::sizeEstructura(){
+    cout << "**** Tamaño en bytes ****" << endl;
+    cout << "cst_sct3: " << size_in_bytes(cst) << endl;
+    // Calculo de los bytes para rutas
+    int elementos = 0;
+    for(int i=0; i<routes.size(); i++){
+        elementos += routes[i].size();
+    }
+    int bytesRutas = (elementos*4)*2;
+    cout << "rutas/rev: " << bytesRutas << endl;
+    // Calculo de los bytes para marcas
+    int bytesMarcas = 0;
+    for(int i=0; i<marcas.size(); i++){
+        bytesMarcas += size_in_bytes(marcas[i]);
+    }
+    cout << "marcas: " << bytesMarcas << endl;
+    // Calculo de los bytes para mapa
+    int bytesMapa = 0;
+    for(int i=0; i<mapa.size(); i++){
+        bytesMapa += sizeof(mapa[i]);
+    }
+    cout << "mapa: " << bytesMapa << endl;
+
+    cout << "**** Elementos ****" << endl;
+    cout << "Rutas: " << routes.size() << endl;
+    cout << "Nodos cst_sct3: " << cst.nodes() << endl;
+    cout << "Hojas cst_sct3: " << cst.size() << endl;
+}

@@ -20,3 +20,27 @@ Inside		6	0.266667 [us]	0.130801 [us]
 Overlaps	8176	1055.94 [us]	1714.96 [us]
 Touches		992	1818.88 [us]	1831.05 [us]
 Total relaciones: 152881
+
+
+Tamaño Dataset Transantiago
+**** Tamaño en bytes ****
+cst_sct3: 135078
+rutas/rev: 147192
+marcas: 6306048
+mapa: 31280
+**** Elementos ****
+Rutas: 391
+Nodos cst_sct3: 64424
+Hojas cst_sct3: 36799
+
+
+Tamaño Dataset Madrid
+**** Tamaño en bytes ****
+cst_sct3: 222954
+rutas/rev: 227160
+marcas: 26082336
+mapa: 83920
+**** Elementos ****
+Rutas: 1049
+Nodos cst_sct3: 99333
+Hojas cst_sct3: 56791
