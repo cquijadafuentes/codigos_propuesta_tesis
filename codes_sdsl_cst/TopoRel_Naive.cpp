@@ -429,6 +429,10 @@ bool tr_overlaps(vector<int> &a, vector<int> &b){
         relación overlap.
     */
 
+    if(bordesSeg_touches(a,b)){
+        return true;
+    }
+
     // Verificar intersección interior-interior
     // Copia de los vectores sin los extremos
     vector<int> aInt(a.begin()+1, a.end()-1);
@@ -491,6 +495,10 @@ bool tr_touches(vector<int> &a, vector<int> &b){
     }
     if(a_bf == b_bi || a_bf == b_bf){
         return true;
+    }
+    // Verificar segmentos de los extremos
+    if(bordesSeg_touches(a,b)){
+        return false;
     }
     // Verificar intersección bordes-interior
     if(binary_search(bInt.begin(), bInt.end(), a_bi)){

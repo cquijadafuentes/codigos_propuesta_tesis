@@ -67,21 +67,6 @@ int main(){
 	}
 	cout << endl;
 
-	cout << COVEREDBY << ": " << endl;
-	cout << " _ _ _ _ _" << endl;
-	for(int i=0; i < lx.size(); i++){
-		cout << "|";
-		for(int j=0; j < lx.size(); j++){
-			if(tr_coveredby(lx[i],lx[j])){
-				cout << "X ";
-			}else{
-				cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
-
 	cout << COVERS << ": " << endl;
 	cout << " _ _ _ _ _" << endl;
 	for(int i=0; i < lx.size(); i++){
