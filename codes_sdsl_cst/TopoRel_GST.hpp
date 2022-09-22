@@ -44,6 +44,8 @@ public:
     bool tr_within(int, int);
     bool tr_contains(int, int);
     bool tr_intersects(int, int);
+
+    void navega(int);
 private:
 
 };

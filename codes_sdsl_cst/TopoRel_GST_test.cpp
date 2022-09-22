@@ -62,7 +62,10 @@ int main(int argc, char const *argv[]){
 	cout << endl;
 
 	cout << COVEREDBY << ": " << endl;
-	cout << " _ _ _ _ _" << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
 	for(int i=0; i < vi.size(); i++){
 		cout << "|";
 		for(int j=0; j < vi.size(); j++){
@@ -77,7 +80,10 @@ int main(int argc, char const *argv[]){
 	cout << endl;
 
 	cout << COVERS << ": " << endl;
-	cout << " _ _ _ _ _" << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
 	for(int i=0; i < vi.size(); i++){
 		cout << "|";
 		for(int j=0; j < vi.size(); j++){
@@ -92,7 +98,10 @@ int main(int argc, char const *argv[]){
 	cout << endl;
 
 	cout << DISJOINT << ": " << endl;
-	cout << " _ _ _ _ _" << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
 	for(int i=0; i < vi.size(); i++){
 		cout << "|";
 		for(int j=0; j < vi.size(); j++){
@@ -107,7 +116,10 @@ int main(int argc, char const *argv[]){
 	cout << endl;
 
 	cout << EQUALS << ": " << endl;
-	cout << " _ _ _ _ _" << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
 	for(int i=0; i < vi.size(); i++){
 		cout << "|";
 		for(int j=0; j < vi.size(); j++){
@@ -122,7 +134,10 @@ int main(int argc, char const *argv[]){
 	cout << endl;
 
 	cout << INCLUDES << ": " << endl;
-	cout << " _ _ _ _ _" << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
 	for(int i=0; i < vi.size(); i++){
 		cout << "|";
 		for(int j=0; j < vi.size(); j++){
@@ -137,7 +152,10 @@ int main(int argc, char const *argv[]){
 	cout << endl;
 
 	cout << INSIDE << ": " << endl;
-	cout << " _ _ _ _ _" << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
 	for(int i=0; i < vi.size(); i++){
 		cout << "|";
 		for(int j=0; j < vi.size(); j++){
@@ -152,7 +170,10 @@ int main(int argc, char const *argv[]){
 	cout << endl;
 
 	cout << OVERLAPS << ": " << endl;
-	cout << " _ _ _ _ _" << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
 	for(int i=0; i < vi.size(); i++){
 		cout << "|";
 		for(int j=0; j < vi.size(); j++){
@@ -167,7 +188,10 @@ int main(int argc, char const *argv[]){
 	cout << endl;
 
 	cout << TOUCHES << ": " << endl;
-	cout << " _ _ _ _ _" << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
 	for(int i=0; i < vi.size(); i++){
 		cout << "|";
 		for(int j=0; j < vi.size(); j++){
@@ -182,7 +206,10 @@ int main(int argc, char const *argv[]){
 	cout << endl;
 
 	cout << "WITHIN: " << endl;
-	cout << " _ _ _ _ _" << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
 	for(int i=0; i < vi.size(); i++){
 		cout << "|";
 		for(int j=0; j < vi.size(); j++){
@@ -197,7 +224,10 @@ int main(int argc, char const *argv[]){
 	cout << endl;
 
 	cout << "CONTAINS: " << endl;
-	cout << " _ _ _ _ _" << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
 	for(int i=0; i < vi.size(); i++){
 		cout << "|";
 		for(int j=0; j < vi.size(); j++){
@@ -212,7 +242,10 @@ int main(int argc, char const *argv[]){
 	cout << endl;
 
 	cout << "INTERSECTS: " << endl;
-	cout << " _ _ _ _ _" << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
 	for(int i=0; i < vi.size(); i++){
 		cout << "|";
 		for(int j=0; j < vi.size(); j++){
@@ -225,6 +258,8 @@ int main(int argc, char const *argv[]){
 		cout << endl;
 	}
 	cout << endl;
+
+	tr_gst.navega(0);
 
 	return 0;
 }

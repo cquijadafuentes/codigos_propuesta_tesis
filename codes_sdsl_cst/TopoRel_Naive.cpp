@@ -105,6 +105,7 @@ string toporel(vector<int> &a, vector<int> &b){
     // ------- OTRAS -------
 
     pair<int,bool> res = lcs_info(s, t);
+    // MEJORAR! Esto podría ser lineal con la idea del arreglo de booleans
 
     if(res.first == 0){
         return DISJOINT;
@@ -432,24 +433,27 @@ bool tr_overlaps(vector<int> &a, vector<int> &b){
     if(bordesSeg_touches(a,b)){
         return true;
     }
-
-    // Verificar intersección interior-interior
-    // Copia de los vectores sin los extremos
-    vector<int> aInt(a.begin()+1, a.end()-1);
-    vector<int> bInt(b.begin()+1, b.end()-1);
-    // Ordenar los vectores
-    sort(aInt.begin(), aInt.end());
-    sort(bInt.begin(), bInt.end());
-    // Verificar intersección interior-interior
-    int i=0, j=0;
-    while(i<aInt.size() && j<bInt.size()){
-        if(aInt[i] == bInt[j]){
-            // Intersección interior-interior detectada
+    // Crear arreglo bool para identificar intersección interior-interior
+    int max = 0;
+    for(int i=0; i<a.size(); i++){
+        if(a[i] > max){
+            max = a[i];
+        }
+    }
+    for(int i=0; i<b.size(); i++){
+        if(b[i] > max){
+            max = b[i];
+        }
+    }
+    // Marcar aquellos elementos del interior de A (sin bordes)
+    vector<bool> mIntA = vector<bool>(max+1, false);
+    for(int i=1; i<a.size()-1; i++){
+        mIntA[a[i]] = true;
+    }
+    // Verificar elementos del interior de B (sin bordes)
+    for(int i=1; i<b.size()-1; i++){
+        if(mIntA[b[i]]){
             return true;
-        }else if(aInt[i] < bInt[j]){
-            i++;
-        }else{
-            j++;
         }
     }
 
@@ -466,22 +470,27 @@ bool tr_touches(vector<int> &a, vector<int> &b){
         }
     }
 
-    // Copia de los vectores sin los extremos
-    vector<int> aInt(a.begin()+1, a.end()-1);
-    vector<int> bInt(b.begin()+1, b.end()-1);
-    // Ordenar los vectores
-    sort(aInt.begin(), aInt.end());
-    sort(bInt.begin(), bInt.end());
-    // Verificar intersección interior-interior
-    int i=0, j=0;
-    while(i<aInt.size() && j<bInt.size()){
-        if(aInt[i] == bInt[j]){
-            // Intersección interior-interior detectada
+    // Crear arreglo bool para identificar intersección interior-interior
+    int max = 0;
+    for(int i=0; i<a.size(); i++){
+        if(a[i] > max){
+            max = a[i];
+        }
+    }
+    for(int i=0; i<b.size(); i++){
+        if(b[i] > max){
+            max = b[i];
+        }
+    }
+    vector<bool> mIntA = vector<bool>(max+1, false);
+    // Marcar aquellos elementos del interior de A (sin bordes)
+    for(int i=1; i<a.size()-1; i++){
+        mIntA[a[i]] = true;
+    }
+    // Verificar elementos del interior de B (sin bordes)
+    for(int i=1; i<b.size()-1; i++){
+        if(mIntA[b[i]]){
             return false;
-        }else if(aInt[i] < bInt[j]){
-            i++;
-        }else{
-            j++;
         }
     }
     // Bordes de las secuencias
@@ -500,21 +509,19 @@ bool tr_touches(vector<int> &a, vector<int> &b){
     if(bordesSeg_touches(a,b)){
         return false;
     }
-    // Verificar intersección bordes-interior
-    if(binary_search(bInt.begin(), bInt.end(), a_bi)){
+    // Verificar intersección bordes B - interior A
+    if(mIntA[b_bi] || mIntA[b_bf]){
         return true;
     }
-    if(binary_search(bInt.begin(), bInt.end(), a_bf)){
-        return true;
+    // Verificar intersección bordes A - interior B
+    // Se debe crear el arreglo de interior de B
+    vector<bool> mIntB = vector<bool>(max+1, false);
+    // Marcar aquellos elementos del interior de B (sin bordes)
+    for(int i=1; i<b.size()-1; i++){
+        mIntB[b[i]] = true;
     }
-    if(binary_search(aInt.begin(), aInt.end(), b_bi)){
-        return true;
-    }
-    if(binary_search(aInt.begin(), aInt.end(), b_bf)){
-        return true;
-    }
-
-    return false;
+    
+    return (mIntB[a_bi] || mIntB[a_bf]);
 }
 
 

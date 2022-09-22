@@ -140,8 +140,8 @@ string TopoRelGST::obtenerRelacion(int x, int y){
     }
     // Identificar otras
     // Touches, Overlaps, Disjoint
-    bool touches = false;
     auto root = cst.root();
+    bool touches = false;
     for(int i = 1; i < routes[corto].size() - 1; i++){
         auto ch = cst.child(root, routes[corto][i]);
         if(ch != root && marcas[largo][cst.id(ch)]){
@@ -153,6 +153,7 @@ string TopoRelGST::obtenerRelacion(int x, int y){
             }
         }
     }
+
     int idch = cst.id(cst.child(root, routes[corto][0]));
     if(marcas[largo][idch] == 1){
         touches = true;
@@ -314,6 +315,29 @@ bool TopoRelGST::tr_touches(int x, int y){
         }
     }
     if(touches){
+/*
+        // Comprobar segmentos borde
+        auto ch1 = cst.child(root, routes[corto][0]);
+        if(cst.depth(ch1) == 1){
+            cout << "++";
+            ch1 = cst.child(ch1, routes[corto][1]);
+        }        
+        cout << "id(ch1): " << cst.id(ch1) << " - depth: " << cst.depth(ch1) << " ";
+        int cff = routes[corto].size() - 1;
+        auto ch2 = cst.child(root, routes[corto][cff]);
+        if(cst.depth(ch2) == 1){
+            cout << "**";
+            ch2 = cst.child(ch2, routes[corto][cff-1]);
+        }
+        cout << "id(ch2): " << cst.id(ch2) << " - depth: " << cst.depth(ch2) << " ";
+        if(marcas[largo][cst.id(ch1)] || 
+                marcas[largo][cst.id(ch2)] ||
+                marcas[largo + n_routes][cst.id(ch1)] || 
+                marcas[largo + n_routes][cst.id(ch2)]){
+            // Hay contacto entre segmentos del borde
+            return false;
+        }
+*/
         return true;
     }
     int idch = cst.id(cst.child(root, routes[corto][0]));
@@ -418,4 +442,8 @@ bool TopoRelGST::tr_intersects(int x, int y){
     }
 
     return false;
+}
+
+void TopoRelGST::navega(int x){
+
 }
