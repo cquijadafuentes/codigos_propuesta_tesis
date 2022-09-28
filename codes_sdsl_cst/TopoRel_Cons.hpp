@@ -18,5 +18,6 @@ using namespace std;
 	const string INCLUDES_res = "IC";
 	const string INSIDE_res = "IS";
 	const string OVERLAPS_res = "O";
-	const string TOUCHES_res = "TO";	
+	const string TOUCHES_res = "TO";
+
 #endif

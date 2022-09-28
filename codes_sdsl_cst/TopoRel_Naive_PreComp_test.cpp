@@ -1,20 +1,9 @@
 #include <iostream>
-#include <vector>
-#include "TopoRel_Naive.hpp"
+#include "TopoRel_Naive_PreComp.hpp"
 
 using namespace std;
 
-void print_bool(bool x){
-	if(x){
-		cout << "true";
-	}else{
-		cout << "false";
-	}
-}
-
-
-int main(){
-
+int main(int argc, char const *argv[]){
 	cout << "Input:" << endl;
 	cout << "cant_rutas" << endl;
 	cout << "cant_stops_r1 r1_st1 r1_st2 ···" << endl;
@@ -31,21 +20,26 @@ int main(){
 			lx[i].push_back(aux);
 		}
 	}
-
+	int max = 0;
 	cout << lx.size() << endl;
 	for(int i=0; i<lx.size(); i++){
 		cout << lx[i].size() << ": ";
 		for(int j=0; j<lx[i].size(); j++){
 			cout << lx[i][j] << " ";
+			if(lx[i][j] > max){
+				max = lx[i][j];
+			}
 		}
 		cout << endl;
 	}
 	cout << endl;
 
+	TopoRelNaivePreComp trnpc(lx, max);
+
 	cout << "Relaciones:" << endl;
-	for(int i = 0; i < lx.size(); i++){
-		for(int j = 0; j < lx.size(); j++){
-			cout << toporel(lx[i], lx[j]) << "  ";
+	for(int i = 0; i < n; i++){
+		for(int j = 0; j < n; j++){
+			cout << trnpc.obtenerRelacion(i,j) << "  ";
 		}
 		cout << endl;
 	}
@@ -59,7 +53,7 @@ int main(){
 	for(int i=0; i < lx.size(); i++){
 		cout << "|";
 		for(int j=0; j < lx.size(); j++){
-			if(tr_coveredby(lx[i],lx[j])){
+			if(trnpc.coveredby(i,j)){
 				cout << "X ";
 			}else{
 				cout << "  ";
@@ -77,7 +71,7 @@ int main(){
 	for(int i=0; i < lx.size(); i++){
 		cout << "|";
 		for(int j=0; j < lx.size(); j++){
-			if(tr_covers(lx[i],lx[j])){
+			if(trnpc.covers(i,j)){
 				cout << "X ";
 			}else{
 				cout << "  ";
@@ -95,7 +89,7 @@ int main(){
 	for(int i=0; i < lx.size(); i++){
 		cout << "|";
 		for(int j=0; j < lx.size(); j++){
-			if(tr_disjoint(lx[i],lx[j])){
+			if(trnpc.disjoint(i,j)){
 				cout << "X ";
 			}else{
 				cout << "  ";
@@ -113,7 +107,7 @@ int main(){
 	for(int i=0; i < lx.size(); i++){
 		cout << "|";
 		for(int j=0; j < lx.size(); j++){
-			if(tr_equals(lx[i],lx[j])){
+			if(trnpc.equals(i,j)){
 				cout << "X ";
 			}else{
 				cout << "  ";
@@ -131,7 +125,7 @@ int main(){
 	for(int i=0; i < lx.size(); i++){
 		cout << "|";
 		for(int j=0; j < lx.size(); j++){
-			if(tr_includes(lx[i],lx[j])){
+			if(trnpc.includes(i,j)){
 				cout << "X ";
 			}else{
 				cout << "  ";
@@ -149,7 +143,7 @@ int main(){
 	for(int i=0; i < lx.size(); i++){
 		cout << "|";
 		for(int j=0; j < lx.size(); j++){
-			if(tr_inside(lx[i],lx[j])){
+			if(trnpc.inside(i,j)){
 				cout << "X ";
 			}else{
 				cout << "  ";
@@ -167,7 +161,7 @@ int main(){
 	for(int i=0; i < lx.size(); i++){
 		cout << "|";
 		for(int j=0; j < lx.size(); j++){
-			if(tr_overlaps(lx[i],lx[j])){
+			if(trnpc.overlaps(i,j)){
 				cout << "X ";
 			}else{
 				cout << "  ";
@@ -185,7 +179,7 @@ int main(){
 	for(int i=0; i < lx.size(); i++){
 		cout << "|";
 		for(int j=0; j < lx.size(); j++){
-			if(tr_touches(lx[i],lx[j])){
+			if(trnpc.touches(i,j)){
 				cout << "X ";
 			}else{
 				cout << "  ";
@@ -195,6 +189,8 @@ int main(){
 	}
 	cout << endl;
 
+	return 0;
+
 	cout << "WITHIN: " << endl;
 	for(int i=0; i < lx.size(); i++){
 		cout << " _";
@@ -203,7 +199,7 @@ int main(){
 	for(int i=0; i < lx.size(); i++){
 		cout << "|";
 		for(int j=0; j < lx.size(); j++){
-			if(tr_within(lx[i],lx[j])){
+			if(trnpc.within(i,j)){
 				cout << "X ";
 			}else{
 				cout << "  ";
@@ -221,7 +217,7 @@ int main(){
 	for(int i=0; i < lx.size(); i++){
 		cout << "|";
 		for(int j=0; j < lx.size(); j++){
-			if(tr_contains(lx[i],lx[j])){
+			if(trnpc.contains(i,j)){
 				cout << "X ";
 			}else{
 				cout << "  ";
@@ -239,7 +235,7 @@ int main(){
 	for(int i=0; i < lx.size(); i++){
 		cout << "|";
 		for(int j=0; j < lx.size(); j++){
-			if(tr_intersects(lx[i],lx[j])){
+			if(trnpc.intersects(i,j)){
 				cout << "X ";
 			}else{
 				cout << "  ";
