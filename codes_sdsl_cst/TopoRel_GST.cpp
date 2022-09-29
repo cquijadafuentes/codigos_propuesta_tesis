@@ -26,7 +26,7 @@ TopoRelGST::TopoRelGST(vector<vector<int>> &rutas, int cant_stops){
     for(int i = 0; i < n_routes; i++){
         routes_rev.push_back(routes[i]);
         reverse(routes_rev[i].begin(), routes_rev[i].end());
-        for(int j = routes_rev[i].size() - 1; j >= 0; j--){
+        for(int j = 0; j < routes[i].size(); j++){
             iv[pv++] = routes_rev[i][j];
         }
     }
@@ -139,6 +139,9 @@ string TopoRelGST::obtenerRelacion(int x, int y){
         return INCLUDES;
     }
     // Identificar otras
+    if(bordesSeg_touches(corto, largo)){
+        return OVERLAPS;
+    }    
     // Touches, Overlaps, Disjoint
     auto root = cst.root();
     bool touches = false;
@@ -153,7 +156,6 @@ string TopoRelGST::obtenerRelacion(int x, int y){
             }
         }
     }
-
     int idch = cst.id(cst.child(root, routes[corto][0]));
     if(marcas[largo][idch] == 1){
         touches = true;
@@ -299,7 +301,10 @@ bool TopoRelGST::tr_touches(int x, int y){
     if(marcas[largo][id_corto] == 1 || marcas[largo + n_routes][id_corto] == 1){
         return false;
     }
-    // Identificar otras
+    // Identificar otras    
+    if(bordesSeg_touches(corto, largo)){
+        return false;
+    }
     // Touches, Overlaps, Disjoint
     bool touches = false;
     auto root = cst.root();
@@ -314,30 +319,7 @@ bool TopoRelGST::tr_touches(int x, int y){
             }
         }
     }
-    if(touches && !bordesSeg_touches(corto, largo)){
-/*
-        // Comprobar segmentos borde
-        auto ch1 = cst.child(root, routes[corto][0]);
-        if(cst.depth(ch1) == 1){
-            cout << "++";
-            ch1 = cst.child(ch1, routes[corto][1]);
-        }        
-        cout << "id(ch1): " << cst.id(ch1) << " - depth: " << cst.depth(ch1) << " ";
-        int cff = routes[corto].size() - 1;
-        auto ch2 = cst.child(root, routes[corto][cff]);
-        if(cst.depth(ch2) == 1){
-            cout << "**";
-            ch2 = cst.child(ch2, routes[corto][cff-1]);
-        }
-        cout << "id(ch2): " << cst.id(ch2) << " - depth: " << cst.depth(ch2) << " ";
-        if(marcas[largo][cst.id(ch1)] || 
-                marcas[largo][cst.id(ch2)] ||
-                marcas[largo + n_routes][cst.id(ch1)] || 
-                marcas[largo + n_routes][cst.id(ch2)]){
-            // Hay contacto entre segmentos del borde
-            return false;
-        }
-*/
+    if(touches){
         return true;
     }
     int idch = cst.id(cst.child(root, routes[corto][0]));
@@ -446,6 +428,143 @@ bool TopoRelGST::tr_intersects(int x, int y){
 
 void TopoRelGST::navega(int x){
 
+    cout << "Información del CompressedSuffixTree:" << endl;
+    cout << "Cantidad de nodos: " << cst.nodes() << endl;
+    cout << "Cantidad de hojas: " << cst.size() << endl;
+
+    cout << "Recorrido de hijos de root del CompressedSuffixTree:" << endl;
+    auto root = cst.root();
+    cout << "id\ted_1\tdeg\tdep\tndep\tsize\tlb\trb\tsun\tleaf\ttext" << endl;
+    for (auto& child: cst.children(root)) {
+        cout << cst.id(child) << "\t";
+        cout << "'" << cst.edge(child, 1) << "'" << "\t";       // D-th char of the edge-label
+        cout << cst.degree(child) << "\t";      // Number of children
+        cout << cst.depth(child) << "\t";       // String depth
+        cout << cst.node_depth(child) << "\t";  // 
+        cout << cst.size(child) << "\t";        // Number of leaves in the subtree
+        cout << cst.lb(child) << "\t";          // Leftmost leaf
+        cout << cst.rb(child) << "\t";          // Rightmost leaf
+        cout << cst.sn(child) << "\t";          // Suffix number
+        cout << cst.is_leaf(child) << "\t";     // IsLeaf
+        for(int i=1; i<=cst.depth(child); i++){
+            cout << cst.edge(child, i);
+        }
+        cout << "\t" << endl;
+    }
+
+    cout << endl;
+    cout << "BFS del CompressedSuffixTree:" << endl;
+    cout << "id\ted_1\tdeg\tdep\tndep\tsize\tlb\trb\tsun\tleaf\ttext" << endl;
+    typedef cst_bfs_iterator<cst_sct3<csa_wt<wt_int<rrr_vector<>>>>> iterator;
+    iterator begin = iterator(&cst, cst.root());
+    iterator end   = iterator(&cst, cst.root(), true, true);
+    int count = 0;
+    for (iterator it = begin; it != end; ++it) {
+        cout << cst.id(*it) << "\t";
+        cout << "'" << cst.edge(*it, 1) << "'" << "\t";     // D-th char of the edge-label
+        cout << cst.degree(*it) << "\t";        // Number of children
+        cout << cst.depth(*it) << "\t";         // String depth
+        cout << cst.node_depth(*it) << "\t";    // 
+        cout << cst.size(*it) << "\t";          // Number of leaves in the subtree
+        cout << cst.lb(*it) << "\t";            // Leftmost leaf
+        cout << cst.rb(*it) << "\t";            // Rightmost leaf
+        cout << cst.sn(*it) << "\t";            // Suffix number
+        cout << cst.is_leaf(*it) << "\t";       // IsLeaf
+        for(int i=1; i<=cst.depth(*it); i++){
+            cout << cst.edge(*it, i) << " ";
+        }
+        cout << "\t" << endl;
+
+        if(++count % 5 == 0){
+            cout << endl;
+        }
+    }
+
+    cout << endl;
+    cout << "Pruebas de Navegación en CompressedSuffixTree: " << endl;
+    
+    auto nodeAux = cst.root();
+    cout << "Root: " << cst.id(nodeAux) << "\t'";
+    for(int i=1; i<=cst.depth(nodeAux); i++){
+        cout << cst.edge(nodeAux, i);
+    }
+    cout << "'" << endl;
+
+    nodeAux = cst.select_leaf(3);
+    cout << "Leaf 3: " << cst.id(nodeAux) << "\t'";
+    for(int i=1; i<=cst.depth(nodeAux); i++){
+        cout << cst.edge(nodeAux, i);
+    }
+    cout << "'" << endl;
+
+    nodeAux = cst.leftmost_leaf(cst.root());
+    cout << "Leftmost: " << cst.id(nodeAux) << "\t'";
+    for(int i=1; i<=cst.depth(nodeAux); i++){
+        cout << cst.edge(nodeAux, i);
+    }
+    cout << "'" << endl;
+
+    nodeAux = cst.rightmost_leaf(cst.root());
+    cout << "Rightmost: " << cst.id(nodeAux) << "\t'";
+    for(int i=1; i<=cst.depth(nodeAux); i++){
+        cout << cst.edge(nodeAux, i);
+    }
+    cout << "'" << endl;
+
+    nodeAux = cst.parent(cst.rightmost_leaf(cst.root()));
+    cout << "Parent: " << cst.id(nodeAux) << "\t'";
+    for(int i=1; i<=cst.depth(nodeAux); i++){
+        cout << cst.edge(nodeAux, i);
+    }
+    cout << "'" << endl;
+
+    nodeAux = cst.select_child(cst.child(cst.root(), 'l'),1);
+    cout << "Sibling de 'lmu': " << cst.id(nodeAux) << "\t'";
+    for(int i=1; i<=cst.depth(nodeAux); i++){
+        cout << cst.edge(nodeAux, i);
+    }
+    cout << "'" << endl;
+
+    nodeAux = cst.select_child(cst.root(),6);
+    cout << "Select child 6 de root: " << cst.id(nodeAux) << "\t'";
+    for(int i=1; i<=cst.depth(nodeAux); i++){
+        cout << cst.edge(nodeAux, i);
+    }
+    cout << "'" << endl;
+
+    nodeAux = cst.child(cst.root(),'u');
+    cout << "child starts 'u' desde root: " << cst.id(nodeAux) << "\t'";
+    for(int i=1; i<=cst.depth(nodeAux); i++){
+        cout << cst.edge(nodeAux, i);
+    }
+    cout << "'" << endl;
+
+    nodeAux = cst.inv_id(7);
+    cout << "inv_id de 7: " << cst.id(nodeAux) << "\t'";
+    for(int i=1; i<=cst.depth(nodeAux); i++){
+        cout << cst.edge(nodeAux, i);
+    }
+    cout << "'" << endl;
+
+    nodeAux = cst.sl(cst.inv_id(7));
+    cout << "suffix link nodo 'mum': " << cst.id(nodeAux) << "\t'";
+    for(int i=1; i<=cst.depth(nodeAux); i++){
+        cout << cst.edge(nodeAux, i);
+    }
+    cout << "'" << endl;
+
+    nodeAux = cst.wl(cst.inv_id(7), 'l');
+    cout << "Weiner link nodo 'mum' y 'l': " << cst.id(nodeAux) << "\t'";
+    for(int i=1; i<=cst.depth(nodeAux); i++){
+        cout << cst.edge(nodeAux, i);
+    }
+    cout << "'" << endl;
+
+    cout << endl << "mapa: " << endl;
+    for(int i=0; i<mapa.size(); i++){
+        cout << "(" << i << "): " << cst.id(mapa[i]) << endl;
+    }
+
 }
 
 void TopoRelGST::sizeEstructura(){
@@ -480,33 +599,24 @@ void TopoRelGST::sizeEstructura(){
 bool TopoRelGST::bordesSeg_touches(int i, int j){
     // Comprobar segmentos borde
     auto root = cst.root();
-    cout << "cst.depth(root): " << cst.depth(root) << endl;
     auto ch1 = cst.child(root, routes[i][0]);
-    cout << "cst.depth(ch1): " << cst.depth(ch1) << endl;
-    cout << "id(ch1): " << cst.id(ch1) << " - depth: " << cst.depth(ch1) << " ";
     int cff = routes[i].size() - 1;
     auto ch2 = cst.child(root, routes[i][cff]);
     if(cst.depth(ch2) == 1){
-        cout << "**";
         ch2 = cst.child(ch2, routes[i][cff-1]);
     }
-    cout << "id(ch2): " << cst.id(ch2) << " - depth: " << cst.depth(ch2) << " ";
-    
+
     if(marcas[j][cst.id(ch1)]){
-        cout << "marca caso 1" << endl;
-        return false;
+        return true;
     }
     if(marcas[j][cst.id(ch2)]){
-        cout << "marca caso 2" << endl;
-        return false;
+        return true;
     }
     if(marcas[j + n_routes][cst.id(ch1)]){
-        cout << "marca caso 3" << endl;
-        return false;
+        return true;
     }
     if(marcas[j + n_routes][cst.id(ch2)]){
-        cout << "marca caso 4" << endl;
-        return false;
+        return true;
     }
     return false;
 }
