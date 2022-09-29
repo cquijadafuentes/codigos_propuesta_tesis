@@ -1,5 +1,8 @@
 test_alfabeto_ext
-TopoRel_Naive_test
-TopoRel_GST_test
 time_TopoRel_boolean
+TopoRel_GST_test
+TopoRel_GST_test_size
+TopoRel_Naive_PreComp_test
+TopoRel_Naive_test
+TopoRel_testall
 *.o
