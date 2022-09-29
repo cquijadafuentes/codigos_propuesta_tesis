@@ -47,7 +47,9 @@ public:
 
     void navega(int);
     void sizeEstructura();
+
 private:
+    bool bordesSeg_touches(int, int);
 
 };
 

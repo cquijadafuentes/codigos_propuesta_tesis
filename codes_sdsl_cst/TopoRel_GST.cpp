@@ -314,7 +314,7 @@ bool TopoRelGST::tr_touches(int x, int y){
             }
         }
     }
-    if(touches){
+    if(touches && !bordesSeg_touches(corto, largo)){
 /*
         // Comprobar segmentos borde
         auto ch1 = cst.child(root, routes[corto][0]);
@@ -475,4 +475,38 @@ void TopoRelGST::sizeEstructura(){
     cout << "Rutas: " << routes.size() << endl;
     cout << "Nodos cst_sct3: " << cst.nodes() << endl;
     cout << "Hojas cst_sct3: " << cst.size() << endl;
+}
+
+bool TopoRelGST::bordesSeg_touches(int i, int j){
+    // Comprobar segmentos borde
+    auto root = cst.root();
+    cout << "cst.depth(root): " << cst.depth(root) << endl;
+    auto ch1 = cst.child(root, routes[i][0]);
+    cout << "cst.depth(ch1): " << cst.depth(ch1) << endl;
+    cout << "id(ch1): " << cst.id(ch1) << " - depth: " << cst.depth(ch1) << " ";
+    int cff = routes[i].size() - 1;
+    auto ch2 = cst.child(root, routes[i][cff]);
+    if(cst.depth(ch2) == 1){
+        cout << "**";
+        ch2 = cst.child(ch2, routes[i][cff-1]);
+    }
+    cout << "id(ch2): " << cst.id(ch2) << " - depth: " << cst.depth(ch2) << " ";
+    
+    if(marcas[j][cst.id(ch1)]){
+        cout << "marca caso 1" << endl;
+        return false;
+    }
+    if(marcas[j][cst.id(ch2)]){
+        cout << "marca caso 2" << endl;
+        return false;
+    }
+    if(marcas[j + n_routes][cst.id(ch1)]){
+        cout << "marca caso 3" << endl;
+        return false;
+    }
+    if(marcas[j + n_routes][cst.id(ch2)]){
+        cout << "marca caso 4" << endl;
+        return false;
+    }
+    return false;
 }
