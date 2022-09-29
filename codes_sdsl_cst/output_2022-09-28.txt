@@ -1,0 +1,23 @@
+********** Naive Algorithm **********
+TopoRelation	cant	Time_true	Time_all
+CoveredBy	15	4.06667 [us]	1.80814 [us]
+Covers		15	4.06667 [us]	1.80656 [us]
+Disjoint	143280	15.3111 [us]	15.1919 [us]
+Equals		391	0.726343 [us]	0.0286432 [us]
+Includes	6	5.2 [us]	1.80147 [us]
+Inside		6	5.12222 [us]	1.80595 [us]
+Overlaps	8182	10.6079 [us]	9.92929 [us]
+Touches		986	6.88749 [us]	8.71964 [us]
+Total relaciones: 152881
+********** Naive Pre-Computed **********
+TopoRelation	cant	Time_true	Time_all
+CoveredBy	15	0.0755556 [us]	0.0427326 [us]
+Covers		15	0.08 [us]	0.0441782 [us]
+Disjoint	143280	0.0633575 [us]	0.0558801 [us]
+Equals		391	0.0615516 [us]	0.0442959 [us]
+Includes	6	0.0777778 [us]	0.0624931 [us]
+Inside		6	0.0777778 [us]	0.0435306 [us]
+Overlaps	8182	0.0618838 [us]	0.0594122 [us]
+Touches		986	0.0626099 [us]	0.0451855 [us]
+Total relaciones: 152881
+********** Compressed Suffix Tree **********
