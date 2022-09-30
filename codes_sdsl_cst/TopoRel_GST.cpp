@@ -600,6 +600,9 @@ bool TopoRelGST::bordesSeg_touches(int i, int j){
     // Comprobar segmentos borde
     auto root = cst.root();
     auto ch1 = cst.child(root, routes[i][0]);
+    if(cst.depth(ch1) == 1){
+        ch1 = cst.child(ch1, routes[i][1]);
+    }
     int cff = routes[i].size() - 1;
     auto ch2 = cst.child(root, routes[i][cff]);
     if(cst.depth(ch2) == 1){
