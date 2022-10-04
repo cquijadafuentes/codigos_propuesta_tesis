@@ -32,6 +32,7 @@ int main(int argc, char const *argv[]){
             rNaive = toporel(routes[i], routes[j]);
             rNaivePC = trpc.obtenerRelacion(i, j);
             rGST = tt.obtenerRelacion(i, j);
+            // 8 Relaciones básicas 
             if(rNaive != rNaivePC || rNaivePC != rGST){
             	cout << "i: " << i << " - j: " << j << endl;
             	cout << "\trNaive: " << rNaive << endl;
@@ -50,6 +51,32 @@ int main(int argc, char const *argv[]){
 	            bool bb = tt.tr_touches(i, j);
 	            cout << "Resultado tt.tr_touches: " << bb << endl;
 	            cout << " ---- " << endl;
+            }
+
+
+            // 3 Relaciones agregadas
+			bool trWith = tr_within(routes[i], routes[j]);
+			bool trpcWith = trpc.within(i, j);
+			bool trCont = tr_contains(routes[i], routes[j]);
+			bool trpcCont = trpc.contains(i, j);
+			bool trInte = tr_intersects(routes[i], routes[j]);
+			bool trpcInte = trpc.intersects(i, j);
+
+            if((trWith != trpcWith) || (trCont != trpcCont) || (trInte != trpcInte)){
+            	cout << "\tNaive\tNaivePC" << endl;
+            	cout << "With\t" << trWith << "\t" << trpcWith << endl;
+            	cout << "Cont\t" << trCont << "\t" << trpcCont << endl;
+            	cout << "Inte\t" << trInte << "\t" << trpcInte << endl;
+            	cout << "Rel\t" << rNaive << "\t" << rNaivePC << endl;
+            	cout << "(i=" << i << "): ";
+            	for(int x=0; x<routes[i].size(); x++){
+	            	cout << routes[i][x] << " ";
+	            }
+	            cout <<"\n(j=" << j << "): ";
+	            for(int x=0; x<routes[j].size(); x++){
+	            	cout << routes[j][x] << " ";
+	            }
+	            cout << endl << " ---- " << endl;
             }
         }
     }

@@ -566,7 +566,34 @@ bool tr_contains(vector<int> &a, vector<int> &b){
 }
 
 bool tr_intersects(vector<int> &a, vector<int> &b){
-    pair<int,bool> res = lcs_info(a, b);
-    
-    return (res.first != 0);
+    // Verificacición de bordes O(c)
+    if(a[0] == b[0] || a[0] == b[b.size()-1] 
+        || a[a.size()-1] == b[0] || a[a.size()-1] == b[b.size()-1]){
+        return true;
+    }
+    if(bordesSeg_touches(a, b)){
+        return true;
+    }
+    // Verificación de cualquier intersección
+    int max = 0;
+    for(int i=0; i<a.size(); i++){
+        if(a[i] > max){
+            max = a[i];
+        }
+    }
+    for(int i=0; i<b.size(); i++){
+        if(b[i] > max){
+            max = b[i];
+        }
+    }
+    bit_vector sA = bit_vector(max+1, 0);
+    for(int i=0; i<a.size(); i++){
+        sA[a[i]] = 1;
+    }
+    for(int i=0; i<b.size(); i++){
+        if(sA[b[i]] == 1){
+            return true;
+        }
+    }
+    return false;
 }

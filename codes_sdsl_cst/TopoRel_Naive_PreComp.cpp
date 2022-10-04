@@ -75,3 +75,34 @@ bool TopoRelNaivePreComp::touches(int i, int j){
 bool TopoRelNaivePreComp::overlaps(int i, int j){
 	return (nombresRel[relaciones[i][j]] == OVERLAPS);
 }
+
+bool TopoRelNaivePreComp::within(int i, int j){
+	if(nombresRel[relaciones[i][j]] == EQUALS){
+		return true;
+	}
+	if(nombresRel[relaciones[i][j]] == COVEREDBY){
+		return true;
+	}
+	if(nombresRel[relaciones[i][j]] == INSIDE){
+		return true;
+	}
+	return false;
+}
+
+bool TopoRelNaivePreComp::contains(int i, int j){	
+	if(nombresRel[relaciones[i][j]] == EQUALS){
+		return true;
+	}
+	if(nombresRel[relaciones[i][j]] == COVERS){
+		return true;
+	}
+	if(nombresRel[relaciones[i][j]] == INCLUDES){
+		return true;
+	}
+	return false;
+}
+
+bool TopoRelNaivePreComp::intersects(int i, int j){
+	return nombresRel[relaciones[i][j]] != DISJOINT;
+}
+

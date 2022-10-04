@@ -6,9 +6,12 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <sdsl/vectors.hpp>
+#include <sdsl/bit_vectors.hpp>
 #include "TopoRel_Cons.hpp"
 
 using namespace std;
+using namespace sdsl;
 
 // RELACIONES TOPOLÓGICAS NAIVE
 string toporel(vector<int> &a, vector<int> &b);
@@ -30,7 +33,5 @@ bool tr_touches(vector<int> &a, vector<int> &b);
 bool tr_within(vector<int> &a, vector<int> &b);
 bool tr_contains(vector<int> &a, vector<int> &b);
 bool tr_intersects(vector<int> &a, vector<int> &b);
-
-
 
 #endif
