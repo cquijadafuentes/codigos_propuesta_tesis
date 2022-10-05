@@ -265,8 +265,11 @@ bool tr_equals(vector<int> &a, vector<int> &b){
         if(a[i] != b[aS-1-i]){
             fallasBA++;
         }
+        if(fallasAB > 0 && fallasBA > 0){
+            return false;
+        }            
     }
-    return !(fallasAB && fallasBA);
+    return true;
 }
 
 bool tr_coveredby(vector<int> &a, vector<int> &b){
@@ -328,29 +331,36 @@ bool tr_disjoint(vector<int> &a, vector<int> &b){
     if(a_bf == b_bi || a_bf == b_bf){
         return false;
     }
-    // Copia de los vectores
-    vector<int> ca(a.begin(), a.end());
-    vector<int> cb(b.begin(), b.end());
-    // Ordenar los vectores
-    sort(ca.begin(), ca.end());
-    sort(cb.begin(), cb.end());
-    // Verificar intersección
-    int i=0, j=0;
-    while(i<ca.size() && j<cb.size()){
-        if(ca[i] == cb[j]){
-            // Intersección interior-interior detectada
-            return false;
-        }else if(ca[i] < cb[j]){
-            i++;
-        }else{
-            j++;
+    // Verificar cualquier intersección por marcas en vector<bool>
+    // 1- identificar máximo int
+    int max = 0;
+    for(int i=0; i<a.size(); i++){
+        if(a[i] > max){
+            max = a[i];
         }
     }
-
+    for(int i=0; i<b.size(); i++){
+        if(b[i] > max){
+            max = b[i];
+        }
+    }
+    // 2- generar marcas de una de las secuencias
+    vector<bool> ma(max+1, false);
+    for(int i=0; i<a.size(); i++){
+        ma[a[i]] = true;
+    }
+    // 3- revisar elementos de la otra secuencia
+    for(int i=0; i<b.size(); i++){
+        if(ma[b[i]]){
+            return false;
+        }
+    }
     return true;
 }
 
 bool tr_includes(vector<int> &a, vector<int> &b){
+    // Nota: se podría usar b.size()+1 ya que al menos debe tener
+    //      2 elementos extra para poder incluirse uno en el otro
     if(b.size() >= a.size()){
         return false;
     }
@@ -424,7 +434,7 @@ bool tr_overlaps(vector<int> &a, vector<int> &b){
     }
     
     /*
-        A este punto existe intersección exterior-exterior entre 
+        A este punto existe intersección interior-exterior entre 
         las secuencias ya que no hay contensión entre ellas.
         Si hubiera intersección interior-interior se determina la
         relación overlap.

@@ -16,13 +16,13 @@ void print_bool(bool x){
 int main(){
 
 	cout << "Input:" << endl;
-	cout << "cant_rutas" << endl;
+	cout << "cant_rutas max_stop" << endl;
 	cout << "cant_stops_r1 r1_st1 r1_st2 ···" << endl;
 	cout << "cant_stops_r2 r2_st1 r2_st2 ···" << endl;
 	cout << "···" << endl << endl;
 
-	int n, x, aux;
-	cin >> n;
+	int n, x, aux, max;
+	cin >> n >> max;
 	vector<vector<int>> lx(n);
 	for(int i = 0; i < n; i++){
 		cin >> x;

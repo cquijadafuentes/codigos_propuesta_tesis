@@ -185,7 +185,8 @@ bool TopoRelGST::tr_coveredby(int x, int y){
         return false;
     }
     int id_x = cst.id(mapa[x]);
-    if(marcas[y][id_x] == 1 || marcas[y + n_routes][id_x] == 1){
+    if(marcas[y][id_x] == 1 || marcas[y + n_routes][id_x] == 1
+            || marcas[y][id_x + n_routes] == 1 || marcas[y + n_routes][id_x + n_routes] == 1){
         // Hay contensión
         bool borde = false;
         borde = borde || routes[x][0] == routes[y][0];
@@ -204,7 +205,8 @@ bool TopoRelGST::tr_covers(int x, int y){
         return false;
     }
     int id_y = cst.id(mapa[y]);
-    if(marcas[x][id_y] == 1 || marcas[x + n_routes][id_y] == 1){
+    if(marcas[x][id_y] == 1 || marcas[x + n_routes][id_y] == 1
+            || marcas[x][id_y + n_routes] == 1 || marcas[x + n_routes][id_y + n_routes] == 1){
         // Hay contensión
         bool borde = false;
         borde = borde || routes[x][0] == routes[y][0];
@@ -223,7 +225,8 @@ bool TopoRelGST::tr_inside(int x, int y){
         return false;
     }
     int id_x = cst.id(mapa[x]);
-    if(marcas[y][id_x] == 1 || marcas[y + n_routes][id_x] == 1){
+    if(marcas[y][id_x] == 1 || marcas[y + n_routes][id_x] == 1
+            || marcas[y][id_x + n_routes] == 1 || marcas[y + n_routes][id_x + n_routes] == 1){
         // Hay contensión
         bool borde = false;
         borde = borde || routes[x][0] == routes[y][0];
@@ -242,7 +245,8 @@ bool TopoRelGST::tr_includes(int x, int y){
         return false;
     }
     int id_y = cst.id(mapa[y]);
-    if(marcas[x][id_y] == 1 || marcas[x + n_routes][id_y] == 1){
+    if(marcas[x][id_y] == 1 || marcas[x + n_routes][id_y] == 1
+            || marcas[x][id_y + n_routes] == 1 || marcas[x + n_routes][id_y + n_routes] == 1){
         // Hay contensión
         bool borde = false;
         borde = borde || routes[x][0] == routes[y][0];

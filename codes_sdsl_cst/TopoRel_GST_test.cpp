@@ -14,13 +14,13 @@ void print_bool(bool x){
 
 int main(int argc, char const *argv[]){
 	cout << "Input:" << endl;
-	cout << "cant_rutas" << endl;
+	cout << "cant_rutas max_stop" << endl;
 	cout << "cant_stops_r1 r1_st1 r1_st2 ···" << endl;
 	cout << "cant_stops_r2 r2_st1 r2_st2 ···" << endl;
 	cout << "···" << endl << endl;
 	
-	int nr, max = 0;
-	cin >> nr;
+	int nr, max;
+	cin >> nr >> max;
 	vector<vector<int>> vi;
 	for(int i = 0; i < nr; i++){
 		int n, x;
@@ -29,9 +29,6 @@ int main(int argc, char const *argv[]){
 		for(int j = 0; j < n; j++){
 			cin >> x;
 			v.push_back(x);
-			if(x>max){
-				max = x;
-			}
 		}
 		vi.push_back(v);
 	}

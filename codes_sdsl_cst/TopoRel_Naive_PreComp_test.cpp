@@ -5,13 +5,13 @@ using namespace std;
 
 int main(int argc, char const *argv[]){
 	cout << "Input:" << endl;
-	cout << "cant_rutas" << endl;
+	cout << "cant_rutas max_stop" << endl;
 	cout << "cant_stops_r1 r1_st1 r1_st2 ···" << endl;
 	cout << "cant_stops_r2 r2_st1 r2_st2 ···" << endl;
 	cout << "···" << endl << endl;
 
-	int n, x, aux;
-	cin >> n;
+	int n, x, aux, max;
+	cin >> n >> max;
 	vector<vector<int>> lx(n);
 	for(int i = 0; i < n; i++){
 		cin >> x;
@@ -20,15 +20,11 @@ int main(int argc, char const *argv[]){
 			lx[i].push_back(aux);
 		}
 	}
-	int max = 0;
 	cout << lx.size() << endl;
 	for(int i=0; i<lx.size(); i++){
 		cout << lx[i].size() << ": ";
 		for(int j=0; j<lx[i].size(); j++){
 			cout << lx[i][j] << " ";
-			if(lx[i][j] > max){
-				max = lx[i][j];
-			}
 		}
 		cout << endl;
 	}

@@ -25,6 +25,8 @@ int main(int argc, char const *argv[]){
 
     TopoRelGST tt(routes, n_stops);
     TopoRelNaivePreComp trpc(routes, n_stops);
+    int contAgregadas = 0;
+    int contBasicas = 0;
 
     string rNaive, rNaivePC, rGST;
     for(int i = 0; i < routes.size(); i++){
@@ -38,11 +40,11 @@ int main(int argc, char const *argv[]){
             	cout << "\trNaive: " << rNaive << endl;
             	cout << "\trNaivePC: " << rNaivePC << endl;
             	cout << "\trGST: " << rGST << endl;
-	            cout << "\ti: ";
+	            cout << "\t(" << routes[i].size() << "): ";
 	            for(int x=0; x<routes[i].size(); x++){
 	            	cout << routes[i][x] << " ";
 	            }
-	            cout << endl << "\tj: ";
+	            cout << endl << "\t(" << routes[j].size() << "): ";
 	            for(int x=0; x<routes[j].size(); x++){
 	            	cout << routes[j][x] << " ";
 	            }
@@ -51,6 +53,7 @@ int main(int argc, char const *argv[]){
 	            bool bb = tt.tr_touches(i, j);
 	            cout << "Resultado tt.tr_touches: " << bb << endl;
 	            cout << " ---- " << endl;
+	            contBasicas++;
             }
 
 
@@ -68,18 +71,22 @@ int main(int argc, char const *argv[]){
             	cout << "Cont\t" << trCont << "\t" << trpcCont << endl;
             	cout << "Inte\t" << trInte << "\t" << trpcInte << endl;
             	cout << "Rel\t" << rNaive << "\t" << rNaivePC << endl;
-            	cout << "(i=" << i << "): ";
-            	for(int x=0; x<routes[i].size(); x++){
+            	cout << "\t(" << routes[i].size() << "): ";
+	            for(int x=0; x<routes[i].size(); x++){
 	            	cout << routes[i][x] << " ";
 	            }
-	            cout <<"\n(j=" << j << "): ";
+	            cout << endl << "\t(" << routes[j].size() << "): ";
 	            for(int x=0; x<routes[j].size(); x++){
 	            	cout << routes[j][x] << " ";
 	            }
+	            cout << endl;
 	            cout << endl << " ---- " << endl;
+	            contAgregadas++;
             }
         }
     }
-	
+	cout << "Problemas en relaciones agregadas: " << contAgregadas << "/" << endl;
+	cout << "Problemas en relaciones básicas: " << contBasicas << "/" << endl;
+	cout << "Total rutas: " << n_routes << " >>> " << (n_routes*n_routes) << " relaciones posibles." << endl;
     return 0;
 }
