@@ -1,5 +1,6 @@
 #include <iostream>
 #include "TopoRel_GST.hpp"
+#include "TopoRel_Naive_PreComp.hpp"
 
 using namespace std;
 using namespace sdsl;
@@ -27,8 +28,12 @@ int main(int argc, char const *argv[]){
 	}
 	
 	TopoRelGST tr_gst(routes, n_stops);
-	
+	cout << "************** GST **************" << endl;
 	tr_gst.sizeEstructura();
+
+	TopoRelNaivePreComp tr_npc(routes, n_stops);
+	cout << "********* Naive PreComp *********" << endl;
+	tr_npc.sizeEstructura();
 
 	return 0;
 }

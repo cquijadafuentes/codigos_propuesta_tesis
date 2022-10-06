@@ -16,7 +16,7 @@ using namespace sdsl;
 //  --------------------Inicio clase TopoRelGST-------------------
 class TopoRelNaivePreComp{
 public:
-    vector<vector<int>> rutas;
+    vector<int_vector<>> rutas;
     vector<string> nombresRel;
     vector<int_vector<>> relaciones;
     int n_stops;
@@ -41,7 +41,7 @@ public:
     bool contains(int, int);
     bool intersects(int, int);
 
-    void navega(int);
+    void navega();
     void sizeEstructura();
 private:
 

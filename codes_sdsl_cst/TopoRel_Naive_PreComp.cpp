@@ -2,15 +2,18 @@
 #include <vector>
 #include <map>
 
-using namespace std;
-using namespace sdsl;
-
 TopoRelNaivePreComp::TopoRelNaivePreComp(vector<vector<int>> &rs, int cant_stops){
-	rutas = rs;
+	rutas = vector<int_vector<>>(rs.size());
+	for(int i=0; i<rs.size(); i++){
+		rutas[i] = int_vector<>(rs[i].size());
+		for(int j=0; j<rs[i].size(); j++){
+			rutas[i][j] = rs[i][j];
+		}
+		util::bit_compress(rutas[i]);
+	}
 	n_stops = cant_stops;
 	n_routes = rs.size();
 	relaciones = vector<int_vector<>>(n_routes, int_vector<>(n_routes,0,3));
-
 	map<string, int> mapNameIdRel;
 	
 	nombresRel = vector<string>(8, "");
@@ -106,3 +109,23 @@ bool TopoRelNaivePreComp::intersects(int i, int j){
 	return nombresRel[relaciones[i][j]] != DISJOINT;
 }
 
+
+
+void TopoRelNaivePreComp::navega(){
+    cout << "navega" << endl;
+}
+
+void TopoRelNaivePreComp::sizeEstructura(){
+    cout << "**** Tamaño en bytes ****" << endl;
+    // Calculo de los bytes para rutas
+    int bytesRutas = 0;
+    int bytesRelaciones = 0;
+    for(int i=0; i < rutas.size(); i++){
+        bytesRutas += size_in_bytes(rutas[i]);
+        bytesRelaciones += size_in_bytes(relaciones[i]);
+    }
+    cout << "rutas [B]: " << bytesRutas << endl;
+    cout << "relaciones [B]: " << bytesRelaciones << endl;
+    cout << "**** Elementos ****" << endl;
+    cout << "Nº Rutas: " << rutas.size() << endl;
+}

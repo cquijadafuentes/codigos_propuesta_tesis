@@ -1,8 +1,5 @@
 #include "TopoRel_GST.hpp"
 
-using namespace std;
-using namespace sdsl;
-
 TopoRelGST::TopoRelGST(vector<vector<int>> &rutas, int cant_stops){
     routes = rutas;
     n_stops = cant_stops;
@@ -573,31 +570,39 @@ void TopoRelGST::navega(int x){
 
 void TopoRelGST::sizeEstructura(){
     cout << "**** Tamaño en bytes ****" << endl;
-    cout << "cst_sct3: " << size_in_bytes(cst) << endl;
+    cout << "cst_sct3 [B]: " << size_in_bytes(cst) << endl;
     // Calculo de los bytes para rutas
     int elementos = 0;
     for(int i=0; i<routes.size(); i++){
         elementos += routes[i].size();
     }
     int bytesRutas = (elementos*4)*2;
-    cout << "rutas/rev: " << bytesRutas << endl;
+    cout << "rutas/rev [B]: " << bytesRutas << endl;
     // Calculo de los bytes para marcas
     int bytesMarcas = 0;
+    int bitsUno = 0;
+    int bitsTotal = 0;
     for(int i=0; i<marcas.size(); i++){
         bytesMarcas += size_in_bytes(marcas[i]);
+        bitsTotal += marcas[i].size();
+        for(int j=0; j<marcas[i].size(); j++){
+            bitsUno += marcas[i][j];
+        }
     }
-    cout << "marcas: " << bytesMarcas << endl;
+    cout << "marcas [B]: " << bytesMarcas << endl;
     // Calculo de los bytes para mapa
     int bytesMapa = 0;
     for(int i=0; i<mapa.size(); i++){
         bytesMapa += sizeof(mapa[i]);
     }
-    cout << "mapa: " << bytesMapa << endl;
+    cout << "mapa [B]: " << bytesMapa << endl;
 
     cout << "**** Elementos ****" << endl;
-    cout << "Rutas: " << routes.size() << endl;
-    cout << "Nodos cst_sct3: " << cst.nodes() << endl;
-    cout << "Hojas cst_sct3: " << cst.size() << endl;
+    cout << "Nº Rutas: : " << routes.size() << endl;
+    cout << "Nº Nodos cst_sct3: " << cst.nodes() << endl;
+    cout << "Nº Hojas cst_sct3: " << cst.size() << endl;
+    cout << "Nº 1s/length en marcas: " << bitsUno << "/" << bitsTotal << endl;
+
 }
 
 bool TopoRelGST::bordesSeg_touches(int i, int j){

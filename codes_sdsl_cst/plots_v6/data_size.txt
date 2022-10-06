@@ -1,0 +1,3 @@
+Dataset	cst-sct3	rutas-vi	marcas	mapa	rutas-iv	rel-3b
+TranSantiago(391)	106197	147192	5936944	31280	33959	62951
+LineasMadrid(989)	167661	208144	20397136	79120	56717	380765
