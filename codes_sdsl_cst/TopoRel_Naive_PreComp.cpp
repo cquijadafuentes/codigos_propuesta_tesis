@@ -48,67 +48,74 @@ string TopoRelNaivePreComp::obtenerRelacion(int x, int y){
 
 
 bool TopoRelNaivePreComp::equals(int i, int j){
-	return (nombresRel[relaciones[i][j]] == EQUALS);
+	//return (nombresRel[relaciones[i][j]] == EQUALS);
+	return relaciones[i][j] == 3;
 }
 
 bool TopoRelNaivePreComp::coveredby(int i, int j){
-	return (nombresRel[relaciones[i][j]] == COVEREDBY);
+	//return (nombresRel[relaciones[i][j]] == COVEREDBY);
+	return relaciones[i][j] == 0;
 }
 
 bool TopoRelNaivePreComp::covers(int i, int j){
-	return (nombresRel[relaciones[i][j]] == COVERS);
+	//return (nombresRel[relaciones[i][j]] == COVERS);
+	return relaciones[i][j] == 1;
 }
 
 bool TopoRelNaivePreComp::inside(int i, int j){
-	return (nombresRel[relaciones[i][j]] == INSIDE);
+	//return (nombresRel[relaciones[i][j]] == INSIDE);
+	return relaciones[i][j] == 5;
 }
 
 bool TopoRelNaivePreComp::includes(int i, int j){
-	return (nombresRel[relaciones[i][j]] == INCLUDES);
+	//return (nombresRel[relaciones[i][j]] == INCLUDES);
+	return relaciones[i][j] == 4;
 }
 
 bool TopoRelNaivePreComp::disjoint(int i, int j){
-	return (nombresRel[relaciones[i][j]] == DISJOINT);
+	//return (nombresRel[relaciones[i][j]] == DISJOINT);
+	return relaciones[i][j] == 2;
 }
 
 bool TopoRelNaivePreComp::touches(int i, int j){
-	return (nombresRel[relaciones[i][j]] == TOUCHES);
+	//return (nombresRel[relaciones[i][j]] == TOUCHES);
+	return relaciones[i][j] == 7;
 }
 
 bool TopoRelNaivePreComp::overlaps(int i, int j){
-	return (nombresRel[relaciones[i][j]] == OVERLAPS);
+	//return (nombresRel[relaciones[i][j]] == OVERLAPS);
+	return relaciones[i][j] == 6;
 }
 
 bool TopoRelNaivePreComp::within(int i, int j){
-	if(nombresRel[relaciones[i][j]] == EQUALS){
+	if(relaciones[i][j] == 3){
 		return true;
 	}
-	if(nombresRel[relaciones[i][j]] == COVEREDBY){
+	if(relaciones[i][j] == 0){
 		return true;
 	}
-	if(nombresRel[relaciones[i][j]] == INSIDE){
+	if(relaciones[i][j] == 5){
 		return true;
 	}
 	return false;
 }
 
 bool TopoRelNaivePreComp::contains(int i, int j){	
-	if(nombresRel[relaciones[i][j]] == EQUALS){
+	if(relaciones[i][j] == 3){
 		return true;
 	}
-	if(nombresRel[relaciones[i][j]] == COVERS){
+	if(relaciones[i][j] == 1){
 		return true;
 	}
-	if(nombresRel[relaciones[i][j]] == INCLUDES){
+	if(relaciones[i][j] == 4){
 		return true;
 	}
 	return false;
 }
 
 bool TopoRelNaivePreComp::intersects(int i, int j){
-	return nombresRel[relaciones[i][j]] != DISJOINT;
+	return relaciones[i][j] != 2;
 }
-
 
 
 void TopoRelNaivePreComp::navega(){

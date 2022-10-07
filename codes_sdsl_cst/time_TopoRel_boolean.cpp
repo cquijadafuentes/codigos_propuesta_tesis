@@ -127,109 +127,126 @@ void tiempos_naive(vector<vector<int>> &routes){
         }
     }
 
-    int repeticiones = 15;
     unsigned t0;
     unsigned t1;
     double tiempo = 0.0;
     int x, y;
+
+    int minMuestras = 100;
+    int mstrsCovB = 0;
+    int mstrsCovs = 0;
+    int mstrsDisj = 0;
+    int mstrsEqls = 0;
+    int mstrsIncl = 0;
+    int mstrsInsi = 0;
+    int mstrsOver = 0;
+    int mstrsTouc = 0;
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsCovB < minMuestras && r_coveredby.size() > 0){
         for(int j = 0; j < r_coveredby.size(); j += 2){
             x = r_coveredby[j];
             y = r_coveredby[j + 1];
             tr_coveredby(routes[x], routes[y]);
+            mstrsCovB++;
         }
     }
     t1 = clock();
     tr_true[COVEREDBY] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsCovs < minMuestras && r_covers.size() > 0){
         for(int j = 0; j < r_covers.size(); j += 2){
             x = r_covers[j];
             y = r_covers[j + 1];
             tr_covers(routes[x], routes[y]);
+            mstrsCovs++;
         }
     }
     t1 = clock();
     tr_true[COVERS] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsDisj < minMuestras && r_disjoint.size() > 0){
         for(int j = 0; j < r_disjoint.size(); j += 2){
             x = r_disjoint[j];
             y = r_disjoint[j + 1];
             tr_disjoint(routes[x], routes[y]);
+            mstrsDisj++;
         }
     }
     t1 = clock();
     tr_true[DISJOINT] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsEqls < minMuestras && r_equals.size() > 0){
         for(int j = 0; j < r_equals.size(); j += 2){
             x = r_equals[j];
             y = r_equals[j + 1];
             tr_equals(routes[x], routes[y]);
+            mstrsEqls++;
         }
     }
     t1 = clock();
     tr_true[EQUALS] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsIncl < minMuestras && r_includes.size() > 0){
         for(int j = 0; j < r_includes.size(); j += 2){
             x = r_includes[j];
             y = r_includes[j + 1];
             tr_includes(routes[x], routes[y]);
+            mstrsIncl++;
         }
     }
     t1 = clock();
     tr_true[INCLUDES] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsInsi < minMuestras && r_inside.size() > 0){
         for(int j = 0; j < r_inside.size(); j += 2){
             x = r_inside[j];
             y = r_inside[j + 1];
             tr_inside(routes[x], routes[y]);
+            mstrsInsi++;
         }
     }
     t1 = clock();
     tr_true[INSIDE] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsOver < minMuestras && r_overlaps.size() > 0){
         for(int j = 0; j < r_overlaps.size(); j += 2){
             x = r_overlaps[j];
             y = r_overlaps[j + 1];
             tr_overlaps(routes[x], routes[y]);
+            mstrsOver++;
         }
     }
     t1 = clock();
     tr_true[OVERLAPS] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsTouc < minMuestras && r_touches.size() > 0){
         for(int j = 0; j < r_touches.size(); j += 2){
             x = r_touches[j];
             y = r_touches[j + 1];
             tr_touches(routes[x], routes[y]);
+            mstrsTouc++;
         }
     }
     t1 = clock();
     tr_true[TOUCHES] = (double)(t1 - t0);
 
 
-    tr_true[COVEREDBY] = ((tr_true[COVEREDBY]/CLOCKS_PER_SEC) / mrt[COVEREDBY]) / repeticiones * 1000000;
-    tr_true[COVERS] = ((tr_true[COVERS]/CLOCKS_PER_SEC) / mrt[COVERS]) / repeticiones * 1000000;
-    tr_true[DISJOINT] = ((tr_true[DISJOINT]/CLOCKS_PER_SEC) / mrt[DISJOINT]) / repeticiones * 1000000;
-    tr_true[EQUALS] = ((tr_true[EQUALS]/CLOCKS_PER_SEC) / mrt[EQUALS]) / repeticiones * 1000000;
-    tr_true[INCLUDES] = ((tr_true[INCLUDES]/CLOCKS_PER_SEC) / mrt[INCLUDES]) / repeticiones * 1000000;
-    tr_true[INSIDE] = ((tr_true[INSIDE]/CLOCKS_PER_SEC) / mrt[INSIDE]) / repeticiones * 1000000;
-    tr_true[OVERLAPS] = ((tr_true[OVERLAPS]/CLOCKS_PER_SEC) / mrt[OVERLAPS]) / repeticiones * 1000000;
-    tr_true[TOUCHES] = ((tr_true[TOUCHES]/CLOCKS_PER_SEC) / mrt[TOUCHES]) / repeticiones * 1000000;
+    tr_true[COVEREDBY] = ((tr_true[COVEREDBY]/CLOCKS_PER_SEC) / mstrsCovB) * 1000000;
+    tr_true[COVERS] = ((tr_true[COVERS]/CLOCKS_PER_SEC) / mstrsCovs) * 1000000;
+    tr_true[DISJOINT] = ((tr_true[DISJOINT]/CLOCKS_PER_SEC) / mstrsDisj) * 1000000;
+    tr_true[EQUALS] = ((tr_true[EQUALS]/CLOCKS_PER_SEC) / mstrsEqls) * 1000000;
+    tr_true[INCLUDES] = ((tr_true[INCLUDES]/CLOCKS_PER_SEC) / mstrsIncl) * 1000000;
+    tr_true[INSIDE] = ((tr_true[INSIDE]/CLOCKS_PER_SEC) / mstrsInsi) * 1000000;
+    tr_true[OVERLAPS] = ((tr_true[OVERLAPS]/CLOCKS_PER_SEC) / mstrsOver) * 1000000;
+    tr_true[TOUCHES] = ((tr_true[TOUCHES]/CLOCKS_PER_SEC) / mstrsTouc) * 1000000;
 
     tr = mrt[COVEREDBY] + mrt[COVERS] + mrt[DISJOINT] + mrt[EQUALS] + mrt[INCLUDES] + mrt[INSIDE] + mrt[OVERLAPS] + mrt[TOUCHES];
 
@@ -338,8 +355,17 @@ void tiempos_naive(vector<vector<int>> &routes){
 
 
 void tiempos_GST(vector<vector<int>> &routes, int n_stops){
+    unsigned t0;
+    unsigned t1;
+    double tiempo = 0.0;
     cout << "********** Compressed Suffix Tree **********" << endl;
+    t0 = clock();
     TopoRelGST tt(routes, n_stops);
+    t1 = clock();
+    double tConstruccion = ((t1-t0)/CLOCKS_PER_SEC) * 1000000;
+    cout << "Tiempo Construcción: " << tConstruccion << "[ms]" << endl;
+    tt.sizeEstructura();
+    cout << endl;
     map<string, int> mrt;
     map<string, double> tr_all;
     map<string, double> tr_true;
@@ -415,109 +441,123 @@ void tiempos_GST(vector<vector<int>> &routes, int n_stops){
         }
     }
 
-    int repeticiones = 15;
-    unsigned t0;
-    unsigned t1;
-    double tiempo = 0.0;
     int x, y;
+
+    int minMuestras = 100;
+    int mstrsCovB = 0;
+    int mstrsCovs = 0;
+    int mstrsDisj = 0;
+    int mstrsEqls = 0;
+    int mstrsIncl = 0;
+    int mstrsInsi = 0;
+    int mstrsOver = 0;
+    int mstrsTouc = 0;
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsCovB < minMuestras && r_coveredby.size() > 0){
         for(int j = 0; j < r_coveredby.size(); j += 2){
             x = r_coveredby[j];
             y = r_coveredby[j + 1];
             tt.tr_coveredby(x, y);
+            mstrsCovB++;
         }
     }
     t1 = clock();
     tr_true[COVEREDBY] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsCovs < minMuestras && r_covers.size() > 0){
         for(int j = 0; j < r_covers.size(); j += 2){
             x = r_covers[j];
             y = r_covers[j + 1];
             tt.tr_covers(x, y);
+            mstrsCovs++;
         }
     }
     t1 = clock();
     tr_true[COVERS] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsDisj < minMuestras && r_disjoint.size() > 0){
         for(int j = 0; j < r_disjoint.size(); j += 2){
             x = r_disjoint[j];
             y = r_disjoint[j + 1];
             tt.tr_disjoint(x, y);
+            mstrsDisj++;
         }
     }
     t1 = clock();
     tr_true[DISJOINT] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsEqls < minMuestras && r_equals.size() > 0){
         for(int j = 0; j < r_equals.size(); j += 2){
             x = r_equals[j];
             y = r_equals[j + 1];
             tt.tr_equals(x, y);
+            mstrsEqls++;
         }
     }
     t1 = clock();
     tr_true[EQUALS] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsIncl < minMuestras && r_includes.size() > 0){
         for(int j = 0; j < r_includes.size(); j += 2){
             x = r_includes[j];
             y = r_includes[j + 1];
             tt.tr_includes(x, y);
+            mstrsIncl++;
         }
     }
     t1 = clock();
     tr_true[INCLUDES] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsInsi < minMuestras && r_inside.size() > 0){
         for(int j = 0; j < r_inside.size(); j += 2){
             x = r_inside[j];
             y = r_inside[j + 1];
             tt.tr_inside(x, y);
+            mstrsInsi++;
         }
     }
     t1 = clock();
     tr_true[INSIDE] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsOver < minMuestras && r_overlaps.size() > 0){
         for(int j = 0; j < r_overlaps.size(); j += 2){
             x = r_overlaps[j];
             y = r_overlaps[j + 1];
             tt.tr_overlaps(x, y);
+            mstrsOver++;
         }
     }
     t1 = clock();
     tr_true[OVERLAPS] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsTouc < minMuestras && r_touches.size() > 0){
         for(int j = 0; j < r_touches.size(); j += 2){
             x = r_touches[j];
             y = r_touches[j + 1];
             tt.tr_touches(x, y);
+            mstrsTouc++;
         }
     }
     t1 = clock();
     tr_true[TOUCHES] = (double)(t1 - t0);
 
 
-    tr_true[COVEREDBY] = ((tr_true[COVEREDBY]/CLOCKS_PER_SEC) / mrt[COVEREDBY]) / repeticiones * 1000000;
-    tr_true[COVERS] = ((tr_true[COVERS]/CLOCKS_PER_SEC) / mrt[COVERS]) / repeticiones * 1000000;
-    tr_true[DISJOINT] = ((tr_true[DISJOINT]/CLOCKS_PER_SEC) / mrt[DISJOINT]) / repeticiones * 1000000;
-    tr_true[EQUALS] = ((tr_true[EQUALS]/CLOCKS_PER_SEC) / mrt[EQUALS]) / repeticiones * 1000000;
-    tr_true[INCLUDES] = ((tr_true[INCLUDES]/CLOCKS_PER_SEC) / mrt[INCLUDES]) / repeticiones * 1000000;
-    tr_true[INSIDE] = ((tr_true[INSIDE]/CLOCKS_PER_SEC) / mrt[INSIDE]) / repeticiones * 1000000;
-    tr_true[OVERLAPS] = ((tr_true[OVERLAPS]/CLOCKS_PER_SEC) / mrt[OVERLAPS]) / repeticiones * 1000000;
-    tr_true[TOUCHES] = ((tr_true[TOUCHES]/CLOCKS_PER_SEC) / mrt[TOUCHES]) / repeticiones * 1000000;
+    tr_true[COVEREDBY] = ((tr_true[COVEREDBY]/CLOCKS_PER_SEC) / mstrsCovB) * 1000000;
+    tr_true[COVERS] = ((tr_true[COVERS]/CLOCKS_PER_SEC) / mstrsCovs) * 1000000;
+    tr_true[DISJOINT] = ((tr_true[DISJOINT]/CLOCKS_PER_SEC) / mstrsDisj) * 1000000;
+    tr_true[EQUALS] = ((tr_true[EQUALS]/CLOCKS_PER_SEC) / mstrsEqls) * 1000000;
+    tr_true[INCLUDES] = ((tr_true[INCLUDES]/CLOCKS_PER_SEC) / mstrsIncl) * 1000000;
+    tr_true[INSIDE] = ((tr_true[INSIDE]/CLOCKS_PER_SEC) / mstrsInsi) * 1000000;
+    tr_true[OVERLAPS] = ((tr_true[OVERLAPS]/CLOCKS_PER_SEC) / mstrsOver) * 1000000;
+    tr_true[TOUCHES] = ((tr_true[TOUCHES]/CLOCKS_PER_SEC) / mstrsTouc) * 1000000;
 
     tr = mrt[COVEREDBY] + mrt[COVERS] + mrt[DISJOINT] + mrt[EQUALS] + mrt[INCLUDES] + mrt[INSIDE] + mrt[OVERLAPS] + mrt[TOUCHES];
 
@@ -626,7 +666,13 @@ void tiempos_GST(vector<vector<int>> &routes, int n_stops){
 
 void tiempos_naive_precomp(vector<vector<int>> &routes, int n_stops){
     cout << "********** Naive Pre-Computed **********" << endl;
+    unsigned t0 = clock();
     TopoRelNaivePreComp trpc(routes, n_stops);
+    unsigned t1 = clock();
+    double tConstruccion = ((t1-t0)/CLOCKS_PER_SEC) * 1000000;
+    cout << "Tiempo Construcción: " << tConstruccion << "[ms]" << endl;
+    trpc.sizeEstructura();
+    cout << endl;
     map<string, int> mrt;
     map<string, double> tr_all;
     map<string, double> tr_true;
@@ -697,114 +743,127 @@ void tiempos_naive_precomp(vector<vector<int>> &routes, int n_stops){
                 r_touches.push_back(i);
                 r_touches.push_back(j);
             }else{
-                cout << "Error! routas sin relacion topológica: " << i << " " << j << endl;
+                cout << "Error! rutas sin relacion topológica: " << i << " " << j << endl;
             }
         }
     }
 
-    int repeticiones = 15;
-    unsigned t0;
-    unsigned t1;
-    double tiempo = 0.0;
     int x, y;
+    double tiempo = 0.0;
+    int minMuestras = 100;
+    int mstrsCovB = 0;
+    int mstrsCovs = 0;
+    int mstrsDisj = 0;
+    int mstrsEqls = 0;
+    int mstrsIncl = 0;
+    int mstrsInsi = 0;
+    int mstrsOver = 0;
+    int mstrsTouc = 0;
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsCovB < minMuestras && r_coveredby.size() > 0){
         for(int j = 0; j < r_coveredby.size(); j += 2){
             x = r_coveredby[j];
             y = r_coveredby[j + 1];
             trpc.coveredby(x, y);
+            mstrsCovB++;
         }
     }
     t1 = clock();
     tr_true[COVEREDBY] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsCovs < minMuestras && r_covers.size() > 0){
         for(int j = 0; j < r_covers.size(); j += 2){
             x = r_covers[j];
             y = r_covers[j + 1];
             trpc.covers(x, y);
+            mstrsCovs++;
         }
     }
     t1 = clock();
     tr_true[COVERS] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsDisj < minMuestras && r_disjoint.size() > 0){
         for(int j = 0; j < r_disjoint.size(); j += 2){
             x = r_disjoint[j];
             y = r_disjoint[j + 1];
             trpc.disjoint(x, y);
+            mstrsDisj++;
         }
     }
     t1 = clock();
     tr_true[DISJOINT] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsEqls < minMuestras && r_equals.size() > 0){
         for(int j = 0; j < r_equals.size(); j += 2){
             x = r_equals[j];
             y = r_equals[j + 1];
             trpc.equals(x, y);
+            mstrsEqls++;
         }
     }
     t1 = clock();
     tr_true[EQUALS] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsIncl < minMuestras && r_includes.size() > 0){
         for(int j = 0; j < r_includes.size(); j += 2){
             x = r_includes[j];
             y = r_includes[j + 1];
             trpc.includes(x, y);
+            mstrsIncl++;
         }
     }
     t1 = clock();
     tr_true[INCLUDES] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsInsi < minMuestras && r_inside.size() > 0){
         for(int j = 0; j < r_inside.size(); j += 2){
             x = r_inside[j];
             y = r_inside[j + 1];
             trpc.inside(x, y);
+            mstrsInsi++;
         }
     }
     t1 = clock();
     tr_true[INSIDE] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsOver < minMuestras && r_overlaps.size() > 0){
         for(int j = 0; j < r_overlaps.size(); j += 2){
             x = r_overlaps[j];
             y = r_overlaps[j + 1];
             trpc.overlaps(x, y);
+            mstrsOver++;
         }
     }
     t1 = clock();
     tr_true[OVERLAPS] = (double)(t1 - t0);
     
     t0 = clock();
-    for(int i = 0; i < repeticiones; i++){
+    while(mstrsTouc < minMuestras && r_touches.size() > 0){
         for(int j = 0; j < r_touches.size(); j += 2){
             x = r_touches[j];
             y = r_touches[j + 1];
             trpc.touches(x, y);
+            mstrsTouc++;
         }
     }
     t1 = clock();
     tr_true[TOUCHES] = (double)(t1 - t0);
 
-
-    tr_true[COVEREDBY] = ((tr_true[COVEREDBY]/CLOCKS_PER_SEC) / mrt[COVEREDBY]) / repeticiones * 1000000;
-    tr_true[COVERS] = ((tr_true[COVERS]/CLOCKS_PER_SEC) / mrt[COVERS]) / repeticiones * 1000000;
-    tr_true[DISJOINT] = ((tr_true[DISJOINT]/CLOCKS_PER_SEC) / mrt[DISJOINT]) / repeticiones * 1000000;
-    tr_true[EQUALS] = ((tr_true[EQUALS]/CLOCKS_PER_SEC) / mrt[EQUALS]) / repeticiones * 1000000;
-    tr_true[INCLUDES] = ((tr_true[INCLUDES]/CLOCKS_PER_SEC) / mrt[INCLUDES]) / repeticiones * 1000000;
-    tr_true[INSIDE] = ((tr_true[INSIDE]/CLOCKS_PER_SEC) / mrt[INSIDE]) / repeticiones * 1000000;
-    tr_true[OVERLAPS] = ((tr_true[OVERLAPS]/CLOCKS_PER_SEC) / mrt[OVERLAPS]) / repeticiones * 1000000;
-    tr_true[TOUCHES] = ((tr_true[TOUCHES]/CLOCKS_PER_SEC) / mrt[TOUCHES]) / repeticiones * 1000000;
+    tr_true[COVEREDBY] = ((tr_true[COVEREDBY]/CLOCKS_PER_SEC) / mstrsCovB) * 1000000;
+    tr_true[COVERS] = ((tr_true[COVERS]/CLOCKS_PER_SEC) / mstrsCovs) * 1000000;
+    tr_true[DISJOINT] = ((tr_true[DISJOINT]/CLOCKS_PER_SEC) / mstrsDisj) * 1000000;
+    tr_true[EQUALS] = ((tr_true[EQUALS]/CLOCKS_PER_SEC) / mstrsEqls) * 1000000;
+    tr_true[INCLUDES] = ((tr_true[INCLUDES]/CLOCKS_PER_SEC) / mstrsIncl) * 1000000;
+    tr_true[INSIDE] = ((tr_true[INSIDE]/CLOCKS_PER_SEC) / mstrsInsi) * 1000000;
+    tr_true[OVERLAPS] = ((tr_true[OVERLAPS]/CLOCKS_PER_SEC) / mstrsOver) * 1000000;
+    tr_true[TOUCHES] = ((tr_true[TOUCHES]/CLOCKS_PER_SEC) / mstrsTouc) * 1000000;
 
     tr = mrt[COVEREDBY] + mrt[COVERS] + mrt[DISJOINT] + mrt[EQUALS] + mrt[INCLUDES] + mrt[INSIDE] + mrt[OVERLAPS] + mrt[TOUCHES];
 
