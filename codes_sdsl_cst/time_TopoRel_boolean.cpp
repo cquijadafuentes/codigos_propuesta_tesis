@@ -11,9 +11,18 @@
 using namespace std;
 
 void mostrar_rutas(vector<int> &a, vector<int> &b);
-void tiempos_naive(vector<vector<int>> &routes);
+vector<vector<double>> tiempos_naive(vector<vector<int>> &routes);
 void tiempos_GST(vector<vector<int>> &routes, int n_stops);
 void tiempos_naive_precomp(vector<vector<int>> &routes, int n_stops);
+
+int idCoveredby = 0;
+int idCovers = 1;
+int idEquals = 2;
+int idIncludes = 3;
+int idInside = 4;
+int idOverlaps = 5;
+int idTouches = 6;
+int idDisjoint = 7;
 
 int main(int argc, char const *argv[]){
 	int n_routes, n_t, n_stops, aux;
@@ -28,7 +37,19 @@ int main(int argc, char const *argv[]){
         routes.push_back(vt);
 	}
 
-    tiempos_naive(routes);
+    vector<vector<double>> mNaive = tiempos_naive(routes);
+
+    cout << " *********************** matriz *********************** " << endl;
+    vector<string> ns = {"Coveredby", "Covers", "Equals", "Includes", "Inside", "Overlaps", "Touches", "Disjoint"};
+    for(int i=0; i<8; i++){
+        cout << ns[i] << "\t";
+        for(int j=0; j<4; j++){
+            cout << mNaive[i][j] << "\t";
+        }
+        cout << endl;
+    }
+
+
     tiempos_naive_precomp(routes, n_stops);
     tiempos_GST(routes,  n_stops);
 	
@@ -50,7 +71,7 @@ void mostrar_rutas(vector<int> &a, vector<int> &b){
     cout << endl << "------------" << endl;
 }
 
-void tiempos_naive(vector<vector<int>> &routes){
+vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     cout << "********** Naive Algorithm **********" << endl;
     map<string, int> mrt;
     map<string, double> tr_all;
@@ -126,6 +147,17 @@ void tiempos_naive(vector<vector<int>> &routes){
             }
         }
     }
+
+    vector<vector<double>> m(8, vector<double>(4, 0.0));
+    // Cantidad de relaciones
+    m[idCoveredby][0] = r_coveredby.size()/2;
+    m[idCovers][0] = r_covers.size()/2;
+    m[idDisjoint][0] = r_disjoint.size()/2;
+    m[idEquals][0] = r_equals.size()/2;
+    m[idIncludes][0] = r_includes.size()/2;
+    m[idInside][0] = r_inside.size()/2;
+    m[idOverlaps][0] = r_overlaps.size()/2;
+    m[idTouches][0] = r_touches.size()/2;
 
     unsigned t0;
     unsigned t1;
@@ -238,6 +270,16 @@ void tiempos_naive(vector<vector<int>> &routes){
     t1 = clock();
     tr_true[TOUCHES] = (double)(t1 - t0);
 
+    // Cantidad de muestras para tiempos_true
+    m[idCoveredby][1] = mstrsCovB;
+    m[idCovers][1] = mstrsCovs;
+    m[idDisjoint][1] = mstrsDisj;
+    m[idEquals][1] = mstrsEqls;
+    m[idIncludes][1] = mstrsIncl;
+    m[idInside][1] = mstrsInsi;
+    m[idOverlaps][1] = mstrsOver;
+    m[idTouches][1] = mstrsTouc;
+
 
     tr_true[COVEREDBY] = ((tr_true[COVEREDBY]/CLOCKS_PER_SEC) / mstrsCovB) * 1000000;
     tr_true[COVERS] = ((tr_true[COVERS]/CLOCKS_PER_SEC) / mstrsCovs) * 1000000;
@@ -247,6 +289,16 @@ void tiempos_naive(vector<vector<int>> &routes){
     tr_true[INSIDE] = ((tr_true[INSIDE]/CLOCKS_PER_SEC) / mstrsInsi) * 1000000;
     tr_true[OVERLAPS] = ((tr_true[OVERLAPS]/CLOCKS_PER_SEC) / mstrsOver) * 1000000;
     tr_true[TOUCHES] = ((tr_true[TOUCHES]/CLOCKS_PER_SEC) / mstrsTouc) * 1000000;
+
+    // Tiempos de operaciones true
+    m[idCoveredby][2] = tr_true[COVEREDBY];
+    m[idCovers][2] = tr_true[COVERS];
+    m[idDisjoint][2] = tr_true[DISJOINT];
+    m[idEquals][2] = tr_true[EQUALS];
+    m[idIncludes][2] = tr_true[INCLUDES];
+    m[idInside][2] = tr_true[INSIDE];
+    m[idOverlaps][2] = tr_true[OVERLAPS];
+    m[idTouches][2] = tr_true[TOUCHES];
 
     tr = mrt[COVEREDBY] + mrt[COVERS] + mrt[DISJOINT] + mrt[EQUALS] + mrt[INCLUDES] + mrt[INSIDE] + mrt[OVERLAPS] + mrt[TOUCHES];
 
@@ -340,6 +392,16 @@ void tiempos_naive(vector<vector<int>> &routes){
     tr_all[OVERLAPS] = ((tr_all[OVERLAPS]/CLOCKS_PER_SEC) / tr) * 1000000;
     tr_all[TOUCHES] = ((tr_all[TOUCHES]/CLOCKS_PER_SEC) / tr) * 1000000;
 
+    // Tiempos de operaciones all
+    m[idCoveredby][3] = tr_all[COVEREDBY];
+    m[idCovers][3] = tr_all[COVERS];
+    m[idDisjoint][3] = tr_all[DISJOINT];
+    m[idEquals][3] = tr_all[EQUALS];
+    m[idIncludes][3] = tr_all[INCLUDES];
+    m[idInside][3] = tr_all[INSIDE];
+    m[idOverlaps][3] = tr_all[OVERLAPS];
+    m[idTouches][3] = tr_all[TOUCHES];
+
     cout << "TopoRelation\tcant\tTime_true\tTime_all" << endl;
     cout << COVEREDBY << "\t" << mrt[COVEREDBY] << "\t" << tr_true[COVEREDBY] << " [us]\t" << tr_all[COVEREDBY] << " [us]" << endl;
     cout << COVERS << "\t\t" << mrt[COVERS] << "\t" << tr_true[COVERS] << " [us]\t" << tr_all[COVERS] << " [us]" << endl;
@@ -351,6 +413,8 @@ void tiempos_naive(vector<vector<int>> &routes){
     cout << TOUCHES << "\t\t" << mrt[TOUCHES] << "\t" << tr_true[TOUCHES] << " [us]\t" << tr_all[TOUCHES] << " [us]" << endl;
     cout << "Total relaciones: " ;
     cout << tr << endl;
+
+    return m;
 }
 
 

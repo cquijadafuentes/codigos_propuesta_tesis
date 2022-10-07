@@ -13,11 +13,11 @@ using namespace std;
 
 	const string COVEREDBY_res = "CB";
 	const string COVERS_res = "CV";
-	const string DISJOINT_res = "D";
+	const string DISJOINT_res = "DJ";
 	const string EQUALS_res = "EQ";
 	const string INCLUDES_res = "IC";
 	const string INSIDE_res = "IS";
-	const string OVERLAPS_res = "O";
+	const string OVERLAPS_res = "OV";
 	const string TOUCHES_res = "TO";
 
 #endif
