@@ -16,4 +16,6 @@ v7 ->
 	Implementación de relaciones agregadas.
 	Implementación de baseline con relaciones precalculadas.
 
-
+v8 ->
+	Implementación de relaciones agregadas en todas las implementaciones
+	Implementación de toma de tiempos con matriz de formato lista para plot
