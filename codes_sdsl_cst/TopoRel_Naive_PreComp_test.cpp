@@ -32,6 +32,8 @@ int main(int argc, char const *argv[]){
 
 	TopoRelNaivePreComp trnpc(lx, max);
 
+	vector<vector<int>> conteo(n, vector<int>(n, 0));
+
 	cout << "Relaciones:" << endl;
 	for(int i = 0; i < n; i++){
 		for(int j = 0; j < n; j++){
@@ -51,6 +53,7 @@ int main(int argc, char const *argv[]){
 		for(int j=0; j < lx.size(); j++){
 			if(trnpc.coveredby(i,j)){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -69,6 +72,7 @@ int main(int argc, char const *argv[]){
 		for(int j=0; j < lx.size(); j++){
 			if(trnpc.covers(i,j)){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -87,6 +91,7 @@ int main(int argc, char const *argv[]){
 		for(int j=0; j < lx.size(); j++){
 			if(trnpc.disjoint(i,j)){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -105,6 +110,7 @@ int main(int argc, char const *argv[]){
 		for(int j=0; j < lx.size(); j++){
 			if(trnpc.equals(i,j)){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -123,6 +129,7 @@ int main(int argc, char const *argv[]){
 		for(int j=0; j < lx.size(); j++){
 			if(trnpc.includes(i,j)){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -141,6 +148,7 @@ int main(int argc, char const *argv[]){
 		for(int j=0; j < lx.size(); j++){
 			if(trnpc.inside(i,j)){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -159,6 +167,7 @@ int main(int argc, char const *argv[]){
 		for(int j=0; j < lx.size(); j++){
 			if(trnpc.overlaps(i,j)){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -177,6 +186,7 @@ int main(int argc, char const *argv[]){
 		for(int j=0; j < lx.size(); j++){
 			if(trnpc.touches(i,j)){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -185,7 +195,19 @@ int main(int argc, char const *argv[]){
 	}
 	cout << endl;
 
-	return 0;
+	cout << "Conteo relaciones: " << endl;
+	for(int i=0; i < conteo.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
+	for(int i=0; i < conteo.size(); i++){
+		cout << "|";
+		for(int j=0; j < conteo.size(); j++){
+			cout << conteo[i][j] << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
 
 	cout << "WITHIN: " << endl;
 	for(int i=0; i < lx.size(); i++){

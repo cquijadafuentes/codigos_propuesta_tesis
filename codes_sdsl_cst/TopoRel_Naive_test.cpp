@@ -42,6 +42,8 @@ int main(){
 	}
 	cout << endl;
 
+	vector<vector<int>> conteo(n, vector<int>(n, 0));
+
 	cout << "Relaciones:" << endl;
 	for(int i = 0; i < lx.size(); i++){
 		for(int j = 0; j < lx.size(); j++){
@@ -61,6 +63,7 @@ int main(){
 		for(int j=0; j < lx.size(); j++){
 			if(tr_coveredby(lx[i],lx[j])){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -79,6 +82,7 @@ int main(){
 		for(int j=0; j < lx.size(); j++){
 			if(tr_covers(lx[i],lx[j])){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -97,6 +101,7 @@ int main(){
 		for(int j=0; j < lx.size(); j++){
 			if(tr_disjoint(lx[i],lx[j])){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -115,6 +120,7 @@ int main(){
 		for(int j=0; j < lx.size(); j++){
 			if(tr_equals(lx[i],lx[j])){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -133,6 +139,7 @@ int main(){
 		for(int j=0; j < lx.size(); j++){
 			if(tr_includes(lx[i],lx[j])){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -151,6 +158,7 @@ int main(){
 		for(int j=0; j < lx.size(); j++){
 			if(tr_inside(lx[i],lx[j])){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -169,6 +177,7 @@ int main(){
 		for(int j=0; j < lx.size(); j++){
 			if(tr_overlaps(lx[i],lx[j])){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -187,9 +196,24 @@ int main(){
 		for(int j=0; j < lx.size(); j++){
 			if(tr_touches(lx[i],lx[j])){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+	cout << "Conteo relaciones: " << endl;
+	for(int i=0; i < conteo.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
+	for(int i=0; i < conteo.size(); i++){
+		cout << "|";
+		for(int j=0; j < conteo.size(); j++){
+			cout << conteo[i][j] << " ";
 		}
 		cout << endl;
 	}

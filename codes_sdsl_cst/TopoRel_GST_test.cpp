@@ -44,7 +44,10 @@ int main(int argc, char const *argv[]){
 	cout << endl;
 	
 	TopoRelGST tr_gst(vi, max);
-	
+	tr_gst.navega(0);
+
+	vector<vector<int>> conteo(nr, vector<int>(nr, 0));
+
 	cout << "Relaciones:" << endl;
 	for(int i = 0; i < vi.size(); i++){
 		for(int j = 0; j < vi.size(); j++){
@@ -64,6 +67,7 @@ int main(int argc, char const *argv[]){
 		for(int j=0; j < vi.size(); j++){
 			if(tr_gst.tr_coveredby(i,j)){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -82,60 +86,7 @@ int main(int argc, char const *argv[]){
 		for(int j=0; j < vi.size(); j++){
 			if(tr_gst.tr_covers(i,j)){
 				cout << "X ";
-			}else{
-				cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	cout << DISJOINT << ": " << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << " _";
-	}
-	cout << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << "|";
-		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_disjoint(i,j)){
-				cout << "X ";
-			}else{
-				cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	cout << EQUALS << ": " << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << " _";
-	}
-	cout << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << "|";
-		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_equals(i,j)){
-				cout << "X ";
-			}else{
-				cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	cout << INCLUDES << ": " << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << " _";
-	}
-	cout << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << "|";
-		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_includes(i,j)){
-				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -154,6 +105,7 @@ int main(int argc, char const *argv[]){
 		for(int j=0; j < vi.size(); j++){
 			if(tr_gst.tr_inside(i,j)){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -162,7 +114,7 @@ int main(int argc, char const *argv[]){
 	}
 	cout << endl;
 
-	cout << OVERLAPS << ": " << endl;
+	cout << INCLUDES << ": " << endl;
 	for(int i=0; i < vi.size(); i++){
 		cout << " _";
 	}
@@ -170,8 +122,28 @@ int main(int argc, char const *argv[]){
 	for(int i=0; i < vi.size(); i++){
 		cout << "|";
 		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_overlaps(i,j)){
+			if(tr_gst.tr_includes(i,j)){
 				cout << "X ";
+				conteo[i][j]++;
+			}else{
+				cout << "  ";
+			}
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+	cout << EQUALS << ": " << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << "|";
+		for(int j=0; j < vi.size(); j++){
+			if(tr_gst.tr_equals(i,j)){
+				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -190,6 +162,7 @@ int main(int argc, char const *argv[]){
 		for(int j=0; j < vi.size(); j++){
 			if(tr_gst.tr_touches(i,j)){
 				cout << "X ";
+				conteo[i][j]++;
 			}else{
 				cout << "  ";
 			}
@@ -197,6 +170,60 @@ int main(int argc, char const *argv[]){
 		cout << endl;
 	}
 	cout << endl;
+	
+	cout << DISJOINT << ": " << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << "|";
+		for(int j=0; j < vi.size(); j++){
+			if(tr_gst.tr_disjoint(i,j)){
+				cout << "X ";
+				conteo[i][j]++;
+			}else{
+				cout << "  ";
+			}
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+	cout << OVERLAPS << ": " << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
+	for(int i=0; i < vi.size(); i++){
+		cout << "|";
+		for(int j=0; j < vi.size(); j++){
+			if(tr_gst.tr_overlaps(i,j)){
+				cout << "X ";
+				conteo[i][j]++;
+			}else{
+				cout << "  ";
+			}
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+	cout << "Conteo relaciones: " << endl;
+	for(int i=0; i < conteo.size(); i++){
+		cout << " _";
+	}
+	cout << endl;
+	for(int i=0; i < conteo.size(); i++){
+		cout << "|";
+		for(int j=0; j < conteo.size(); j++){
+			cout << conteo[i][j] << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+return 0;
 
 	cout << "WITHIN: " << endl;
 	for(int i=0; i < vi.size(); i++){
@@ -251,8 +278,6 @@ int main(int argc, char const *argv[]){
 		cout << endl;
 	}
 	cout << endl;
-
-	tr_gst.navega(0);
 
 	return 0;
 }

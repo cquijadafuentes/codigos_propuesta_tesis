@@ -53,13 +53,13 @@ int main(int argc, char const *argv[]){
 //      cout << id_stop << " - " << i << endl;
     }
 
-    int n_routes, n_t;
+    int n_rutas, n_t;
     string l, t;
-    entrada >> n_routes;
-//  cout << n_routes << endl;
+    entrada >> n_rutas;
+//  cout << n_rutas << endl;
     vector<vector<int>> routes;
 
-    for(int j = 0; j < n_routes; j++){
+    for(int j = 0; j < n_rutas; j++){
         entrada >> l;
 //      cout << "-----------------" << endl;
 //      cout << l << endl;
@@ -98,11 +98,11 @@ int main(int argc, char const *argv[]){
     }
     cout << endl;
     cout << "Ruta 2: ";
-    for(int i = 0; i < routes[n_routes-1].size(); i++){
-        cout << routes[n_routes-1][i] << " ";
+    for(int i = 0; i < routes[n_rutas-1].size(); i++){
+        cout << routes[n_rutas-1][i] << " ";
     }
     cout << endl;
-    string res = toporel(routes[0],routes[n_routes-1]);
+    string res = toporel(routes[0],routes[n_rutas-1]);
     cout << res << endl;
 */
 
@@ -274,8 +274,8 @@ void relaciones_nn_gst(vector<vector<int>> &routes, int n_stops){
     unsigned t1 = clock();
     map<string, int> mrt;
     // Relaciones topológicas
-    for(int x = 0; x < tt.n_routes; x++){
-        for(int y = 0; y < tt.n_routes; y++){
+    for(int x = 0; x < tt.n_rutas; x++){
+        for(int y = 0; y < tt.n_rutas; y++){
             string r = tt.obtenerRelacion(x, y);
             mrt[r]++;
         }
@@ -319,8 +319,8 @@ void relaciones_nn_gst(vector<vector<int>> &routes, int n_stops){
     trt[OVERLAPS] = 0.0;
     trt[TOUCHES] = 0.0;
     int tr = 0;
-    for(int x = 0; x < tt.n_routes; x++){
-        for(int y = 0; y < tt.n_routes; y++){
+    for(int x = 0; x < tt.n_rutas; x++){
+        for(int y = 0; y < tt.n_rutas; y++){
             t0 = clock();
             if(tt.tr_equals(x, y)){
                 t1 = clock();
@@ -414,8 +414,8 @@ void compara_relaciones(vector<vector<int>> &routes, int n_stops){
 
     TopoRelGST tt(routes, n_stops);   
     map<string, int> mrt;
-    for(int x = 0; x < tt.n_routes; x++){
-        for(int y = 0; y < tt.n_routes; y++){
+    for(int x = 0; x < tt.n_rutas; x++){
+        for(int y = 0; y < tt.n_rutas; y++){
             string r = tt.obtenerRelacion(x, y);
             if(r != res_naive[x][y]){
                 cout << x << " - " << y << " - Naive: " << res_naive[x][y] << " - GST: " << r << endl;

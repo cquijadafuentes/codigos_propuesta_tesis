@@ -435,7 +435,7 @@ bool tr_overlaps(vector<int> &a, vector<int> &b){
     
     /*
         A este punto existe intersección interior-exterior entre 
-        las secuencias ya que no hay contensión entre ellas.
+        las secuencias ya que no hay contención entre ellas.
         Si hubiera intersección interior-interior se determina la
         relación overlap.
     */
