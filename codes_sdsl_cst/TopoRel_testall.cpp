@@ -50,9 +50,6 @@ int main(int argc, char const *argv[]){
 	            }
 	            cout << endl;
 	            cout << " ---- " << endl;
-	            bool bb = tt.tr_touches(i, j);
-	            cout << "Resultado tt.tr_touches: " << bb << endl;
-	            cout << " ---- " << endl;
 	            contBasicas++;
             }
 
@@ -85,8 +82,8 @@ int main(int argc, char const *argv[]){
             }
         }
     }
-	cout << "Problemas en relaciones agregadas: " << contAgregadas << "/" << endl;
-	cout << "Problemas en relaciones básicas: " << contBasicas << "/" << endl;
+	cout << "Problemas en relaciones agregadas: " << contAgregadas << endl;
+	cout << "Problemas en relaciones básicas: " << contBasicas << endl;
 	cout << "Total rutas: " << n_routes << " >>> " << (n_routes*n_routes) << " relaciones posibles." << endl;
     return 0;
 }

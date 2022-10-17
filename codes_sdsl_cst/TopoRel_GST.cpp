@@ -15,7 +15,7 @@ TopoRelGST::TopoRelGST(vector<vector<int>> &rutas, int cant_stops){
             }
             if(maxID < rutas[i][j]){
                 maxID = rutas[i][j];
-            }                
+            }
         }
     }
     finSec = maxID+1;
@@ -63,6 +63,7 @@ TopoRelGST::TopoRelGST(vector<vector<int>> &rutas, int cant_stops){
         }
     }
 //    cout << "Marcas en bitvector... OK" << endl;
+/*
     cout << "Marcas: " << endl;
     for(int i=0; i<marcas.size(); i++){
         for(int j=0; j<marcas[i].size(); j++){
@@ -71,7 +72,7 @@ TopoRelGST::TopoRelGST(vector<vector<int>> &rutas, int cant_stops){
         cout << endl;
     }
     cout << endl;
-
+*/
     // MAP en un vector
     mapa = vector<cst_sct3<>::node_type>(n_rutas * 2);
     for(int i = 0; i < n_rutas; i++){
@@ -181,7 +182,7 @@ string TopoRelGST::obtenerRelacion(int x, int y){
         return INCLUDES;
     }
 
-    
+
     // Verificar si TO es posible
     bool posibleTo = false;
     int bCi = cst.edge(mapa[corto], 1);
@@ -279,7 +280,7 @@ bool TopoRelGST::tr_inside(int x, int y){
     auto lcaCLr = cst.root();
     auto lcaCrL = cst.root();
     auto lcaCrLr = cst.root();
-    
+
     do{
         // Acortar la secuencia Larga
         L = cst.sl(L);
@@ -309,7 +310,7 @@ bool TopoRelGST::tr_includes(int x, int y){
     return tr_inside(y,x);
 }
 
-bool TopoRelGST::tr_disjoint(int x, int y){    
+bool TopoRelGST::tr_disjoint(int x, int y){
     // Descartar igualdad
     if(mapa[x] == mapa[y] || mapa[x] == mapa[y+n_rutas]){
         return false;
@@ -416,7 +417,7 @@ bool TopoRelGST::tr_overlaps(int x, int y){
             // No es un borde de Y
             // Hay intersección de interior X con interior Y
             iXiY++;
-        }    
+        }
 
         px++;
     }
@@ -436,7 +437,7 @@ bool TopoRelGST::tr_overlaps(int x, int y){
         if(marcas[x][ed] == 0){
             // Hay intersección exterior X con interior Y
             return true;
-        }          
+        }      
         py++;
     }
     return false;
@@ -449,16 +450,129 @@ bool TopoRelGST::tr_overlaps(int x, int y){
 
 
 bool TopoRelGST::tr_within(int x, int y){
+    // Debe ser EQUALS, COVEREDBY o INSIDE
+    // Descarte por largo de secuencia
+    int lx = largoSec(mapa[x]);
+    int ly = largoSec(mapa[y]);
+    if(lx > ly){
+        return false;
+    }
+    // Comprobando Equals
+    if(mapa[x] == mapa[y] || mapa[x] == mapa[y+n_rutas]){
+        return true;
+    }
+    // Comprobando COVEREDBY
+    auto lca1 = cst.lca(mapa[x], mapa[y]);
+    auto lca2 = cst.lca(mapa[x], mapa[y+n_rutas]);
+    auto lca3 = cst.lca(mapa[x+n_rutas], mapa[y]);
+    auto lca4 = cst.lca(mapa[x+n_rutas], mapa[y+n_rutas]);
+    if(cst.depth(lca1) == lx || cst.depth(lca2) == lx || cst.depth(lca3) == lx || cst.depth(lca4) == lx){
+        return true;
+    }
+    // Comprobando INSIDE
+    auto L = mapa[y];
+    auto C = mapa[x];
+    auto Lr = mapa[y+n_rutas];
+    auto Cr = mapa[x+n_rutas];
+    auto lcaCL = cst.root();
+    auto lcaCLr = cst.root();
+    auto lcaCrL = cst.root();
+    auto lcaCrLr = cst.root();
+    int l = largoSec(mapa[x]);
+    do{
+        // Acortar la secuencia Larga
+        L = cst.sl(L);
+        // Calcular LCA con corta
+        lcaCL = cst.lca(C, L);
+        lcaCrL = cst.lca(Cr, L);
+    }while(cst.depth(L) > l && cst.edge(L,1) != finSec && cst.depth(lcaCL) < l && cst.depth(lcaCrL) < l);
+    if(cst.depth(lcaCL) >= l || cst.depth(lcaCrL) >= l){
+        // Existe contención
+        return true;
+    }
+
+    do{
+        // Acortar la secuencia LargaReversa
+        Lr = cst.sl(Lr);
+        // Calcular LCA con corta
+        lcaCLr = cst.lca(C, Lr);
+        lcaCrLr = cst.lca(Cr, Lr);
+    }while(cst.depth(Lr) > l && cst.edge(Lr,1) != finSec && cst.depth(lcaCLr) < l && cst.depth(lcaCrLr) < l);
+    if(cst.depth(lcaCLr) >= l || cst.depth(lcaCrLr) >= l){
+        return true;
+    }
     return false;
 }
 
 bool TopoRelGST::tr_contains(int x, int y){
-    return false;
+    return tr_within(y, x);
 }
 
 bool TopoRelGST::tr_intersects(int x, int y){
+    // Descartes en tiempo constante
+    // Igualdad
+    if(mapa[x] == mapa[y] || mapa[x] == mapa[y+n_rutas]){
+        return true;
+    }
+    // Bordes
+    int bXi = cst.edge(mapa[x], 1);
+    int bXf = cst.edge(mapa[x+n_rutas], 1);
+    int bYi = cst.edge(mapa[y], 1);
+    int bYf = cst.edge(mapa[y+n_rutas], 1);
+    if(marcas[y][bXi] == 1 || marcas[y][bXf] == 1 || marcas[x][bYi] == 1 || marcas[x][bYf] == 1){
+        // Hay bordes en contacto con la otra secuencia
+        return true;
+    }
+    // Verficar segmentos de los bordes
+    if(bordesSeg_touches(x, y)){
+        return true;
+    }
+    int lx = largoSec(mapa[x]);
+    int ly = largoSec(mapa[y]);
+    // Verificar COVEREDBY
+    auto lca1 = cst.lca(mapa[x], mapa[y]);
+    auto lca2 = cst.lca(mapa[x], mapa[y+n_rutas]);
+    auto lca3 = cst.lca(mapa[x+n_rutas], mapa[y]);
+    auto lca4 = cst.lca(mapa[x+n_rutas], mapa[y+n_rutas]);
+    if(cst.depth(lca1) == lx || cst.depth(lca2) == lx || cst.depth(lca3) == lx || cst.depth(lca4) == lx){
+        return true;
+    }
+    if(cst.depth(lca1) == ly || cst.depth(lca2) == ly || cst.depth(lca3) == ly || cst.depth(lca4) == ly){
+        return true;
+    }
+    // Comprobación en lineal
+    int lC, lL;
+    auto corto = mapa[x];
+    auto largo = mapa[y];
+    int iC, iL;
+    if(lx < ly){
+        lC = lx;
+        iC = x;
+        lL = ly;
+        iL = y;
+    }else{
+        corto = mapa [y];
+        lC = ly;
+        iC = y;
+        largo = mapa[x];
+        lL = lx;
+        iL = x;
+    }
+    int aux;
+    for(int i=1; i<=lC; i++){
+        aux = cst.edge(corto, i);
+        if(marcas[iL][aux] == 1){
+            return true;
+        }
+    }
     return false;
 }
+
+
+/*******************************************************
+            Otras funcionalidades
+*******************************************************/
+
 
 void TopoRelGST::navega(int x){
 
@@ -516,7 +630,7 @@ void TopoRelGST::navega(int x){
 
     cout << endl;
     cout << "Pruebas de Navegación en CompressedSuffixTree: " << endl;
-    
+
     auto nodeAux = cst.root();
     cout << "Root: " << cst.id(nodeAux) << "\t'";
     for(int i=1; i<=cst.depth(nodeAux); i++){

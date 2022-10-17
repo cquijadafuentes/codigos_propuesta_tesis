@@ -223,8 +223,6 @@ int main(int argc, char const *argv[]){
 	}
 	cout << endl;
 
-return 0;
-
 	cout << "WITHIN: " << endl;
 	for(int i=0; i < vi.size(); i++){
 		cout << " _";
