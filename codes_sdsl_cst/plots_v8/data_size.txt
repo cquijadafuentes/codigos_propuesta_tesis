@@ -1,0 +1,3 @@
+Dataset	cst-sct3	rutas-vi	marcas	mapa	rutas-iv	rel-3b
+Antes	106197	147192	5936944	31280	33959	62951
+Despues	107766	0.1	397256	31280	0.1	0.1
