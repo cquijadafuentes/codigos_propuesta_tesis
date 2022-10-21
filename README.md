@@ -25,3 +25,4 @@ v8 ->
 # plots
 
 v7 ->	Generación en paralelo usando matriz completa de resultados (tiempos)
+v8 ->	Versión antigua
