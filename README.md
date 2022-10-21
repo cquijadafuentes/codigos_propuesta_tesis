@@ -19,3 +19,12 @@ v7 ->
 v8 ->
 	Implementación de relaciones agregadas en todas las implementaciones
 	Implementación de toma de tiempos con matriz de formato lista para plot
+
+v9 ->
+	Eliminación de map y reducción de marcas
+	Toma de tiempos con generación de matriz con todos los tiempos (Naive, NaivePreC y GST)
+	Navegación ineficiente de GST por edges. ELIMINAR/MODIFICAR
+
+# plots
+
+v7 ->	Generación en paralelo usando matriz completa de resultados (tiempos)
