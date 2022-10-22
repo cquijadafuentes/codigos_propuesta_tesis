@@ -4,9 +4,11 @@ TopoRelGST::TopoRelGST(vector<vector<int>> &rutas, int cant_stops){
     n_stops = cant_stops;
     n_concat = 0;
     n_rutas = rutas.size();
+    largos = int_vector<>(n_rutas);
     int maxID = 0;  // Para obtener símbolo para fin de secuencia
     for(int i = 0; i < n_rutas; i++){
         n_concat += (rutas[i].size()+1);   // largo de ruta + fin_char
+        largos[i] = rutas[i].size();
         // verificar el max_char del final de stops
         for(int j = 0; j < rutas[i].size(); j++){
             if(rutas[i][j] <= 0){
@@ -18,6 +20,7 @@ TopoRelGST::TopoRelGST(vector<vector<int>> &rutas, int cant_stops){
             }
         }
     }
+    util::bit_compress(largos);
     finSec = maxID+1;
     int_vector<> iv(n_concat*2);
     int pv = 0;
@@ -114,8 +117,8 @@ string TopoRelGST::obtenerRelacion(int x, int y){
     // Identificar contención según nodo
     // Inside, includes, coveredBy, covers
     int corto, largo, lC, lL;
-    int lX = largoSec(mapa[x]);
-    int lY = largoSec(mapa[y]);
+    int lX = largos[x];
+    int lY = largos[y];
     if(lX < lY){
         corto = x;
         lC = lX;
@@ -231,8 +234,8 @@ bool TopoRelGST::tr_equals(int x, int y){
 
 bool TopoRelGST::tr_coveredby(int x, int y){
     // Descarte por largo de secuencias
-    int lx = largoSec(mapa[x]);
-    int ly = largoSec(mapa[y]);
+    int lx = largos[x];
+    int ly = largos[y];
     if(lx >= ly){
         return false;
     }
@@ -253,13 +256,13 @@ bool TopoRelGST::tr_covers(int x, int y){
 
 bool TopoRelGST::tr_inside(int x, int y){
     // Descarte por largo de secuencias
-    int lx = largoSec(mapa[x]);
-    int ly = largoSec(mapa[y]);
+    int lx = largos[x];
+    int ly = largos[y];
     if(lx >= ly){
         return false;
     }
     // Descarte por CoveredBy
-    int l = largoSec(mapa[x]);
+    int l = largos[x];
     auto lca1 = cst.lca(mapa[x], mapa[y]);
     auto lca2 = cst.lca(mapa[x], mapa[y+n_rutas]);
     auto lca3 = cst.lca(mapa[x+n_rutas], mapa[y]);
@@ -329,14 +332,14 @@ bool TopoRelGST::tr_disjoint(int x, int y){
         return false;
     }
     // Comprobar cualquier intersección
-    int lx = largoSec(mapa[x]);
+    int lx = largos[x];
     for(int i=2; i<lx; i++){
         if(marcas[y][cst.edge(mapa[x], i)] == 1){
             // Hay intersección del interior de X con Y
             return false;
         }
     }
-    int ly = largoSec(mapa[y]);
+    int ly = largos[y];
     for(int i=2; i<ly; i++){
         if(marcas[x][cst.edge(mapa[y], i)] == 1){
             // Hay intersección del interior de X con Y
@@ -369,7 +372,7 @@ bool TopoRelGST::tr_touches(int x, int y){
     // Verificar OV (intersección interior-interior)
     // Se recorre x para identificar cualquier coincidencia con y
     int aux;
-    int lx = largoSec(mapa[x]);
+    int lx = largos[x];
     for(int i=2; i<lx; i++){
         aux = cst.edge(mapa[x], i);
         if(aux != bYi && aux != bYf && marcas[y][aux]){
@@ -396,7 +399,7 @@ bool TopoRelGST::tr_overlaps(int x, int y){
     // Comprobar intersección Ix-Iy y Ix-Ey (al menos una de cada una)
     int iXiY = 0;
     int iXeY = 0;
-    int lx = largoSec(mapa[x]);
+    int lx = largos[x];
     int px = 2;
     int ed;
     if(marcas[y][bXi] == 0 || marcas[y][bXf] == 0){
@@ -430,7 +433,7 @@ bool TopoRelGST::tr_overlaps(int x, int y){
         // Hay intersección Y interior con exterior X
         return true;
     }
-    int ly = largoSec(mapa[y]);
+    int ly = largos[y];
     int py = 2;
     while(py < ly){
         ed = cst.edge(mapa[y], py);
@@ -452,8 +455,8 @@ bool TopoRelGST::tr_overlaps(int x, int y){
 bool TopoRelGST::tr_within(int x, int y){
     // Debe ser EQUALS, COVEREDBY o INSIDE
     // Descarte por largo de secuencia
-    int lx = largoSec(mapa[x]);
-    int ly = largoSec(mapa[y]);
+    int lx = largos[x];
+    int ly = largos[y];
     if(lx > ly){
         return false;
     }
@@ -478,7 +481,7 @@ bool TopoRelGST::tr_within(int x, int y){
     auto lcaCLr = cst.root();
     auto lcaCrL = cst.root();
     auto lcaCrLr = cst.root();
-    int l = largoSec(mapa[x]);
+    int l = largos[x];
     do{
         // Acortar la secuencia Larga
         L = cst.sl(L);
@@ -527,8 +530,8 @@ bool TopoRelGST::tr_intersects(int x, int y){
     if(bordesSeg_touches(x, y)){
         return true;
     }
-    int lx = largoSec(mapa[x]);
-    int ly = largoSec(mapa[y]);
+    int lx = largos[x];
+    int ly = largos[y];
     // Verificar COVEREDBY
     auto lca1 = cst.lca(mapa[x], mapa[y]);
     auto lca2 = cst.lca(mapa[x], mapa[y+n_rutas]);
@@ -763,7 +766,7 @@ bool TopoRelGST::bordesSeg_touches(int t1, int t2){
 //    cout << "r1: " << r1 << " - r2: " << r2 << " - r3: " << r3 << " - r4: " << r4 << endl;
     return (r1 || r2 || r3 || r4);
 }
-
+/*
 int TopoRelGST::largoSec(cst_sct3<>::node_type n){
     if(n == cst.root()){
         return 0;
@@ -775,7 +778,7 @@ int TopoRelGST::largoSec(cst_sct3<>::node_type n){
     }
     return x;
 }
-
+*/
 cst_sct3<>::node_type TopoRelGST::nodoSubseq(cst_sct3<>::node_type n, int x){
     // Retorna el nodo con la subsequencia de largo x desde el nodo n
     auto r = cst.root();

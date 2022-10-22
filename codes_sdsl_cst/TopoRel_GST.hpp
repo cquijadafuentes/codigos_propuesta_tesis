@@ -21,6 +21,7 @@ public:
     cst_sct3<csa_wt<wt_int<rrr_vector<>>>> cst;
     vector<bit_vector> marcas;
     vector<cst_sct3<>::node_type> mapa;
+    int_vector<> largos;
     int n_rutas;
     int n_concat;
     int n_stops;
@@ -49,7 +50,7 @@ public:
 
 private:
     bool bordesSeg_touches(int, int);
-    int largoSec(cst_sct3<>::node_type);
+//    int largoSec(cst_sct3<>::node_type);
     cst_sct3<>::node_type nodoSubseq(cst_sct3<>::node_type, int);
     cst_sct3<>::node_type nodoXSeqInicial(int, int);
 };
