@@ -23,7 +23,7 @@ int main(int argc, char const *argv[]){
         routes.push_back(vt);
 	}
 
-    TopoRelGST tt(routes, n_stops);
+    TopoRelGST_0 tt(routes, n_stops);
     TopoRelNaivePreComp trpc(routes, n_stops);
     int contAgregadas = 0;
     int contBasicas = 0;

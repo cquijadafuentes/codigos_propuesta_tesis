@@ -1,14 +1,14 @@
 /*
     Versión del GST con todas las ideas iniciales disponibles:
     - GST
-    - Todas las rutas
-    - Marcas en todos los nodos del GST
+    - Vector con las rutas
+    - Marcas en stops (primer nivel del GST) bit_vector
     - Mapa a las hojas donde terminan las rutas
 */
 
 #include "TopoRel_GST_0.hpp"
 
-TopoRelGST::TopoRelGST(vector<vector<int>> &rutas, int cant_stops){
+TopoRelGST_0::TopoRelGST_0(vector<vector<int>> &rutas, int cant_stops){
     n_stops = cant_stops;
     n_concat = 0;
     n_rutas = rutas.size();
@@ -114,7 +114,7 @@ TopoRelGST::TopoRelGST(vector<vector<int>> &rutas, int cant_stops){
 
 
 
-string TopoRelGST::obtenerRelacion(int x, int y){
+string TopoRelGST_0::obtenerRelacion(int x, int y){
 //    cout << endl << "x: " << x << " - y: " << y << endl;
 //    cout << "id x: " << cst.id(gstMapa[x]) << "id y: " << cst.id(gstMapa[y]) << endl;
     // Identificar igualdad en cualquiera de los dos sentidos
@@ -238,14 +238,14 @@ string TopoRelGST::obtenerRelacion(int x, int y){
 *******************************************************/
 
 
-bool TopoRelGST::tr_equals(int x, int y){
+bool TopoRelGST_0::tr_equals(int x, int y){
     if(gstMapa[x] == gstMapa[y] || gstMapa[x] == gstMapa[y+n_rutas]){
         return true;
     }
     return false;
 }
 
-bool TopoRelGST::tr_coveredby(int x, int y){
+bool TopoRelGST_0::tr_coveredby(int x, int y){
     // Descarte por largo de secuencias
     int lx = gstRutas[x].size();
     int ly = gstRutas[y].size();
@@ -263,11 +263,11 @@ bool TopoRelGST::tr_coveredby(int x, int y){
     return false;
 }
 
-bool TopoRelGST::tr_covers(int x, int y){
+bool TopoRelGST_0::tr_covers(int x, int y){
     return tr_coveredby(y,x);
 }
 
-bool TopoRelGST::tr_inside(int x, int y){
+bool TopoRelGST_0::tr_inside(int x, int y){
     // Descarte por largo de secuencias
     int lx = gstRutas[x].size();
     int ly = gstRutas[y].size();
@@ -326,11 +326,11 @@ bool TopoRelGST::tr_inside(int x, int y){
     return false;
 }
 
-bool TopoRelGST::tr_includes(int x, int y){
+bool TopoRelGST_0::tr_includes(int x, int y){
     return tr_inside(y,x);
 }
 
-bool TopoRelGST::tr_disjoint(int x, int y){
+bool TopoRelGST_0::tr_disjoint(int x, int y){
     // Descartar igualdad
     if(gstMapa[x] == gstMapa[y] || gstMapa[x] == gstMapa[y+n_rutas]){
         return false;
@@ -368,7 +368,7 @@ bool TopoRelGST::tr_disjoint(int x, int y){
     return true;
 }
 
-bool TopoRelGST::tr_touches(int x, int y){
+bool TopoRelGST_0::tr_touches(int x, int y){
     // Descarte por igualdad
     if(gstMapa[x] == gstMapa[y] || gstMapa[x] == gstMapa[y+n_rutas]){
         return false;
@@ -400,7 +400,7 @@ bool TopoRelGST::tr_touches(int x, int y){
     return true;
 }
 
-bool TopoRelGST::tr_overlaps(int x, int y){
+bool TopoRelGST_0::tr_overlaps(int x, int y){
     // Descartar igualdad
     if(gstMapa[x] == gstMapa[y] || gstMapa[x] == gstMapa[y+n_rutas]){
         return false;
@@ -470,7 +470,7 @@ bool TopoRelGST::tr_overlaps(int x, int y){
 *******************************************************/
 
 
-bool TopoRelGST::tr_within(int x, int y){
+bool TopoRelGST_0::tr_within(int x, int y){
     // Debe ser EQUALS, COVEREDBY o INSIDE
     // Descarte por largo de secuencia
     int lx = gstRutas[x].size();
@@ -529,11 +529,11 @@ bool TopoRelGST::tr_within(int x, int y){
     return false;
 }
 
-bool TopoRelGST::tr_contains(int x, int y){
+bool TopoRelGST_0::tr_contains(int x, int y){
     return tr_within(y, x);
 }
 
-bool TopoRelGST::tr_intersects(int x, int y){
+bool TopoRelGST_0::tr_intersects(int x, int y){
     // Descartes en tiempo constante
     // Igualdad
     if(gstMapa[x] == gstMapa[y] || gstMapa[x] == gstMapa[y+n_rutas]){
@@ -599,7 +599,7 @@ bool TopoRelGST::tr_intersects(int x, int y){
 *******************************************************/
 
 
-void TopoRelGST::navega(int x){
+void TopoRelGST_0::navega(int x){
 
     cout << "Información del CompressedSuffixTree:" << endl;
     cout << "Cantidad de nodos: " << cst.nodes() << endl;
@@ -742,10 +742,16 @@ void TopoRelGST::navega(int x){
 
 // Funciones private
 
-void TopoRelGST::sizeEstructura(){
+void TopoRelGST_0::sizeEstructura(){
     cout << "**** Tamaño en bytes ****" << endl;
     cout << "cst_sct3 [B]: " << size_in_bytes(cst) << endl;
-    // Calculo de los bytes para marcas
+    // Calculo de los bytes para RUTAS
+    int bytesRutas = 0;
+    for(int i=0; i<gstRutas.size(); i++){
+        bytesMarcas += size_in_bytes(gstRutas[i]);
+    }
+    cout << "rutas [B]: " << bytesRutas << endl;
+    // Calculo de los bytes para MARCAS
     int bytesMarcas = 0;
     int bitsUno = 0;
     int bitsTotal = 0;
@@ -756,8 +762,9 @@ void TopoRelGST::sizeEstructura(){
             bitsUno += gstMarcas[i][j];
         }
     }
+    double porcentaje = (bitsUno+0.0)/bitsTotal*100;
     cout << "marcas [B]: " << bytesMarcas << endl;
-    // Calculo de los bytes para mapa
+    // Calculo de los bytes para MAPA
     int bytesMapa = 0;
     for(int i=0; i<gstMapa.size(); i++){
         bytesMapa += sizeof(gstMapa[i]);
@@ -768,11 +775,11 @@ void TopoRelGST::sizeEstructura(){
     cout << "Nº Rutas: " << gstMarcas.size() << endl;
     cout << "Nº Nodos cst_sct3: " << cst.nodes() << endl;
     cout << "Nº Hojas cst_sct3: " << cst.size() << endl;
-    cout << "Nº 1s/length en marcas: " << bitsUno << "/" << bitsTotal << endl;
-
+    cout << "Nº 1s/length en marcas: " << bitsUno << "/" << bitsTotal;
+    cout << " (" << porcentaje << "%)" << endl;
 }
 
-bool TopoRelGST::bordesSeg_touches(int t1, int t2){
+bool TopoRelGST_0::bordesSeg_touches(int t1, int t2){
     // Comprueba si hay segmentos finales que se intersecan
     // Esto implica una intersección Interior-Interior entre los bordes
     // que se considera como un touches falso-positivo
@@ -794,7 +801,7 @@ bool TopoRelGST::bordesSeg_touches(int t1, int t2){
     return false;
 }
 
-cst_sct3<>::node_type TopoRelGST::nodoSubseq(cst_sct3<>::node_type n, int x){
+cst_sct3<>::node_type TopoRelGST_0::nodoSubseq(cst_sct3<>::node_type n, int x){
     // Retorna el nodo con la subsequencia de largo x desde el nodo n
     auto r = cst.root();
     if(x <= 0 || x > cst.depth(n)){

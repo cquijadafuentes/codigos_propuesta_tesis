@@ -427,7 +427,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
 vector<vector<double>> tiempos_GST(vector<vector<int>> &routes, int n_stops){
     cout << "********** Compressed Suffix Tree **********" << endl;
     unsigned t0 = clock();
-    TopoRelGST tt(routes, n_stops);
+    TopoRelGST_0 tt(routes, n_stops);
     unsigned t1 = clock();
     double tConstruccion = ((t1-t0)/CLOCKS_PER_SEC) * 1000000;
     cout << "Tiempo Construcción: " << tConstruccion << "[us]" << endl;

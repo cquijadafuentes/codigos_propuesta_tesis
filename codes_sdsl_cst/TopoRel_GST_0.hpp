@@ -1,5 +1,5 @@
-#ifndef TopoRel_GST
-#define TopoRel_GST
+#ifndef TopoRel_GST_0
+#define TopoRel_GST_0
 
 #include <iostream>
 #include <algorithm>
@@ -14,13 +14,13 @@
 using namespace std;
 using namespace sdsl;
 
-// *********************** CLASE TOPORELGST ***********************
+// *********************** CLASE TOPORELGST_0 ***********************
 //  --------------------Inicio clase TopoRelGST-------------------
-class TopoRelGST{
+class TopoRelGST_0{
 public:
     cst_sct3<csa_wt<wt_int<rrr_vector<>>>> cst;
-    vector<bit_vector> gstMarcas;
     vector<int_vector<>> gstRutas;
+    vector<bit_vector> gstMarcas;
     vector<cst_sct3<>::node_type> gstMapa;
     int_vector<> largos;
     int n_rutas;
@@ -28,7 +28,7 @@ public:
     int n_stops;
     int finSec;
     
-    TopoRelGST(vector<vector<int>>&, int);
+    TopoRelGST_0(vector<vector<int>>&, int);
     string obtenerRelacion(int, int);
 
     // 8 relaciones topológicas básicas

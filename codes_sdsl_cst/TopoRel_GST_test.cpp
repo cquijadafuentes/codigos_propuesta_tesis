@@ -43,7 +43,7 @@ int main(int argc, char const *argv[]){
 	}
 	cout << endl;
 	
-	TopoRelGST tr_gst(vi, max);
+	TopoRelGST_0 tr_gst(vi, max);
 	tr_gst.navega(0);
 
 	vector<vector<int>> conteo(nr, vector<int>(nr, 0));
