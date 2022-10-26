@@ -748,7 +748,7 @@ void TopoRelGST_0::sizeEstructura(){
     // Calculo de los bytes para RUTAS
     int bytesRutas = 0;
     for(int i=0; i<gstRutas.size(); i++){
-        bytesMarcas += size_in_bytes(gstRutas[i]);
+        bytesRutas += size_in_bytes(gstRutas[i]);
     }
     cout << "rutas [B]: " << bytesRutas << endl;
     // Calculo de los bytes para MARCAS
