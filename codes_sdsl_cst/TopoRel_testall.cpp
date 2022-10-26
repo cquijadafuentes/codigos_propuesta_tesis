@@ -5,8 +5,8 @@
 #include <map>
 #include "TopoRel_Naive.hpp"
 #include "TopoRel_Naive_PreComp.hpp"
-#include "TopoRel_GST.hpp"
 #include "TopoRel_Cons.hpp"
+#include "TopoRel_GST_0.hpp"
 
 using namespace std;
 

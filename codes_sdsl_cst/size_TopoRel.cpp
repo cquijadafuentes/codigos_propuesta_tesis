@@ -1,5 +1,5 @@
 #include <iostream>
-#include "TopoRel_GST.hpp"
+#include "TopoRel_GST_0.hpp"
 #include "TopoRel_Naive_PreComp.hpp"
 
 using namespace std;

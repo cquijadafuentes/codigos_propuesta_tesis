@@ -11,7 +11,7 @@
 #include <sdsl/cst_iterators.hpp>
 #include <ctime>
 #include "TopoRel_Naive.hpp"
-#include "TopoRel_GST.hpp"
+#include "TopoRel_GST_0.hpp"
 #include "TopoRel_Cons.hpp"
 
 using namespace std;

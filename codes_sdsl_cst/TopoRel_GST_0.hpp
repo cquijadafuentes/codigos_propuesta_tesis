@@ -19,8 +19,9 @@ using namespace sdsl;
 class TopoRelGST{
 public:
     cst_sct3<csa_wt<wt_int<rrr_vector<>>>> cst;
-    vector<bit_vector> marcas;
-    vector<cst_sct3<>::node_type> mapa;
+    vector<bit_vector> gstMarcas;
+    vector<int_vector<>> gstRutas;
+    vector<cst_sct3<>::node_type> gstMapa;
     int_vector<> largos;
     int n_rutas;
     int n_concat;
@@ -50,9 +51,7 @@ public:
 
 private:
     bool bordesSeg_touches(int, int);
-//    int largoSec(cst_sct3<>::node_type);
     cst_sct3<>::node_type nodoSubseq(cst_sct3<>::node_type, int);
-    cst_sct3<>::node_type nodoXSeqInicial(int, int);
 };
 
 #endif
