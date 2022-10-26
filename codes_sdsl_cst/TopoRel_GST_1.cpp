@@ -1,3 +1,10 @@
+/*
+    Versión del GST eliminando las rutas
+    - GST
+    - Marcas en todos los nodos del GST
+    - Mapa a las hojas donde terminan las rutas
+*/
+
 #include "TopoRel_GST.hpp"
 
 TopoRelGST::TopoRelGST(vector<vector<int>> &rutas, int cant_stops){
