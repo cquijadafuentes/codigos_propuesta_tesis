@@ -534,63 +534,7 @@ bool TopoRelGST_0::tr_contains(int x, int y){
 }
 
 bool TopoRelGST_0::tr_intersects(int x, int y){
-    // Descartes en tiempo constante
-    // Igualdad
-    if(gstMapa[x] == gstMapa[y] || gstMapa[x] == gstMapa[y+n_rutas]){
-        return true;
-    }
-    // Bordes
-    int bXi = gstRutas[x][0];
-    int bXf = gstRutas[x][gstRutas[x].size()-1];
-    int bYi = gstRutas[y][0];
-    int bYf = gstRutas[y][gstRutas[y].size()-1];
-    if(gstMarcas[y][bXi] == 1 || gstMarcas[y][bXf] == 1 || gstMarcas[x][bYi] == 1 || gstMarcas[x][bYf] == 1){
-        // Hay bordes en contacto con la otra secuencia
-        return true;
-    }
-    // Verficar segmentos de los bordes
-    if(bordesSeg_touches(x, y)){
-        return true;
-    }
-    int lx = gstRutas[x].size();
-    int ly = gstRutas[y].size();
-    // Verificar COVEREDBY
-    auto lca1 = cst.lca(gstMapa[x], gstMapa[y]);
-    auto lca2 = cst.lca(gstMapa[x], gstMapa[y+n_rutas]);
-    auto lca3 = cst.lca(gstMapa[x+n_rutas], gstMapa[y]);
-    auto lca4 = cst.lca(gstMapa[x+n_rutas], gstMapa[y+n_rutas]);
-    if(cst.depth(lca1) == lx || cst.depth(lca2) == lx || cst.depth(lca3) == lx || cst.depth(lca4) == lx){
-        return true;
-    }
-    if(cst.depth(lca1) == ly || cst.depth(lca2) == ly || cst.depth(lca3) == ly || cst.depth(lca4) == ly){
-        return true;
-    }
-    // Comprobación en lineal
-    int lC, lL;
-    auto corto = gstMapa[x];
-    auto largo = gstMapa[y];
-    int iC, iL;
-    if(lx < ly){
-        lC = lx;
-        iC = x;
-        lL = ly;
-        iL = y;
-    }else{
-        corto = gstMapa[y];
-        lC = ly;
-        iC = y;
-        largo = gstMapa[x];
-        lL = lx;
-        iL = x;
-    }
-    int aux;
-    for(int i=1; i<=lC; i++){
-        aux = gstRutas[x][i-1];
-        if(gstMarcas[iL][aux] == 1){
-            return true;
-        }
-    }
-    return false;
+    return !tr_disjoint(x, y);
 }
 
 

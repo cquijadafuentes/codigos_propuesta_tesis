@@ -197,6 +197,9 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     }
     t1 = clock();
     tr_true[COVEREDBY] = (double)(t1 - t0);
+    if(r_coveredby.size() == 0){
+        tr_true[COVEREDBY] = 0;
+    }
     
     t0 = clock();
     while(mstrsCovs < minMuestras && r_covers.size() > 0){
@@ -209,6 +212,9 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     }
     t1 = clock();
     tr_true[COVERS] = (double)(t1 - t0);
+    if(r_covers.size() == 0){
+        tr_true[COVERS] = 0;
+    }
     
     t0 = clock();
     while(mstrsDisj < minMuestras && r_disjoint.size() > 0){
@@ -221,6 +227,9 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     }
     t1 = clock();
     tr_true[DISJOINT] = (double)(t1 - t0);
+    if(r_disjoint.size() == 0){
+        tr_true[DISJOINT] = 0;
+    }
     
     t0 = clock();
     while(mstrsEqls < minMuestras && r_equals.size() > 0){
@@ -233,6 +242,9 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     }
     t1 = clock();
     tr_true[EQUALS] = (double)(t1 - t0);
+    if(r_equals.size() == 0){
+        tr_true[EQUALS] = 0;
+    }
     
     t0 = clock();
     while(mstrsIncl < minMuestras && r_includes.size() > 0){
@@ -245,6 +257,9 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     }
     t1 = clock();
     tr_true[INCLUDES] = (double)(t1 - t0);
+    if(r_includes.size() == 0){
+        tr_true[INCLUDES] = 0;
+    }
     
     t0 = clock();
     while(mstrsInsi < minMuestras && r_inside.size() > 0){
@@ -257,6 +272,9 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     }
     t1 = clock();
     tr_true[INSIDE] = (double)(t1 - t0);
+    if(r_inside.size() == 0){
+        tr_true[INSIDE] = 0;
+    }
     
     t0 = clock();
     while(mstrsOver < minMuestras && r_overlaps.size() > 0){
@@ -269,6 +287,9 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     }
     t1 = clock();
     tr_true[OVERLAPS] = (double)(t1 - t0);
+    if(r_overlaps.size() == 0){
+        tr_true[OVERLAPS] = 0;
+    }
     
     t0 = clock();
     while(mstrsTouc < minMuestras && r_touches.size() > 0){
@@ -281,6 +302,9 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     }
     t1 = clock();
     tr_true[TOUCHES] = (double)(t1 - t0);
+    if(r_touches.size() == 0){
+        tr_true[TOUCHES] = 0;
+    }
 
     // Cantidad de muestras para tiempos_true
     m[idCoveredby][1] = mstrsCovB;
@@ -431,7 +455,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
 
 
 vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
-    cout << "********** Compressed Suffix Tree **********" << endl;
+    cout << "********** Compressed Suffix Tree GST_0 **********" << endl;
     unsigned t0 = clock();
     TopoRelGST_0 tt(routes, n_stops);
     unsigned t1 = clock();
@@ -548,6 +572,9 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[COVEREDBY] = (double)(t1 - t0);
+    if(r_coveredby.size() == 0){
+        tr_true[COVEREDBY] = 0;
+    }
     
     t0 = clock();
     while(mstrsCovs < minMuestras && r_covers.size() > 0){
@@ -560,6 +587,9 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[COVERS] = (double)(t1 - t0);
+    if(r_covers.size() == 0){
+        tr_true[COVERS] = 0;
+    }
     
     t0 = clock();
     while(mstrsDisj < minMuestras && r_disjoint.size() > 0){
@@ -572,6 +602,9 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[DISJOINT] = (double)(t1 - t0);
+    if(r_disjoint.size() == 0){
+        tr_true[DISJOINT] = 0;
+    }
     
     t0 = clock();
     while(mstrsEqls < minMuestras && r_equals.size() > 0){
@@ -584,6 +617,9 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[EQUALS] = (double)(t1 - t0);
+    if(r_equals.size() == 0){
+        tr_true[EQUALS] = 0;
+    }
     
     t0 = clock();
     while(mstrsIncl < minMuestras && r_includes.size() > 0){
@@ -596,6 +632,9 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[INCLUDES] = (double)(t1 - t0);
+    if(r_includes.size() == 0){
+        tr_true[INCLUDES] = 0;
+    }
     
     t0 = clock();
     while(mstrsInsi < minMuestras && r_inside.size() > 0){
@@ -608,6 +647,9 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[INSIDE] = (double)(t1 - t0);
+    if(r_inside.size() == 0){
+        tr_true[INSIDE] = 0;
+    }
     
     t0 = clock();
     while(mstrsOver < minMuestras && r_overlaps.size() > 0){
@@ -620,6 +662,9 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[OVERLAPS] = (double)(t1 - t0);
+    if(r_overlaps.size() == 0){
+        tr_true[OVERLAPS] = 0;
+    }
     
     t0 = clock();
     while(mstrsTouc < minMuestras && r_touches.size() > 0){
@@ -632,6 +677,9 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[TOUCHES] = (double)(t1 - t0);
+    if(r_touches.size() == 0){
+        tr_true[TOUCHES] = 0;
+    }
 
     // Cantidad de muestras para tiempos_true
     m[idCoveredby][1] = mstrsCovB;
@@ -782,7 +830,7 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
 
 
 vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
-    cout << "********** Compressed Suffix Tree **********" << endl;
+    cout << "********** Compressed Suffix Tree GST_1 **********" << endl;
     unsigned t0 = clock();
     TopoRelGST_1 tt(routes, n_stops);
     unsigned t1 = clock();
@@ -899,6 +947,9 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[COVEREDBY] = (double)(t1 - t0);
+    if(r_coveredby.size() == 0){
+        tr_true[COVEREDBY] = 0;
+    }
     
     t0 = clock();
     while(mstrsCovs < minMuestras && r_covers.size() > 0){
@@ -911,6 +962,9 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[COVERS] = (double)(t1 - t0);
+    if(r_covers.size() == 0){
+        tr_true[COVERS] = 0;
+    }
     
     t0 = clock();
     while(mstrsDisj < minMuestras && r_disjoint.size() > 0){
@@ -923,6 +977,9 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[DISJOINT] = (double)(t1 - t0);
+    if(r_disjoint.size() == 0){
+        tr_true[DISJOINT] = 0;
+    }
     
     t0 = clock();
     while(mstrsEqls < minMuestras && r_equals.size() > 0){
@@ -935,6 +992,9 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[EQUALS] = (double)(t1 - t0);
+    if(r_equals.size() == 0){
+        tr_true[EQUALS] = 0;
+    }
     
     t0 = clock();
     while(mstrsIncl < minMuestras && r_includes.size() > 0){
@@ -947,6 +1007,9 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[INCLUDES] = (double)(t1 - t0);
+    if(r_includes.size() == 0){
+        tr_true[INCLUDES] = 0;
+    }
     
     t0 = clock();
     while(mstrsInsi < minMuestras && r_inside.size() > 0){
@@ -959,6 +1022,9 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[INSIDE] = (double)(t1 - t0);
+    if(r_inside.size() == 0){
+        tr_true[INSIDE] = 0;
+    }
     
     t0 = clock();
     while(mstrsOver < minMuestras && r_overlaps.size() > 0){
@@ -971,6 +1037,9 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[OVERLAPS] = (double)(t1 - t0);
+    if(r_overlaps.size() == 0){
+        tr_true[OVERLAPS] = 0;
+    }
     
     t0 = clock();
     while(mstrsTouc < minMuestras && r_touches.size() > 0){
@@ -983,6 +1052,9 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     }
     t1 = clock();
     tr_true[TOUCHES] = (double)(t1 - t0);
+    if(r_touches.size() == 0){
+        tr_true[TOUCHES] = 0;
+    }
 
     // Cantidad de muestras para tiempos_true
     m[idCoveredby][1] = mstrsCovB;
@@ -1248,6 +1320,9 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     }
     t1 = clock();
     tr_true[COVEREDBY] = (double)(t1 - t0);
+    if(r_coveredby.size() == 0){
+        tr_true[COVEREDBY] = 0;
+    }
     
     t0 = clock();
     while(mstrsCovs < minMuestras && r_covers.size() > 0){
@@ -1260,6 +1335,9 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     }
     t1 = clock();
     tr_true[COVERS] = (double)(t1 - t0);
+    if(r_covers.size() == 0){
+        tr_true[COVERS] = 0;
+    }
     
     t0 = clock();
     while(mstrsDisj < minMuestras && r_disjoint.size() > 0){
@@ -1272,6 +1350,9 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     }
     t1 = clock();
     tr_true[DISJOINT] = (double)(t1 - t0);
+    if(r_disjoint.size() == 0){
+        tr_true[DISJOINT] = 0;
+    }
     
     t0 = clock();
     while(mstrsEqls < minMuestras && r_equals.size() > 0){
@@ -1284,6 +1365,9 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     }
     t1 = clock();
     tr_true[EQUALS] = (double)(t1 - t0);
+    if(r_equals.size() == 0){
+        tr_true[EQUALS] = 0;
+    }
     
     t0 = clock();
     while(mstrsIncl < minMuestras && r_includes.size() > 0){
@@ -1296,6 +1380,9 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     }
     t1 = clock();
     tr_true[INCLUDES] = (double)(t1 - t0);
+    if(r_includes.size() == 0){
+        tr_true[INCLUDES] = 0;
+    }
     
     t0 = clock();
     while(mstrsInsi < minMuestras && r_inside.size() > 0){
@@ -1308,6 +1395,9 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     }
     t1 = clock();
     tr_true[INSIDE] = (double)(t1 - t0);
+    if(r_inside.size() == 0){
+        tr_true[INSIDE] = 0;
+    }
     
     t0 = clock();
     while(mstrsOver < minMuestras && r_overlaps.size() > 0){
@@ -1320,6 +1410,9 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     }
     t1 = clock();
     tr_true[OVERLAPS] = (double)(t1 - t0);
+    if(r_overlaps.size() == 0){
+        tr_true[OVERLAPS] = 0;
+    }
     
     t0 = clock();
     while(mstrsTouc < minMuestras && r_touches.size() > 0){
@@ -1332,6 +1425,9 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     }
     t1 = clock();
     tr_true[TOUCHES] = (double)(t1 - t0);
+    if(r_touches.size() == 0){
+        tr_true[TOUCHES] = 0;
+    }
 
     // Cantidad de muestras para tiempos_true
     m[idCoveredby][1] = mstrsCovB;
