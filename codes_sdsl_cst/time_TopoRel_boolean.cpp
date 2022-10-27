@@ -29,6 +29,11 @@ int idDisjoint = 7;
 int minMuestras = 100;
 
 int main(int argc, char const *argv[]){
+
+    if(argc > 1){
+        minMuestras = (int) atoi(argv[1]);
+    }
+
 	int n_routes, n_t, n_stops, aux;
 	vector<vector<int>> routes;
     cin >> n_routes >> n_stops;
@@ -128,6 +133,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     vector<int> r_overlaps;
     vector<int> r_touches;
 
+    cout << ">>> Calculando..." << endl << "\tRelación Topológica ... ";
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
             string r = toporel(routes[i], routes[j]);
@@ -161,6 +167,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
             }
         }
     }
+    cout << "OK" << endl;
 
     vector<vector<double>> m(8, vector<double>(4, 0.0));
     // Cantidad de relaciones
@@ -186,6 +193,8 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     int mstrsOver = 0;
     int mstrsTouc = 0;
     
+    cout << "\tRelaciones binarias TRUE ... ";
+    cout << "CB ... ";
     t0 = clock();
     while(mstrsCovB < minMuestras && r_coveredby.size() > 0){
         for(int j = 0; j < r_coveredby.size(); j += 2){
@@ -201,6 +210,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
         tr_true[COVEREDBY] = 0;
     }
     
+    cout << "CV ... ";
     t0 = clock();
     while(mstrsCovs < minMuestras && r_covers.size() > 0){
         for(int j = 0; j < r_covers.size(); j += 2){
@@ -216,6 +226,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
         tr_true[COVERS] = 0;
     }
     
+    cout << "DJ ... ";
     t0 = clock();
     while(mstrsDisj < minMuestras && r_disjoint.size() > 0){
         for(int j = 0; j < r_disjoint.size(); j += 2){
@@ -231,6 +242,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
         tr_true[DISJOINT] = 0;
     }
     
+    cout << "EQ ... ";
     t0 = clock();
     while(mstrsEqls < minMuestras && r_equals.size() > 0){
         for(int j = 0; j < r_equals.size(); j += 2){
@@ -246,6 +258,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
         tr_true[EQUALS] = 0;
     }
     
+    cout << "IC ... ";
     t0 = clock();
     while(mstrsIncl < minMuestras && r_includes.size() > 0){
         for(int j = 0; j < r_includes.size(); j += 2){
@@ -261,6 +274,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
         tr_true[INCLUDES] = 0;
     }
     
+    cout << "IS ... ";
     t0 = clock();
     while(mstrsInsi < minMuestras && r_inside.size() > 0){
         for(int j = 0; j < r_inside.size(); j += 2){
@@ -276,6 +290,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
         tr_true[INSIDE] = 0;
     }
     
+    cout << "OV ... ";
     t0 = clock();
     while(mstrsOver < minMuestras && r_overlaps.size() > 0){
         for(int j = 0; j < r_overlaps.size(); j += 2){
@@ -291,6 +306,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
         tr_true[OVERLAPS] = 0;
     }
     
+    cout << "TO ... ";
     t0 = clock();
     while(mstrsTouc < minMuestras && r_touches.size() > 0){
         for(int j = 0; j < r_touches.size(); j += 2){
@@ -305,6 +321,8 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     if(r_touches.size() == 0){
         tr_true[TOUCHES] = 0;
     }
+
+    cout << "OK" << endl;
 
     // Cantidad de muestras para tiempos_true
     m[idCoveredby][1] = mstrsCovB;
@@ -338,6 +356,8 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
 
     tr = mrt[COVEREDBY] + mrt[COVERS] + mrt[DISJOINT] + mrt[EQUALS] + mrt[INCLUDES] + mrt[INSIDE] + mrt[OVERLAPS] + mrt[TOUCHES];
 
+    cout << "\tRelaciones binarias ALL ... ";
+    cout << "CB ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -348,6 +368,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     tiempo = (double)(t1 - t0);
     tr_all[COVEREDBY] += tiempo;
 
+    cout << "CV ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -358,6 +379,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     tiempo = (double)(t1 - t0);
     tr_all[COVERS] += tiempo;
 
+    cout << "DJ ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -368,6 +390,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     tiempo = (double)(t1 - t0);
     tr_all[DISJOINT] += tiempo;
 
+    cout << "EQ ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -378,6 +401,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     tiempo = (double)(t1 - t0);
     tr_all[EQUALS] += tiempo;
 
+    cout << "IC ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -388,6 +412,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     tiempo = (double)(t1 - t0);
     tr_all[INCLUDES] += tiempo;
 
+    cout << "IS ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -398,6 +423,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     tiempo = (double)(t1 - t0);
     tr_all[INSIDE] += tiempo;
 
+    cout << "OV ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -408,6 +434,7 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     tiempo = (double)(t1 - t0);
     tr_all[OVERLAPS] += tiempo;
 
+    cout << "TO ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -417,6 +444,8 @@ vector<vector<double>> tiempos_naive(vector<vector<int>> &routes){
     t1 = clock();
     tiempo = (double)(t1 - t0);
     tr_all[TOUCHES] += tiempo;
+
+    cout << "OK" << endl << ">>> Fin Calculo Tiempo Naive" << endl;
 
 
     tr_all[COVEREDBY] = ((tr_all[COVEREDBY]/CLOCKS_PER_SEC) / tr) * 1000000;
@@ -462,7 +491,7 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     double tConstruccion = ((t1-t0)/CLOCKS_PER_SEC) * 1000000;
     cout << "Tiempo Construcción: " << tConstruccion << "[us]" << endl;
     tt.sizeEstructura();
-    cout << endl;
+
     map<string, int> mrt;
     map<string, double> tr_all;
     map<string, double> tr_true;
@@ -504,6 +533,7 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     vector<int> r_overlaps;
     vector<int> r_touches;
 
+    cout << ">>> Calculando..." << endl << "\tRelación Topológica ... ";
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
             string r = tt.obtenerRelacion(i, j);
@@ -537,6 +567,7 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
             }
         }
     }
+    cout << "OK" << endl;
 
     vector<vector<double>> m(8, vector<double>(4, 0.0));
     // Cantidad de relaciones
@@ -560,7 +591,9 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     int mstrsInsi = 0;
     int mstrsOver = 0;
     int mstrsTouc = 0;
-    
+
+    cout << "\tRelaciones binarias TRUE ... ";
+    cout << "CB ... ";
     t0 = clock();
     while(mstrsCovB < minMuestras && r_coveredby.size() > 0){
         for(int j = 0; j < r_coveredby.size(); j += 2){
@@ -575,7 +608,8 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     if(r_coveredby.size() == 0){
         tr_true[COVEREDBY] = 0;
     }
-    
+
+    cout << "CV ... ";
     t0 = clock();
     while(mstrsCovs < minMuestras && r_covers.size() > 0){
         for(int j = 0; j < r_covers.size(); j += 2){
@@ -590,7 +624,8 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     if(r_covers.size() == 0){
         tr_true[COVERS] = 0;
     }
-    
+
+    cout << "DJ ... ";
     t0 = clock();
     while(mstrsDisj < minMuestras && r_disjoint.size() > 0){
         for(int j = 0; j < r_disjoint.size(); j += 2){
@@ -605,7 +640,8 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     if(r_disjoint.size() == 0){
         tr_true[DISJOINT] = 0;
     }
-    
+
+    cout << "EQ ... ";
     t0 = clock();
     while(mstrsEqls < minMuestras && r_equals.size() > 0){
         for(int j = 0; j < r_equals.size(); j += 2){
@@ -620,7 +656,8 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     if(r_equals.size() == 0){
         tr_true[EQUALS] = 0;
     }
-    
+
+    cout << "IC ... ";
     t0 = clock();
     while(mstrsIncl < minMuestras && r_includes.size() > 0){
         for(int j = 0; j < r_includes.size(); j += 2){
@@ -635,7 +672,8 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     if(r_includes.size() == 0){
         tr_true[INCLUDES] = 0;
     }
-    
+
+    cout << "IS ... ";
     t0 = clock();
     while(mstrsInsi < minMuestras && r_inside.size() > 0){
         for(int j = 0; j < r_inside.size(); j += 2){
@@ -650,7 +688,8 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     if(r_inside.size() == 0){
         tr_true[INSIDE] = 0;
     }
-    
+
+    cout << "OV ... ";
     t0 = clock();
     while(mstrsOver < minMuestras && r_overlaps.size() > 0){
         for(int j = 0; j < r_overlaps.size(); j += 2){
@@ -665,7 +704,8 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     if(r_overlaps.size() == 0){
         tr_true[OVERLAPS] = 0;
     }
-    
+
+    cout << "TO ... ";
     t0 = clock();
     while(mstrsTouc < minMuestras && r_touches.size() > 0){
         for(int j = 0; j < r_touches.size(); j += 2){
@@ -680,6 +720,8 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     if(r_touches.size() == 0){
         tr_true[TOUCHES] = 0;
     }
+
+    cout << "OK" << endl;
 
     // Cantidad de muestras para tiempos_true
     m[idCoveredby][1] = mstrsCovB;
@@ -713,6 +755,8 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
 
     tr = mrt[COVEREDBY] + mrt[COVERS] + mrt[DISJOINT] + mrt[EQUALS] + mrt[INCLUDES] + mrt[INSIDE] + mrt[OVERLAPS] + mrt[TOUCHES];
 
+    cout << "\tRelaciones binarias ALL ... ";
+    cout << "CB ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -723,6 +767,7 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     tiempo = (double)(t1 - t0);
     tr_all[COVEREDBY] += tiempo;
 
+    cout << "CV ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -733,6 +778,7 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     tiempo = (double)(t1 - t0);
     tr_all[COVERS] += tiempo;
 
+    cout << "DJ ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -743,6 +789,7 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     tiempo = (double)(t1 - t0);
     tr_all[DISJOINT] += tiempo;
 
+    cout << "EQ ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -753,6 +800,7 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     tiempo = (double)(t1 - t0);
     tr_all[EQUALS] += tiempo;
 
+    cout << "IC ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -763,6 +811,7 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     tiempo = (double)(t1 - t0);
     tr_all[INCLUDES] += tiempo;
 
+    cout << "IS ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -773,6 +822,7 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     tiempo = (double)(t1 - t0);
     tr_all[INSIDE] += tiempo;
 
+    cout << "OV ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -783,6 +833,7 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     tiempo = (double)(t1 - t0);
     tr_all[OVERLAPS] += tiempo;
 
+    cout << "TO ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -792,6 +843,8 @@ vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops){
     t1 = clock();
     tiempo = (double)(t1 - t0);
     tr_all[TOUCHES] += tiempo;
+
+    cout << "OK" << endl << ">>> Fin Calculo Tiempo GST_0" << endl;
 
 
     tr_all[COVEREDBY] = ((tr_all[COVEREDBY]/CLOCKS_PER_SEC) / tr) * 1000000;
@@ -837,7 +890,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     double tConstruccion = ((t1-t0)/CLOCKS_PER_SEC) * 1000000;
     cout << "Tiempo Construcción: " << tConstruccion << "[us]" << endl;
     tt.sizeEstructura();
-    cout << endl;
+    
     map<string, int> mrt;
     map<string, double> tr_all;
     map<string, double> tr_true;
@@ -879,6 +932,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     vector<int> r_overlaps;
     vector<int> r_touches;
 
+    cout << ">>> Calculando..." << endl << "\tRelación Topológica ... ";
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
             string r = tt.obtenerRelacion(i, j);
@@ -912,6 +966,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
             }
         }
     }
+    cout << "OK" << endl;
 
     vector<vector<double>> m(8, vector<double>(4, 0.0));
     // Cantidad de relaciones
@@ -936,6 +991,8 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     int mstrsOver = 0;
     int mstrsTouc = 0;
     
+    cout << "\tRelaciones binarias TRUE ... ";
+    cout << "CB ... ";
     t0 = clock();
     while(mstrsCovB < minMuestras && r_coveredby.size() > 0){
         for(int j = 0; j < r_coveredby.size(); j += 2){
@@ -951,6 +1008,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
         tr_true[COVEREDBY] = 0;
     }
     
+    cout << "CV ... ";
     t0 = clock();
     while(mstrsCovs < minMuestras && r_covers.size() > 0){
         for(int j = 0; j < r_covers.size(); j += 2){
@@ -966,6 +1024,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
         tr_true[COVERS] = 0;
     }
     
+    cout << "DJ ... ";
     t0 = clock();
     while(mstrsDisj < minMuestras && r_disjoint.size() > 0){
         for(int j = 0; j < r_disjoint.size(); j += 2){
@@ -981,6 +1040,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
         tr_true[DISJOINT] = 0;
     }
     
+    cout << "EQ ... ";
     t0 = clock();
     while(mstrsEqls < minMuestras && r_equals.size() > 0){
         for(int j = 0; j < r_equals.size(); j += 2){
@@ -996,6 +1056,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
         tr_true[EQUALS] = 0;
     }
     
+    cout << "IC ... ";
     t0 = clock();
     while(mstrsIncl < minMuestras && r_includes.size() > 0){
         for(int j = 0; j < r_includes.size(); j += 2){
@@ -1011,6 +1072,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
         tr_true[INCLUDES] = 0;
     }
     
+    cout << "IS ... ";
     t0 = clock();
     while(mstrsInsi < minMuestras && r_inside.size() > 0){
         for(int j = 0; j < r_inside.size(); j += 2){
@@ -1026,6 +1088,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
         tr_true[INSIDE] = 0;
     }
     
+    cout << "OV ... ";
     t0 = clock();
     while(mstrsOver < minMuestras && r_overlaps.size() > 0){
         for(int j = 0; j < r_overlaps.size(); j += 2){
@@ -1041,6 +1104,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
         tr_true[OVERLAPS] = 0;
     }
     
+    cout << "TO ... ";
     t0 = clock();
     while(mstrsTouc < minMuestras && r_touches.size() > 0){
         for(int j = 0; j < r_touches.size(); j += 2){
@@ -1055,6 +1119,8 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     if(r_touches.size() == 0){
         tr_true[TOUCHES] = 0;
     }
+
+    cout << "OK" << endl;
 
     // Cantidad de muestras para tiempos_true
     m[idCoveredby][1] = mstrsCovB;
@@ -1088,6 +1154,8 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
 
     tr = mrt[COVEREDBY] + mrt[COVERS] + mrt[DISJOINT] + mrt[EQUALS] + mrt[INCLUDES] + mrt[INSIDE] + mrt[OVERLAPS] + mrt[TOUCHES];
 
+    cout << "\tRelaciones binarias ALL ... ";
+    cout << "CB ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1098,6 +1166,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     tiempo = (double)(t1 - t0);
     tr_all[COVEREDBY] += tiempo;
 
+    cout << "CV ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1108,6 +1177,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     tiempo = (double)(t1 - t0);
     tr_all[COVERS] += tiempo;
 
+    cout << "DJ ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1118,6 +1188,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     tiempo = (double)(t1 - t0);
     tr_all[DISJOINT] += tiempo;
 
+    cout << "EQ ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1128,6 +1199,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     tiempo = (double)(t1 - t0);
     tr_all[EQUALS] += tiempo;
 
+    cout << "IC ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1138,6 +1210,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     tiempo = (double)(t1 - t0);
     tr_all[INCLUDES] += tiempo;
 
+    cout << "IS ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1148,6 +1221,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     tiempo = (double)(t1 - t0);
     tr_all[INSIDE] += tiempo;
 
+    cout << "OV ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1158,6 +1232,7 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     tiempo = (double)(t1 - t0);
     tr_all[OVERLAPS] += tiempo;
 
+    cout << "TO ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1167,6 +1242,8 @@ vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops){
     t1 = clock();
     tiempo = (double)(t1 - t0);
     tr_all[TOUCHES] += tiempo;
+
+    cout << "OK" << endl << ">>> Fin Calculo Tiempo GST_1" << endl;
 
 
     tr_all[COVEREDBY] = ((tr_all[COVEREDBY]/CLOCKS_PER_SEC) / tr) * 1000000;
@@ -1211,7 +1288,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     double tConstruccion = ((t1-t0)/CLOCKS_PER_SEC) * 1000000;
     cout << "Tiempo Construcción: " << tConstruccion << "[us]" << endl;
     trpc.sizeEstructura();
-    cout << endl;
+
     map<string, int> mrt;
     map<string, double> tr_all;
     map<string, double> tr_true;
@@ -1253,6 +1330,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     vector<int> r_overlaps;
     vector<int> r_touches;
 
+    cout << ">>> Calculando..." << endl << "\tRelación Topológica ... ";
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
             string r = trpc.obtenerRelacion(i, j);
@@ -1286,6 +1364,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
             }
         }
     }
+    cout << "OK" << endl;
 
     vector<vector<double>> m(8, vector<double>(4, 0.0));
     // Cantidad de relaciones
@@ -1309,6 +1388,8 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     int mstrsOver = 0;
     int mstrsTouc = 0;
     
+    cout << "\tRelaciones binarias TRUE ... ";
+    cout << "CB ... ";
     t0 = clock();
     while(mstrsCovB < minMuestras && r_coveredby.size() > 0){
         for(int j = 0; j < r_coveredby.size(); j += 2){
@@ -1324,6 +1405,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
         tr_true[COVEREDBY] = 0;
     }
     
+    cout << "CV ... ";
     t0 = clock();
     while(mstrsCovs < minMuestras && r_covers.size() > 0){
         for(int j = 0; j < r_covers.size(); j += 2){
@@ -1339,6 +1421,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
         tr_true[COVERS] = 0;
     }
     
+    cout << "DJ ... ";
     t0 = clock();
     while(mstrsDisj < minMuestras && r_disjoint.size() > 0){
         for(int j = 0; j < r_disjoint.size(); j += 2){
@@ -1354,6 +1437,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
         tr_true[DISJOINT] = 0;
     }
     
+    cout << "EQ ... ";
     t0 = clock();
     while(mstrsEqls < minMuestras && r_equals.size() > 0){
         for(int j = 0; j < r_equals.size(); j += 2){
@@ -1369,6 +1453,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
         tr_true[EQUALS] = 0;
     }
     
+    cout << "IC ... ";
     t0 = clock();
     while(mstrsIncl < minMuestras && r_includes.size() > 0){
         for(int j = 0; j < r_includes.size(); j += 2){
@@ -1384,6 +1469,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
         tr_true[INCLUDES] = 0;
     }
     
+    cout << "IS ... ";
     t0 = clock();
     while(mstrsInsi < minMuestras && r_inside.size() > 0){
         for(int j = 0; j < r_inside.size(); j += 2){
@@ -1399,6 +1485,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
         tr_true[INSIDE] = 0;
     }
     
+    cout << "OV ... ";
     t0 = clock();
     while(mstrsOver < minMuestras && r_overlaps.size() > 0){
         for(int j = 0; j < r_overlaps.size(); j += 2){
@@ -1414,6 +1501,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
         tr_true[OVERLAPS] = 0;
     }
     
+    cout << "TO ... ";
     t0 = clock();
     while(mstrsTouc < minMuestras && r_touches.size() > 0){
         for(int j = 0; j < r_touches.size(); j += 2){
@@ -1428,6 +1516,8 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     if(r_touches.size() == 0){
         tr_true[TOUCHES] = 0;
     }
+
+    cout << "OK" << endl;
 
     // Cantidad de muestras para tiempos_true
     m[idCoveredby][1] = mstrsCovB;
@@ -1460,6 +1550,8 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
 
     tr = mrt[COVEREDBY] + mrt[COVERS] + mrt[DISJOINT] + mrt[EQUALS] + mrt[INCLUDES] + mrt[INSIDE] + mrt[OVERLAPS] + mrt[TOUCHES];
 
+    cout << "\tRelaciones binarias ALL ... ";
+    cout << "CB ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1470,6 +1562,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     tiempo = (double)(t1 - t0);
     tr_all[COVEREDBY] += tiempo;
 
+    cout << "CV ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1480,6 +1573,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     tiempo = (double)(t1 - t0);
     tr_all[COVERS] += tiempo;
 
+    cout << "DJ ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1490,6 +1584,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     tiempo = (double)(t1 - t0);
     tr_all[DISJOINT] += tiempo;
 
+    cout << "EQ ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1500,6 +1595,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     tiempo = (double)(t1 - t0);
     tr_all[EQUALS] += tiempo;
 
+    cout << "IC ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1510,6 +1606,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     tiempo = (double)(t1 - t0);
     tr_all[INCLUDES] += tiempo;
 
+    cout << "IS ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1520,6 +1617,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     tiempo = (double)(t1 - t0);
     tr_all[INSIDE] += tiempo;
 
+    cout << "OV ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1530,6 +1628,7 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     tiempo = (double)(t1 - t0);
     tr_all[OVERLAPS] += tiempo;
 
+    cout << "TO ... ";
     t0 = clock();
     for(int i = 0; i < routes.size(); i++){
         for(int j = 0; j < routes.size(); j++){
@@ -1539,6 +1638,8 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     t1 = clock();
     tiempo = (double)(t1 - t0);
     tr_all[TOUCHES] += tiempo;
+
+    cout << "OK" << endl << ">>> Fin Calculo Tiempo PreComp" << endl;
 
 
     tr_all[COVEREDBY] = ((tr_all[COVEREDBY]/CLOCKS_PER_SEC) / tr) * 1000000;

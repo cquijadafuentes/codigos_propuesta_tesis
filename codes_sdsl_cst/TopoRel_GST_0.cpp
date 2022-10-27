@@ -681,7 +681,7 @@ void TopoRelGST_0::navega(int x){
     for(int i=0; i<gstMapa.size(); i++){
         cout << "(" << i << "): " << cst.id(gstMapa[i]) << endl;
     }
-
+    cout << endl;
 }
 
 // Funciones private
