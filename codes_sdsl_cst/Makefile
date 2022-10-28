@@ -8,8 +8,9 @@ BINS=TopoRel_Naive_test  TopoRel_Naive_PreComp_test\
 		time_TopoRel_boolean TopoRel_testall\
 		TopoRel_GST_0_test TopoRel_GST_1_test TopoRel_GST_2_test
 
-OBJECTS=TopoRel_Naive.o TopoRel_Naive_PreComp.o\
-		TopoRel_GST_0.o TopoRel_GST_1.o TopoRel_GST_2.o
+OBJECTS=TopoRel_GST_2.o\
+		TopoRel_Naive.o TopoRel_Naive_PreComp.o\
+		TopoRel_GST_0.o TopoRel_GST_1.o 
 
 %.o: %.cpp
 	$(CPP) $(PREFLAGS) -c $< -o $@ $(POSFLAGS)

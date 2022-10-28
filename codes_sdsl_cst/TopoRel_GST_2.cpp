@@ -75,24 +75,16 @@ TopoRelGST_2::TopoRelGST_2(vector<vector<int>> &rutas, int cant_stops){
             auto v = cst.child(cst.root(), rutas[i][j]);
             while(v != cst.root() && cst.depth(v) <= rutas[i].size()-j){
                 gstMarcas[i][cst.id(v)] = 1;
-                if(cst.depth(v) < rutas[i].size()-j){
-                    v = cst.child(v, rutas[i][cst.depth(v)+j]);
-                }else{
-                    break;
-                }
+                v = cst.child(v, rutas[i][cst.depth(v) + j]);
             }
+        }
+        for(int j = rutas[i].size()-1; j >=0 ; j--){
             // La segunda mitad de marcas es para rutas reversas
-            int auxJ = rutas[i].size() - 1 - j;
-            v = cst.child(cst.root(), rutas[i][auxJ]);
-            while(v != cst.root() && cst.depth(v) <= rutas[i].size()-auxJ){
+            auto v = cst.child(cst.root(), rutas[i][j]);
+            while(v != cst.root() && j - cst.depth(v) >= 0){
                 gstMarcas[n_rutas + i][cst.id(v)] = 1;
-                if(cst.depth(v) < rutas[i].size()-auxJ){
-                    v = cst.child(v, rutas[i][cst.depth(v)+auxJ]);
-                }else{
-                    break;
-                }
+                v = cst.child(v, rutas[i][j - cst.depth(v)]);
             }
-
         }
     }
 //    cout << "Marcas en bitvector... OK" << endl;
@@ -177,29 +169,19 @@ string TopoRelGST_2::obtenerRelacion(int x, int y){
         }
         return COVERS;
     }
-    // Para obtener (IC o IS) se debe ir reduciendo el tamaño de larga
-//    cout << endl << "x: " << x << " - y: " << y << endl;
-//    cout << "C id: " << cst.id(C) << " - L id: " << cst.id(L) << endl;
-    int tempL = gstRutas[largo].size();
-    do{
-        // Acortar la secuencia Larga
-        L = cst.sl(L);
-        tempL--;
-        // Calcular LCA con corta
-        lcaCL = cst.lca(C, L);
-        lcaCrL = cst.lca(Cr, L);
-//        cout << "L id: " << cst.id(L) << " - lcaCL id: " << cst.id(lcaCL) << " - lcaCrL id: " << cst.id(lcaCrL) << endl;
-//        cout << "if: " << cst.depth(L) << ">" << lC << " && " << cst.depth(lcaCL) << "<" << lC << " && " << cst.depth(lcaCrL) << "<" << lC << endl;
-    }while(tempL > lC && cst.depth(lcaCL) < lC && cst.depth(lcaCrL) < lC);
-
-    if(cst.depth(lcaCL) >= lC || cst.depth(lcaCrL) >= lC){
+    
+    // Para obtener (IC o IS) se debe mirar si el nodo padre de corto tiene una marca de largo
+    auto padreCorto = cst.parent(gstMapa[corto]);
+    int idPaCorto = cst.id(padreCorto);
+    if(cst.depth(padreCorto) == gstRutas[corto].size() && gstMarcas[largo][idPaCorto]){
         // Existe contención
         if(corto == x){
             return INSIDE;
         }
         return INCLUDES;
     }
-    tempL = gstRutas[largo].size();
+
+    int tempL = gstRutas[largo].size();
     do{
         // Acortar la secuencia LargaReversa
         Lr = cst.sl(Lr);
@@ -303,44 +285,11 @@ bool TopoRelGST_2::tr_inside(int x, int y){
     if(cst.depth(lca1) == l || cst.depth(lca2) == l || cst.depth(lca3) == l || cst.depth(lca4) == l){
         return false;
     }
-    // Descarte por SegmentosBorde
-    if(bordesSeg_touches(x,y)){
-        return false;
-    }
-    // Verifica Inside
-    auto L = gstMapa[y];
-    auto C = gstMapa[x];
-    auto Lr = gstMapa[y+n_rutas];
-    auto Cr = gstMapa[x+n_rutas];
-    auto lcaCL = cst.root();
-    auto lcaCLr = cst.root();
-    auto lcaCrL = cst.root();
-    auto lcaCrLr = cst.root();
 
-    int tempL = gstRutas[y].size();
-    do{
-        // Acortar la secuencia Larga
-        L = cst.sl(L);
-        tempL--;
-        // Calcular LCA con corta
-        lcaCL = cst.lca(C, L);
-        lcaCrL = cst.lca(Cr, L);
-    }while(tempL > l && cst.depth(lcaCL) < l && cst.depth(lcaCrL) < l);
-    if(cst.depth(lcaCL) >= l || cst.depth(lcaCrL) >= l){
-        // Existe contención
-        return true;
-    }
-    tempL = gstRutas[y].size();
-    do{
-        // Acortar la secuencia LargaReversa
-        Lr = cst.sl(Lr);
-        tempL--;
-        // Calcular LCA con corta
-        lcaCLr = cst.lca(C, Lr);
-        lcaCrLr = cst.lca(Cr, Lr);
-    }while(tempL > l && cst.depth(lcaCLr) < l && cst.depth(lcaCrLr) < l);
-
-    if(cst.depth(lcaCLr) >= l || cst.depth(lcaCrLr) >= l){
+    // Verificación por gstMarcas
+    auto padreX = cst.parent(gstMapa[x]);
+    int idPaX = cst.id(padreX);
+    if(cst.depth(padreX) == gstRutas[x].size() && gstMarcas[y][idPaX]){
         return true;
     }
     return false;
@@ -702,6 +651,23 @@ void TopoRelGST_2::navega(int x){
         cout << "(" << i << "): " << cst.id(gstMapa[i]) << endl;
     }
     cout << endl;
+
+    cout << endl << "marcas: \n\t";
+    for(int i=0; i<gstMarcas[0].size()/10; i++){
+        cout << i << "         ";
+    }
+    cout << "\n\t";
+    for(int i=0; i<gstMarcas[0].size(); i++){
+        cout << i%10;
+    }
+    cout << endl;
+    for(int i=0; i<gstMarcas.size(); i++){
+        cout << "(" << i << "): \t";
+        for(int j=0; j<gstMarcas[i].size(); j++){
+            cout << gstMarcas[i][j];
+        }
+        cout << endl;
+    }
 }
 
 // Funciones private
