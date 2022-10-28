@@ -1,3 +1,0 @@
-Dataset	cst-sct3	rutas-rev	marcas	mapa
-Santiago	135078	147192	6306048	31280
-Madrid	222954	227160	26082336	83920

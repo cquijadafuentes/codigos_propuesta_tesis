@@ -1,0 +1,41 @@
+********** Naive Algorithm **********
+TopoRelation	cant	Time_true	Time_all
+CoveredBy	15	3.8 [us]	1.6696 [us]
+Covers		15	3.7619 [us]	1.66935 [us]
+Disjoint	143280	4.4316 [us]	4.37058 [us]
+Equals		391	0.664962 [us]	0.0195315 [us]
+Includes	6	4.45098 [us]	1.67269 [us]
+Inside		6	4.44118 [us]	1.66915 [us]
+Overlaps	8182	8.2987 [us]	7.56732 [us]
+Touches		986	4.91278 [us]	6.45429 [us]
+Total relaciones: 152881
+********** Naive Pre-Computed **********
+Tiempo Construcción: 3e+06[us]
+**** Tamaño en bytes ****
+rutas [B]: 33959
+relaciones [B]: 62951
+**** Elementos ****
+Nº Rutas: 391
+
+TopoRelation	cant	Time_true	Time_all
+CoveredBy	15	0.047619 [us]	0.0339283 [us]
+Covers		15	0.047619 [us]	0.0331369 [us]
+Disjoint	143280	0.0399497 [us]	0.0341115 [us]
+Equals		391	0.0434783 [us]	0.0339807 [us]
+Includes	6	0.0490196 [us]	0.0339153 [us]
+Inside		6	0.0490196 [us]	0.0339807 [us]
+Overlaps	8182	0.040088 [us]	0.0337779 [us]
+Touches		986	0.040568 [us]	0.0339218 [us]
+Total relaciones: 152881
+********** Compressed Suffix Tree **********
+Tiempo Construcción: 2e+06[us]
+**** Tamaño en bytes ****
+cst_sct3 [B]: 107766
+marcas [B]: 397256
+mapa [B]: 31280
+**** Elementos ****
+Nº Rutas: 391
+Nº Nodos cst_sct3: 62029
+Nº Hojas cst_sct3: 37581
+Nº 1s/length en marcas: 18399/3138557
+

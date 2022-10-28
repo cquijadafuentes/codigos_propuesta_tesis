@@ -1,0 +1,30 @@
+
+red = "#FF0000"; green = "#00FF00"; blue = "#0000FF"; skyblue = "#87CEEB";
+set style data histogram
+set style histogram cluster gap 1
+set style fill solid
+set boxwidth 0.9
+set grid ytics
+set key out horiz
+
+set terminal png size 800,600
+
+set output 'booleans.png'
+set yrange [0.01:5000]
+set logscale y
+set title 'Operaciones Booleanas'
+set ylabel "Tiempo [us]"
+set xlabel "Operaciones"
+plot 'data_20220414.txt' using 3:xtic(1) title 'Naive True' linecolor rgb red,   \
+     'data_20220414.txt' using 4 title 'Naive All' linecolor rgb blue,   \
+     'data_20220414.txt' using 5 title 'GST True' linecolor rgb green,    \
+     'data_20220414.txt' using 6 title 'GST All' linecolor rgb skyblue
+
+
+set output 'operations.png'
+set yrange [0.1:100]
+unset logscale y
+set title 'Determinar Relación'
+set ylabel "Tiempo [s]"
+set xlabel "Concepto"
+plot 'data_gral.txt' using 2:xtic(1) linecolor rgb red

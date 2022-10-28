@@ -1,0 +1,3 @@
+%X	Time Build[s]	Time Query[s]
+Naive	0.0		0.386217
+GST	14.5520	74.1899

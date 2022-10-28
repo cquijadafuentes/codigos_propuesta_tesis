@@ -1,9 +1,10 @@
+*.o
 size_TopoRel
 test_alfabeto_ext
 time_TopoRel_boolean
-TopoRel_GST_test
-TopoRel_GST_test_size
+TopoRel_GST_0_test
+TopoRel_GST_1_test
+TopoRel_GST_2_test
 TopoRel_Naive_PreComp_test
 TopoRel_Naive_test
 TopoRel_testall
-*.o
