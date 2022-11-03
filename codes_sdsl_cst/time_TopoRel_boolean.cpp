@@ -8,6 +8,7 @@
 #include "TopoRel_Cons.hpp"
 #include "TopoRel_GST_0.hpp"
 #include "TopoRel_GST_1.hpp"
+#include "TopoRel_GST_2.hpp"
 
 using namespace std;
 
@@ -15,6 +16,7 @@ void mostrar_rutas(vector<int> &a, vector<int> &b);
 vector<vector<double>> tiempos_naive(vector<vector<int>> &routes);
 vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops);
 vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops);
+void tiempos_GST_2(vector<vector<int>> &routes, int n_stops);
 vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_stops);
 
 int idCoveredby = 0;
@@ -51,6 +53,7 @@ int main(int argc, char const *argv[]){
     vector<vector<double>> pCNaive = tiempos_naive_precomp(routes, n_stops);
     vector<vector<double>> mGST0 = tiempos_GST_0(routes,  n_stops);
     vector<vector<double>> mGST1 = tiempos_GST_1(routes,  n_stops);
+    tiempos_GST_2(routes,  n_stops);
 
     cout << " *********************** matriz *********************** " << endl;
     vector<string> ns = {"Coveredby", "Covers", "Equals", "Includes", "Inside", "Overlaps", "Touches", "Disjoint"};    
@@ -1676,3 +1679,12 @@ vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_
     return m;
 }
 
+void tiempos_GST_2(vector<vector<int>> &routes, int n_stops){
+    cout << "********** Compressed Suffix Tree GST_2 **********" << endl;
+    unsigned t0 = clock();
+    TopoRelGST_1 tt(routes, n_stops);
+    unsigned t1 = clock();
+    double tConstruccion = ((t1-t0)/CLOCKS_PER_SEC) * 1000000;
+    cout << "Tiempo Construcción: " << tConstruccion << "[us]" << endl;
+    tt.sizeEstructura();
+}
