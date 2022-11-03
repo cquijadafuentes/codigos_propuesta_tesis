@@ -1,0 +1,103 @@
+********** Naive Algorithm **********
+>>> Calculando...
+	Relación Topológica ... OK
+	Relaciones binarias TRUE ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+>>> Fin Calculo Tiempo Naive
+TopoRelation	cant	Time_true	Time_all
+CoveredBy	9	1.07407 [us]	0.618599 [us]
+Covers		9	1.06481 [us]	0.623049 [us]
+Disjoint	949766	1.36414 [us]	1.33458 [us]
+Equals		991	0.249243 [us]	0.0112992 [us]
+Includes	0	-nan [us]	0.625131 [us]
+Inside		0	-nan [us]	0.620845 [us]
+Overlaps	19896	2.59032 [us]	2.58864 [us]
+Touches		7450	1.51785 [us]	1.96551 [us]
+Total relaciones: 978121
+********** Naive Pre-Computed **********
+Tiempo Construcción: 4e+06[us]
+**** Tamaño en bytes ****
+rutas [B]: 56717
+relaciones [B]: 380765
+**** Elementos ****
+Nº Rutas: 989
+>>> Calculando...
+	Relación Topológica ... OK
+	Relaciones binarias TRUE ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+>>> Fin Calculo Tiempo PreComp
+TopoRelation	cant	Time_true	Time_all
+CoveredBy	9	0.0277778 [us]	0.0202214 [us]
+Covers		9	0.0277778 [us]	0.0202572 [us]
+Disjoint	949766	0.0257874 [us]	0.0201325 [us]
+Equals		991	0.0262361 [us]	0.0202674 [us]
+Includes	0	-nan [us]	0.020202 [us]
+Inside		0	-nan [us]	0.0202255 [us]
+Overlaps	19896	0.0219642 [us]	0.0206498 [us]
+Touches		7450	0.0248322 [us]	0.0203175 [us]
+Total relaciones: 978121
+********** Compressed Suffix Tree GST_0 **********
+Tiempo Construcción: 3e+06[us]
+**** Tamaño en bytes ****
+cst_sct3 [B]: 171950
+rutas [B]: 56717
+marcas [B]: 1376688
+mapa [B]: 79120
+**** Elementos ****
+Nº Rutas: 989
+Nº Nodos cst_sct3: 86057
+Nº Hojas cst_sct3: 54015
+Nº 1s/length en marcas: 26018/10889879 (0.238919%)
+>>> Calculando...
+	Relación Topológica ... OK
+	Relaciones binarias TRUE ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+>>> Fin Calculo Tiempo GST_0
+TopoRelation	cant	Time_true	Time_all
+CoveredBy	9	12.7315 [us]	8.10439 [us]
+Covers		9	12.6574 [us]	8.08944 [us]
+Disjoint	949766	17.8417 [us]	17.727 [us]
+Equals		991	0.0131181 [us]	0.0146792 [us]
+Includes	0	-nan [us]	376.352 [us]
+Inside		0	-nan [us]	389.684 [us]
+Overlaps	19896	15.0484 [us]	17.2332 [us]
+Touches		7450	1.01624 [us]	0.132415 [us]
+Total relaciones: 978121
+********** Compressed Suffix Tree GST_1 **********
+Tiempo Construcción: 3e+06[us]
+**** Tamaño en bytes ****
+cst_sct3 [B]: 171950
+rutas [B]: 56717
+marcas [B]: 242590
+mapa [B]: 79120
+**** Elementos ****
+Nº Rutas: 989
+Nº Nodos cst_sct3: 86057
+Nº Hojas cst_sct3: 54015
+Nº 1s/length en marcas: 26018/10889879 (0.238919%)
+>>> Calculando...
+	Relación Topológica ... OK
+	Relaciones binarias TRUE ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+>>> Fin Calculo Tiempo GST_1
+TopoRelation	cant	Time_true	Time_all
+CoveredBy	9	12.8426 [us]	8.11061 [us]
+Covers		9	12.5833 [us]	8.12858 [us]
+Disjoint	949766	22.0362 [us]	21.8233 [us]
+Equals		991	0.0151362 [us]	0.014628 [us]
+Includes	0	-nan [us]	377.194 [us]
+Inside		0	-nan [us]	389.708 [us]
+Overlaps	19896	16.842 [us]	19.187 [us]
+Touches		7450	4.07651 [us]	0.502056 [us]
+Total relaciones: 978121
+
+ *********************** matriz *********************** 
+%relacion	nvCant	nvSamp	nvTrue	nvAll	pcCant	pcSamp	pcTrue	pcAll	gst0Can	gst0Sam	gst0True	gst0All	gst1Can	gst1Sam	gst1True	gst1All
+Coveredby	9	108	1.07407	0.618599	9	108	0.0277778	0.0202214	9	108	12.7315	8.10439	9	108	12.8426	8.11061	
+Covers	9	108	1.06481	0.623049	9	108	0.0277778	0.0202572	9	108	12.6574	8.08944	9	108	12.5833	8.12858	
+Equals	991	991	0.249243	0.0112992	991	991	0.0262361	0.0202674	991	991	0.0131181	0.0146792	991	991	0.0151362	0.014628	
+Includes	0	0	-nan	0.625131	0	0	-nan	0.020202	0	0	-nan	376.352	0	0	-nan	377.194	
+Inside	0	0	-nan	0.620845	0	0	-nan	0.0202255	0	0	-nan	389.684	0	0	-nan	389.708	
+Overlaps	19896	19896	2.59032	2.58864	19896	19896	0.0219642	0.0206498	19896	19896	15.0484	17.2332	19896	19896	16.842	19.187	
+Touches	7450	7450	1.51785	1.96551	7450	7450	0.0248322	0.0203175	7450	7450	1.01624	0.132415	7450	7450	4.07651	0.502056	
+Disjoint	949766	949766	1.36414	1.33458	949766	949766	0.0257874	0.0201325	949766	949766	17.8417	17.727	949766	949766	22.0362	21.8233	

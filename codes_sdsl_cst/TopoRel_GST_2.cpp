@@ -185,50 +185,97 @@ string TopoRelGST_2::obtenerRelacion(int x, int y){
         return INCLUDES;
     }
 
-    // Verificar si TO es posible
-    // Candidato a touches si hay un lca de grado 1
-    auto lcaCiLi = cst.lca(C,L);
-    auto lcaCiLf = cst.lca(C,Lr);
-    auto lcaCfLi = cst.lca(Cr,L);
-    auto lcaCfLf = cst.lca(Cr,Lr);
-    bool posibleTo = false;
-    
-    // Se determina OV si algún lca tiene grado mayor que uno
-    if(cst.depth(lcaCiLi) > 1 || cst.depth(lcaCiLf) > 1 || cst.depth(lcaCfLi) > 1 || cst.depth(lcaCfLf) > 1){
+    // Se determina OV si algún lca tiene grado mayor que uno (ya se descartón contención)
+    if(cst.depth(lcaCL) > 1 || cst.depth(lcaCLr) > 1 || cst.depth(lcaCrL) > 1 || cst.depth(lcaCrLr) > 1){
         // Hay intersección interior-interior y no hay inclusión
         return OVERLAPS;
     }
 
-    if(cst.depth(lcaCiLi) == 1 || cst.depth(lcaCiLf) == 1 || cst.depth(lcaCfLi) == 1 || cst.depth(lcaCfLf) == 1){
-        auto nav = gstMapa[corto];
-    }
-    
-
-    int bCi = gstRutas[corto][0];
-    int bCf = gstRutas[corto][gstRutas[corto].size()-1];
-    int bLi = gstRutas[largo][0];
-    int bLf = gstRutas[largo][gstRutas[largo].size()-1];
-    if(gstMarcas[largo][bCi] == 1 || gstMarcas[largo][bCf] == 1 || gstMarcas[corto][bLi] == 1 || gstMarcas[corto][bLf] == 1){
-//        cout << endl << "x: " << x << " - y: " << y << endl;
-        // Verficar que la coincidencia de bordes no posee intersección I-I
-        if(bordesSeg_touches(x, y)){
-            return OVERLAPS;
-        }
+    // Verificar si TO es posible
+    bool posibleTo = false;
+    if(cst.depth(lcaCL) == 1 || cst.depth(lcaCLr) == 1 || cst.depth(lcaCrL) == 1 || cst.depth(lcaCrLr) == 1){
         posibleTo = true;
     }
-    // Verificar OV (intersección interior-interior)
-    // Se recorre corto para identificar cualquier coincidencia con largo
-    int aux;
-//    cout << "lC: " << lC << endl;
-    for(int i=2; i<lC; i++){
-        aux = gstRutas[corto][i-1];
-//        cout << "aux: " << aux << endl;
-        if(aux != bLi && aux != bLf && gstMarcas[largo][aux]){
-            return OVERLAPS;
+
+    // Identificar intersección interior-interior o interior-borde por la navegación de los sl y marcas
+    auto auxNavCorto0 = cst.parent(gstMapa[corto]); // Elimina el borde final
+    while(cst.depth(auxNavCorto0) > 2){
+        auxNavCorto0 = cst.sl(auxNavCorto0);  // Elimina el borde inicial y continúa por las ramas sl
+        auto auxNavCorto = auxNavCorto0;
+        while(cst.depth(auxNavCorto) > 1){
+            int auxID = cst.id(auxNavCorto);
+            if(gstMarcas[corto][auxID] == 1 || gstMarcas[corto][auxID] == 1){
+                // Hay una marca, se debe verificar que es con el borde de largo o largoRev
+                auto lcaT = cst.lca(auxNavCorto, L);
+                int depthT = cst.depth(lcaT);
+                if(depthT > 0){
+                    if(depthT == 1){
+                        posibleTo = true;
+                    }else{
+                        return OVERLAPS;
+                    }
+                }
+                auto lcaTr = cst.lca(auxNavCorto, Lr);
+                int depthTr = cst.depth(lcaTr);
+                if(depthTr > 0){
+                    if(depthTr == 1){
+                        // Interior de corto toca borde de largo
+                        posibleTo = true;
+                    }else{
+                        return OVERLAPS;
+                    }
+                }
+            }
+            auxNavCorto = cst.parent(auxNavCorto);
+        }
+    }
+    
+    auxNavCorto0 = cst.parent(gstMapa[corto+n_rutas]); // Elimina el borde final
+    while(cst.depth(auxNavCorto0) > 2){
+        auxNavCorto0 = cst.sl(auxNavCorto0);  // Elimina el borde inicial y continúa por las ramas sl
+        auto auxNavCorto = auxNavCorto0;
+        while(cst.depth(auxNavCorto) > 1){
+            int auxID = cst.id(auxNavCorto);
+            if(gstMarcas[corto][auxID] == 1 || gstMarcas[corto][auxID] == 1){
+                // Hay una marca, se debe verificar que es con el borde de largo o largoRev
+                auto lcaT = cst.lca(auxNavCorto, L);
+                int depthT = cst.depth(lcaT);
+                if(depthT > 0){
+                    if(depthT == 1){
+                        posibleTo = true;
+                    }else{
+                        return OVERLAPS;
+                    }
+                }
+                auto lcaTr = cst.lca(auxNavCorto, Lr);
+                int depthTr = cst.depth(lcaTr);
+                if(depthTr > 0){
+                    if(depthTr == 1){
+                        // Interior de corto toca borde de largo
+                        posibleTo = true;
+                    }else{
+                        return OVERLAPS;
+                    }
+                }
+            }
+            auxNavCorto = cst.parent(auxNavCorto);
         }
     }
 
     if(posibleTo){
+        return TOUCHES;
+    }
+    
+    // Verificar bordes de Corto
+    auto anC = nodoProfUno(C);
+    int auxID = cst.id(anC);
+    if(cst.depth(anC) == 1 && (gstMarcas[largo][auxID] || gstMarcas[largo+n_rutas][auxID])){
+        return TOUCHES;
+    }
+
+    auto anCr = nodoProfUno(Cr);
+    auxID = cst.id(anCr);
+    if(cst.depth(anCr) == 1 && (gstMarcas[largo][auxID] || gstMarcas[largo+n_rutas][auxID])){
         return TOUCHES;
     }
 
@@ -744,6 +791,13 @@ bool TopoRelGST_2::interiorInterior(int t1, int t2){
     return false;
 }
 
+bool TopoRelGST_2::estaMarcado(int idNodo, int idStop){
+    if(gstMarcas[idNodo][idStop] == 1){
+        return true;
+    }
+    return false;
+}
+
 cst_sct3<>::node_type TopoRelGST_2::nodoSubseq(cst_sct3<>::node_type n, int x){
     // Retorna el nodo con la subsequencia de largo x desde el nodo n
     auto r = cst.root();
@@ -756,4 +810,13 @@ cst_sct3<>::node_type TopoRelGST_2::nodoSubseq(cst_sct3<>::node_type n, int x){
         d = cst.depth(r);
     }while(d < x);
     return r;
+}
+
+cst_sct3<>::node_type TopoRelGST_2::nodoProfUno(cst_sct3<>::node_type n){
+    // Retorna el nodo con la subsequencia de largo x desde el nodo n
+    auto nav = n;
+    while(cst.depth(nav) > 1){
+        nav = cst.parent(nav);
+    }
+    return nav;
 }

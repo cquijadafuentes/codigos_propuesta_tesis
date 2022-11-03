@@ -1,0 +1,5 @@
+Dataset	cst-sct3	marcas	mapa	rutas	rel-3b	largos
+Naive_{PC}	-nan	-nan	-nan	33959	62951	-nan
+GST_0 	107766	397256	31280	33959	-nan	-nan
+GST_1	107766	107682	31280	33959	-nan	-nan
+GST_2	107766	6074576	31280	-nan	-nan	401

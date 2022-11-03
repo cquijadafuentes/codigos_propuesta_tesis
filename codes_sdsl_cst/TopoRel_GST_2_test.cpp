@@ -43,6 +43,7 @@ int main(int argc, char const *argv[]){
 	}
 	cout << endl;
 	
+	cout << "creando..." << endl;
 	TopoRelGST_2 tr_gst(vi, max);
 	
 	tr_gst.navega(0);
@@ -277,6 +278,8 @@ int main(int argc, char const *argv[]){
 		cout << endl;
 	}
 	cout << endl;
+	
+	tr_gst.sizeEstructura();
 
 	return 0;
 }

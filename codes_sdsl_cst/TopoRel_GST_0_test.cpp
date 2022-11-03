@@ -277,5 +277,7 @@ int main(int argc, char const *argv[]){
 	}
 	cout << endl;
 
+	tr_gst.sizeEstructura();
+
 	return 0;
 }

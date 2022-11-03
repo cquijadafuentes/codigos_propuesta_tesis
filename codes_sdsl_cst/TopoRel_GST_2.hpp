@@ -20,7 +20,7 @@ class TopoRelGST_2{
 public:
     cst_sct3<csa_wt<wt_int<rrr_vector<>>>> cst;
     vector<int_vector<>> gstRutas;
-    vector<bit_vector> gstMarcas;
+    vector<bit_vector> gstMarcas;   // 2rutas x marcas
     vector<cst_sct3<>::node_type> gstMapa;
     int_vector<> gstLargos;
     int n_rutas;
@@ -52,6 +52,8 @@ public:
 private:
     bool bordesSeg_touches(int, int);
     bool interiorInterior(int, int);
+    bool estaMarcado(int, int);
+    cst_sct3<>::node_type nodoProfUno(cst_sct3<>::node_type);
     cst_sct3<>::node_type nodoSubseq(cst_sct3<>::node_type, int);
 };
 
