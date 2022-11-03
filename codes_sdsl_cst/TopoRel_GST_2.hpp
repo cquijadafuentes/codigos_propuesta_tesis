@@ -22,7 +22,7 @@ public:
     vector<int_vector<>> gstRutas;
     vector<bit_vector> gstMarcas;
     vector<cst_sct3<>::node_type> gstMapa;
-    int_vector<> largos;
+    int_vector<> gstLargos;
     int n_rutas;
     int n_concat;
     int n_stops;
@@ -51,6 +51,7 @@ public:
 
 private:
     bool bordesSeg_touches(int, int);
+    bool interiorInterior(int, int);
     cst_sct3<>::node_type nodoSubseq(cst_sct3<>::node_type, int);
 };
 

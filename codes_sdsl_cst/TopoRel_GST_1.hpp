@@ -19,10 +19,9 @@ using namespace sdsl;
 class TopoRelGST_1{
 public:
     cst_sct3<csa_wt<wt_int<rrr_vector<>>>> cst;
-    vector<sd_vector<>> gstMarcas;
     vector<int_vector<>> gstRutas;
+    vector<sd_vector<>> gstMarcas;
     vector<cst_sct3<>::node_type> gstMapa;
-    int_vector<> largos;
     int n_rutas;
     int n_concat;
     int n_stops;

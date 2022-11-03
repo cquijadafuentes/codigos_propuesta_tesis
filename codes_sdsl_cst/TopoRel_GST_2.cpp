@@ -28,10 +28,12 @@ TopoRelGST_2::TopoRelGST_2(vector<vector<int>> &rutas, int cant_stops){
     finSec = maxID+1;
     int_vector<> iv(n_concat*2);
     gstRutas = vector<int_vector<>>(rutas.size());
+    gstLargos = int_vector<>(rutas.size());
     int pv = 0;
     int tr = n_rutas;
     // Concatenar rutas
     for(int i = 0; i < n_rutas; i++){
+        gstLargos[i] = rutas[i].size();
         gstRutas[i] = int_vector<>(rutas[i].size());
         for(int j = 0; j < rutas[i].size(); j++){
             iv[pv++] = rutas[i][j];
@@ -40,6 +42,7 @@ TopoRelGST_2::TopoRelGST_2(vector<vector<int>> &rutas, int cant_stops){
         iv[pv++] = finSec;
         util::bit_compress(gstRutas[i]);
     }
+    util::bit_compress(gstLargos);
 //    cout << "Rutas... concatenadas" << endl;
 
     // Concatenar rutas reversas
@@ -139,8 +142,8 @@ string TopoRelGST_2::obtenerRelacion(int x, int y){
     // Identificar contención según nodo
     // Inside, includes, coveredBy, covers
     int corto, largo, lC, lL;
-    int lx = gstRutas[x].size();
-    int ly = gstRutas[y].size();
+    int lx = gstLargos[x];
+    int ly = gstLargos[y];
     if(lx < ly){
         corto = x;
         lC = lx;
@@ -173,36 +176,34 @@ string TopoRelGST_2::obtenerRelacion(int x, int y){
     // Para obtener (IC o IS) se debe mirar si el nodo padre de corto tiene una marca de largo
     auto padreCorto = cst.parent(gstMapa[corto]);
     int idPaCorto = cst.id(padreCorto);
-    if(cst.depth(padreCorto) == gstRutas[corto].size() && gstMarcas[largo][idPaCorto]){
+    if(cst.depth(padreCorto) == gstLargos[corto] && 
+            (gstMarcas[largo][idPaCorto] || gstMarcas[largo+n_rutas][idPaCorto])){
         // Existe contención
         if(corto == x){
             return INSIDE;
         }
         return INCLUDES;
     }
-
-    int tempL = gstRutas[largo].size();
-    do{
-        // Acortar la secuencia LargaReversa
-        Lr = cst.sl(Lr);
-        tempL--;
-        // Calcular LCA con corta
-        lcaCLr = cst.lca(C, Lr);
-        lcaCrLr = cst.lca(Cr, Lr);
-//        cout << "Lr id: " << cst.id(Lr) << " - lcaCLr id: " << cst.id(lcaCLr) << " - lcaCrLr id: " << cst.id(lcaCrLr) << endl;
-    }while(tempL > lC && cst.depth(lcaCLr) < lC && cst.depth(lcaCrLr) < lC);
-
-    if(cst.depth(lcaCLr) >= lC || cst.depth(lcaCrLr) >= lC){
-        // Existe contención
-        if(corto == x){
-            return INSIDE;
-        }
-        return INCLUDES;
-    }
-
 
     // Verificar si TO es posible
+    // Candidato a touches si hay un lca de grado 1
+    auto lcaCiLi = cst.lca(C,L);
+    auto lcaCiLf = cst.lca(C,Lr);
+    auto lcaCfLi = cst.lca(Cr,L);
+    auto lcaCfLf = cst.lca(Cr,Lr);
     bool posibleTo = false;
+    
+    // Se determina OV si algún lca tiene grado mayor que uno
+    if(cst.depth(lcaCiLi) > 1 || cst.depth(lcaCiLf) > 1 || cst.depth(lcaCfLi) > 1 || cst.depth(lcaCfLf) > 1){
+        // Hay intersección interior-interior y no hay inclusión
+        return OVERLAPS;
+    }
+
+    if(cst.depth(lcaCiLi) == 1 || cst.depth(lcaCiLf) == 1 || cst.depth(lcaCfLi) == 1 || cst.depth(lcaCfLf) == 1){
+        auto nav = gstMapa[corto];
+    }
+    
+
     int bCi = gstRutas[corto][0];
     int bCf = gstRutas[corto][gstRutas[corto].size()-1];
     int bLi = gstRutas[largo][0];
@@ -670,8 +671,6 @@ void TopoRelGST_2::navega(int x){
     }
 }
 
-// Funciones private
-
 void TopoRelGST_2::sizeEstructura(){
     cout << "**** Tamaño en bytes ****" << endl;
     cout << "cst_sct3 [B]: " << size_in_bytes(cst) << endl;
@@ -700,6 +699,7 @@ void TopoRelGST_2::sizeEstructura(){
         bytesMapa += sizeof(gstMapa[i]);
     }
     cout << "mapa [B]: " << bytesMapa << endl;
+    cout << "largos [B]: " << size_in_bytes(gstLargos) << endl;
 
     cout << "**** Elementos ****" << endl;
     cout << "Nº Rutas: " << gstMarcas.size() << endl;
@@ -708,6 +708,8 @@ void TopoRelGST_2::sizeEstructura(){
     cout << "Nº 1s/length en marcas: " << bitsUno << "/" << bitsTotal;
     cout << " (" << porcentaje << "%)" << endl;
 }
+
+// Funciones private
 
 bool TopoRelGST_2::bordesSeg_touches(int t1, int t2){
     // Comprueba si hay segmentos finales que se intersecan
@@ -726,6 +728,17 @@ bool TopoRelGST_2::bordesSeg_touches(int t1, int t2){
     if((gstRutas[t1][aff] == gstRutas[t2][1] && gstRutas[t1][apf] == gstRutas[t2][0]) ||
             (gstRutas[t1][aff] == gstRutas[t2][bpf] && gstRutas[t1][apf] == gstRutas[t2][bff])){
         return true;
+    }
+
+    return false;
+}
+
+bool TopoRelGST_2::interiorInterior(int t1, int t2){
+    int corto = t1;
+    int largo = t2;
+    if(gstLargos[t2] < gstLargos[t1]){
+        corto = t2;
+        largo = t1;
     }
 
     return false;
