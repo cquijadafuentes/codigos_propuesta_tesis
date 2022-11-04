@@ -1,5 +1,5 @@
 #include <iostream>
-#include "TopoRel_GST_0.hpp"
+#include "TopoRel_GST_4.hpp"
 
 using namespace std;
 using namespace sdsl;
@@ -43,9 +43,9 @@ int main(int argc, char const *argv[]){
 	}
 	cout << endl;
 	
-	TopoRelGST_0 tr_gst(vi, max);
-	
-	tr_gst.navega(0);
+	TopoRelGST_4 tr_gst(vi, max);
+
+	//tr_gst.navega(0);
 
 	vector<vector<int>> conteo(nr, vector<int>(nr, 0));
 
