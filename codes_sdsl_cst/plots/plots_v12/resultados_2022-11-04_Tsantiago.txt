@@ -1,0 +1,108 @@
+********** Naive Algorithm **********
+>>> Calculando...
+	Relación Topológica ... OK
+	Relaciones binarias TRUE ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+>>> Fin Calculo Tiempo Naive
+TopoRelation	cant	Time_true	Time_all
+CoveredBy	15	3.78095 [us]	1.66342 [us]
+Covers		15	3.79048 [us]	1.66119 [us]
+Disjoint	143280	4.44183 [us]	4.37793 [us]
+Equals		391	0.664962 [us]	0.0196427 [us]
+Includes	6	4.45098 [us]	1.65987 [us]
+Inside		6	4.43137 [us]	1.66281 [us]
+Overlaps	8182	8.16634 [us]	7.6301 [us]
+Touches		986	4.90872 [us]	6.2423 [us]
+Total relaciones: 152881
+********** Naive Pre-Computed **********
+Tiempo Construcción: 3e+06[us]
+**** Tamaño en bytes ****
+rutas [B]: 33959
+relaciones [B]: 62951
+**** Elementos ****
+Nº Rutas: 391
+>>> Calculando...
+	Relación Topológica ... OK
+	Relaciones binarias TRUE ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+>>> Fin Calculo Tiempo PreComp
+TopoRelation	cant	Time_true	Time_all
+CoveredBy	15	0.0571429 [us]	0.0339545 [us]
+Covers		15	0.0571429 [us]	0.0336602 [us]
+Disjoint	143280	0.0398451 [us]	0.0326528 [us]
+Equals		391	0.0434783 [us]	0.0339414 [us]
+Includes	6	0.0490196 [us]	0.0336405 [us]
+Inside		6	0.0588235 [us]	0.0339545 [us]
+Overlaps	8182	0.0404547 [us]	0.0337844 [us]
+Touches		986	0.040568 [us]	0.0339807 [us]
+Total relaciones: 152881
+********** Compressed Suffix Tree GST_0 **********
+Tiempo Construcción: 2e+06[us]
+**** Tamaño en bytes ****
+cst_sct3 [B]: 107766
+rutas [B]: 33959
+marcas [B]: 397256
+mapa [B]: 31280
+**** Elementos ****
+Nº Rutas: 391
+Nº Nodos cst_sct3: 62029
+Nº Hojas cst_sct3: 37581
+Nº 1s/length en marcas: 18399/3138557 (0.586225%)
+>>> Calculando...
+	Relación Topológica ... OK
+	Relaciones binarias TRUE ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+>>> Fin Calculo Tiempo GST_0
+TopoRelation	cant	Time_true	Time_all
+CoveredBy	15	22.0857 [us]	14.6617 [us]
+Covers		15	21.7619 [us]	14.4794 [us]
+Disjoint	143280	33.657 [us]	33.4052 [us]
+Equals		391	0.0255754 [us]	0.0239794 [us]
+Includes	6	1514.16 [us]	1286.98 [us]
+Inside		6	1513.16 [us]	1289.75 [us]
+Overlaps	8182	28.4287 [us]	31.7361 [us]
+Touches		986	2.57911 [us]	0.272657 [us]
+Total relaciones: 152881
+********** Compressed Suffix Tree GST_1 **********
+Tiempo Construcción: 2e+06[us]
+**** Tamaño en bytes ****
+cst_sct3 [B]: 107766
+rutas [B]: 33959
+marcas [B]: 107682
+mapa [B]: 31280
+**** Elementos ****
+Nº Rutas: 391
+Nº Nodos cst_sct3: 62029
+Nº Hojas cst_sct3: 37581
+Nº 1s/length en marcas: 18399/3138557 (0.586225%)
+>>> Calculando...
+	Relación Topológica ... OK
+	Relaciones binarias TRUE ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+>>> Fin Calculo Tiempo GST_1
+TopoRelation	cant	Time_true	Time_all
+CoveredBy	15	22.019 [us]	14.6594 [us]
+Covers		15	21.7714 [us]	14.4814 [us]
+Disjoint	143280	43.5024 [us]	42.828 [us]
+Equals		391	0.0255754 [us]	0.0239991 [us]
+Includes	6	1513.9 [us]	1287.37 [us]
+Inside		6	1511.89 [us]	1290.25 [us]
+Overlaps	8182	32.8565 [us]	36.3359 [us]
+Touches		986	9.8073 [us]	0.881666 [us]
+Total relaciones: 152881
+********** Compressed Suffix Tree GST_2 **********
+Tiempo Construcción: 6.7e+07[us]
+**** Tamaño en bytes ****
+cst_sct3 [B]: 107766
+rutas [B]: 33959
+marcas [B]: 6074576
+mapa [B]: 31280
+largos [B]: 401
+**** Elementos ****
+Nº Rutas: 782
+Nº Nodos cst_sct3: 62029
+Nº Hojas cst_sct3: 37581
+Nº 1s/length en marcas: 94115/48506678 (0.194025%)
+********** Compressed Suffix Tree GST_4 **********
+terminate called after throwing an instance of 'std::logic_error'
+  what():  Error: File "@53775_12" contains zero symbol.

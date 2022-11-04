@@ -6,7 +6,8 @@ POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
 BINS=TopoRel_Naive_test  TopoRel_Naive_PreComp_test\
 		time_TopoRel_boolean TopoRel_testall\
-		TopoRel_GST_0_test TopoRel_GST_1_test TopoRel_GST_2_test
+		TopoRel_GST_0_test TopoRel_GST_1_test TopoRel_GST_2_test\
+		TopoRel_GST_4_test
 
 OBJECTS=TopoRel_GST_4.o TopoRel_GST_2.o\
 		TopoRel_Naive.o TopoRel_Naive_PreComp.o\
@@ -45,6 +46,9 @@ TopoRel_GST_1_test:
 
 TopoRel_GST_2_test:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_2_test TopoRel_GST_2_test.cpp $(OBJECTS) $(POSFLAGS)
+
+TopoRel_GST_4_test:
+	$(CPP) $(PREFLAGS) -o TopoRel_GST_4_test TopoRel_GST_4_test.cpp $(OBJECTS) $(POSFLAGS)
 
 time_TopoRel_boolean:
 	$(CPP) $(PREFLAGS) -o time_TopoRel_boolean time_TopoRel_boolean.cpp $(OBJECTS) $(POSFLAGS)

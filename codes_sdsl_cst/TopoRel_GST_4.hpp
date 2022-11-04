@@ -18,7 +18,7 @@ using namespace sdsl;
 //  --------------------Inicio clase TopoRelGST-------------------
 class TopoRelGST_4{
 public:
-    cst_sada<> cst;
+    cst_sada<csa_wt<wt_int<rrr_vector<>>>> cst;
     vector<int_vector<>> gstRutas;
     vector<sd_vector<>> gstMarcas;
     vector<cst_sada<>::node_type> gstMapa;
