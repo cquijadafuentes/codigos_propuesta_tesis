@@ -5,14 +5,14 @@
 	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
 >>> Fin Calculo Tiempo Naive
 TopoRelation	cant	Time_true	Time_all
-CoveredBy	15	3.78095 [us]	1.66342 [us]
-Covers		15	3.79048 [us]	1.66119 [us]
-Disjoint	143280	4.44183 [us]	4.37793 [us]
-Equals		391	0.664962 [us]	0.0196427 [us]
-Includes	6	4.45098 [us]	1.65987 [us]
-Inside		6	4.43137 [us]	1.66281 [us]
-Overlaps	8182	8.16634 [us]	7.6301 [us]
-Touches		986	4.90872 [us]	6.2423 [us]
+CoveredBy	15	3.81905 [us]	1.66082 [us]
+Covers		15	3.77143 [us]	1.69508 [us]
+Disjoint	143280	4.4325 [us]	5.30874 [us]
+Equals		391	0.662404 [us]	0.0192699 [us]
+Includes	6	4.47059 [us]	1.65831 [us]
+Inside		6	4.43137 [us]	1.6589 [us]
+Overlaps	8182	8.09289 [us]	7.36344 [us]
+Touches		986	4.90264 [us]	6.24554 [us]
 Total relaciones: 152881
 ********** Naive Pre-Computed **********
 Tiempo Construcción: 3e+06[us]
@@ -27,14 +27,14 @@ Nº Rutas: 391
 	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
 >>> Fin Calculo Tiempo PreComp
 TopoRelation	cant	Time_true	Time_all
-CoveredBy	15	0.0571429 [us]	0.0339545 [us]
-Covers		15	0.0571429 [us]	0.0336602 [us]
-Disjoint	143280	0.0398451 [us]	0.0326528 [us]
-Equals		391	0.0434783 [us]	0.0339414 [us]
-Includes	6	0.0490196 [us]	0.0336405 [us]
-Inside		6	0.0588235 [us]	0.0339545 [us]
-Overlaps	8182	0.0404547 [us]	0.0337844 [us]
-Touches		986	0.040568 [us]	0.0339807 [us]
+CoveredBy	15	0.047619 [us]	0.0340984 [us]
+Covers		15	0.047619 [us]	0.033948 [us]
+Disjoint	143280	0.0396915 [us]	0.0339938 [us]
+Equals		391	0.0409207 [us]	0.0338302 [us]
+Includes	6	0.0588235 [us]	0.0338564 [us]
+Inside		6	0.0490196 [us]	0.0338106 [us]
+Overlaps	8182	0.040088 [us]	0.0338368 [us]
+Touches		986	0.040568 [us]	0.033876 [us]
 Total relaciones: 152881
 ********** Compressed Suffix Tree GST_0 **********
 Tiempo Construcción: 2e+06[us]
@@ -54,14 +54,14 @@ Nº 1s/length en marcas: 18399/3138557 (0.586225%)
 	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
 >>> Fin Calculo Tiempo GST_0
 TopoRelation	cant	Time_true	Time_all
-CoveredBy	15	22.0857 [us]	14.6617 [us]
-Covers		15	21.7619 [us]	14.4794 [us]
-Disjoint	143280	33.657 [us]	33.4052 [us]
-Equals		391	0.0255754 [us]	0.0239794 [us]
-Includes	6	1514.16 [us]	1286.98 [us]
-Inside		6	1513.16 [us]	1289.75 [us]
-Overlaps	8182	28.4287 [us]	31.7361 [us]
-Touches		986	2.57911 [us]	0.272657 [us]
+CoveredBy	15	22.1048 [us]	14.4756 [us]
+Covers		15	21.8381 [us]	14.5052 [us]
+Disjoint	143280	33.9643 [us]	33.4846 [us]
+Equals		391	0.0230179 [us]	0.0239009 [us]
+Includes	6	1530.1 [us]	1297.36 [us]
+Inside		6	1524.3 [us]	1299.73 [us]
+Overlaps	8182	28.4859 [us]	31.7728 [us]
+Touches		986	2.64604 [us]	0.274835 [us]
 Total relaciones: 152881
 ********** Compressed Suffix Tree GST_1 **********
 Tiempo Construcción: 2e+06[us]
@@ -81,14 +81,14 @@ Nº 1s/length en marcas: 18399/3138557 (0.586225%)
 	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
 >>> Fin Calculo Tiempo GST_1
 TopoRelation	cant	Time_true	Time_all
-CoveredBy	15	22.019 [us]	14.6594 [us]
-Covers		15	21.7714 [us]	14.4814 [us]
-Disjoint	143280	43.5024 [us]	42.828 [us]
-Equals		391	0.0255754 [us]	0.0239991 [us]
-Includes	6	1513.9 [us]	1287.37 [us]
-Inside		6	1511.89 [us]	1290.25 [us]
-Overlaps	8182	32.8565 [us]	36.3359 [us]
-Touches		986	9.8073 [us]	0.881666 [us]
+CoveredBy	15	22.1333 [us]	14.4692 [us]
+Covers		15	21.9143 [us]	14.5056 [us]
+Disjoint	143280	43.8077 [us]	42.899 [us]
+Equals		391	0.0230179 [us]	0.0238486 [us]
+Includes	6	1525.47 [us]	1298.28 [us]
+Inside		6	1528.12 [us]	1300.96 [us]
+Overlaps	8182	32.9088 [us]	36.3957 [us]
+Touches		986	9.41278 [us]	0.84622 [us]
 Total relaciones: 152881
 ********** Compressed Suffix Tree GST_2 **********
 Tiempo Construcción: 6.7e+07[us]
@@ -104,5 +104,39 @@ Nº Nodos cst_sct3: 62029
 Nº Hojas cst_sct3: 37581
 Nº 1s/length en marcas: 94115/48506678 (0.194025%)
 ********** Compressed Suffix Tree GST_4 **********
-terminate called after throwing an instance of 'std::logic_error'
-  what():  Error: File "@53775_12" contains zero symbol.
+Tiempo Construcción: 7e+06[us]
+**** Tamaño en bytes ****
+cst_sada [B]: 105138
+rutas [B]: 33959
+marcas [B]: 107682
+mapa [B]: 6256
+**** Elementos ****
+Nº Rutas: 391
+Nº Nodos cst_sada: 62029
+Nº Hojas cst_sada: 37581
+Nº 1s/length en marcas: 18399/3138557 (0.586225%)
+>>> Calculando...
+	Relación Topológica ... OK
+	Relaciones binarias TRUE ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+>>> Fin Calculo Tiempo GST_4
+TopoRelation	cant	Time_true	Time_all
+CoveredBy	15	637.286 [us]	18.9905 [us]
+Covers		15	637.095 [us]	19.0912 [us]
+Disjoint	143280	42.8149 [us]	51.9756 [us]
+Equals		391	0.0204604 [us]	0.0181121 [us]
+Includes	6	2949.37 [us]	1255.63 [us]
+Inside		6	3256.51 [us]	1263.91 [us]
+Overlaps	8182	168.69 [us]	45.6078 [us]
+Touches		986	9.40162 [us]	0.839758 [us]
+Total relaciones: 152881
+ *********************** matriz *********************** 
+%relacion	nvCant	nvSamp	nvTrue	nvAll	pcCant	pcSamp	pcTrue	pcAll	gst0Can	gst0Sam	gst0True	gst0All	gst1Can	gst1Sam	gst1True	gst1All
+Coveredby	15	105	3.81905	1.66082	15	105	0.047619	0.0340984	15	105	22.1048	14.4756	15	105	22.1333	14.4692	15	105	637.286	18.9905	
+Covers	15	105	3.77143	1.69508	15	105	0.047619	0.033948	15	105	21.8381	14.5052	15	105	21.9143	14.5056	15	105	637.095	19.0912	
+Equals	391	391	0.662404	0.0192699	391	391	0.0409207	0.0338302	391	391	0.0230179	0.0239009	391	391	0.0230179	0.0238486	391	391	0.0204604	0.0181121	
+Includes	6	102	4.47059	1.65831	6	102	0.0588235	0.0338564	6	102	1530.1	1297.36	6	102	1525.47	1298.28	6	102	2949.37	1255.63	
+Inside	6	102	4.43137	1.6589	6	102	0.0490196	0.0338106	6	102	1524.3	1299.73	6	102	1528.12	1300.96	6	102	3256.51	1263.91	
+Overlaps	8182	8182	8.09289	7.36344	8182	8182	0.040088	0.0338368	8182	8182	28.4859	31.7728	8182	8182	32.9088	36.3957	8182	8182	168.69	45.6078	
+Touches	986	986	4.90264	6.24554	986	986	0.040568	0.033876	986	986	2.64604	0.274835	986	986	9.41278	0.84622	986	986	9.40162	0.839758	
+Disjoint	143280	143280	4.4325	5.30874	143280	143280	0.0396915	0.0339938	143280	143280	33.9643	33.4846	143280	143280	43.8077	42.899	143280	143280	42.8149	51.9756	

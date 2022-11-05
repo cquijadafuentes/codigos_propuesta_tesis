@@ -5,8 +5,10 @@ purple1 = "#990573"
 purple2 = "#d27cb9"
 blgree1 = "#008a8c"
 blgree2 = "#01c4c8"
-green1 = "#019825"
-green2 = "#06bf93"
+green1 = "#407930"
+green2 = "#71b747"
+brown1 = "#9b6914"
+brown2 = "#f5a31f"
 
 set style data histogram
 set style histogram cluster gap 1
@@ -32,7 +34,9 @@ plot 'data_03nov_Tsantiago.txt' using 4:xtic(1) title 'Naive True' linecolor rgb
      'data_03nov_Tsantiago.txt' using 12 title 'GST_0 True' linecolor rgb green1,    \
      'data_03nov_Tsantiago.txt' using 13 title 'GST_0 All' linecolor rgb green2,    \
      'data_03nov_Tsantiago.txt' using 16 title 'GST_1 True' linecolor rgb blgree1,    \
-     'data_03nov_Tsantiago.txt' using 17 title 'GST_1 All' linecolor rgb blgree2
+     'data_03nov_Tsantiago.txt' using 17 title 'GST_1 All' linecolor rgb blgree2,    \
+     'data_03nov_Tsantiago.txt' using 20 title 'GST_4 True' linecolor rgb brown1,    \
+     'data_03nov_Tsantiago.txt' using 21 title 'GST_4 All' linecolor rgb brown2
 
 set yrange [0.01:5000]
 set title 'Operaciones Dataset [Madrid]'
@@ -44,7 +48,9 @@ plot 'data_03nov_Madrid.txt' using 4:xtic(1) title 'Naive True' linecolor rgb bl
      'data_03nov_Madrid.txt' using 12 title 'GST_0 True' linecolor rgb green1,    \
      'data_03nov_Madrid.txt' using 13 title 'GST_0 All' linecolor rgb green2,    \
      'data_03nov_Madrid.txt' using 16 title 'GST_1 True' linecolor rgb blgree1,    \
-     'data_03nov_Madrid.txt' using 17 title 'GST_1 All' linecolor rgb blgree2
+     'data_03nov_Madrid.txt' using 17 title 'GST_1 All' linecolor rgb blgree2,    \
+     'data_03nov_Madrid.txt' using 20 title 'GST_4 True' linecolor rgb brown1,    \
+     'data_03nov_Madrid.txt' using 21 title 'GST_4 All' linecolor rgb brown2
 
 set yrange [0.01:400000]
 set title 'Relaciones y Muestras [TranSantiago]'
@@ -55,8 +61,10 @@ plot 'data_03nov_Tsantiago.txt' using 2:xtic(1) title 'Naive relac' linecolor rg
      'data_03nov_Tsantiago.txt' using 7 title 'PreC muestras' linecolor rgb purple2,   \
      'data_03nov_Tsantiago.txt' using 10 title 'GST_0 relac' linecolor rgb green1,    \
      'data_03nov_Tsantiago.txt' using 11 title 'GST_0 muestras' linecolor rgb green2,   \
-     'data_03nov_Tsantiago.txt' using 14 title 'GST_0 relac' linecolor rgb blgree1,    \
-     'data_03nov_Tsantiago.txt' using 15 title 'GST_0 muestras' linecolor rgb blgree2
+     'data_03nov_Tsantiago.txt' using 14 title 'GST_1 relac' linecolor rgb blgree1,    \
+     'data_03nov_Tsantiago.txt' using 15 title 'GST_1 muestras' linecolor rgb blgree2,   \
+     'data_03nov_Tsantiago.txt' using 18 title 'GST_4 relac' linecolor rgb brown1,    \
+     'data_03nov_Tsantiago.txt' using 19 title 'GST_4 muestras' linecolor rgb brown2
 
 set yrange [0.01:400000]
 set title 'Relaciones y Muestras [Madrid]'
@@ -67,6 +75,8 @@ plot 'data_03nov_Madrid.txt' using 2:xtic(1) title 'Naive relac' linecolor rgb b
      'data_03nov_Madrid.txt' using 7 title 'PreC muestras' linecolor rgb purple2,   \
      'data_03nov_Madrid.txt' using 10 title 'GST_0 relac' linecolor rgb green1,    \
      'data_03nov_Madrid.txt' using 11 title 'GST_0 muestras' linecolor rgb green2,   \
-     'data_03nov_Madrid.txt' using 14 title 'GST_0 relac' linecolor rgb blgree1,    \
-     'data_03nov_Madrid.txt' using 15 title 'GST_0 muestras' linecolor rgb blgree2
+     'data_03nov_Madrid.txt' using 14 title 'GST_1 relac' linecolor rgb blgree1,    \
+     'data_03nov_Madrid.txt' using 15 title 'GST_1 muestras' linecolor rgb blgree2,   \
+     'data_03nov_Madrid.txt' using 18 title 'GST_4 relac' linecolor rgb brown1,    \
+     'data_03nov_Madrid.txt' using 19 title 'GST_4 muestras' linecolor rgb brown2
      

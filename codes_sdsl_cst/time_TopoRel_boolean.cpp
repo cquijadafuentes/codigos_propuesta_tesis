@@ -55,7 +55,7 @@ int main(int argc, char const *argv[]){
     vector<vector<double>> pCNaive = tiempos_naive_precomp(routes, n_stops);
     vector<vector<double>> mGST0 = tiempos_GST_0(routes,  n_stops);
     vector<vector<double>> mGST1 = tiempos_GST_1(routes,  n_stops);
-    tiempos_GST_2(routes,  n_stops);
+//    tiempos_GST_2(routes,  n_stops);
     vector<vector<double>> mGST4 = tiempos_GST_4(routes,  n_stops);
 
     cout << " *********************** matriz *********************** " << endl;

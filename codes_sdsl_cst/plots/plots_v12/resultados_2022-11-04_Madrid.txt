@@ -5,14 +5,14 @@
 	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
 >>> Fin Calculo Tiempo Naive
 TopoRelation	cant	Time_true	Time_all
-CoveredBy	9	1.06481 [us]	0.616221 [us]
-Covers		9	1.06481 [us]	0.620623 [us]
-Disjoint	949766	1.35531 [us]	1.32683 [us]
-Equals		991	0.251261 [us]	0.0104282 [us]
-Includes	0	-nan [us]	0.619762 [us]
-Inside		0	-nan [us]	0.618826 [us]
-Overlaps	19896	2.65551 [us]	2.65602 [us]
-Touches		7450	1.51087 [us]	1.9815 [us]
+CoveredBy	9	1.05556 [us]	0.615686 [us]
+Covers		9	1.05556 [us]	0.625035 [us]
+Disjoint	949766	1.35664 [us]	1.32999 [us]
+Equals		991	0.251261 [us]	0.0100325 [us]
+Includes	0	-nan [us]	0.62047 [us]
+Inside		0	-nan [us]	0.615174 [us]
+Overlaps	19896	2.6062 [us]	2.59288 [us]
+Touches		7450	1.50456 [us]	1.95268 [us]
 Total relaciones: 978121
 ********** Naive Pre-Computed **********
 Tiempo Construcción: 4e+06[us]
@@ -27,14 +27,14 @@ Nº Rutas: 989
 	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
 >>> Fin Calculo Tiempo PreComp
 TopoRelation	cant	Time_true	Time_all
-CoveredBy	9	0.0277778 [us]	0.0202715 [us]
-Covers		9	0.0277778 [us]	0.0202593 [us]
-Disjoint	949766	0.0239512 [us]	0.0201826 [us]
-Equals		991	0.0262361 [us]	0.0203206 [us]
-Includes	0	-nan [us]	0.0201938 [us]
-Inside		0	-nan [us]	0.0203216 [us]
-Overlaps	19896	0.0246783 [us]	0.0202224 [us]
-Touches		7450	0.0244295 [us]	0.0201734 [us]
+CoveredBy	9	0.0277778 [us]	0.0198411 [us]
+Covers		9	0.0277778 [us]	0.0201447 [us]
+Disjoint	949766	0.0240712 [us]	0.0202245 [us]
+Equals		991	0.0272452 [us]	0.0200783 [us]
+Includes	0	-nan [us]	0.0198196 [us]
+Inside		0	-nan [us]	0.0206048 [us]
+Overlaps	19896	0.0249296 [us]	0.0201908 [us]
+Touches		7450	0.024698 [us]	0.0202265 [us]
 Total relaciones: 978121
 ********** Compressed Suffix Tree GST_0 **********
 Tiempo Construcción: 3e+06[us]
@@ -54,14 +54,14 @@ Nº 1s/length en marcas: 26018/10889879 (0.238919%)
 	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
 >>> Fin Calculo Tiempo GST_0
 TopoRelation	cant	Time_true	Time_all
-CoveredBy	9	12.9074 [us]	8.1537 [us]
-Covers		9	12.6481 [us]	8.16255 [us]
-Disjoint	949766	17.9962 [us]	17.8915 [us]
-Equals		991	0.0151362 [us]	0.0146955 [us]
-Includes	0	-nan [us]	377.394 [us]
-Inside		0	-nan [us]	389.63 [us]
-Overlaps	19896	15.136 [us]	17.3218 [us]
-Touches		7450	1.01557 [us]	0.133331 [us]
+CoveredBy	9	12.9352 [us]	8.15228 [us]
+Covers		9	12.7685 [us]	8.19597 [us]
+Disjoint	949766	18.0327 [us]	17.889 [us]
+Equals		991	0.0151362 [us]	0.0146495 [us]
+Includes	0	-nan [us]	377.452 [us]
+Inside		0	-nan [us]	390.358 [us]
+Overlaps	19896	15.2948 [us]	17.3762 [us]
+Touches		7450	1.02993 [us]	0.134635 [us]
 Total relaciones: 978121
 ********** Compressed Suffix Tree GST_1 **********
 Tiempo Construcción: 3e+06[us]
@@ -81,13 +81,13 @@ Nº 1s/length en marcas: 26018/10889879 (0.238919%)
 	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
 >>> Fin Calculo Tiempo GST_1
 TopoRelation	cant	Time_true	Time_all
-CoveredBy	9	12.8704 [us]	8.14329 [us]
-Covers		9	12.6667 [us]	8.17355 [us]
-Disjoint	949766	22.0811 [us]	21.8821 [us]
-Equals		991	0.0151362 [us]	0.0146168 [us]
-Includes	0	-nan [us]	377.448 [us]
-Inside		0	-nan [us]	390.018 [us]
-Overlaps	19896	16.872 [us]	19.2797 [us]
-Touches		7450	4.0643 [us]	0.501633 [us]
+CoveredBy	9	12.8796 [us]	8.15421 [us]
+Covers		9	12.6944 [us]	8.16849 [us]
+Disjoint	949766	22.1356 [us]	21.9589 [us]
+Equals		991	0.0151362 [us]	0.0147702 [us]
+Includes	0	-nan [us]	377.523 [us]
+Inside		0	-nan [us]	390.536 [us]
+Overlaps	19896	16.9852 [us]	19.3823 [us]
+Touches		7450	4.08228 [us]	0.504522 [us]
 Total relaciones: 978121
 ********** Compressed Suffix Tree GST_2 **********
