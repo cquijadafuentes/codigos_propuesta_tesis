@@ -20,9 +20,12 @@ class TopoRelGST_2{
 public:
     cst_sct3<csa_wt<wt_int<rrr_vector<>>>> cst;
     vector<int_vector<>> gstRutas;
-    vector<bit_vector> gstMarcas;   // 2rutas x marcas
+    vector<bit_vector> gstMarcas;   // 2rutas x nodos
+    vector<bit_vector> gstMStops;   // rutas x stops
     vector<cst_sct3<>::node_type> gstMapa;
     int_vector<> gstLargos;
+    int_vector<> gstStopBI;
+    int_vector<> gstStopBF;
     int n_rutas;
     int n_concat;
     int n_stops;

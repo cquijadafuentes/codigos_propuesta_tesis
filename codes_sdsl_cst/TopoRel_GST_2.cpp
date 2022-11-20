@@ -17,7 +17,8 @@ TopoRelGST_2::TopoRelGST_2(vector<vector<int>> &rutas, int cant_stops){
         // verificar el max_char del final de stops
         for(int j = 0; j < rutas[i].size(); j++){
             if(rutas[i][j] <= 0){
-                cout << "Error! identificadores con valor <= 0" << endl;
+                cout << "Error! identificadores con valor <= 0 (i:" << i << ", j:" << j <<")" << endl;
+                cout << "valor encontrado: " << rutas[i][j] << " en ruta de tamaño " << rutas[i].size() << endl;
                 return;
             }
             if(maxID < rutas[i][j]){
@@ -27,6 +28,7 @@ TopoRelGST_2::TopoRelGST_2(vector<vector<int>> &rutas, int cant_stops){
     }
     finSec = maxID+1;
     int_vector<> iv(n_concat*2);
+    gstMStops = vector<bit_vector> (rutas.size());
     gstRutas = vector<int_vector<>>(rutas.size());
     gstLargos = int_vector<>(rutas.size());
     int pv = 0;
@@ -35,9 +37,11 @@ TopoRelGST_2::TopoRelGST_2(vector<vector<int>> &rutas, int cant_stops){
     for(int i = 0; i < n_rutas; i++){
         gstLargos[i] = rutas[i].size();
         gstRutas[i] = int_vector<>(rutas[i].size());
+        gstMStops[i] = bit_vector(n_stops+1, 0);
         for(int j = 0; j < rutas[i].size(); j++){
             iv[pv++] = rutas[i][j];
             gstRutas[i][j] = rutas[i][j];
+            gstMStops[i][rutas[i][j]] = 1;
         }
         iv[pv++] = finSec;
         util::bit_compress(gstRutas[i]);
@@ -72,21 +76,26 @@ TopoRelGST_2::TopoRelGST_2(vector<vector<int>> &rutas, int cant_stops){
 */
     // Marcas en bitvectors
     gstMarcas = vector<bit_vector>(n_rutas * 2, bit_vector(cst.nodes(), 0));
+    int aux;
     for(int i = 0; i < n_rutas; i++){
         for(int j = 0; j < rutas[i].size(); j++){
             // La primera mitad de marcas es para rutas
             auto v = cst.child(cst.root(), rutas[i][j]);
-            while(v != cst.root() && cst.depth(v) <= rutas[i].size()-j){
+            while(v != cst.root() && (cst.depth(v) + j) <= rutas[i].size()){
                 gstMarcas[i][cst.id(v)] = 1;
-                v = cst.child(v, rutas[i][cst.depth(v) + j]);
+                aux = rutas[i][cst.depth(v) + j];
+                v = cst.child(v, aux);
             }
         }
-        for(int j = rutas[i].size()-1; j >=0 ; j--){
-            // La segunda mitad de marcas es para rutas reversas
-            auto v = cst.child(cst.root(), rutas[i][j]);
-            while(v != cst.root() && j - cst.depth(v) >= 0){
-                gstMarcas[n_rutas + i][cst.id(v)] = 1;
-                v = cst.child(v, rutas[i][j - cst.depth(v)]);
+        vector<int> vAux(rutas[i]);
+        reverse(vAux.begin(), vAux.end());
+        for(int j = 0; j < vAux.size(); j++){
+            // La primera mitad de marcas es para rutas
+            auto v = cst.child(cst.root(), vAux[j]);
+            while(v != cst.root() && (cst.depth(v) + j) <= vAux.size()){
+                gstMarcas[i+n_rutas][cst.id(v)] = 1;
+                aux = vAux[cst.depth(v) + j];
+                v = cst.child(v, aux);
             }
         }
     }
@@ -124,6 +133,16 @@ TopoRelGST_2::TopoRelGST_2(vector<vector<int>> &rutas, int cant_stops){
         }
         gstMapa[n_rutas + i] = v;
     }
+    // Nodos de los bordes de cada ruta
+    gstStopBI = int_vector<>(rutas.size());
+    gstStopBF = int_vector<>(rutas.size());
+    for(int i = 0; i < n_rutas; i++){
+        gstStopBI[i] = rutas[i][0];
+        gstStopBF[i] = rutas[i][gstLargos[i]-1];
+    }
+    util::bit_compress(gstStopBI);
+    util::bit_compress(gstStopBF);
+
 //    cout << "Map... OK" << endl;
 }
 
@@ -185,101 +204,62 @@ string TopoRelGST_2::obtenerRelacion(int x, int y){
         return INCLUDES;
     }
 
-    // Se determina OV si algún lca tiene grado mayor que uno (ya se descartón contención)
-    if(cst.depth(lcaCL) > 1 || cst.depth(lcaCLr) > 1 || cst.depth(lcaCrL) > 1 || cst.depth(lcaCrLr) > 1){
-        // Hay intersección interior-interior y no hay inclusión
+
+    // Determinar si hay disjoint por medio de marcas
+    bool bix = false;
+    bool bfx = false;
+    bool biy = false;
+    bool bfy = false;
+    int interIB = 0;
+    for(int i=0; i < gstMStops[x].size(); i++){
+        if(gstMStops[x][i] == 1 && gstMStops[y][i] == 1){
+            // Hay intersección
+            if(i == gstStopBI[x] || i == gstStopBF[x] || i == gstStopBI[y] || i == gstStopBF[y]){
+                interIB++;
+                bix = bix || i == gstStopBI[x];
+                bfx = bfx || i == gstStopBF[x];
+                biy = biy || i == gstStopBI[y];
+                bfy = bfy || i == gstStopBF[y];
+            }else{
+                return OVERLAPS;
+            }
+        }
+    }
+
+    if(interIB == 0){
+        return DISJOINT;
+    }
+
+    if((!bix && !bfx) || (!biy && !bfy)){
+        // Una de las rutas no toca con el borde a la otra.
+        return TOUCHES;
+    }
+
+    // Cuando hay intersecciones de borde de las 2 secuencias
+//    cout << "x: " << x << " - y: " << y << endl;
+//   cout << "revisando secuencia original:" << endl;
+    auto nAux = gstMapa[x];
+    while(bix && cst.depth(nAux) > 2){
+//        cout << "id_" << cst.id(nAux) << " - depth: " << cst.depth(nAux) << endl;
+        nAux = cst.parent(nAux);
+    }
+//    cout << "id_" << cst.id(nAux) << " - depth: " << cst.depth(nAux) << endl;
+    int idAux = cst.id(nAux);
+    if(bix && cst.depth(nAux) == 2 && (gstMarcas[y][idAux] || gstMarcas[y+n_rutas][idAux])){
         return OVERLAPS;
     }
-
-    // Verificar si TO es posible
-    bool posibleTo = false;
-    if(cst.depth(lcaCL) == 1 || cst.depth(lcaCLr) == 1 || cst.depth(lcaCrL) == 1 || cst.depth(lcaCrLr) == 1){
-        posibleTo = true;
+//    cout << "revisando secuencia original:" << endl;
+    nAux = gstMapa[x+n_rutas];
+    while(bfx && cst.depth(nAux) > 2){
+//        cout << "id_" << cst.id(nAux) << " - depth: " << cst.depth(nAux) << endl;
+        nAux = cst.parent(nAux);
     }
-
-    // Identificar intersección interior-interior o interior-borde por la navegación de los sl y marcas
-    auto auxNavCorto0 = cst.parent(gstMapa[corto]); // Elimina el borde final
-    while(cst.depth(auxNavCorto0) > 2){
-        auxNavCorto0 = cst.sl(auxNavCorto0);  // Elimina el borde inicial y continúa por las ramas sl
-        auto auxNavCorto = auxNavCorto0;
-        while(cst.depth(auxNavCorto) > 1){
-            int auxID = cst.id(auxNavCorto);
-            if(gstMarcas[corto][auxID] == 1 || gstMarcas[corto][auxID] == 1){
-                // Hay una marca, se debe verificar que es con el borde de largo o largoRev
-                auto lcaT = cst.lca(auxNavCorto, L);
-                int depthT = cst.depth(lcaT);
-                if(depthT > 0){
-                    if(depthT == 1){
-                        posibleTo = true;
-                    }else{
-                        return OVERLAPS;
-                    }
-                }
-                auto lcaTr = cst.lca(auxNavCorto, Lr);
-                int depthTr = cst.depth(lcaTr);
-                if(depthTr > 0){
-                    if(depthTr == 1){
-                        // Interior de corto toca borde de largo
-                        posibleTo = true;
-                    }else{
-                        return OVERLAPS;
-                    }
-                }
-            }
-            auxNavCorto = cst.parent(auxNavCorto);
-        }
+//    cout << "id_" << cst.id(nAux) << " - depth: " << cst.depth(nAux) << endl;
+    idAux = cst.id(nAux);
+    if(bfx && cst.depth(nAux) == 2 && (gstMarcas[y][idAux] || gstMarcas[y+n_rutas][idAux])){
+        return OVERLAPS;
     }
-    
-    auxNavCorto0 = cst.parent(gstMapa[corto+n_rutas]); // Elimina el borde final
-    while(cst.depth(auxNavCorto0) > 2){
-        auxNavCorto0 = cst.sl(auxNavCorto0);  // Elimina el borde inicial y continúa por las ramas sl
-        auto auxNavCorto = auxNavCorto0;
-        while(cst.depth(auxNavCorto) > 1){
-            int auxID = cst.id(auxNavCorto);
-            if(gstMarcas[corto][auxID] == 1 || gstMarcas[corto][auxID] == 1){
-                // Hay una marca, se debe verificar que es con el borde de largo o largoRev
-                auto lcaT = cst.lca(auxNavCorto, L);
-                int depthT = cst.depth(lcaT);
-                if(depthT > 0){
-                    if(depthT == 1){
-                        posibleTo = true;
-                    }else{
-                        return OVERLAPS;
-                    }
-                }
-                auto lcaTr = cst.lca(auxNavCorto, Lr);
-                int depthTr = cst.depth(lcaTr);
-                if(depthTr > 0){
-                    if(depthTr == 1){
-                        // Interior de corto toca borde de largo
-                        posibleTo = true;
-                    }else{
-                        return OVERLAPS;
-                    }
-                }
-            }
-            auxNavCorto = cst.parent(auxNavCorto);
-        }
-    }
-
-    if(posibleTo){
-        return TOUCHES;
-    }
-    
-    // Verificar bordes de Corto
-    auto anC = nodoProfUno(C);
-    int auxID = cst.id(anC);
-    if(cst.depth(anC) == 1 && (gstMarcas[largo][auxID] || gstMarcas[largo+n_rutas][auxID])){
-        return TOUCHES;
-    }
-
-    auto anCr = nodoProfUno(Cr);
-    auxID = cst.id(anCr);
-    if(cst.depth(anCr) == 1 && (gstMarcas[largo][auxID] || gstMarcas[largo+n_rutas][auxID])){
-        return TOUCHES;
-    }
-
-    return DISJOINT;
+    return TOUCHES;
 }
 
 
@@ -297,19 +277,29 @@ bool TopoRelGST_2::tr_equals(int x, int y){
 
 bool TopoRelGST_2::tr_coveredby(int x, int y){
     // Descarte por largo de secuencias
-    int lx = gstRutas[x].size();
-    int ly = gstRutas[y].size();
+    int lx = gstLargos[x];
+    int ly = gstLargos[y];
     if(lx >= ly){
         return false;
     }
     // Verifica CoveredBy
-    auto lca1 = cst.lca(gstMapa[x], gstMapa[y]);
-    auto lca2 = cst.lca(gstMapa[x], gstMapa[y+n_rutas]);
-    auto lca3 = cst.lca(gstMapa[x+n_rutas], gstMapa[y]);
-    auto lca4 = cst.lca(gstMapa[x+n_rutas], gstMapa[y+n_rutas]);
-    if(cst.depth(lca1) == lx || cst.depth(lca2) == lx || cst.depth(lca3) == lx || cst.depth(lca4) == lx){
+    auto lca = cst.lca(gstMapa[x], gstMapa[y]);
+    if(cst.depth(lca) == lx){
         return true;
     }
+    lca = cst.lca(gstMapa[x], gstMapa[y+n_rutas]);
+    if(cst.depth(lca) == lx){
+        return true;
+    }
+    lca = cst.lca(gstMapa[x+n_rutas], gstMapa[y]);
+    if(cst.depth(lca) == lx){
+        return true;
+    }
+    lca = cst.lca(gstMapa[x+n_rutas], gstMapa[y+n_rutas]);
+    if(cst.depth(lca) == lx){
+        return true;
+    }
+    
     return false;
 }
 
@@ -325,12 +315,20 @@ bool TopoRelGST_2::tr_inside(int x, int y){
         return false;
     }
     // Descarte por CoveredBy
-    int l = gstRutas[x].size();
-    auto lca1 = cst.lca(gstMapa[x], gstMapa[y]);
-    auto lca2 = cst.lca(gstMapa[x], gstMapa[y+n_rutas]);
-    auto lca3 = cst.lca(gstMapa[x+n_rutas], gstMapa[y]);
-    auto lca4 = cst.lca(gstMapa[x+n_rutas], gstMapa[y+n_rutas]);
-    if(cst.depth(lca1) == l || cst.depth(lca2) == l || cst.depth(lca3) == l || cst.depth(lca4) == l){
+    auto lca = cst.lca(gstMapa[x], gstMapa[y]);
+    if(cst.depth(lca) == lx){
+        return false;
+    }
+    lca = cst.lca(gstMapa[x], gstMapa[y+n_rutas]);
+    if(cst.depth(lca) == lx){
+        return false;
+    }
+    lca = cst.lca(gstMapa[x+n_rutas], gstMapa[y]);
+    if(cst.depth(lca) == lx){
+        return false;
+    }
+    lca = cst.lca(gstMapa[x+n_rutas], gstMapa[y+n_rutas]);
+    if(cst.depth(lca) == lx){
         return false;
     }
 
@@ -356,6 +354,11 @@ bool TopoRelGST_2::tr_disjoint(int x, int y){
     if(tr_coveredby(x,y) || tr_covers(x,y)){
         return false;
     }
+    // Descartar contención por IS o IC
+    if(tr_inside(x,y) || tr_includes(x,y)){
+        return false;
+    }
+
     // Descartar posible TO
     int bXi = gstRutas[x][0];
     int bXf = gstRutas[x][gstRutas[x].size()-1];
@@ -365,19 +368,9 @@ bool TopoRelGST_2::tr_disjoint(int x, int y){
         // Hay bordes en contacto con la otra secuencia
         return false;
     }
-    // Comprobar cualquier intersección
-    int lx = gstRutas[x].size();
-    int ly = gstRutas[y].size();
-
-    for(int i=2; i<lx; i++){
-        if(gstMarcas[y][gstRutas[x][i-1]] == 1){
-            // Hay intersección del interior de X con Y
-            return false;
-        }
-    }
-    for(int i=2; i<ly; i++){
-        if(gstMarcas[x][gstRutas[y][i-1]] == 1){
-            // Hay intersección del interior de X con Y
+    // Comprobar cualquier intersección recorriendo marcas
+    for(int i=0; i<gstMarcas[x].size(); i++){
+        if(gstMarcas[x][i] && (gstMarcas[y][i] || gstMarcas[y+n_rutas][i])){
             return false;
         }
     }
@@ -391,11 +384,11 @@ bool TopoRelGST_2::tr_touches(int x, int y){
         return false;
     }
     // Verifica candidato por bordes
-    int bXi = gstRutas[x][0];
-    int bXf = gstRutas[x][gstRutas[x].size()-1];
-    int bYi = gstRutas[y][0];
-    int bYf = gstRutas[y][gstRutas[y].size()-1];
-    if(gstMarcas[y][bXi] != 1 && gstMarcas[y][bXf] != 1 && gstMarcas[x][bYi] != 1 && gstMarcas[x][bYf] != 1){
+    int bXi = gstStopBI[x];
+    int bXf = gstStopBF[x];
+    int bYi = gstStopBI[y];
+    int bYf = gstStopBF[y];
+    if(gstMStops[y][bXi] != 1 && gstMStops[y][bXf] != 1 && gstMStops[x][bYi] != 1 && gstMStops[x][bYf] != 1){
         // No hay bordes en contacto con la otra secuencia
         return false;
     }

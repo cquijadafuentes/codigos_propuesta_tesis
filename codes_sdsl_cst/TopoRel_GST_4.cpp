@@ -18,7 +18,8 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops){
         // verificar el max_char del final de stops
         for(int j = 0; j < rutas[i].size(); j++){
             if(rutas[i][j] <= 0){
-                cout << "Error! identificadores con valor <= 0" << endl;
+                cout << "Error! identificadores con valor <= 0 (i:" << i << ", j:" << j <<")" << endl;
+                cout << "valor encontrado: " << rutas[i][j] << " en ruta de tamaño " << rutas[i].size() << endl;
                 return;
             }
             if(maxID < rutas[i][j]){
@@ -254,14 +255,25 @@ bool TopoRelGST_4::tr_coveredby(int x, int y){
     if(lx >= ly){
         return false;
     }
+    
     // Verifica CoveredBy
-    auto lca1 = cst.lca(gstMapa[x], gstMapa[y]);
-    auto lca2 = cst.lca(gstMapa[x], gstMapa[y+n_rutas]);
-    auto lca3 = cst.lca(gstMapa[x+n_rutas], gstMapa[y]);
-    auto lca4 = cst.lca(gstMapa[x+n_rutas], gstMapa[y+n_rutas]);
-    if(cst.depth(lca1) == lx || cst.depth(lca2) == lx || cst.depth(lca3) == lx || cst.depth(lca4) == lx){
+    auto lca = cst.lca(gstMapa[x], gstMapa[y]);
+    if(cst.depth(lca) == lx){
         return true;
     }
+    lca = cst.lca(gstMapa[x], gstMapa[y+n_rutas]);
+    if(cst.depth(lca) == lx){
+        return true;
+    }
+    lca = cst.lca(gstMapa[x+n_rutas], gstMapa[y]);
+    if(cst.depth(lca) == lx){
+        return true;
+    }
+    lca = cst.lca(gstMapa[x+n_rutas], gstMapa[y+n_rutas]);
+    if(cst.depth(lca) == lx){
+        return true;
+    }
+    
     return false;
 }
 
