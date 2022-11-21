@@ -309,8 +309,8 @@ bool TopoRelGST_2::tr_covers(int x, int y){
 
 bool TopoRelGST_2::tr_inside(int x, int y){
     // Descarte por largo de secuencias
-    int lx = gstRutas[x].size();
-    int ly = gstRutas[y].size();
+    int lx = gstLargos[x];
+    int ly = gstLargos[y];
     if(lx >= ly){
         return false;
     }
@@ -335,7 +335,7 @@ bool TopoRelGST_2::tr_inside(int x, int y){
     // Verificación por gstMarcas
     auto padreX = cst.parent(gstMapa[x]);
     int idPaX = cst.id(padreX);
-    if(cst.depth(padreX) == gstRutas[x].size() && gstMarcas[y][idPaX]){
+    if(cst.depth(padreX) == lx && gstMarcas[y][idPaX]){
         return true;
     }
     return false;
@@ -359,21 +359,21 @@ bool TopoRelGST_2::tr_disjoint(int x, int y){
         return false;
     }
 
-    // Descartar posible TO
-    int bXi = gstRutas[x][0];
-    int bXf = gstRutas[x][gstRutas[x].size()-1];
-    int bYi = gstRutas[y][0];
-    int bYf = gstRutas[y][gstRutas[y].size()-1];
-    if(gstMarcas[y][bXi] == 1 || gstMarcas[y][bXf] == 1 || gstMarcas[x][bYi] == 1 || gstMarcas[x][bYf] == 1){
-        // Hay bordes en contacto con la otra secuencia
+    // Descartar por los bordes
+    if(gstMStops[y][gstStopBI[x]] == 1 || gstMStops[y][gstStopBF[x]] == 1 
+            || gstMStops[x][gstStopBI[y]] == 1 || gstMStops[x][gstStopBF[y]] == 1){
+        // Uno de los bordes de una secuencia toca un elemento de la otra
         return false;
     }
-    // Comprobar cualquier intersección recorriendo marcas
-    for(int i=0; i<gstMarcas[x].size(); i++){
-        if(gstMarcas[x][i] && (gstMarcas[y][i] || gstMarcas[y+n_rutas][i])){
+
+    // Determinar si hay disjoint por medio de marcas
+    int interIB = 0;
+    for(int i=0; i < gstMStops[x].size(); i++){
+        if(gstMStops[x][i] == 1 && gstMStops[y][i] == 1){
             return false;
         }
     }
+
     // Hay disjunción
     return true;
 }
@@ -393,19 +393,46 @@ bool TopoRelGST_2::tr_touches(int x, int y){
         return false;
     }
     // Verficar que la coincidencia de bordes no posee intersección I-I
-    if(bordesSeg_touches(x, y)){
+    // Determinar si hay disjoint por medio de marcas
+    bool bix = false;
+    bool bfx = false;
+    bool biy = false;
+    bool bfy = false;
+    for(int i=0; i < gstMStops[x].size(); i++){
+        if(gstMStops[x][i] == 1 && gstMStops[y][i] == 1){
+            // Hay intersección
+            if(i == gstStopBI[x] || i == gstStopBF[x] || i == gstStopBI[y] || i == gstStopBF[y]){
+                bix = bix || i == gstStopBI[x];
+                bfx = bfx || i == gstStopBF[x];
+                biy = biy || i == gstStopBI[y];
+                bfy = bfy || i == gstStopBF[y];
+            }else{
+                return false;
+            }
+        }
+    }
+
+    if((!bix && !bfx) || (!biy && !bfy)){
+        // Una de las rutas no toca con el borde a la otra.
+        return true;
+    }
+
+    // Cuando hay intersecciones de borde de las 2 secuencias
+    auto nAux = gstMapa[x];
+    while(bix && cst.depth(nAux) > 2){
+        nAux = cst.parent(nAux);
+    }
+    int idAux = cst.id(nAux);
+    if(bix && cst.depth(nAux) == 2 && (gstMarcas[y][idAux] || gstMarcas[y+n_rutas][idAux])){
         return false;
     }
-    // Descartar intersección I-I
-    // Verificar OV (intersección interior-interior)
-    // Se recorre x para identificar cualquier coincidencia con y
-    int aux;
-    int lx = gstRutas[x].size();
-    for(int i=2; i<lx; i++){
-        aux = gstRutas[x][i-1];
-        if(aux != bYi && aux != bYf && gstMarcas[y][aux]){
-            return false;
-        }
+    nAux = gstMapa[x+n_rutas];
+    while(bfx && cst.depth(nAux) > 2){
+        nAux = cst.parent(nAux);
+    }
+    idAux = cst.id(nAux);
+    if(bfx && cst.depth(nAux) == 2 && (gstMarcas[y][idAux] || gstMarcas[y+n_rutas][idAux])){
+        return false;
     }
     return true;
 }
@@ -419,57 +446,51 @@ bool TopoRelGST_2::tr_overlaps(int x, int y){
     if(tr_coveredby(x,y) || tr_covers(x,y)){
         return false;
     }
-    // Bordes de las secuencias
-    int bXi = gstRutas[x][0];
-    int bXf = gstRutas[x][gstRutas[x].size()-1];
-    int bYi = gstRutas[y][0];
-    int bYf = gstRutas[y][gstRutas[y].size()-1];
-    // Comprobar intersección Ix-Iy y Ix-Ey (al menos una de cada una)
-    int iXiY = 0;
-    int iXeY = 0;
-    int lx = gstRutas[x].size();
-    int ly = gstRutas[y].size();
-    int px = 2;
-    int ed;
-    if(gstMarcas[y][bXi] == 0 || gstMarcas[y][bXf] == 0){
-        // Un borde de X está en el exterior de Y, entonces su arco adyacente también
-        // Hay intersección X interior con exterior Y
-        iXeY++;
-    }
-    if(bordesSeg_touches(x,y)){
-        // Si los bordes solapan, hay interseción interior-interior
-        iXiY++;
-    }
-    while(px < lx && (iXiY == 0 || iXeY == 0)){
-        ed = gstRutas[x][px-1];
-        if(gstMarcas[y][ed] == 0){
-            // Hay intersección de interior X con exterior Y
-            iXeY++;
-        }else if(ed != bYi && ed != bYf){
-            // No es un borde de Y
-            // Hay intersección de interior X con interior Y
-            iXiY++;
-        }
-
-        px++;
-    }
-    if(iXiY == 0 || iXeY == 0){
+    // Descartar contención por IC o IS
+    if(tr_includes(x,y) || tr_inside(x,y)){
         return false;
     }
-    // Sólo queda identificar intersección del interior Y con exterior X
-    if(gstMarcas[x][bYi] == 0 || gstMarcas[x][bYf] == 0){
-        // Un borde de Y está en el exterior de X, entonces su arco adyacente también
-        // Hay intersección Y interior con exterior X
+    // Comprobar intersección interior-interior
+    bool bix = false;
+    bool bfx = false;
+    bool biy = false;
+    bool bfy = false;
+    for(int i=0; i < gstMStops[x].size(); i++){
+        if(gstMStops[x][i] == 1 && gstMStops[y][i] == 1){
+            // Hay intersección
+            if(i == gstStopBI[x] || i == gstStopBF[x] || i == gstStopBI[y] || i == gstStopBF[y]){
+                // Intersección con algún borde
+                bix = bix || i == gstStopBI[x];
+                bfx = bfx || i == gstStopBF[x];
+                biy = biy || i == gstStopBI[y];
+                bfy = bfy || i == gstStopBF[y];
+            }else{
+                // Intersección interior-interior
+                return true;
+            }
+        }
+    }
+    // Descartar por bordes
+    if((!bix && !bfx) || (!biy && !bfy)){
+        // Sólo una de las rutas toca con el borde a la otra.
+        return false;
+    }
+    // Puede haber un segmento en común por los dos bordes en contacto
+    auto nAux = gstMapa[x];
+    while(bix && cst.depth(nAux) > 2){
+        nAux = cst.parent(nAux);
+    }
+    int idAux = cst.id(nAux);
+    if(bix && cst.depth(nAux) == 2 && (gstMarcas[y][idAux] || gstMarcas[y+n_rutas][idAux])){
         return true;
     }
-    int py = 2;
-    while(py < ly){
-        ed = gstRutas[y][py-1];
-        if(gstMarcas[x][ed] == 0){
-            // Hay intersección exterior X con interior Y
-            return true;
-        }      
-        py++;
+    nAux = gstMapa[x+n_rutas];
+    while(bfx && cst.depth(nAux) > 2){
+        nAux = cst.parent(nAux);
+    }
+    idAux = cst.id(nAux);
+    if(bfx && cst.depth(nAux) == 2 && (gstMarcas[y][idAux] || gstMarcas[y+n_rutas][idAux])){
+        return true;
     }
     return false;
 }
@@ -483,8 +504,8 @@ bool TopoRelGST_2::tr_overlaps(int x, int y){
 bool TopoRelGST_2::tr_within(int x, int y){
     // Debe ser EQUALS, COVEREDBY o INSIDE
     // Descarte por largo de secuencia
-    int lx = gstRutas[x].size();
-    int ly = gstRutas[y].size();
+    int lx = gstLargos[x];
+    int ly = gstLargos[y];
     if(lx > ly){
         return false;
     }
@@ -509,8 +530,8 @@ bool TopoRelGST_2::tr_within(int x, int y){
     auto lcaCLr = cst.root();
     auto lcaCrL = cst.root();
     auto lcaCrLr = cst.root();
-    int l = gstRutas[x].size();
-    int tempL = gstRutas[y].size();
+    int l = gstLargos[x];
+    int tempL = gstLargos[y];
     do{
         // Acortar la secuencia Larga
         L = cst.sl(L);
@@ -524,7 +545,7 @@ bool TopoRelGST_2::tr_within(int x, int y){
         return true;
     }
 
-    tempL = gstRutas[y].size();
+    tempL = gstLargos[y];
     do{
         // Acortar la secuencia LargaReversa
         Lr = cst.sl(Lr);
@@ -693,7 +714,7 @@ void TopoRelGST_2::navega(int x){
     }
     cout << endl;
 
-    cout << endl << "marcas: \n\t";
+    cout << endl << "Marcas Nodos: \n\t";
     for(int i=0; i<gstMarcas[0].size()/10; i++){
         cout << i << "         ";
     }
@@ -709,30 +730,54 @@ void TopoRelGST_2::navega(int x){
         }
         cout << endl;
     }
+    cout << endl << "Marcas Stops: \n\t";
+    for(int i=0; i<gstMStops[0].size()/10; i++){
+        cout << i << "         ";
+    }
+    cout << "\n\t";
+    for(int i=0; i<gstMStops[0].size(); i++){
+        cout << i%10;
+    }
+    cout << endl;
+    for(int i=0; i<gstMStops.size(); i++){
+        cout << "(" << i << "): \t";
+        for(int j=0; j<gstMStops[i].size(); j++){
+            cout << gstMStops[i][j];
+        }
+        cout << endl;
+    }
+
 }
 
 void TopoRelGST_2::sizeEstructura(){
     cout << "**** Tamaño en bytes ****" << endl;
     cout << "cst_sct3 [B]: " << size_in_bytes(cst) << endl;
-    // Calculo de los bytes para RUTAS
-    int bytesRutas = 0;
-    for(int i=0; i<gstRutas.size(); i++){
-        bytesRutas += size_in_bytes(gstRutas[i]);
-    }
-    cout << "rutas [B]: " << bytesRutas << endl;
-    // Calculo de los bytes para MARCAS
+    // Calculo de los bytes para Marcas
     int bytesMarcas = 0;
-    int bitsUno = 0;
-    int bitsTotal = 0;
+    int bitsUnoMarcas = 0;
+    int bitsTotalMarcas = 0;
     for(int i=0; i<gstMarcas.size(); i++){
         bytesMarcas += size_in_bytes(gstMarcas[i]);
-        bitsTotal += gstMarcas[i].size();
+        bitsTotalMarcas += gstMarcas[i].size();
         for(int j=0; j<gstMarcas[i].size(); j++){
-            bitsUno += gstMarcas[i][j];
+            bitsUnoMarcas += gstMarcas[i][j];
         }
     }
-    double porcentaje = (bitsUno+0.0)/bitsTotal*100;
+    double porcentajeMarcas = (bitsUnoMarcas+0.0)/bitsTotalMarcas*100;
     cout << "marcas [B]: " << bytesMarcas << endl;
+    // Calculo de los bytes para Marcas
+    int bytesMStops = 0;
+    int bitsUnoMStops = 0;
+    int bitsTotalMStops = 0;
+    for(int i=0; i<gstMStops.size(); i++){
+        bytesMStops += size_in_bytes(gstMStops[i]);
+        bitsTotalMStops += gstMStops[i].size();
+        for(int j=0; j<gstMStops[i].size(); j++){
+            bitsUnoMStops += gstMStops[i][j];
+        }
+    }
+    double porcentajeMStops = (bitsUnoMStops+0.0)/bitsTotalMStops*100;
+    cout << "MarcasStops [B]: " << bytesMStops << endl;
     // Calculo de los bytes para MAPA
     int bytesMapa = 0;
     for(int i=0; i<gstMapa.size(); i++){
@@ -740,13 +785,17 @@ void TopoRelGST_2::sizeEstructura(){
     }
     cout << "mapa [B]: " << bytesMapa << endl;
     cout << "largos [B]: " << size_in_bytes(gstLargos) << endl;
+    cout << "bordeInicial [B]: " << size_in_bytes(gstStopBI) << endl;
+    cout << "bordeFinal [B]: " << size_in_bytes(gstStopBF) << endl;
 
     cout << "**** Elementos ****" << endl;
     cout << "Nº Rutas: " << gstMarcas.size() << endl;
     cout << "Nº Nodos cst_sct3: " << cst.nodes() << endl;
     cout << "Nº Hojas cst_sct3: " << cst.size() << endl;
-    cout << "Nº 1s/length en marcas: " << bitsUno << "/" << bitsTotal;
-    cout << " (" << porcentaje << "%)" << endl;
+    cout << "Nº 1s/length en marcas: " << bitsUnoMarcas << "/" << bitsTotalMarcas;
+    cout << " (" << porcentajeMarcas << "%)" << endl;
+    cout << "Nº 1s/length en marcas stops: " << bitsUnoMStops << "/" << bitsTotalMStops;
+    cout << " (" << porcentajeMStops << "%)" << endl;
 }
 
 // Funciones private
