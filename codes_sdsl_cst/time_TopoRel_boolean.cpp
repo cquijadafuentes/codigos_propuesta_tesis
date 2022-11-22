@@ -15,10 +15,10 @@ using namespace std;
 
 void mostrar_rutas(vector<int> &a, vector<int> &b);
 vector<vector<double>> tiempos_naive(vector<vector<int>> &routes);
+vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_stops);
 vector<vector<double>> tiempos_GST_0(vector<vector<int>> &routes, int n_stops);
 vector<vector<double>> tiempos_GST_1(vector<vector<int>> &routes, int n_stops);
 vector<vector<double>> tiempos_GST_4(vector<vector<int>> &routes, int n_stops);
-vector<vector<double>> tiempos_naive_precomp(vector<vector<int>> &routes, int n_stops);
 vector<vector<double>> tiempos_GST_2(vector<vector<int>> &routes, int n_stops);
 
 int idCoveredby = 0;

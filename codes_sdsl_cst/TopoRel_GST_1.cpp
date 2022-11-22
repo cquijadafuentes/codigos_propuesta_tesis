@@ -497,11 +497,20 @@ bool TopoRelGST_1::tr_within(int x, int y){
         return true;
     }
     // Comprobando COVEREDBY
-    auto lca1 = cst.lca(gstMapa[x], gstMapa[y]);
-    auto lca2 = cst.lca(gstMapa[x], gstMapa[y+n_rutas]);
-    auto lca3 = cst.lca(gstMapa[x+n_rutas], gstMapa[y]);
-    auto lca4 = cst.lca(gstMapa[x+n_rutas], gstMapa[y+n_rutas]);
-    if(cst.depth(lca1) == lx || cst.depth(lca2) == lx || cst.depth(lca3) == lx || cst.depth(lca4) == lx){
+    auto lca = cst.lca(gstMapa[x], gstMapa[y]);
+    if(cst.depth(lca) == lx){
+        return true;
+    }
+    lca = cst.lca(gstMapa[x], gstMapa[y+n_rutas]);
+    if(cst.depth(lca) == lx){
+        return true;
+    }
+    lca = cst.lca(gstMapa[x+n_rutas], gstMapa[y]);
+    if(cst.depth(lca) == lx){
+        return true;
+    }
+    lca = cst.lca(gstMapa[x+n_rutas], gstMapa[y+n_rutas]);
+    if(cst.depth(lca) == lx){
         return true;
     }
     // Comprobando INSIDE

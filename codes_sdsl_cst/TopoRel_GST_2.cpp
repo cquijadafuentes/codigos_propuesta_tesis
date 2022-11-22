@@ -503,58 +503,33 @@ bool TopoRelGST_2::tr_overlaps(int x, int y){
 
 bool TopoRelGST_2::tr_within(int x, int y){
     // Debe ser EQUALS, COVEREDBY o INSIDE
-    // Descarte por largo de secuencia
+    // Descarte por largo de secuencias
     int lx = gstLargos[x];
     int ly = gstLargos[y];
-    if(lx > ly){
+    if(lx >= ly){
         return false;
     }
-    // Comprobando Equals
-    if(gstMapa[x] == gstMapa[y] || gstMapa[x] == gstMapa[y+n_rutas]){
+    // Verifica CoveredBy
+    auto lca = cst.lca(gstMapa[x], gstMapa[y]);
+    if(cst.depth(lca) == lx){
         return true;
     }
-    // Comprobando COVEREDBY
-    auto lca1 = cst.lca(gstMapa[x], gstMapa[y]);
-    auto lca2 = cst.lca(gstMapa[x], gstMapa[y+n_rutas]);
-    auto lca3 = cst.lca(gstMapa[x+n_rutas], gstMapa[y]);
-    auto lca4 = cst.lca(gstMapa[x+n_rutas], gstMapa[y+n_rutas]);
-    if(cst.depth(lca1) == lx || cst.depth(lca2) == lx || cst.depth(lca3) == lx || cst.depth(lca4) == lx){
+    lca = cst.lca(gstMapa[x], gstMapa[y+n_rutas]);
+    if(cst.depth(lca) == lx){
         return true;
     }
-    // Comprobando INSIDE
-    auto L = gstMapa[y];
-    auto C = gstMapa[x];
-    auto Lr = gstMapa[y+n_rutas];
-    auto Cr = gstMapa[x+n_rutas];
-    auto lcaCL = cst.root();
-    auto lcaCLr = cst.root();
-    auto lcaCrL = cst.root();
-    auto lcaCrLr = cst.root();
-    int l = gstLargos[x];
-    int tempL = gstLargos[y];
-    do{
-        // Acortar la secuencia Larga
-        L = cst.sl(L);
-        tempL--;
-        // Calcular LCA con corta
-        lcaCL = cst.lca(C, L);
-        lcaCrL = cst.lca(Cr, L);
-    }while(tempL > l && cst.depth(lcaCL) < l && cst.depth(lcaCrL) < l);
-    if(cst.depth(lcaCL) >= l || cst.depth(lcaCrL) >= l){
-        // Existe contención
+    lca = cst.lca(gstMapa[x+n_rutas], gstMapa[y]);
+    if(cst.depth(lca) == lx){
         return true;
     }
-
-    tempL = gstLargos[y];
-    do{
-        // Acortar la secuencia LargaReversa
-        Lr = cst.sl(Lr);
-        tempL--;
-        // Calcular LCA con corta
-        lcaCLr = cst.lca(C, Lr);
-        lcaCrLr = cst.lca(Cr, Lr);
-    }while(tempL > l && cst.depth(lcaCLr) < l && cst.depth(lcaCrLr) < l);
-    if(cst.depth(lcaCLr) >= l || cst.depth(lcaCrLr) >= l){
+    lca = cst.lca(gstMapa[x+n_rutas], gstMapa[y+n_rutas]);
+    if(cst.depth(lca) == lx){
+        return true;
+    }
+    // Verificación de Inside por gstMarcas
+    auto padreX = cst.parent(gstMapa[x]);
+    int idPaX = cst.id(padreX);
+    if(cst.depth(padreX) == lx && gstMarcas[y][idPaX]){
         return true;
     }
     return false;
