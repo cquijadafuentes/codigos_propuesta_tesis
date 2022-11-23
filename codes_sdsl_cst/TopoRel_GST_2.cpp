@@ -283,6 +283,7 @@ bool TopoRelGST_2::tr_coveredby(int x, int y){
         return false;
     }
     // Verifica CoveredBy
+    /*
     auto lca = cst.lca(gstMapa[x], gstMapa[y]);
     if(cst.depth(lca) == lx){
         return true;
@@ -299,7 +300,21 @@ bool TopoRelGST_2::tr_coveredby(int x, int y){
     if(cst.depth(lca) == lx){
         return true;
     }
-    
+    */
+    // Comprobar bordes
+    if(gstStopBI[x] == gstStopBI[y] || gstStopBI[x] == gstStopBF[y] ||
+            gstStopBF[x] == gstStopBI[y] || gstStopBF[x] == gstStopBF[y]){
+        // Comprobrar contención
+        auto parentX = cst.parent(gstMapa[x]);
+        if(cst.depth(parentX) == gstLargos[x] && (gstMarcas[y][cst.id(parentX)] || gstMarcas[y+n_rutas][cst.id(parentX)])){
+            return true;
+        }
+        parentX = cst.parent(gstMapa[x+n_rutas]);
+        if(cst.depth(parentX) == gstLargos[x] && (gstMarcas[y][cst.id(parentX)] || gstMarcas[y+n_rutas][cst.id(parentX)])){
+            return true;
+        }
+    }
+
     return false;
 }
 
@@ -314,29 +329,19 @@ bool TopoRelGST_2::tr_inside(int x, int y){
     if(lx >= ly){
         return false;
     }
-    // Descarte por CoveredBy
-    auto lca = cst.lca(gstMapa[x], gstMapa[y]);
-    if(cst.depth(lca) == lx){
-        return false;
-    }
-    lca = cst.lca(gstMapa[x], gstMapa[y+n_rutas]);
-    if(cst.depth(lca) == lx){
-        return false;
-    }
-    lca = cst.lca(gstMapa[x+n_rutas], gstMapa[y]);
-    if(cst.depth(lca) == lx){
-        return false;
-    }
-    lca = cst.lca(gstMapa[x+n_rutas], gstMapa[y+n_rutas]);
-    if(cst.depth(lca) == lx){
-        return false;
-    }
-
-    // Verificación por gstMarcas
-    auto padreX = cst.parent(gstMapa[x]);
-    int idPaX = cst.id(padreX);
-    if(cst.depth(padreX) == lx && gstMarcas[y][idPaX]){
-        return true;
+    
+    // Comprobar bordes
+    if(gstStopBI[x] != gstStopBI[y] && gstStopBI[x] != gstStopBF[y] &&
+            gstStopBF[x] != gstStopBI[y] && gstStopBF[x] != gstStopBF[y]){
+        // Comprobar contención
+        auto parentX = cst.parent(gstMapa[x]);
+        if(cst.depth(parentX) == gstLargos[x] && (gstMarcas[y][cst.id(parentX)] || gstMarcas[y+n_rutas][cst.id(parentX)])){
+            return true;
+        }
+        parentX = cst.parent(gstMapa[x+n_rutas]);
+        if(cst.depth(parentX) == gstLargos[x] && (gstMarcas[y][cst.id(parentX)] || gstMarcas[y+n_rutas][cst.id(parentX)])){
+            return true;
+        }
     }
     return false;
 }
@@ -350,12 +355,13 @@ bool TopoRelGST_2::tr_disjoint(int x, int y){
     if(gstMapa[x] == gstMapa[y] || gstMapa[x] == gstMapa[y+n_rutas]){
         return false;
     }
-    // Descartar contención por CB o CV
-    if(tr_coveredby(x,y) || tr_covers(x,y)){
+    // Descartar contención por CB o CV o IS o IC
+    auto parentX = cst.parent(gstMapa[x]);
+    if(gstMarcas[y][cst.id(parentX)] || gstMarcas[y+n_rutas][cst.id(parentX)]){
         return false;
     }
-    // Descartar contención por IS o IC
-    if(tr_inside(x,y) || tr_includes(x,y)){
+    parentX = cst.parent(gstMapa[x+n_rutas]);
+    if(gstMarcas[y][cst.id(parentX)] || gstMarcas[y+n_rutas][cst.id(parentX)]){
         return false;
     }
 
