@@ -11,6 +11,10 @@ using namespace std;
 	const string OVERLAPS = "Overlaps";
 	const string TOUCHES = "Touches";
 
+	const string WHITIN = "Whitin";
+	const string CONTAINS = "Contains";
+	const string INTERSECT = "Intersects";
+
 	const string COVEREDBY_res = "CB";
 	const string COVERS_res = "CV";
 	const string DISJOINT_res = "DJ";

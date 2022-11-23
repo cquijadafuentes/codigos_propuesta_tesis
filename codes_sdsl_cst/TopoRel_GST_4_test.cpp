@@ -260,7 +260,7 @@ int main(int argc, char const *argv[]){
 	}
 	cout << endl;
 
-	cout << "INTERSECTS: " << endl;
+	cout << "INTERSECT: " << endl;
 	for(int i=0; i < vi.size(); i++){
 		cout << " _";
 	}
@@ -268,7 +268,7 @@ int main(int argc, char const *argv[]){
 	for(int i=0; i < vi.size(); i++){
 		cout << "|";
 		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_intersects(i,j)){
+			if(tr_gst.tr_intersect(i,j)){
 				cout << "X ";
 			}else{
 				cout << "  ";

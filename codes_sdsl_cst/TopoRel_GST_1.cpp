@@ -556,7 +556,7 @@ bool TopoRelGST_1::tr_contains(int x, int y){
     return tr_within(y, x);
 }    
 
-bool TopoRelGST_1::tr_intersects(int x, int y){
+bool TopoRelGST_1::tr_intersect(int x, int y){
     return !tr_disjoint(x, y);
 }
 

@@ -39,7 +39,7 @@ public:
     // Relaciones topológicas binarias agregadas
     bool within(int, int);
     bool contains(int, int);
-    bool intersects(int, int);
+    bool intersect(int, int);
 
     void navega();
     void sizeEstructura();

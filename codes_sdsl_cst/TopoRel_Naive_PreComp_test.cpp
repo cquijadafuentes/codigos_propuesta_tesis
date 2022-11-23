@@ -245,7 +245,7 @@ int main(int argc, char const *argv[]){
 	}
 	cout << endl;
 
-	cout << "INTERSECTS: " << endl;
+	cout << "INTERSECT: " << endl;
 	for(int i=0; i < lx.size(); i++){
 		cout << " _";
 	}
@@ -253,7 +253,7 @@ int main(int argc, char const *argv[]){
 	for(int i=0; i < lx.size(); i++){
 		cout << "|";
 		for(int j=0; j < lx.size(); j++){
-			if(trnpc.intersects(i,j)){
+			if(trnpc.intersect(i,j)){
 				cout << "X ";
 			}else{
 				cout << "  ";

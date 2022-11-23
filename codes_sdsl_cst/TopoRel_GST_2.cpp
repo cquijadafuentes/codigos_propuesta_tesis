@@ -503,6 +503,9 @@ bool TopoRelGST_2::tr_overlaps(int x, int y){
 
 bool TopoRelGST_2::tr_within(int x, int y){
     // Debe ser EQUALS, COVEREDBY o INSIDE
+    if(gstMapa[x] == gstMapa[y] || gstMapa[x] == gstMapa[y+n_rutas]){
+        return true;
+    }
     // Descarte por largo de secuencias
     int lx = gstLargos[x];
     int ly = gstLargos[y];
@@ -539,7 +542,7 @@ bool TopoRelGST_2::tr_contains(int x, int y){
     return tr_within(y, x);
 }
 
-bool TopoRelGST_2::tr_intersects(int x, int y){
+bool TopoRelGST_2::tr_intersect(int x, int y){
     return !tr_disjoint(x, y);
 }
 

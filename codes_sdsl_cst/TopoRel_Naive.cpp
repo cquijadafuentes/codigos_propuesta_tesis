@@ -575,7 +575,7 @@ bool tr_contains(vector<int> &a, vector<int> &b){
     return (kmp.first != -1 || kmpR.first != -1);
 }
 
-bool tr_intersects(vector<int> &a, vector<int> &b){
+bool tr_intersect(vector<int> &a, vector<int> &b){
     // Verificacición de bordes O(c)
     if(a[0] == b[0] || a[0] == b[b.size()-1] 
         || a[a.size()-1] == b[0] || a[a.size()-1] == b[b.size()-1]){

@@ -80,11 +80,11 @@ int main(int argc, char const *argv[]){
 			bool tt0Cont = tt_0.tr_contains(i, j);
 			bool tt1Cont = tt_1.tr_contains(i, j);
 			bool tt2Cont = tt_2.tr_contains(i, j);
-			bool trInte = tr_intersects(routes[i], routes[j]);
-			bool trpcInte = trpc.intersects(i, j);
-			bool tt0Inte = tt_0.tr_intersects(i, j);
-			bool tt1Inte = tt_1.tr_intersects(i, j);
-			bool tt2Inte = tt_2.tr_intersects(i, j);
+			bool trInte = tr_intersect(routes[i], routes[j]);
+			bool trpcInte = trpc.intersect(i, j);
+			bool tt0Inte = tt_0.tr_intersect(i, j);
+			bool tt1Inte = tt_1.tr_intersect(i, j);
+			bool tt2Inte = tt_2.tr_intersect(i, j);
 
             if(noIguales(trWith, trpcWith, tt0With, tt1With, tt2With) ||
             		noIguales(trCont, trpcCont, tt0Cont, tt1Cont, tt2Cont) ||

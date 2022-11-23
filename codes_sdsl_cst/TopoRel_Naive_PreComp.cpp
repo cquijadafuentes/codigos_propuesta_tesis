@@ -113,7 +113,7 @@ bool TopoRelNaivePreComp::contains(int i, int j){
 	return false;
 }
 
-bool TopoRelNaivePreComp::intersects(int i, int j){
+bool TopoRelNaivePreComp::intersect(int i, int j){
 	return relaciones[i][j] != 2;
 }
 

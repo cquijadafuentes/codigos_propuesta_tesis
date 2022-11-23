@@ -255,7 +255,7 @@ int main(){
 	}
 	cout << endl;
 
-	cout << "INTERSECTS: " << endl;
+	cout << "INTERSECT: " << endl;
 	for(int i=0; i < lx.size(); i++){
 		cout << " _";
 	}
@@ -263,7 +263,7 @@ int main(){
 	for(int i=0; i < lx.size(); i++){
 		cout << "|";
 		for(int j=0; j < lx.size(); j++){
-			if(tr_intersects(lx[i],lx[j])){
+			if(tr_intersect(lx[i],lx[j])){
 				cout << "X ";
 			}else{
 				cout << "  ";

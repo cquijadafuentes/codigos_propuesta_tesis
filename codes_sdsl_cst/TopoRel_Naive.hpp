@@ -32,6 +32,6 @@ bool tr_touches(vector<int> &a, vector<int> &b);
 // Relaciones topológicas binarias agregadas
 bool tr_within(vector<int> &a, vector<int> &b);
 bool tr_contains(vector<int> &a, vector<int> &b);
-bool tr_intersects(vector<int> &a, vector<int> &b);
+bool tr_intersect(vector<int> &a, vector<int> &b);
 
 #endif
