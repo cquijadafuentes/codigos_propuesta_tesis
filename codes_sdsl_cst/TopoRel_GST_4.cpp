@@ -70,14 +70,19 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops){
     }
 */
     // Marcas en bitvectors
+    int sizePrevCompr = 0;
+    int sizePostCompr = 0;    
     gstMarcas = vector<sd_vector<>>(n_rutas);
     for(int i = 0; i < n_rutas; i++){
         bit_vector bvt = bit_vector(finSec, 0);
         for(int j = 0; j < rutas[i].size(); j++){
             bvt[rutas[i][j]] = 1;
         }
+        sizePrevCompr += size_in_bytes(bvt);
         gstMarcas[i] = sd_vector<>(bvt);
+        sizePostCompr += size_in_bytes(gstMarcas[i]);
     }
+    cout << "Tamaño stops: " << sizePrevCompr << " >> " << sizePostCompr << endl;
 //    cout << "Marcas en bitvector... OK" << endl;
 /*
     cout << "Marcas: " << endl;

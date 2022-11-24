@@ -33,6 +33,8 @@ TopoRelGST_0::TopoRelGST_0(vector<vector<int>> &rutas, int cant_stops){
     int pv = 0;
     int tr = n_rutas;
     // Concatenar rutas
+    int sizePrevCompr = 0;
+    int sizePostCompr = 0;    
     for(int i = 0; i < n_rutas; i++){
         gstRutas[i] = int_vector<>(rutas[i].size());
         for(int j = 0; j < rutas[i].size(); j++){
@@ -40,8 +42,13 @@ TopoRelGST_0::TopoRelGST_0(vector<vector<int>> &rutas, int cant_stops){
             gstRutas[i][j] = rutas[i][j];
         }
         iv[pv++] = finSec;
+        sizePrevCompr += size_in_bytes(gstRutas[i]);
         util::bit_compress(gstRutas[i]);
+        sizePostCompr += size_in_bytes(gstRutas[i]);
     }
+    cout << "Tamaño rutas: " << sizePrevCompr << " >> " << sizePostCompr << endl;
+
+
 //    cout << "Rutas... concatenadas" << endl;
 
     // Concatenar rutas reversas
@@ -70,12 +77,14 @@ TopoRelGST_0::TopoRelGST_0(vector<vector<int>> &rutas, int cant_stops){
     }
 */
     // Marcas en bitvectors
+    sizePrevCompr = 0;
     gstMarcas = vector<bit_vector>(n_rutas, bit_vector(finSec, 0));
     for(int i = 0; i < n_rutas; i++){
         for(int j = 0; j < rutas[i].size(); j++){
             gstMarcas[i][rutas[i][j]] = 1;
         }
     }
+    cout << "Tamaño stops: " << sizePrevCompr << endl;
 //    cout << "Marcas en bitvector... OK" << endl;
 /*
     cout << "Marcas: " << endl;

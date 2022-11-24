@@ -46,7 +46,9 @@ TopoRelGST_2::TopoRelGST_2(vector<vector<int>> &rutas, int cant_stops){
         iv[pv++] = finSec;
         util::bit_compress(gstRutas[i]);
     }
+    cout << "Tamaño largos: " << size_in_bytes(gstLargos);
     util::bit_compress(gstLargos);
+    cout << " >> " << size_in_bytes(gstLargos) << endl;
 //    cout << "Rutas... concatenadas" << endl;
 
     // Concatenar rutas reversas
