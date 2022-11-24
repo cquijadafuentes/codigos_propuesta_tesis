@@ -11,9 +11,9 @@ set terminal png size 800,400
 
 set title "Tamaños [Madrid]"
 set output 'size_Madrid.png'
-plot 'data_size_Madrid.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col
+plot 'data_size_Madrid.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col
 
 set title "Tamaños [TranSantiago]"
 set output 'size_TSantiago.png'
-plot 'data_size_TSantiago.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col
+plot 'data_size_TSantiago.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col
 

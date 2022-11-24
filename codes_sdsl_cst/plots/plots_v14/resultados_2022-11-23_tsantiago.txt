@@ -2,17 +2,21 @@
 >>> Calculando...
 	Relación Topológica ... OK
 	Relaciones binarias TRUE ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
-	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... _WT ... _CT ... _IT ... OK
 >>> Fin Calculo Tiempo Naive
 TopoRelation	cant	Time_true	Time_all
-CoveredBy	15	2.39048 [us]	1.04288 [us]
-Covers		15	2.39048 [us]	1.04505 [us]
-Equals		391	0.424552 [us]	0.0117804 [us]
-Includes	6	2.83333 [us]	1.04541 [us]
-Inside		6	2.82353 [us]	1.04369 [us]
-Overlaps	8182	4.72537 [us]	4.23978 [us]
-Touches		986	2.44422 [us]	3.04676 [us]
-Disjoint	143280	2.15346 [us]	2.13634 [us]
+CoveredBy	15	2.4 [us]	1.03911 [us]
+Covers		15	2.38095 [us]	1.03574 [us]
+Equals		391	0.421995 [us]	0.0107208 [us]
+Includes	6	2.83333 [us]	1.04027 [us]
+Inside		6	2.82353 [us]	1.03753 [us]
+Overlaps	8182	4.74982 [us]	4.24399 [us]
+Touches		986	2.45233 [us]	3.02557 [us]
+Disjoint	143280	2.1334 [us]	2.12576 [us]
+---
+Whitin					1.06226 [us]
+Contains						1.06492 [us]
+Intersects					1.90441 [us]
 Total relaciones: 152881
 ********** Naive Pre-Computed **********
 Tiempo Construcción: 1e+06[us]
@@ -24,17 +28,21 @@ Nº Rutas: 391
 >>> Calculando...
 	Relación Topológica ... OK
 	Relaciones binarias TRUE ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
-	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... _WT ... _CT ... _IT ... OK
 >>> Fin Calculo Tiempo PreComp
 TopoRelation	cant	Time_true	Time_all
-CoveredBy	15	0.0285714 [us]	0.0201987 [us]
-Covers		15	0.0285714 [us]	0.0201595 [us]
-Equals		391	0.0255754 [us]	0.0202314 [us]
-Includes	6	0.0196078 [us]	0.0201987 [us]
-Inside		6	0.0294118 [us]	0.0201791 [us]
-Overlaps	8182	0.0241995 [us]	0.0202118 [us]
-Touches		986	0.025355 [us]	0.0201791 [us]
-Disjoint	143280	0.0247069 [us]	0.0201268 [us]
+CoveredBy	15	0.0380952 [us]	0.0201006 [us]
+Covers		15	0.0380952 [us]	0.0198913 [us]
+Equals		391	0.0255754 [us]	0.018485 [us]
+Includes	6	0.0294118 [us]	0.0181579 [us]
+Inside		6	0.0294118 [us]	0.020009 [us]
+Overlaps	8182	0.0226106 [us]	0.0199829 [us]
+Touches		986	0.025355 [us]	0.0203949 [us]
+Disjoint	143280	0.0243719 [us]	0.0193026 [us]
+---
+Whitin					0.05189 [us]
+Contains						0.0513471 [us]
+Intersects					0.0198717 [us]
 Total relaciones: 152881
 ********** Compressed Suffix Tree GST_0 **********
 Tiempo Construcción: 1e+06[us]
@@ -51,17 +59,21 @@ Nº 1s/length en marcas: 18399/3138557 (0.586225%)
 >>> Calculando...
 	Relación Topológica ... OK
 	Relaciones binarias TRUE ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
-	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... _WT ... _CT ... _IT ... OK
 >>> Fin Calculo Tiempo GST_0
 TopoRelation	cant	Time_true	Time_all
-CoveredBy	15	10.2286 [us]	8.23399 [us]
-Covers		15	9.86667 [us]	8.22325 [us]
-Equals		391	0.0153453 [us]	0.0146258 [us]
-Includes	6	942.549 [us]	779.835 [us]
-Inside		6	942.451 [us]	791.183 [us]
-Overlaps	8182	16.4366 [us]	18.0431 [us]
-Touches		986	1.58114 [us]	0.144053 [us]
-Disjoint	143280	19.4274 [us]	19.056 [us]
+CoveredBy	15	10.0381 [us]	8.09933 [us]
+Covers		15	9.71429 [us]	8.14986 [us]
+Equals		391	0.0127877 [us]	0.0146781 [us]
+Includes	6	942.588 [us]	784.49 [us]
+Inside		6	941.618 [us]	793.462 [us]
+Overlaps	8182	16.1461 [us]	18.0279 [us]
+Touches		986	1.59838 [us]	0.144675 [us]
+Disjoint	143280	19.1186 [us]	18.8403 [us]
+---
+Whitin					794.776 [us]
+Contains						785.226 [us]
+Intersects					18.9672 [us]
 Total relaciones: 152881
 ********** Compressed Suffix Tree GST_1 **********
 Tiempo Construcción: 1e+06[us]
@@ -78,20 +90,24 @@ Nº 1s/length en marcas: 18399/3138557 (0.586225%)
 >>> Calculando...
 	Relación Topológica ... OK
 	Relaciones binarias TRUE ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
-	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... _WT ... _CT ... _IT ... OK
 >>> Fin Calculo Tiempo GST_1
 TopoRelation	cant	Time_true	Time_all
-CoveredBy	15	10.1048 [us]	8.24168 [us]
-Covers		15	9.8 [us]	8.21632 [us]
-Equals		391	0.0127877 [us]	0.0147042 [us]
-Includes	6	943.333 [us]	779.834 [us]
-Inside		6	942.049 [us]	791.336 [us]
-Overlaps	8182	19.5532 [us]	21.4427 [us]
-Touches		986	6.40061 [us]	0.553149 [us]
-Disjoint	143280	26.0403 [us]	25.4572 [us]
+CoveredBy	15	10.0667 [us]	8.11343 [us]
+Covers		15	9.70476 [us]	8.16245 [us]
+Equals		391	0.0153453 [us]	0.0146585 [us]
+Includes	6	943.118 [us]	784.214 [us]
+Inside		6	942.127 [us]	793.298 [us]
+Overlaps	8182	19.3099 [us]	21.2199 [us]
+Touches		986	6.40467 [us]	0.554189 [us]
+Disjoint	143280	25.8213 [us]	25.3743 [us]
+---
+Whitin					794.759 [us]
+Contains						785.431 [us]
+Intersects					25.3396 [us]
 Total relaciones: 152881
 ********** Compressed Suffix Tree GST_2 **********
-Tiempo Construcción: 3e+07[us]
+Tiempo Construcción: 3.1e+07[us]
 **** Tamaño en bytes ****
 cst_sct3 [B]: 107766
 marcas [B]: 6074576
@@ -109,17 +125,21 @@ Nº 1s/length en marcas stops: 18399/3138557 (0.586225%)
 >>> Calculando...
 	Relación Topológica ... OK
 	Relaciones binarias TRUE ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
-	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... _WT ... _CT ... _IT ... OK
 >>> Fin Calculo Tiempo GST_2
 TopoRelation	cant	Time_true	Time_all
-CoveredBy	15	10.0381 [us]	8.22122 [us]
-Covers		15	9.77143 [us]	8.31075 [us]
-Equals		391	0.0153453 [us]	0.014665 [us]
-Includes	6	15.3235 [us]	9.21411 [us]
-Inside		6	15.1373 [us]	9.02875 [us]
-Overlaps	8182	73.0402 [us]	132.101 [us]
-Touches		986	357.18 [us]	3.04831 [us]
-Disjoint	143280	134.772 [us]	129.888 [us]
+CoveredBy	15	1.7619 [us]	0.108189 [us]
+Covers		15	1.67619 [us]	0.110642 [us]
+Equals		391	0.0153453 [us]	0.0146519 [us]
+Includes	6	0.480392 [us]	1.78771 [us]
+Inside		6	0.460784 [us]	1.67948 [us]
+Overlaps	8182	42.7277 [us]	97.2196 [us]
+Touches		986	360.168 [us]	3.05092 [us]
+Disjoint	143280	99.3523 [us]	97.3913 [us]
+---
+Whitin					8.94845 [us]
+Contains						9.0751 [us]
+Intersects					98.6011 [us]
 Total relaciones: 152881
 ********** Compressed Suffix Tree GST_4 **********
 Tiempo Construcción: 4e+06[us]
@@ -136,25 +156,34 @@ Nº 1s/length en marcas: 18399/3138557 (0.586225%)
 >>> Calculando...
 	Relación Topológica ... OK
 	Relaciones binarias TRUE ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
-	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... OK
+	Relaciones binarias ALL ... CB ... CV ... DJ ... EQ ... IC ... IS ... OV ... TO ... _WT ... _CT ... _IT ... OK
 >>> Fin Calculo Tiempo GST_4
 TopoRelation	cant	Time_true	Time_all
-CoveredBy	15	407.019 [us]	11.0146 [us]
-Covers		15	406.6 [us]	11.0542 [us]
-Equals		391	0.0127877 [us]	0.0115122 [us]
-Includes	6	1854.73 [us]	759.387 [us]
-Inside		6	1854.03 [us]	772.473 [us]
-Overlaps	8182	106.27 [us]	26.9713 [us]
-Touches		986	6.40264 [us]	0.552201 [us]
-Disjoint	143280	25.4307 [us]	31.1448 [us]
+CoveredBy	15	408.057 [us]	11.0524 [us]
+Covers		15	407.495 [us]	11.0765 [us]
+Equals		391	0.0127877 [us]	0.0115776 [us]
+Includes	6	1863.95 [us]	764.366 [us]
+Inside		6	1862.29 [us]	775.024 [us]
+Overlaps	8182	107.082 [us]	26.9824 [us]
+Touches		986	6.40669 [us]	0.553084 [us]
+Disjoint	143280	25.3718 [us]	31.1215 [us]
+---
+Whitin					775.996 [us]
+Contains						765.098 [us]
+Intersects					31.1898 [us]
 Total relaciones: 152881
- *********************** matriz *********************** 
+ *********************** Relaciones Básicas *********************** 
 %relacion	nvCant	nvSamp	nvTrue	nvAll	pcCant	pcSamp	pcTrue	pcAll	gst0Can	gst0Sam	gst0True	gst0All	gst1Can	gst1Sam	gst1True	gst1All	gst2Can	gst2Sam	gst2True	gst2All	gst4Can	gst4Sam	gst4True	gst4All
-Coveredby	15	105	2.39048	1.04288	15	105	0.0285714	0.0201987	15	105	10.2286	8.23399	15	105	10.1048	8.24168	15	105	10.0381	8.22122	15	105	407.019	11.0146	
-Covers	15	105	2.39048	1.04505	15	105	0.0285714	0.0201595	15	105	9.86667	8.22325	15	105	9.8	8.21632	15	105	9.77143	8.31075	15	105	406.6	11.0542	
-Equals	391	391	0.424552	0.0117804	391	391	0.0255754	0.0202314	391	391	0.0153453	0.0146258	391	391	0.0127877	0.0147042	391	391	0.0153453	0.014665	391	391	0.0127877	0.0115122	
-Includes	6	102	2.83333	1.04541	6	102	0.0196078	0.0201987	6	102	942.549	779.835	6	102	943.333	779.834	6	102	15.3235	9.21411	6	102	1854.73	759.387	
-Inside	6	102	2.82353	1.04369	6	102	0.0294118	0.0201791	6	102	942.451	791.183	6	102	942.049	791.336	6	102	15.1373	9.02875	6	102	1854.03	772.473	
-Overlaps	8182	8182	4.72537	4.23978	8182	8182	0.0241995	0.0202118	8182	8182	16.4366	18.0431	8182	8182	19.5532	21.4427	8182	8182	73.0402	132.101	8182	8182	106.27	26.9713	
-Touches	986	986	2.44422	3.04676	986	986	0.025355	0.0201791	986	986	1.58114	0.144053	986	986	6.40061	0.553149	986	986	357.18	3.04831	986	986	6.40264	0.552201	
-Disjoint	143280	143280	2.15346	2.13634	143280	143280	0.0247069	0.0201268	143280	143280	19.4274	19.056	143280	143280	26.0403	25.4572	143280	143280	134.772	129.888	143280	143280	25.4307	31.1448	
+Coveredby	15	105	2.4	1.03911	15	105	0.0380952	0.0201006	15	105	10.0381	8.09933	15	105	10.0667	8.11343	15	105	1.7619	0.108189	15	105	408.057	11.0524	
+Covers	15	105	2.38095	1.03574	15	105	0.0380952	0.0198913	15	105	9.71429	8.14986	15	105	9.70476	8.16245	15	105	1.67619	0.110642	15	105	407.495	11.0765	
+Equals	391	391	0.421995	0.0107208	391	391	0.0255754	0.018485	391	391	0.0127877	0.0146781	391	391	0.0153453	0.0146585	391	391	0.0153453	0.0146519	391	391	0.0127877	0.0115776	
+Includes	6	102	2.83333	1.04027	6	102	0.0294118	0.0181579	6	102	942.588	784.49	6	102	943.118	784.214	6	102	0.480392	1.78771	6	102	1863.95	764.366	
+Inside	6	102	2.82353	1.03753	6	102	0.0294118	0.020009	6	102	941.618	793.462	6	102	942.127	793.298	6	102	0.460784	1.67948	6	102	1862.29	775.024	
+Overlaps	8182	8182	4.74982	4.24399	8182	8182	0.0226106	0.0199829	8182	8182	16.1461	18.0279	8182	8182	19.3099	21.2199	8182	8182	42.7277	97.2196	8182	8182	107.082	26.9824	
+Touches	986	986	2.45233	3.02557	986	986	0.025355	0.0203949	986	986	1.59838	0.144675	986	986	6.40467	0.554189	986	986	360.168	3.05092	986	986	6.40669	0.553084	
+Disjoint	143280	143280	2.1334	2.12576	143280	143280	0.0243719	0.0193026	143280	143280	19.1186	18.8403	143280	143280	25.8213	25.3743	143280	143280	99.3523	97.3913	143280	143280	25.3718	31.1215	
+ *********************** Relaciones Agregadas *********************** 
+%relacion	cant	nvAll	pcAll	gst0All	gst1All	gst2All	gst4All
+Whitin	412	1.06226	0.05189	794.776	794.759	8.94845	775.996	
+Contains	412	1.06492	0.0513471	785.226	785.431	9.0751	765.098	
+Intersect	9601	1.90441	0.0198717	18.9672	25.3396	98.6011	31.1898	

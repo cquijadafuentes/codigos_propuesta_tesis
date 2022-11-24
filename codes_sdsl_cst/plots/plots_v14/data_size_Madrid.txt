@@ -1,4 +1,6 @@
-Dataset	cst-sct3	marcas	mapa	rutas	rel-3b
-Naive_{PC}	-nan	-nan	-nan	56717	380765
-GST_0 	171950	1376688	79120	56717	-nan
-GST_1	171950	242590	79120	56717	-nan
+Dataset	GST	Mapa	Stops	Rutas	Marcas	Largos	Bordes	Relaciones
+Naive_{PC}	-nan	-nan	-nan	56717	-nan	-nan	-nan	380765
+GST_0	171950	79120	-nan	56717	1376688	-nan	-nan	-nan
+GST_1	171950	79120	-nan	56717	242590	-nan	-nan	-nan
+GST_2	171950	79120	1376688	-nan	21299104	881	3490	-nan
+GST_4	166434	15824	-nan	56717	242590	-nan	-nan	-nan
