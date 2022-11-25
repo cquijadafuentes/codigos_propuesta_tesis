@@ -8,6 +8,7 @@
 #include "TopoRel_GST_2.hpp"
 
 TopoRelGST_2::TopoRelGST_2(vector<vector<int>> &rutas, int cant_stops){
+    cout << "Constructor TopoRelGST_2" << endl;
     n_stops = cant_stops;
     n_concat = 0;
     n_rutas = rutas.size();
@@ -29,22 +30,18 @@ TopoRelGST_2::TopoRelGST_2(vector<vector<int>> &rutas, int cant_stops){
     finSec = maxID+1;
     int_vector<> iv(n_concat*2);
     gstMStops = vector<bit_vector> (rutas.size());
-    gstRutas = vector<int_vector<>>(rutas.size());
     gstLargos = int_vector<>(rutas.size());
     int pv = 0;
     int tr = n_rutas;
     // Concatenar rutas
     for(int i = 0; i < n_rutas; i++){
         gstLargos[i] = rutas[i].size();
-        gstRutas[i] = int_vector<>(rutas[i].size());
         gstMStops[i] = bit_vector(n_stops+1, 0);
         for(int j = 0; j < rutas[i].size(); j++){
             iv[pv++] = rutas[i][j];
-            gstRutas[i][j] = rutas[i][j];
             gstMStops[i][rutas[i][j]] = 1;
         }
         iv[pv++] = finSec;
-        util::bit_compress(gstRutas[i]);
     }
     cout << "Tamaño largos: " << size_in_bytes(gstLargos);
     util::bit_compress(gstLargos);
@@ -146,6 +143,7 @@ TopoRelGST_2::TopoRelGST_2(vector<vector<int>> &rutas, int cant_stops){
     util::bit_compress(gstStopBF);
 
 //    cout << "Map... OK" << endl;
+    cout << "Fin constructor" << endl;
 }
 
 
@@ -763,7 +761,7 @@ void TopoRelGST_2::sizeEstructura(){
         }
     }
     double porcentajeMStops = (bitsUnoMStops+0.0)/bitsTotalMStops*100;
-    cout << "MarcasStops [B]: " << bytesMStops << endl;
+    cout << "stops [B]: " << bytesMStops << endl;
     // Calculo de los bytes para MAPA
     int bytesMapa = 0;
     for(int i=0; i<gstMapa.size(); i++){
@@ -771,8 +769,7 @@ void TopoRelGST_2::sizeEstructura(){
     }
     cout << "mapa [B]: " << bytesMapa << endl;
     cout << "largos [B]: " << size_in_bytes(gstLargos) << endl;
-    cout << "bordeInicial [B]: " << size_in_bytes(gstStopBI) << endl;
-    cout << "bordeFinal [B]: " << size_in_bytes(gstStopBF) << endl;
+    cout << "bordes [B]: " << (size_in_bytes(gstStopBI)+size_in_bytes(gstStopBF)) << endl;
 
     cout << "**** Elementos ****" << endl;
     cout << "Nº Rutas: " << gstMarcas.size() << endl;
@@ -782,69 +779,4 @@ void TopoRelGST_2::sizeEstructura(){
     cout << " (" << porcentajeMarcas << "%)" << endl;
     cout << "Nº 1s/length en marcas stops: " << bitsUnoMStops << "/" << bitsTotalMStops;
     cout << " (" << porcentajeMStops << "%)" << endl;
-}
-
-// Funciones private
-
-bool TopoRelGST_2::bordesSeg_touches(int t1, int t2){
-    // Comprueba si hay segmentos finales que se intersecan
-    // Esto implica una intersección Interior-Interior entre los bordes
-    // que se considera como un touches falso-positivo
-
-    int bff = gstRutas[t2].size() - 1;
-    int bpf = bff - 1;
-    if((gstRutas[t1][0] == gstRutas[t2][1] && gstRutas[t1][1] == gstRutas[t2][0]) ||
-            (gstRutas[t1][0] == gstRutas[t2][bpf] && gstRutas[t1][1] == gstRutas[t2][bff])){
-        return true;
-    }
-
-    int aff = gstRutas[t1].size() - 1;
-    int apf = aff - 1;
-    if((gstRutas[t1][aff] == gstRutas[t2][1] && gstRutas[t1][apf] == gstRutas[t2][0]) ||
-            (gstRutas[t1][aff] == gstRutas[t2][bpf] && gstRutas[t1][apf] == gstRutas[t2][bff])){
-        return true;
-    }
-
-    return false;
-}
-
-bool TopoRelGST_2::interiorInterior(int t1, int t2){
-    int corto = t1;
-    int largo = t2;
-    if(gstLargos[t2] < gstLargos[t1]){
-        corto = t2;
-        largo = t1;
-    }
-
-    return false;
-}
-
-bool TopoRelGST_2::estaMarcado(int idNodo, int idStop){
-    if(gstMarcas[idNodo][idStop] == 1){
-        return true;
-    }
-    return false;
-}
-
-cst_sct3<>::node_type TopoRelGST_2::nodoSubseq(cst_sct3<>::node_type n, int x){
-    // Retorna el nodo con la subsequencia de largo x desde el nodo n
-    auto r = cst.root();
-    if(x <= 0 || x > cst.depth(n)){
-        return r;
-    }
-    int d = 0;
-    do{
-        r = cst.child(r, cst.edge(n, d+1));
-        d = cst.depth(r);
-    }while(d < x);
-    return r;
-}
-
-cst_sct3<>::node_type TopoRelGST_2::nodoProfUno(cst_sct3<>::node_type n){
-    // Retorna el nodo con la subsequencia de largo x desde el nodo n
-    auto nav = n;
-    while(cst.depth(nav) > 1){
-        nav = cst.parent(nav);
-    }
-    return nav;
 }

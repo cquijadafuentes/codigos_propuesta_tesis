@@ -9,6 +9,7 @@
 #include "TopoRel_GST_4.hpp"
 
 TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops){
+    cout << "Constructor TopoRelGST_4" << endl;
     n_stops = cant_stops;
     n_concat = 0;
     n_rutas = rutas.size();
@@ -118,6 +119,7 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops){
         gstMapa[n_rutas + i] = v;
     }
 //    cout << "Map... OK" << endl;
+    cout << "Fin constructor" << endl;
 }
 
 
