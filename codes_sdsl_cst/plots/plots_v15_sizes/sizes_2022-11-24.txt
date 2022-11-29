@@ -1,0 +1,237 @@
+---------------------------- madrid_x1 ----------------------------
+**** Tamaño en bytes ****
+rutas [B]: 56717
+relaciones [B]: 380765
+**** Elementos ****
+Nº Rutas: 989
+Constructor TopoRelGST_0
+Tamaño rutas: 217045 >> 56717
+Tamaño stops: 0
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 171950
+rutas [B]: 56717
+stops [B]: 1376688
+mapa [B]: 79120
+**** Elementos ****
+Nº Rutas: 989
+Nº Nodos cst_sct3: 86057
+Nº Hojas cst_sct3: 54015
+Nº 1s/length en marcas: 26018/10889879 (0.238919%)
+Constructor TopoRelGST_1
+Tamaño stops: 1376688 >> 242590
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 171950
+rutas [B]: 56717
+stops [B]: 242590
+mapa [B]: 79120
+**** Elementos ****
+Nº Rutas: 989
+Nº Nodos cst_sct3: 86057
+Nº Hojas cst_sct3: 54015
+Nº 1s/length en marcas: 26018/10889879 (0.238919%)
+Constructor TopoRelGST_2
+Tamaño largos: 7921 >> 881
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 171950
+marcas [B]: 21299104
+stops [B]: 1376688
+mapa [B]: 79120
+largos [B]: 881
+bordes [B]: 3490
+**** Elementos ****
+Nº Rutas: 1978
+Nº Nodos cst_sct3: 86057
+Nº Hojas cst_sct3: 54015
+Nº 1s/length en marcas: 103091/170220746 (0.0605631%)
+Nº 1s/length en marcas stops: 26018/10889879 (0.238919%)
+Constructor TopoRelGST_4
+Tamaño stops: 1376688 >> 242590
+Fin constructor
+**** Tamaño en bytes ****
+cst_sada [B]: 166434
+rutas [B]: 56717
+marcas [B]: 242590
+mapa [B]: 15824
+**** Elementos ****
+Nº Rutas: 989
+Nº Nodos cst_sada: 86057
+Nº Hojas cst_sada: 54015
+Nº 1s/length en marcas: 26018/10889879 (0.238919%)
+---------------------------- madrid_x2 ----------------------------
+**** Tamaño en bytes ****
+rutas [B]: 113434
+relaciones [B]: 1489434
+**** Elementos ****
+Nº Rutas: 1978
+Constructor TopoRelGST_0
+Tamaño rutas: 434090 >> 113434
+Tamaño stops: 0
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 401521
+rutas [B]: 113434
+stops [B]: 2753376
+mapa [B]: 158240
+**** Elementos ****
+Nº Rutas: 1978
+Nº Nodos cst_sct3: 194083
+Nº Hojas cst_sct3: 108029
+Nº 1s/length en marcas: 52036/21779758 (0.238919%)
+Constructor TopoRelGST_1
+Tamaño stops: 2753376 >> 485180
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 401521
+rutas [B]: 113434
+stops [B]: 485180
+mapa [B]: 158240
+**** Elementos ****
+Nº Rutas: 1978
+Nº Nodos cst_sct3: 194083
+Nº Hojas cst_sct3: 108029
+Nº 1s/length en marcas: 52036/21779758 (0.238919%)
+Constructor TopoRelGST_2
+Tamaño largos: 15833 >> 1745
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 401521
+marcas [B]: 96020032
+stops [B]: 2753376
+mapa [B]: 158240
+largos [B]: 1745
+bordes [B]: 6946
+**** Elementos ****
+Nº Rutas: 3956
+Nº Nodos cst_sct3: 194083
+Nº Hojas cst_sct3: 108029
+Nº 1s/length en marcas: 206182/767792348 (0.0268539%)
+Nº 1s/length en marcas stops: 52036/21779758 (0.238919%)
+Constructor TopoRelGST_4
+Tamaño stops: 2753376 >> 485180
+Fin constructor
+**** Tamaño en bytes ****
+cst_sada [B]: 289174
+rutas [B]: 113434
+marcas [B]: 485180
+mapa [B]: 31648
+**** Elementos ****
+Nº Rutas: 1978
+Nº Nodos cst_sada: 194083
+Nº Hojas cst_sada: 108029
+Nº 1s/length en marcas: 52036/21779758 (0.238919%)
+---------------------------- madrid_x4 ----------------------------
+**** Tamaño en bytes ****
+rutas [B]:  
+relaciones [B]: 5922132
+**** Elementos ****
+Nº Rutas: 3956
+Constructor TopoRelGST_0
+Tamaño rutas: 868180 >> 226868
+Tamaño stops: 0
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 869325
+rutas [B]: 226868
+stops [B]: 5506752
+mapa [B]: 316480
+**** Elementos ****
+Nº Rutas: 3956
+Nº Nodos cst_sct3: 410139
+Nº Hojas cst_sct3: 216057
+Nº 1s/length en marcas: 104072/43559516 (0.238919%)
+Constructor TopoRelGST_1
+Tamaño stops: 5506752 >> 970360
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 869325
+rutas [B]: 226868
+stops [B]: 970360
+mapa [B]: 316480
+**** Elementos ****
+Nº Rutas: 3956
+Nº Nodos cst_sct3: 410139
+Nº Hojas cst_sct3: 216057
+Nº 1s/length en marcas: 104072/43559516 (0.238919%)
+Constructor TopoRelGST_2
+Tamaño largos: 31657 >> 3473
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 869325
+marcas [B]: 405727360
+stops [B]: 5506752
+mapa [B]: 316480
+largos [B]: 3473
+bordes [B]: 13874
+**** Elementos ****
+Nº Rutas: 7912
+Nº Nodos cst_sct3: 410139
+Nº Hojas cst_sct3: 216057
+Nº 1s/length en marcas: 412364/-1049947528 (-0.0392747%)
+Nº 1s/length en marcas stops: 104072/43559516 (0.238919%)
+Constructor TopoRelGST_4
+Tamaño stops: 5506752 >> 970360
+Fin constructor
+**** Tamaño en bytes ****
+cst_sada [B]: 515495
+rutas [B]: 226868
+marcas [B]: 970360
+mapa [B]: 63296
+**** Elementos ****
+Nº Rutas: 3956
+Nº Nodos cst_sada: 410139
+Nº Hojas cst_sada: 216057
+Nº 1s/length en marcas: 104072/43559516 (0.238919%)
+---------------------------- madrid_x8 ----------------------------
+**** Tamaño en bytes ****
+rutas [B]: 453736
+relaciones [B]: 23554024
+**** Elementos ****
+Nº Rutas: 7912
+Constructor TopoRelGST_0
+Tamaño rutas: 1736360 >> 453736
+Tamaño stops: 0
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 1824791
+rutas [B]: 453736
+stops [B]: 11013504
+mapa [B]: 632960
+**** Elementos ****
+Nº Rutas: 7912
+Nº Nodos cst_sct3: 842251
+Nº Hojas cst_sct3: 432113
+Nº 1s/length en marcas: 208144/87119032 (0.238919%)
+Constructor TopoRelGST_1
+Tamaño stops: 11013504 >> 1940720
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 1824791
+rutas [B]: 453736
+stops [B]: 1940720
+mapa [B]: 632960
+**** Elementos ****
+Nº Rutas: 7912
+Nº Nodos cst_sct3: 842251
+Nº Hojas cst_sct3: 432113
+Nº 1s/length en marcas: 208144/87119032 (0.238919%)
+Constructor TopoRelGST_2
+Tamaño largos: 63305 >> 6937
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 1824791
+marcas [B]: 1666203904
+stops [B]: 11013504
+mapa [B]: 632960
+largos [B]: 6937
+bordes [B]: 27714
+**** Elementos ****
+Nº Rutas: 15824
+Nº Nodos cst_sct3: 842251
+Nº Hojas cst_sct3: 432113
+Nº 1s/length en marcas: 824728/442877936 (0.18622%)
+Nº 1s/length en marcas stops: 208144/87119032 (0.238919%)
+Constructor TopoRelGST_4
+Tamaño stops: 11013504 >> 1940720

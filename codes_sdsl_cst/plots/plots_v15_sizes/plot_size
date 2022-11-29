@@ -1,0 +1,32 @@
+set auto x
+set style data histogram
+set style histogram cluster gap 1
+set style fill solid border -1
+set boxwidth 0.9
+#set xtic rotate by -45 scale 0
+set logscale y
+set yrange [100:10000000000]
+set grid ytics
+set xrange [-0.5:4.5]
+set key out center top horizontal
+
+set ylabel "Espacio [KB]"
+set xlabel "Implementación"
+
+set terminal png size 800,400
+
+set title "Tamaños [Madrid_{x1}]"
+set output 'size_Madrid_x1.png'
+plot 'data_size_madrid_x1.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col, '' u 9 ti col
+
+set title "Tamaños [Madrid_{x2}]"
+set output 'size_Madrid_x2.png'
+plot 'data_size_madrid_x2.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col, '' u 9 ti col
+
+set title "Tamaños [Madrid_{x4}]"
+set output 'size_Madrid_x4.png'
+plot 'data_size_madrid_x4.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col, '' u 9 ti col
+
+set title "Tamaños [Madrid_{x8}]"
+set output 'size_Madrid_x8.png'
+plot 'data_size_madrid_x8.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col, '' u 9 ti col

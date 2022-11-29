@@ -1,0 +1,32 @@
+
+red1 = "#ff193d"
+red2 = "#ff6c6c"
+orange1 = "#ff4b00"
+orange2 = "#ff9f00"
+green1 = "#66bb00"
+green2 = "#89f900"
+cyan1 = "#00cc71"
+cyan2 = "#00ee84"
+blue1 = "#0095ff"
+blue2 = "#73bcff"
+purple1 = "#b760ea"
+purple2 = "#da90f8"
+
+set grid ytics
+set key out horizontal
+
+set terminal png size 800,400
+
+set logscale y
+set ylabel "Espacio [KB]"
+set xlabel "Dataset"
+
+set xrange [0.5:4.5]
+set yrange [100000:10000000000]
+set title 'Tamaño Total'
+set output 'size_madrid_gral.png'
+plot 'data_size_gral.txt' using 2:xtic(1) title 'Naive PreC' with linespoints lc rgb orange1,   \
+     'data_size_gral.txt' using 3 title 'GST_0 True' with linespoints lc rgb green1,    \
+     'data_size_gral.txt' using 4 title 'GST_1 True' with linespoints lc rgb cyan1,    \
+     'data_size_gral.txt' using 5 title 'GST_2 True' with linespoints lc rgb blue1,    \
+     'data_size_gral.txt' using 6 title 'GST_4 True' with linespoints lc rgb purple1

@@ -1,0 +1,6 @@
+Dataset	GST	Mapa	Stops	Rutas	Marcas	Largos	Bordes	Relaciones
+Naive_{PC}	-nan	-nan	-nan	113434	-nan	-nan	-nan	1489434
+GST_0	401521	158240	2753376	113434	-nan	-nan	-nan	-nan
+GST_1	401521	158240	485180	113434	-nan	-nan	-nan	-nan
+GST_2	401521	158240	2753376	-nan	96020032	1745	6946	-nan
+GST_4	289174	31648	485180	113434	-nan	-nan	-nan	-nan
