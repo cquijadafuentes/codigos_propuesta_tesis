@@ -18,7 +18,7 @@ set key out horizontal
 set terminal png size 800,400
 
 set logscale y
-set ylabel "Espacio [KB]"
+set ylabel "Espacio [B]"
 set xlabel "Dataset"
 
 set xrange [0.5:4.5]

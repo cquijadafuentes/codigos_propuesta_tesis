@@ -296,26 +296,7 @@ bool tr_coveredby(vector<int> &a, vector<int> &b){
 }
 
 bool tr_covers(vector<int> &a, vector<int> &b){
-    if(b.size() >= a.size()){
-        return false;
-    }
-    int n = b.size();
-    int m = a.size();
-    
-    // ------- EQUALS -------
-
-    vector<int> ra = a;
-    reverse(ra.begin(), ra.end());
-    
-    pair<int,int> kmp = KMPSearch(b, a);
-    pair<int,int> kmpR = KMPSearch(b, ra);
-    if(kmp.first != -1 || kmpR.first != -1){
-        int index = (kmp.first != -1) ? kmp.first : kmpR.first;
-        if(index == 0 || index == m-n){
-            return true;
-        }
-    }
-    return false;
+    return tr_coveredby(b, a);
 }
 
 bool tr_disjoint(vector<int> &a, vector<int> &b){
@@ -384,26 +365,7 @@ bool tr_includes(vector<int> &a, vector<int> &b){
 }
 
 bool tr_inside(vector<int> &a, vector<int> &b){
-    if(a.size() >= b.size()){
-        return false;
-    }
-    int n = a.size();
-    int m = b.size();
-    
-    // ------- EQUALS -------
-
-    vector<int> rb = b;
-    reverse(rb.begin(), rb.end());
-    
-    pair<int,int> kmp = KMPSearch(a, b);
-    pair<int,int> kmpR = KMPSearch(a, rb);
-    if(kmp.first != -1 || kmpR.first != -1){
-        int index = (kmp.first != -1) ? kmp.first : kmpR.first;
-        if(index != 0 && index != m-n){
-            return true;
-        }
-    }
-    return false;
+    return tr_includes(b, a);
 }
 
 bool tr_overlaps(vector<int> &a, vector<int> &b){

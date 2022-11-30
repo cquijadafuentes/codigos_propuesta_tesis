@@ -10,7 +10,7 @@ set grid ytics
 set xrange [-0.5:4.5]
 set key out center top horizontal
 
-set ylabel "Espacio [KB]"
+set ylabel "Espacio [B]"
 set xlabel "Implementación"
 
 set terminal png size 800,400
