@@ -4,3 +4,6 @@ test_alfabeto_ext
 time_TopoRel_boolean
 TopoRel_*_test
 TopoRel_testall
+extras/dataset_lineasmadrid_repetidos/genera_repeticiones
+extras/dataset_madrid/procesa_linesStops
+extras/dataset_madrid/procesa_madrid_trips
