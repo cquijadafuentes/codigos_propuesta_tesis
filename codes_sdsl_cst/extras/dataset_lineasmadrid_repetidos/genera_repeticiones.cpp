@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -11,22 +12,40 @@ int main(int argc, char const *argv[]){
 	}
 
 	cout << "Bien... procesando..." << endl;
-	int nRutas, n_stops, largoTray, aux;
-	vector<vector<int>> routes;
-    cin >> nRutas >> n_stops;
+
+	fstream entrada;
+	entrada.open(argv[1], fstream::in);
+
+	int nRutas, nStops, largoTray, aux;
+	vector<vector<int>> rutas;
+    entrada >> nRutas >> nStops;
 	for(int j = 0; j < nRutas; j++){
-		cin >> largoTray;
+		entrada >> largoTray;
         vector<int> vt(largoTray, 0);
         for(int i = 0; i < largoTray; i++){
-            cin >> vt[i];
+            entrada >> vt[i];
         }
-        routes.push_back(vt);
+        rutas.push_back(vt);
 	}
+	cout << nRutas << " rutas cargadas exitosamente." << endl;
 
 	int cantTray = (int) atoi(argv[2]);
 
-	cout << nRutas << " rutas cargadas exitosamente." << endl;
 	cout << "Generando " << cantTray << " trayectorias en " << argv[3] << endl;
+	int generadas = 0;
+	fstream salida;
+	salida.open(argv[3], fstream::out);
+	salida << cantTray << " " << nStops << endl;
+	while(generadas++ < cantTray){
+		int x = generadas % nRutas;
+		salida << rutas[x].size();
+		for(int i=0; i < rutas[x].size(); i++){
+			salida << " " << rutas[x][i];
+		}
+		salida << endl;
+	}
+
+
 
 	return 0;
 }
