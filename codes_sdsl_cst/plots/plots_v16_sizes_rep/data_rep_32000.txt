@@ -1,0 +1,7 @@
+Dataset	GST	Mapa	Stops	Rutas	Marcas	Largos	Bordes	Relaciones
+Naive	-nan	-nan	-nan	-nan	-nan	-nan	-nan	-nan
+Naive_{PC}	-nan	-nan	-nan	-nan	-nan	-nan	-nan	-nan
+GST_0	-nan	-nan	-nan	-nan	-nan	-nan	-nan	-nan
+GST_1	-nan	-nan	-nan	-nan	-nan	-nan	-nan	-nan
+GST_2	-nan	-nan	-nan	-nan	-nan	-nan	-nan	-nan
+GST_4	-nan	-nan	-nan	-nan	-nan	-nan	-nan	-nan

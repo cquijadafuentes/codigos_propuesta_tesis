@@ -125,8 +125,8 @@ void TopoRelNaivePreComp::navega(){
 void TopoRelNaivePreComp::sizeEstructura(){
     cout << "**** Tamaño en bytes ****" << endl;
     // Calculo de los bytes para rutas
-    int bytesRutas = 0;
-    int bytesRelaciones = 0;
+    unsigned long long bytesRutas = 0;
+    unsigned long long bytesRelaciones = 0;
     for(int i=0; i < rutas.size(); i++){
         bytesRutas += size_in_bytes(rutas[i]);
         bytesRelaciones += size_in_bytes(relaciones[i]);

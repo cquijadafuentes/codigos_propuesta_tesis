@@ -720,13 +720,13 @@ void TopoRelGST_1::sizeEstructura(){
     cout << "**** Tamaño en bytes ****" << endl;
     cout << "cst_sct3 [B]: " << size_in_bytes(cst) << endl;
     // Calculo de los bytes para RUTAS
-    int bytesRutas = 0;
+    unsigned long long bytesRutas = 0;
     for(int i=0; i<gstRutas.size(); i++){
         bytesRutas += size_in_bytes(gstRutas[i]);
     }
     cout << "rutas [B]: " << bytesRutas << endl;
     // Calculo de los bytes para MARCAS
-    int bytesStops = 0;
+    unsigned long long bytesStops = 0;
     int bitsUno = 0;
     int bitsTotal = 0;
     for(int i=0; i<gstStops.size(); i++){
@@ -739,7 +739,7 @@ void TopoRelGST_1::sizeEstructura(){
     double porcentaje = (bitsUno+0.0)/bitsTotal*100;
     cout << "stops [B]: " << bytesStops << endl;
     // Calculo de los bytes para MAPA
-    int bytesMapa = 0;
+    unsigned long long bytesMapa = 0;
     for(int i=0; i<gstMapa.size(); i++){
         bytesMapa += sizeof(gstMapa[i]);
     }

@@ -21,7 +21,7 @@ public:
     cst_sada<csa_wt<wt_int<rrr_vector<>>>> cst;
     vector<cst_sada<>::node_type> gstMapa;
     vector<int_vector<>> gstRutas;
-    vector<sd_vector<>> gstMarcas;
+    vector<sd_vector<>> gstStops;
     int n_rutas;
     int n_concat;
     int n_stops;

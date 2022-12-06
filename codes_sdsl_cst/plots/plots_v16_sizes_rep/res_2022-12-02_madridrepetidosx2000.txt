@@ -1,0 +1,61 @@
+**** Tamaño en bytes ****
+rutas [B]: 126000
+relaciones [B]: 1522000
+**** Elementos ****
+Nº Rutas: 2000
+Constructor TopoRelGST_0
+Tamaño rutas: 515600 >> 126000
+Tamaño stops: 0
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 442701
+rutas [B]: 126000
+stops [B]: 1168000
+mapa [B]: 160000
+**** Elementos ****
+Nº Rutas: 2000
+Nº Nodos cst_sct3: 256178
+Nº Hojas cst_sct3: 128401
+Nº 1s/length en marcas: 62200/9210000 (0.675353%)
+Constructor TopoRelGST_1
+Tamaño stops: 1168000 >> 508800
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 442701
+rutas [B]: 126000
+stops [B]: 508800
+mapa [B]: 160000
+**** Elementos ****
+Nº Rutas: 2000
+Nº Nodos cst_sct3: 256178
+Nº Hojas cst_sct3: 128401
+Nº 1s/length en marcas: 62200/9210000 (0.675353%)
+Constructor TopoRelGST_2
+Tamaño largos: 16009 >> 1513
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 442701
+marcas [B]: 128128000
+stops [B]: 2784000
+mapa [B]: 160000
+largos [B]: 1513
+bordes [B]: 6530
+**** Elementos ****
+Nº Rutas: 4000
+Nº Nodos cst_sct3: 256178
+Nº Hojas cst_sct3: 128401
+Nº 1s/length en marcas: 136400/1024712000 (0.0133111%)
+Nº 1s/length en marcas stops: 62200/22022000 (0.282445%)
+Constructor TopoRelGST_4
+Tamaño stops: 1168000 >> 508800
+Fin constructor
+**** Tamaño en bytes ****
+cst_sada [B]: 205796
+rutas [B]: 126000
+marcas [B]: 508800
+mapa [B]: 32000
+**** Elementos ****
+Nº Rutas: 2000
+Nº Nodos cst_sada: 256178
+Nº Hojas cst_sada: 128401
+Nº 1s/length en marcas: 62200/9210000 (0.675353%)

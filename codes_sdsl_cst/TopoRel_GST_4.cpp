@@ -73,23 +73,23 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops){
     // Marcas en bitvectors
     int sizePrevCompr = 0;
     int sizePostCompr = 0;    
-    gstMarcas = vector<sd_vector<>>(n_rutas);
+    gstStops = vector<sd_vector<>>(n_rutas);
     for(int i = 0; i < n_rutas; i++){
         bit_vector bvt = bit_vector(finSec, 0);
         for(int j = 0; j < rutas[i].size(); j++){
             bvt[rutas[i][j]] = 1;
         }
         sizePrevCompr += size_in_bytes(bvt);
-        gstMarcas[i] = sd_vector<>(bvt);
-        sizePostCompr += size_in_bytes(gstMarcas[i]);
+        gstStops[i] = sd_vector<>(bvt);
+        sizePostCompr += size_in_bytes(gstStops[i]);
     }
     cout << "Tamaño stops: " << sizePrevCompr << " >> " << sizePostCompr << endl;
 //    cout << "Marcas en bitvector... OK" << endl;
 /*
     cout << "Marcas: " << endl;
-    for(int i=0; i<gstMarcas.size(); i++){
-        for(int j=0; j<gstMarcas[i].size(); j++){
-            cout << gstMarcas[i][j] << " " ;
+    for(int i=0; i<gstStops.size(); i++){
+        for(int j=0; j<gstStops[i].size(); j++){
+            cout << gstStops[i][j] << " " ;
         }
         cout << endl;
     }
@@ -215,7 +215,7 @@ string TopoRelGST_4::obtenerRelacion(int x, int y){
     int bCf = gstRutas[corto][gstRutas[corto].size()-1];
     int bLi = gstRutas[largo][0];
     int bLf = gstRutas[largo][gstRutas[largo].size()-1];
-    if(gstMarcas[largo][bCi] == 1 || gstMarcas[largo][bCf] == 1 || gstMarcas[corto][bLi] == 1 || gstMarcas[corto][bLf] == 1){
+    if(gstStops[largo][bCi] == 1 || gstStops[largo][bCf] == 1 || gstStops[corto][bLi] == 1 || gstStops[corto][bLf] == 1){
 //        cout << endl << "x: " << x << " - y: " << y << endl;
         // Verficar que la coincidencia de bordes no posee intersección I-I
         if(bordesSeg_touches(x, y)){
@@ -230,7 +230,7 @@ string TopoRelGST_4::obtenerRelacion(int x, int y){
     for(int i=2; i<lC; i++){
         aux = gstRutas[corto][i-1];
 //        cout << "aux: " << aux << endl;
-        if(aux != bLi && aux != bLf && gstMarcas[largo][aux]){
+        if(aux != bLi && aux != bLf && gstStops[largo][aux]){
             return OVERLAPS;
         }
     }
@@ -365,7 +365,7 @@ bool TopoRelGST_4::tr_disjoint(int x, int y){
     int bXf = gstRutas[x][gstRutas[x].size()-1];
     int bYi = gstRutas[y][0];
     int bYf = gstRutas[y][gstRutas[y].size()-1];
-    if(gstMarcas[y][bXi] == 1 || gstMarcas[y][bXf] == 1 || gstMarcas[x][bYi] == 1 || gstMarcas[x][bYf] == 1){
+    if(gstStops[y][bXi] == 1 || gstStops[y][bXf] == 1 || gstStops[x][bYi] == 1 || gstStops[x][bYf] == 1){
         // Hay bordes en contacto con la otra secuencia
         return false;
     }
@@ -374,13 +374,13 @@ bool TopoRelGST_4::tr_disjoint(int x, int y){
     int ly = gstRutas[y].size();
 
     for(int i=2; i<lx; i++){
-        if(gstMarcas[y][gstRutas[x][i-1]] == 1){
+        if(gstStops[y][gstRutas[x][i-1]] == 1){
             // Hay intersección del interior de X con Y
             return false;
         }
     }
     for(int i=2; i<ly; i++){
-        if(gstMarcas[x][gstRutas[y][i-1]] == 1){
+        if(gstStops[x][gstRutas[y][i-1]] == 1){
             // Hay intersección del interior de X con Y
             return false;
         }
@@ -399,7 +399,7 @@ bool TopoRelGST_4::tr_touches(int x, int y){
     int bXf = gstRutas[x][gstRutas[x].size()-1];
     int bYi = gstRutas[y][0];
     int bYf = gstRutas[y][gstRutas[y].size()-1];
-    if(gstMarcas[y][bXi] != 1 && gstMarcas[y][bXf] != 1 && gstMarcas[x][bYi] != 1 && gstMarcas[x][bYf] != 1){
+    if(gstStops[y][bXi] != 1 && gstStops[y][bXf] != 1 && gstStops[x][bYi] != 1 && gstStops[x][bYf] != 1){
         // No hay bordes en contacto con la otra secuencia
         return false;
     }
@@ -414,7 +414,7 @@ bool TopoRelGST_4::tr_touches(int x, int y){
     int lx = gstRutas[x].size();
     for(int i=2; i<lx; i++){
         aux = gstRutas[x][i-1];
-        if(aux != bYi && aux != bYf && gstMarcas[y][aux]){
+        if(aux != bYi && aux != bYf && gstStops[y][aux]){
             return false;
         }
     }
@@ -442,7 +442,7 @@ bool TopoRelGST_4::tr_overlaps(int x, int y){
     int ly = gstRutas[y].size();
     int px = 2;
     int ed;
-    if(gstMarcas[y][bXi] == 0 || gstMarcas[y][bXf] == 0){
+    if(gstStops[y][bXi] == 0 || gstStops[y][bXf] == 0){
         // Un borde de X está en el exterior de Y, entonces su arco adyacente también
         // Hay intersección X interior con exterior Y
         iXeY++;
@@ -453,7 +453,7 @@ bool TopoRelGST_4::tr_overlaps(int x, int y){
     }
     while(px < lx && (iXiY == 0 || iXeY == 0)){
         ed = gstRutas[x][px-1];
-        if(gstMarcas[y][ed] == 0){
+        if(gstStops[y][ed] == 0){
             // Hay intersección de interior X con exterior Y
             iXeY++;
         }else if(ed != bYi && ed != bYf){
@@ -468,7 +468,7 @@ bool TopoRelGST_4::tr_overlaps(int x, int y){
         return false;
     }
     // Sólo queda identificar intersección del interior Y con exterior X
-    if(gstMarcas[x][bYi] == 0 || gstMarcas[x][bYf] == 0){
+    if(gstStops[x][bYi] == 0 || gstStops[x][bYf] == 0){
         // Un borde de Y está en el exterior de X, entonces su arco adyacente también
         // Hay intersección Y interior con exterior X
         return true;
@@ -476,7 +476,7 @@ bool TopoRelGST_4::tr_overlaps(int x, int y){
     int py = 2;
     while(py < ly){
         ed = gstRutas[y][py-1];
-        if(gstMarcas[x][ed] == 0){
+        if(gstStops[x][ed] == 0){
             // Hay intersección exterior X con interior Y
             return true;
         }      
@@ -712,33 +712,33 @@ void TopoRelGST_4::sizeEstructura(){
     cout << "**** Tamaño en bytes ****" << endl;
     cout << "cst_sada [B]: " << size_in_bytes(cst) << endl;
     // Calculo de los bytes para RUTAS
-    int bytesRutas = 0;
+    unsigned long long bytesRutas = 0;
     for(int i=0; i<gstRutas.size(); i++){
         bytesRutas += size_in_bytes(gstRutas[i]);
     }
     cout << "rutas [B]: " << bytesRutas << endl;
-    // Calculo de los bytes para MARCAS
-    int bytesMarcas = 0;
+    // Calculo de los bytes para STOPS
+    unsigned long long bytesStops = 0;
     int bitsUno = 0;
     int bitsTotal = 0;
-    for(int i=0; i<gstMarcas.size(); i++){
-        bytesMarcas += size_in_bytes(gstMarcas[i]);
-        bitsTotal += gstMarcas[i].size();
-        for(int j=0; j<gstMarcas[i].size(); j++){
-            bitsUno += gstMarcas[i][j];
+    for(int i=0; i<gstStops.size(); i++){
+        bytesStops += size_in_bytes(gstStops[i]);
+        bitsTotal += gstStops[i].size();
+        for(int j=0; j<gstStops[i].size(); j++){
+            bitsUno += gstStops[i][j];
         }
     }
     double porcentaje = (bitsUno+0.0)/bitsTotal*100;
-    cout << "marcas [B]: " << bytesMarcas << endl;
+    cout << "marcas [B]: " << bytesStops << endl;
     // Calculo de los bytes para MAPA
-    int bytesMapa = 0;
+    unsigned long long bytesMapa = 0;
     for(int i=0; i<gstMapa.size(); i++){
         bytesMapa += sizeof(gstMapa[i]);
     }
     cout << "mapa [B]: " << bytesMapa << endl;
 
     cout << "**** Elementos ****" << endl;
-    cout << "Nº Rutas: " << gstMarcas.size() << endl;
+    cout << "Nº Rutas: " << gstStops.size() << endl;
     cout << "Nº Nodos cst_sada: " << cst.nodes() << endl;
     cout << "Nº Hojas cst_sada: " << cst.size() << endl;
     cout << "Nº 1s/length en marcas: " << bitsUno << "/" << bitsTotal;

@@ -6,7 +6,7 @@ set boxwidth 0.9
 #set xtic rotate by -45 scale 0
 set logscale y
 set yrange [100:10000000000]
-set xrange [-0.5:5.5]
+set xrange [-0.5:4.5]
 set key out center top horizontal
 set grid ytics
 set grid xtics

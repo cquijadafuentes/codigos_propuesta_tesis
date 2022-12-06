@@ -737,7 +737,7 @@ void TopoRelGST_2::sizeEstructura(){
     cout << "**** Tamaño en bytes ****" << endl;
     cout << "cst_sct3 [B]: " << size_in_bytes(cst) << endl;
     // Calculo de los bytes para Marcas
-    int bytesMarcas = 0;
+    unsigned long long bytesMarcas = 0;
     int bitsUnoMarcas = 0;
     int bitsTotalMarcas = 0;
     for(int i=0; i<gstMarcas.size(); i++){
@@ -750,7 +750,7 @@ void TopoRelGST_2::sizeEstructura(){
     double porcentajeMarcas = (bitsUnoMarcas+0.0)/bitsTotalMarcas*100;
     cout << "marcas [B]: " << bytesMarcas << endl;
     // Calculo de los bytes para Marcas
-    int bytesMStops = 0;
+    unsigned long long bytesMStops = 0;
     int bitsUnoMStops = 0;
     int bitsTotalMStops = 0;
     for(int i=0; i<gstMStops.size(); i++){
@@ -763,7 +763,7 @@ void TopoRelGST_2::sizeEstructura(){
     double porcentajeMStops = (bitsUnoMStops+0.0)/bitsTotalMStops*100;
     cout << "stops [B]: " << bytesMStops << endl;
     // Calculo de los bytes para MAPA
-    int bytesMapa = 0;
+    unsigned long long bytesMapa = 0;
     for(int i=0; i<gstMapa.size(); i++){
         bytesMapa += sizeof(gstMapa[i]);
     }
@@ -777,6 +777,6 @@ void TopoRelGST_2::sizeEstructura(){
     cout << "Nº Hojas cst_sct3: " << cst.size() << endl;
     cout << "Nº 1s/length en marcas: " << bitsUnoMarcas << "/" << bitsTotalMarcas;
     cout << " (" << porcentajeMarcas << "%)" << endl;
-    cout << "Nº 1s/length en marcas stops: " << bitsUnoMStops << "/" << bitsTotalMStops;
+    cout << "Nº 1s/length en stops: " << bitsUnoMStops << "/" << bitsTotalMStops;
     cout << " (" << porcentajeMStops << "%)" << endl;
 }

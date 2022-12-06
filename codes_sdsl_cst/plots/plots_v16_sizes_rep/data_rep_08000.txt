@@ -1,0 +1,7 @@
+Dataset	GST	Mapa	Stops	Rutas	Marcas	Largos	Bordes	Relaciones
+Naive	-nan	-nan	-nan	504000	-nan	-nan	-nan	-nan
+Naive_{PC}	-nan	-nan	-nan	504000	-nan	-nan	-nan	24072000
+GST_0	1926825	640000	4672000	504000	-nan	-nan	-nan	-nan
+GST_1	1926825	640000	2035200	504000	-nan	-nan	-nan	-nan
+GST_2	1926825	640000	11136000	-nan	2053376000	6009	26018	-nan
+GST_4	718228	128000	2035200	504000	-nan	-nan	-nan	-nan

@@ -22,11 +22,12 @@ set ylabel "Espacio [B]"
 set xlabel "Dataset"
 
 set xrange [0.5:4.5]
-set yrange [100000:10000000000]
+set yrange [10000:10000000000]
 set title 'Tamaño Total'
 set output 'size_madrid_gral.png'
-plot 'data_size_gral.txt' using 2:xtic(1) title 'Naive PreC' with linespoints lc rgb orange1,   \
-     'data_size_gral.txt' using 3 title 'GST_0 True' with linespoints lc rgb green1,    \
-     'data_size_gral.txt' using 4 title 'GST_1 True' with linespoints lc rgb cyan1,    \
-     'data_size_gral.txt' using 5 title 'GST_2 True' with linespoints lc rgb blue1,    \
-     'data_size_gral.txt' using 6 title 'GST_4 True' with linespoints lc rgb purple1
+plot 'data_size_gral.txt' using 2:xtic(1) title 'Naive' with linespoints lc rgb orange1,   \
+     'data_size_gral.txt' using 3 title 'Naive_{PC}' with linespoints lc rgb orange1,   \
+     'data_size_gral.txt' using 4 title 'GST_0 True' with linespoints lc rgb green1,    \
+     'data_size_gral.txt' using 5 title 'GST_1 True' with linespoints lc rgb cyan1,    \
+     'data_size_gral.txt' using 6 title 'GST_2 True' with linespoints lc rgb blue1,    \
+     'data_size_gral.txt' using 7 title 'GST_4 True' with linespoints lc rgb purple1
