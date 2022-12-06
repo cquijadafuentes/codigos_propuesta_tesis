@@ -17,18 +17,22 @@ set xlabel "Implementación"
 
 set terminal png size 800,400
 
-set title "Tamaños [Madrid_{x1}]"
-set output 'size_Madrid_x1.png'
-plot 'data_size_madrid_x1.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col, '' u 9 ti col
+set title "Tamaños [Madrid rep_{x2k}]"
+set output 'rep_02k.png'
+plot 'data_rep_02k.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col, '' u 9 ti col
 
-set title "Tamaños [Madrid_{x2}]"
-set output 'size_Madrid_x2.png'
-plot 'data_size_madrid_x2.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col, '' u 9 ti col
+set title "Tamaños [Madrid rep_{x4k}]"
+set output 'rep_04k.png'
+plot 'data_rep_04k.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col, '' u 9 ti col
 
-set title "Tamaños [Madrid_{x4}]"
-set output 'size_Madrid_x4.png'
-plot 'data_size_madrid_x4.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col, '' u 9 ti col
+set title "Tamaños [Madrid rep_{x8k}]"
+set output 'rep_08k.png'
+plot 'data_rep_08k.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col, '' u 9 ti col
 
-set title "Tamaños [Madrid_{x8}]"
-set output 'size_Madrid_x8.png'
-plot 'data_size_madrid_x8.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col, '' u 9 ti col
+set title "Tamaños [Madrid rep_{x16k}]"
+set output 'rep_16k.png'
+plot 'data_rep_16k.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col, '' u 9 ti col
+
+set title "Tamaños [Madrid rep_{x32k}]"
+set output 'rep_32k.png'
+plot 'data_rep_32k.txt' using 2:xtic(1) ti col, '' u 3 ti col, '' u 4 ti col, '' u 5 ti col, '' u 6 ti col, '' u 7 ti col, '' u 8 ti col, '' u 9 ti col
