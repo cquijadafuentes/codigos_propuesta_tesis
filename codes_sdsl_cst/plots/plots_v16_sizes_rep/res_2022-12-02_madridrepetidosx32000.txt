@@ -32,3 +32,19 @@ Nº Hojas cst_sct3: 2054401
 Nº 1s/length en marcas: 995200/147360000 (0.675353%)
 Constructor TopoRelGST_2
 Tamaño largos: 256009 >> 24009
+Fin constructor
+**** Tamaño en bytes ****
+cst_sct3 [B]: 7821585
+marcas [B]: 32866304000
+stops [B]: 44544000
+mapa [B]: 2560000
+largos [B]: 24009
+bordes [B]: 104018
+**** Elementos ****
+Nº Rutas: 64000
+Nº Nodos cst_sct3: 4108178
+Nº Hojas cst_sct3: 2054401
+Nº 1s/length en marcas: 2182400/930386944 (0.234569%)
+Nº 1s/length en stops: 995200/352352000 (0.282445%)
+Constructor TopoRelGST_4
+Tamaño stops: 18688000 >> 8140800

@@ -1,6 +1,6 @@
 *.o
 size_TopoRel
-test_alfabeto_ext
+test_cst
 time_TopoRel_boolean
 TopoRel_*_test
 TopoRel_testall

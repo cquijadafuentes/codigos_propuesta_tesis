@@ -35,7 +35,7 @@ Tamaño largos: 128009 >> 12009
 Fin constructor
 **** Tamaño en bytes ****
 cst_sct3 [B]: 3889451
-marcas [B]: -374382592
+marcas [B]: 8215552000
 stops [B]: 22272000
 mapa [B]: 1280000
 largos [B]: 12009
@@ -45,7 +45,7 @@ Nº Rutas: 32000
 Nº Nodos cst_sct3: 2053778
 Nº Hojas cst_sct3: 1027201
 Nº 1s/length en marcas: 1091200/1296386560 (0.0841724%)
-Nº 1s/length en marcas stops: 497600/176176000 (0.282445%)
+Nº 1s/length en stops: 497600/176176000 (0.282445%)
 Constructor TopoRelGST_4
 Tamaño stops: 9344000 >> 4070400
 Fin constructor

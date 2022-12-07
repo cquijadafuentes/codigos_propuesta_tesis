@@ -4,13 +4,13 @@ PREFLAGS=-std=c++11 -g -O0 -DNDEBUG -I ~/include -L ~/lib
 
 POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
-BINS=TopoRel_Naive_test  TopoRel_Naive_PreComp_test\
+BINS=test_cst TopoRel_Naive_test  TopoRel_Naive_PreComp_test\
 		time_TopoRel_boolean size_TopoRel TopoRel_testall\
 		TopoRel_GST_0_test TopoRel_GST_1_test TopoRel_GST_2_test\
 		TopoRel_GST_4_test
 
 OBJECTS=TopoRel_GST_0.o TopoRel_GST_1.o\
-		TopoRel_GST_4.o TopoRel_GST_2.o\
+		TopoRel_GST_2.o TopoRel_GST_4.o\
 		TopoRel_Naive.o TopoRel_Naive_PreComp.o
 
 %.o: %.cpp
@@ -20,20 +20,8 @@ all: clean bin
 
 bin: $(OBJECTS) $(BINS)
 
-test_csa:
-	$(CPP) $(PREFLAGS) test_csa.cpp -o test_csa $(POSFLAGS)
-
 test_cst:
-	$(CPP) $(PREFLAGS) test_cst.cpp -o test_cst $(POSFLAGS)
-
-my_test_cst:
-	$(CPP) $(PREFLAGS) my_test_cst.cpp -o my_test_cst $(POSFLAGS)
-
-pc:
-	$(CPP) $(PREFLAGS) pc.cpp -o pc $(POSFLAGS)
-
-rt_lcs:
-	$(CPP) rt_lcs.cpp -o rt_lcs
+	$(CPP) $(PREFLAGS) -o test_cst test_cst.cpp $(POSFLAGS)
 
 TopoRel_Naive_test:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_test TopoRel_Naive_test.cpp $(OBJECTS) $(POSFLAGS)

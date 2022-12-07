@@ -729,7 +729,7 @@ void TopoRelGST_4::sizeEstructura(){
         }
     }
     double porcentaje = (bitsUno+0.0)/bitsTotal*100;
-    cout << "marcas [B]: " << bytesStops << endl;
+    cout << "stops [B]: " << bytesStops << endl;
     // Calculo de los bytes para MAPA
     unsigned long long bytesMapa = 0;
     for(int i=0; i<gstMapa.size(); i++){
