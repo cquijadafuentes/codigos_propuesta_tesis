@@ -45,10 +45,6 @@ int main(int argc, char const *argv[]){
 	
 	TopoRelGST_4 tr_gst(vi, max);
 
-	tr_gst.sizeEstructura();
-
-	return 0;
-
 	//tr_gst.navega(0);
 
 	vector<vector<int>> conteo(nr, vector<int>(nr, 0));
