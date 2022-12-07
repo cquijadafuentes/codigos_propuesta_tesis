@@ -22,8 +22,8 @@ set ylabel "Espacio [B]"
 set xlabel "LargoSecuencia"
 set xrange [0.5:10.5]
 set yrange [0:1300000]
-set title 'Repeticiones [|sigma|=10k]'
-set output 'repeticiones_size.png'
+set title 'Repeticiones [|sigma|=15k]'
+set output 'cstexp_size.png'
 plot 'data_repeticiones-cst.txt' using 2:xtic(1) title 'intv_{unc}' with linespoints lt 2 pt 4 lc rgb red1,   \
      'data_repeticiones-cst.txt' using 3 title 'sct3_{unc}' with linespoints lt 2 pt 4 lc rgb orange1,   \
      'data_repeticiones-cst.txt' using 5 title 'sada_{unc}' with linespoints lt 2 pt 4 lc rgb green1,    \
@@ -36,8 +36,8 @@ set ylabel "Tiempo [us]"
 set xlabel "LargoSecuencia"
 set xrange [0.5:10.5]
 set yrange [300000:1900000]
-set title 'Repeticiones [|sigma|=10k]'
-set output 'repeticiones_time.png'
+set title 'Repeticiones [|sigma|=15k]'
+set output 'cstexp_time.png'
 plot 'data_repeticiones-cst.txt' using 4:xtic(1) title 'sct3_{unc}' with linespoints lc rgb orange1,   \
      'data_repeticiones-cst.txt' using 6 title 'sada_{unc}' with linespoints lc rgb green1,    \
      'data_repeticiones-cst.txt' using 9 title 'sct3_{suc}' with linespoints lc rgb blue1,    \
