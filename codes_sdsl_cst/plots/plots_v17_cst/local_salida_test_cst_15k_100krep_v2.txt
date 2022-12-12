@@ -1,3 +1,5 @@
+largo alfabeto: 15000
+repeticiones exp: 100000
 N	intv-unc{[B]}	sct3-unc_{[B]}	sct3-unc_{[us]}	sada-unc_{[B]}	sada-unc_{[us]}	intv-suc{[B]}	sct3-suc_{[B]}	sct3-suc_{[us]}	sada-suc_{[B]}	sada-suc_{[us]}
 15000	120009	69574	431314	64917	277681	26265	69574	448183	64917	294634	
 30000	240009	142853	276335	109780	271872	52513	142853	291044	109780	296153	
