@@ -1,0 +1,48 @@
+
+red1 = "#ff193d"
+red2 = "#ff6c6c"
+orange1 = "#ff4b00"
+orange2 = "#ff9f00"
+green1 = "#66bb00"
+green1 = "#89f900"
+cyan1 = "#00cc71"
+cyan2 = "#00ee84"
+blue1 = "#0095ff"
+blue2 = "#73bcff"
+purple1 = "#b760ea"
+purple2 = "#da90f8"
+
+
+set style data histogram
+set style histogram cluster gap 1
+set style fill solid
+set boxwidth 0.9
+set grid ytics
+set key out horiz
+
+set terminal png size 800,400
+
+set logscale y
+set ylabel "Tiempo [us]"
+set xlabel "Operaciones"
+
+set xrange [0.5:3.5]
+set yrange [0.01:5000]
+set title 'Operaciones Agregadas [TranSantiago]'
+set output 'agr_TSantiago.png'
+plot 'data_23nov_agr_tsant.txt' using 3:xtic(1) title 'Naive All' linecolor rgb red2,   \
+     'data_23nov_agr_tsant.txt' using 4 title 'Naive PreC All' linecolor rgb orange2,   \
+     'data_23nov_agr_tsant.txt' using 5 title 'GST_0 All' linecolor rgb green1,    \
+     'data_23nov_agr_tsant.txt' using 6 title 'GST_1 All' linecolor rgb cyan2,    \
+     'data_23nov_agr_tsant.txt' using 7 title 'GST_2 All' linecolor rgb blue2,    \
+     'data_23nov_agr_tsant.txt' using 8 title 'GST_4 All' linecolor rgb purple2
+
+set yrange [0.01:5000]
+set title 'Operaciones Agregadas [Madrid]'
+set output 'agr_Madrid.png'
+plot 'data_23nov_agr_Madrid.txt' using 3:xtic(1) title 'Naive All' linecolor rgb red2,   \
+     'data_23nov_agr_Madrid.txt' using 4 title 'Naive PreC All' linecolor rgb orange2,   \
+     'data_23nov_agr_Madrid.txt' using 5 title 'GST_0 All' linecolor rgb green1,    \
+     'data_23nov_agr_Madrid.txt' using 6 title 'GST_1 All' linecolor rgb cyan2,    \
+     'data_23nov_agr_Madrid.txt' using 7 title 'GST_2 All' linecolor rgb blue2,    \
+     'data_23nov_agr_Madrid.txt' using 8 title 'GST_4 All' linecolor rgb purple2

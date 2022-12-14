@@ -1,0 +1,93 @@
+
+red1 = "#ff193d"
+red2 = "#ff6c6c"
+orange1 = "#ff4b00"
+orange2 = "#ff9f00"
+green1 = "#66bb00"
+green1 = "#89f900"
+cyan1 = "#00cc71"
+cyan2 = "#00ee84"
+blue1 = "#0095ff"
+blue2 = "#73bcff"
+purple1 = "#b760ea"
+purple2 = "#da90f8"
+
+
+set style data histogram
+set style histogram cluster gap 1
+set style fill solid
+set boxwidth 0.9
+set grid ytics
+set key out horiz
+
+set terminal png size 800,400
+
+set logscale y
+set ylabel "Tiempo [us]"
+set xlabel "Operaciones"
+
+set xrange [0.5:8.5]
+set yrange [0.01:5000]
+set title 'Operaciones Dataset [TranSantiago]'
+set output 'booleans_TSantiago.png'
+plot 'data_20221214' using 4:xtic(1) title 'Naive True' linecolor rgb red1,   \
+     'data_20221214' using 5 title 'Naive All' linecolor rgb red2,   \
+     'data_20221214' using 8 title 'Naive PreC True' linecolor rgb orange1,   \
+     'data_20221214' using 9 title 'Naive PreC All' linecolor rgb orange2,   \
+     'data_20221214' using 12 title 'GST_0 True' linecolor rgb green1,    \
+     'data_20221214' using 13 title 'GST_0 All' linecolor rgb green1,    \
+     'data_20221214' using 16 title 'GST_1 True' linecolor rgb cyan1,    \
+     'data_20221214' using 17 title 'GST_1 All' linecolor rgb cyan2,    \
+     'data_20221214' using 20 title 'GST_2 True' linecolor rgb blue1,    \
+     'data_20221214' using 21 title 'GST_2 All' linecolor rgb blue2,    \
+     'data_20221214' using 24 title 'GST_4 True' linecolor rgb purple1,    \
+     'data_20221214' using 25 title 'GST_4 All' linecolor rgb purple2
+
+set yrange [0.01:5000]
+set title 'Operaciones Dataset [Madrid]'
+set output 'booleans_Madrid.png'
+plot 'data_23nov_Madrid.txt' using 4:xtic(1) title 'Naive True' linecolor rgb red1,   \
+     'data_23nov_Madrid.txt' using 5 title 'Naive All' linecolor rgb red2,   \
+     'data_23nov_Madrid.txt' using 8 title 'Naive PreC True' linecolor rgb orange1,   \
+     'data_23nov_Madrid.txt' using 9 title 'Naive PreC All' linecolor rgb orange2,   \
+     'data_23nov_Madrid.txt' using 12 title 'GST_0 True' linecolor rgb green1,    \
+     'data_23nov_Madrid.txt' using 13 title 'GST_0 All' linecolor rgb green1,    \
+     'data_23nov_Madrid.txt' using 16 title 'GST_1 True' linecolor rgb cyan1,    \
+     'data_23nov_Madrid.txt' using 17 title 'GST_1 All' linecolor rgb cyan2,    \
+     'data_23nov_Madrid.txt' using 20 title 'GST_2 True' linecolor rgb blue1,    \
+     'data_23nov_Madrid.txt' using 21 title 'GST_2 All' linecolor rgb blue2,    \
+     'data_23nov_Madrid.txt' using 24 title 'GST_4 True' linecolor rgb purple1,    \
+     'data_23nov_Madrid.txt' using 25 title 'GST_4 All' linecolor rgb purple2
+
+set yrange [0.01:400000]
+set title 'Relaciones y Muestras [TranSantiago]'
+set output 'relaciones_TSantiago.png'
+plot 'data_20221214' using 2:xtic(1) title 'Naive relac' linecolor rgb red1,   \
+     'data_20221214' using 3 title 'Naive muestras' linecolor rgb red2,   \
+     'data_20221214' using 6 title 'PreC relac' linecolor rgb orange1,   \
+     'data_20221214' using 7 title 'PreC muestras' linecolor rgb orange2,   \
+     'data_20221214' using 10 title 'GST_0 relac' linecolor rgb green1,    \
+     'data_20221214' using 11 title 'GST_0 muestras' linecolor rgb green1,   \
+     'data_20221214' using 14 title 'GST_1 relac' linecolor rgb cyan1,    \
+     'data_20221214' using 15 title 'GST_1 muestras' linecolor rgb cyan2,   \
+     'data_20221214' using 18 title 'GST_2 relac' linecolor rgb blue1,    \
+     'data_20221214' using 19 title 'GST_2 muestras' linecolor rgb blue2,    \
+     'data_20221214' using 22 title 'GST_4 relac' linecolor rgb purple1,    \
+     'data_20221214' using 23 title 'GST_4 muestras' linecolor rgb purple2
+
+set yrange [0.01:400000]
+set title 'Relaciones y Muestras [Madrid]'
+set output 'relaciones_Madrid.png'
+plot 'data_23nov_Madrid.txt' using 2:xtic(1) title 'Naive relac' linecolor rgb red1,   \
+     'data_23nov_Madrid.txt' using 3 title 'Naive muestras' linecolor rgb red2,   \
+     'data_23nov_Madrid.txt' using 6 title 'PreC relac' linecolor rgb orange1,   \
+     'data_23nov_Madrid.txt' using 7 title 'PreC muestras' linecolor rgb orange2,   \
+     'data_23nov_Madrid.txt' using 10 title 'GST_0 relac' linecolor rgb green1,    \
+     'data_23nov_Madrid.txt' using 11 title 'GST_0 muestras' linecolor rgb green1,   \
+     'data_23nov_Madrid.txt' using 14 title 'GST_1 relac' linecolor rgb cyan1,    \
+     'data_23nov_Madrid.txt' using 15 title 'GST_1 muestras' linecolor rgb cyan2,   \
+     'data_23nov_Madrid.txt' using 18 title 'GST_2 relac' linecolor rgb blue1,    \
+     'data_23nov_Madrid.txt' using 19 title 'GST_2 muestras' linecolor rgb blue2,    \
+     'data_23nov_Madrid.txt' using 22 title 'GST_4 relac' linecolor rgb purple1,    \
+     'data_23nov_Madrid.txt' using 23 title 'GST_4 muestras' linecolor rgb purple2
+     
