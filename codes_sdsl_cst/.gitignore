@@ -1,7 +1,5 @@
 *.o
 size_TopoRel
-text_cst_data
-test_cst_rep
 time_TopoRel_boolean
 TopoRel_*_test
 TopoRel_testall
