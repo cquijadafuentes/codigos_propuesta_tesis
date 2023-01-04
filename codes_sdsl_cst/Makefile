@@ -16,7 +16,8 @@ OBJECTS=TopoRel_GST_0.o TopoRel_GST_1.o\
 %.o: %.cpp
 	$(CPP) $(PREFLAGS) -c $< -o $@ $(POSFLAGS)
 
-all: clean bin
+#all: clean bin
+all: bin
 
 bin: $(OBJECTS) $(BINS)
 

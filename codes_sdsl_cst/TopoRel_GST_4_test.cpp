@@ -44,8 +44,9 @@ int main(int argc, char const *argv[]){
 	cout << endl;
 	
 	TopoRelGST_4 tr_gst(vi, max);
+	return 0;
 
-	//tr_gst.navega(0);
+	tr_gst.navega(0);
 
 	vector<vector<int>> conteo(nr, vector<int>(nr, 0));
 

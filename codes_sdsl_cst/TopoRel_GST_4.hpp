@@ -22,6 +22,7 @@ public:
     vector<cst_sada<>::node_type> gstMapa;
     vector<int_vector<>> gstRutas;
     vector<sd_vector<>> gstStops;
+    sd_vector<> gstMFS;
     int n_rutas;
     int n_concat;
     int n_stops;
@@ -45,7 +46,7 @@ public:
     bool tr_contains(int, int);
     bool tr_intersect(int, int);
 
-    //void navega(int);
+    void navega(int);
     void sizeEstructura();
 
 private:

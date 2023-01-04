@@ -626,10 +626,15 @@ void TopoRelGST_1::navega(int x){
             cout << endl;
         }
     }
-
     cout << endl;
-    cout << "Pruebas de Navegación en CompressedSuffixTree: " << endl;
 
+    cout << "CSA del CompressedSuffixTree:" << endl;
+    for(int i=0; i<cst.csa.size(); i++){
+        cout << cst.csa[i] << " ";
+    }
+    cout << endl << endl;
+
+    cout << "Pruebas de Navegación en CompressedSuffixTree: " << endl;
     auto nodeAux = cst.root();
     cout << "Root: " << cst.id(nodeAux) << "\t'";
     for(int i=1; i<=cst.depth(nodeAux); i++){

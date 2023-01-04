@@ -31,6 +31,7 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops){
     finSec = maxID+1;
     int_vector<> iv(n_concat*2);
     gstRutas = vector<int_vector<>>(rutas.size());
+    bit_vector MFStemporal = bit_vector(n_concat*2, 0);
     int pv = 0;
     int tr = n_rutas;
     // Concatenar rutas
@@ -40,18 +41,31 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops){
             iv[pv++] = rutas[i][j];
             gstRutas[i][j] = rutas[i][j];
         }
+        MFStemporal[pv] = 1;
         iv[pv++] = finSec;
         util::bit_compress(gstRutas[i]);
     }
-//    cout << "Rutas... concatenadas" << endl;
 
     // Concatenar rutas reversas
     for(int i = 0; i < n_rutas; i++){
         for(int j = rutas[i].size()-1; j >= 0 ; j--){
             iv[pv++] = rutas[i][j];
         }
+        MFStemporal[pv] = 1;
         iv[pv++] = finSec;
     }
+    gstMFS = sd_vector<>(MFStemporal);
+    cout << "SizeBytes gstMFS: " << size_in_bytes(gstMFS) << endl;
+    sd_vector<>::rank_1_type sdb_rank(&gstMFS);
+    sd_vector<>::select_1_type select1(&gstMFS);
+    cout << "SizeBytes gstMFS: " << size_in_bytes(gstMFS) << endl;
+    cout << "SizeBytes gstMFS rank_1: " << size_in_bytes(sdb_rank) << endl;
+    cout << "SizeBytes gstMFS select_1: " << size_in_bytes(select1) << endl;
+    rank_support_v<1> b_rank(&MFStemporal);
+    cout << "SizeBytes MFStemporal rank_1: " << size_in_bytes(b_rank) << endl;
+    cout << "Cantidad de bits: " << MFStemporal.size() << endl;
+    cout << "Tamaño en bytes: " << size_in_bytes(MFStemporal) << endl;
+//    cout << "Rutas... concatenadas" << endl;
 
     //cst_sada<csa_wt<wt_int<rrr_vector<>>>> cst;
     construct_im(cst, iv);
@@ -563,7 +577,7 @@ bool TopoRelGST_4::tr_intersect(int x, int y){
             Otras funcionalidades
 *******************************************************/
 
-/*
+
 void TopoRelGST_4::navega(int x){
 
     cout << "Información del CompressedSuffixTree:" << endl;
@@ -573,7 +587,7 @@ void TopoRelGST_4::navega(int x){
     cout << "Recorrido de hijos de root del CompressedSuffixTree:" << endl;
     auto root = cst.root();
     cout << "id\ted_1\tdeg\tdep\tndep\tsize\tlb\trb\tsun\tleaf\ttext" << endl;
-    for (auto& child: cst.children(root)) {
+    for (auto child: cst.children(root)) {
         cout << cst.id(child) << "\t";
         cout << "'" << cst.edge(child, 1) << "'" << "\t";       // D-th char of the edge-label
         cout << cst.degree(child) << "\t";      // Number of children
@@ -589,11 +603,11 @@ void TopoRelGST_4::navega(int x){
         }
         cout << "\t" << endl;
     }
-
     cout << endl;
+
     cout << "BFS del CompressedSuffixTree:" << endl;
     cout << "id\ted_1\tdeg\tdep\tndep\tsize\tlb\trb\tsun\tleaf\ttext" << endl;
-    typedef cst_bfs_iterator<cst_sada> iterator;
+    typedef cst_bfs_iterator<cst_sada<csa_wt<wt_int<rrr_vector<>>>>> iterator;
     iterator begin = iterator(&cst, cst.root());
     iterator end   = iterator(&cst, cst.root(), true, true);
     int count = 0;
@@ -617,10 +631,21 @@ void TopoRelGST_4::navega(int x){
             cout << endl;
         }
     }
-
     cout << endl;
-    cout << "Pruebas de Navegación en CompressedSuffixTree: " << endl;
 
+    cout << "CSA del CompressedSuffixTree:" << endl;
+    for(int i=0; i<cst.csa.size(); i++){
+        cout << cst.csa[i] << " ";
+    }
+    cout << endl << endl;
+
+    cout << "Marcas de Fin de Secuencia del CompressedSuffixTree: " << endl;
+    for(int i=0; i < gstMFS.size(); i++){
+        cout << gstMFS[i];
+    }
+    cout << endl << endl;
+
+    cout << "Pruebas de Navegación en CompressedSuffixTree: " << endl;
     auto nodeAux = cst.root();
     cout << "Root: " << cst.id(nodeAux) << "\t'";
     for(int i=1; i<=cst.depth(nodeAux); i++){
@@ -704,7 +729,7 @@ void TopoRelGST_4::navega(int x){
     }
     cout << endl;
 }
-*/
+
 
 // Funciones private
 
