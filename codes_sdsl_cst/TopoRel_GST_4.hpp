@@ -22,7 +22,9 @@ public:
     vector<cst_sada<>::node_type> gstMapa;
     vector<int_vector<>> gstRutas;
     vector<sd_vector<>> gstStops;
-    sd_vector<> gstMFS;
+    sd_vector<> gstMFSbv;
+    sd_vector<>::rank_1_type gstMFSrank;
+    sd_vector<>::select_1_type gstMFSselect;
     int n_rutas;
     int n_concat;
     int n_stops;

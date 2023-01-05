@@ -54,17 +54,10 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops){
         MFStemporal[pv] = 1;
         iv[pv++] = finSec;
     }
-    gstMFS = sd_vector<>(MFStemporal);
-    cout << "SizeBytes gstMFS: " << size_in_bytes(gstMFS) << endl;
-    sd_vector<>::rank_1_type sdb_rank(&gstMFS);
-    sd_vector<>::select_1_type select1(&gstMFS);
-    cout << "SizeBytes gstMFS: " << size_in_bytes(gstMFS) << endl;
-    cout << "SizeBytes gstMFS rank_1: " << size_in_bytes(sdb_rank) << endl;
-    cout << "SizeBytes gstMFS select_1: " << size_in_bytes(select1) << endl;
-    rank_support_v<1> b_rank(&MFStemporal);
-    cout << "SizeBytes MFStemporal rank_1: " << size_in_bytes(b_rank) << endl;
-    cout << "Cantidad de bits: " << MFStemporal.size() << endl;
-    cout << "Tamaño en bytes: " << size_in_bytes(MFStemporal) << endl;
+    gstMFSbv = sd_vector<>(MFStemporal);
+    gstMFSrank = sd_vector<>::rank_1_type(&gstMFSbv);
+    gstMFSselect = sd_vector<>::select_1_type(&gstMFSbv);
+
 //    cout << "Rutas... concatenadas" << endl;
 
     //cst_sada<csa_wt<wt_int<rrr_vector<>>>> cst;
@@ -640,8 +633,8 @@ void TopoRelGST_4::navega(int x){
     cout << endl << endl;
 
     cout << "Marcas de Fin de Secuencia del CompressedSuffixTree: " << endl;
-    for(int i=0; i < gstMFS.size(); i++){
-        cout << gstMFS[i];
+    for(int i=0; i < gstMFSbv.size(); i++){
+        cout << gstMFSbv[i];
     }
     cout << endl << endl;
 
@@ -761,6 +754,9 @@ void TopoRelGST_4::sizeEstructura(){
         bytesMapa += sizeof(gstMapa[i]);
     }
     cout << "mapa [B]: " << bytesMapa << endl;
+    cout << "gstMFSbv [B]: " << size_in_bytes(gstMFSbv) << endl;
+    cout << "gstMFS_rank_1 [B]: " << size_in_bytes(gstMFSrank) << endl;
+    cout << "gstMFS_select_1 [B]: " << size_in_bytes(gstMFSselect) << endl;
 
     cout << "**** Elementos ****" << endl;
     cout << "Nº Rutas: " << gstStops.size() << endl;
