@@ -48,12 +48,19 @@ public:
     bool tr_contains(int, int);
     bool tr_intersect(int, int);
 
+    // Relaciones topológicas en conjunto
+    vector<int> tr_allContain(int);
+
     void navega(int);
     void sizeEstructura();
+    void printRutaYPos(int);
+    void printRuta(int);
+    int getLargoRuta(int);
 
 private:
     bool bordesSeg_touches(int, int);
     cst_sada<>::node_type nodoSubseq(cst_sada<>::node_type, int);
+    int getIdRutaSegunPosConcat(int);
 };
 
 #endif

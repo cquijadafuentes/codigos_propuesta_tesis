@@ -44,7 +44,6 @@ int main(int argc, char const *argv[]){
 	cout << endl;
 	
 	TopoRelGST_4 tr_gst(vi, max);
-	return 0;
 
 	tr_gst.navega(0);
 
@@ -280,6 +279,17 @@ int main(int argc, char const *argv[]){
 	cout << endl;
 
 	tr_gst.sizeEstructura();
+	cout << endl;
+
+	for(int i=0; i<tr_gst.n_rutas; i++){
+		vector<int> r = tr_gst.tr_allContain(i);
+		cout << r.size() << " rutas que contienen " << i << ": ";
+		for(int j=0; j<r.size(); j++){
+			cout << r[j] << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
 
 	return 0;
 }

@@ -567,6 +567,51 @@ bool TopoRelGST_4::tr_intersect(int x, int y){
 
 
 /*******************************************************
+            Relaciones topológicas en conjunto
+*******************************************************/
+
+
+vector<int> TopoRelGST_4::tr_allContain(int x){
+    vector<int> y;
+    if(x > n_rutas) return y;
+
+    auto nX = gstMapa[x];
+    auto idLChST = cst.leftmost_leaf(nX);
+    auto idRChST = cst.rightmost_leaf(nX);
+    auto nParentX = cst.parent(nX);
+//    cout << "id_gst_x: " << cst.id(nX) << " - " << extract(cst, nX) << endl;
+//    cout << "id_gst_parent_x: " << cst.id(nParentX) << " - " << extract(cst, nParentX) << endl;
+//    cout << "Ruta [" << x << "] = ";
+//    printRuta(x);
+//    cout << endl;
+
+    if(cst.depth(nParentX) == getLargoRuta(x)){
+//        cout << "Trabajando con padre" << endl;
+        idLChST = cst.leftmost_leaf(nParentX);
+        idRChST = cst.rightmost_leaf(nParentX);
+    }
+//    else{
+//        cout << "Trabajando con nodo" << endl;        
+//    }
+    for(int i=cst.id(idLChST); i <= cst.id(idRChST); i++){
+        auto hoja = cst.inv_id(i);
+//        cout << "-----" << endl;
+//        cout << "id_GST: " << i << " - " << extract(cst, hoja) << endl;;
+//        cout << "p_CSA: " << cst.csa[i] << " - ";
+        int idAux = getIdRutaSegunPosConcat(cst.csa[i]);
+//        cout << "id_Rutas: " << idAux << " - Ruta: ";
+//        printRuta(idAux);
+//        cout << endl;
+//        cout << "-----" << endl;
+        if(idAux != x){
+            y.push_back(idAux);
+        }
+    }
+    return y;
+}
+
+
+/*******************************************************
             Otras funcionalidades
 *******************************************************/
 
@@ -615,10 +660,9 @@ void TopoRelGST_4::navega(int x){
         cout << cst.rb(*it) << "\t";            // Rightmost leaf
         cout << cst.sn(*it) << "\t";            // Suffix number
         cout << cst.is_leaf(*it) << "\t";       // IsLeaf
-        for(int i=1; i<=cst.depth(*it); i++){
-            cout << cst.edge(*it, i) << " ";
-        }
-        cout << "\t" << endl;
+        cout << extract(cst, *it) << "\t";      // Text
+
+        cout << endl;
 
         if(++count % 5 == 0){
             cout << endl;
@@ -627,10 +671,7 @@ void TopoRelGST_4::navega(int x){
     cout << endl;
 
     cout << "CSA del CompressedSuffixTree:" << endl;
-    for(int i=0; i<cst.csa.size(); i++){
-        cout << cst.csa[i] << " ";
-    }
-    cout << endl << endl;
+    cout << cst.csa << endl << endl;
 
     cout << "Marcas de Fin de Secuencia del CompressedSuffixTree: " << endl;
     for(int i=0; i < gstMFSbv.size(); i++){
@@ -721,10 +762,19 @@ void TopoRelGST_4::navega(int x){
         cout << "(" << i << "): " << cst.id(gstMapa[i]) << endl;
     }
     cout << endl;
+
+    cout << endl << "Id Secuencia de la posición 2 en concatenación: ";
+    int idd = getIdRutaSegunPosConcat(2);
+    cout << idd << " - ";
+    printRutaYPos(idd);
+    cout << endl << endl;
+
+    cout << endl << "Id Secuencia de la posición 18 en concatenación: ";
+    idd = getIdRutaSegunPosConcat(18);
+    cout << idd << " - ";
+    printRutaYPos(idd);
+    cout << endl << endl;
 }
-
-
-// Funciones private
 
 void TopoRelGST_4::sizeEstructura(){
     cout << "**** Tamaño en bytes ****" << endl;
@@ -766,6 +816,52 @@ void TopoRelGST_4::sizeEstructura(){
     cout << " (" << porcentaje << "%)" << endl;
 }
 
+void TopoRelGST_4::printRutaYPos(int x){
+    if(x > n_rutas){
+        return;
+    }
+
+    int pI = 0;
+    if(x > 0){
+        pI = gstMFSselect(x) + 1;
+    }
+    int pF = gstMFSselect(x+1) - 1;
+    cout << "posiciones: " << pI << " - " << pF;
+    cout << " (" << getLargoRuta(x) << ") " << extract(cst.csa,pI, pF) << endl;
+
+}
+
+void TopoRelGST_4::printRuta(int x){
+    if(x > n_rutas){
+        return;
+    }
+
+    int pI = 0;
+    if(x > 0){
+        pI = gstMFSselect(x) + 1;
+    }
+    int pF = gstMFSselect(x+1) - 1;
+    cout << extract(cst.csa,pI, pF);    
+}
+
+int TopoRelGST_4::getLargoRuta(int x){
+    if(x > n_rutas){
+        return 0;
+    }
+
+    int pI = 0;
+    if(x > 0){
+        pI = gstMFSselect(x) + 1;
+    }
+    int pF = gstMFSselect(x+1) - 1;
+    return pF - pI + 1;
+}
+
+
+/*******************************************************
+            FUNCIONALIDADES PRIVADAS
+*******************************************************/
+
 bool TopoRelGST_4::bordesSeg_touches(int t1, int t2){
     // Comprueba si hay segmentos finales que se intersecan
     // Esto implica una intersección Interior-Interior entre los bordes
@@ -800,4 +896,14 @@ cst_sada<>::node_type TopoRelGST_4::nodoSubseq(cst_sada<>::node_type n, int x){
         d = cst.depth(r);
     }while(d < x);
     return r;
+}
+
+int TopoRelGST_4::getIdRutaSegunPosConcat(int x){
+    // Recibe una posición referente a la secuencia concatenada e indica el 
+    // id de la secuencia a la que corresponde dicha posición
+    // Utiliza operaciones de rank sobre el bitmap de fin de secuencia
+    if(x >= gstMFSbv.size()){
+        return -1;
+    }
+    return gstMFSrank(x);
 }

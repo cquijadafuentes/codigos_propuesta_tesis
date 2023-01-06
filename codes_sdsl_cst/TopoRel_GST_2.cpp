@@ -602,10 +602,9 @@ void TopoRelGST_2::navega(int x){
         cout << cst.rb(*it) << "\t";            // Rightmost leaf
         cout << cst.sn(*it) << "\t";            // Suffix number
         cout << cst.is_leaf(*it) << "\t";       // IsLeaf
-        for(int i=1; i<=cst.depth(*it); i++){
-            cout << cst.edge(*it, i) << " ";
-        }
-        cout << "\t" << endl;
+        cout << extract(cst, *it) << "\t";      // Text
+
+        cout << endl;
 
         if(++count % 5 == 0){
             cout << endl;
