@@ -905,5 +905,6 @@ int TopoRelGST_4::getIdRutaSegunPosConcat(int x){
     if(x >= gstMFSbv.size()){
         return -1;
     }
-    return gstMFSrank(x);
+    int idT = gstMFSrank(x);
+    return (idT % n_rutas);
 }

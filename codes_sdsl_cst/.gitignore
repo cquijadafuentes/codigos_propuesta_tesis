@@ -4,6 +4,7 @@ test_sdvector_rank_select
 test_cst_data
 test_cst_rep
 time_TopoRel_boolean
+time_TopoRel_all_contain
 TopoRel_*_test
 TopoRel_testall
 extras/dataset_lineasmadrid_repetidos/genera_repeticiones
