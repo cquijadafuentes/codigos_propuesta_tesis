@@ -29,6 +29,9 @@ bool tr_inside(vector<int> &a, vector<int> &b);
 bool tr_overlaps(vector<int> &a, vector<int> &b);
 bool tr_touches(vector<int> &a, vector<int> &b);
 
+// Relaciones topológicas en conjunto 
+vector<int> tr_allContain(vector<vector<int>> &r, int x);
+
 // Relaciones topológicas binarias agregadas
 bool tr_within(vector<int> &a, vector<int> &b);
 bool tr_contains(vector<int> &a, vector<int> &b);

@@ -32,7 +32,7 @@ int main(int argc, char const *argv[]){
 	double t_GST_4 = tiempos_GST_4(rutas, n_stops);
 
 	cout << "N°Rutas\ttNaive\ttNaivePC\ttGST4" << endl;
-	cout << n_rutas << "\t" << t_naive << "\t" << tiempos_naivePC << "\t" << t_GST_4 << "\t[us]" << endl;
+	cout << n_rutas << "\t" << t_naive << "\t" << t_naivePC << "\t" << t_GST_4 << "\t[us]" << endl;
 }
 
 double tiempos_naive(vector<vector<int>> rutas){
@@ -41,15 +41,13 @@ double tiempos_naive(vector<vector<int>> rutas){
     unsigned t1;
     t0 = clock();
     for(int i=0; i<rutas.size(); i++){
-    	for(int j=0; j<rutas[i].size(); j++){
-    		if(tr_within(rutas[i], rutas[j])){
-    			cont++;
-    		}
-    	}
+    	cont += (tr_allContain(rutas, i)).size();
     }
 	t1 = clock();
 	double tiempo = (((double)(t1 - t0)) / CLOCKS_PER_SEC) * 1000000;
-	cout << "Naive encontró " << cont << " relaciones contenidas en total." << endl;
+	double promConten = (0.0 + cont) / rutas.size();
+	cout << "Naive encontró " << cont << " relaciones contenidas en total, ";
+	cout << promConten << " contenidas en promedio." << endl;
 	return tiempo;
 }
 
@@ -60,15 +58,13 @@ double tiempos_naivePC(vector<vector<int>> rutas, int n_stops){
     unsigned t1;
     t0 = clock();    
     for(int i=0; i<rutas.size(); i++){
-    	for(int j=0; j<rutas.size(); j++){
-    		if(trpc.within(i, j)){
-    			cont++;
-    		}
-    	}
+    	cont += (trpc.allContain(i)).size();
     }
 	t1 = clock();
 	double tiempo = (((double)(t1 - t0)) / CLOCKS_PER_SEC) * 1000000;
-	cout << "NaivePC encontró " << cont << " relaciones contenidas en total." << endl;
+	double promConten = (0.0 + cont) / rutas.size();
+	cout << "NaivePC encontró " << cont << " relaciones contenidas en total, ";
+	cout << promConten << " contenidas en promedio." << endl;
 	return tiempo;
 }
 
@@ -83,6 +79,8 @@ double tiempos_GST_4(vector<vector<int>> rutas, int n_stops){
     }
 	t1 = clock();
 	double tiempo = (((double)(t1 - t0)) / CLOCKS_PER_SEC) * 1000000;
-	cout << "GST4 encontró " << cont << " relaciones contenidas en total." << endl;
+	double promConten = (0.0 + cont) / rutas.size();
+	cout << "GST4 encontró " << cont << " relaciones contenidas en total, ";
+	cout << promConten << " contenidas en promedio." << endl;
 	return tiempo;
 }

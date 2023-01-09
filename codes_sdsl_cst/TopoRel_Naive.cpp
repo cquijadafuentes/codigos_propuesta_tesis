@@ -569,3 +569,13 @@ bool tr_intersect(vector<int> &a, vector<int> &b){
     }
     return false;
 }
+
+vector<int> tr_allContain(vector<vector<int>> &r, int x){
+    vector<int> res;
+    for(int i=0; i<r.size(); i++){
+        if(tr_within(r[x], r[i])){
+            res.push_back(i);
+        }
+    }
+    return res;
+}

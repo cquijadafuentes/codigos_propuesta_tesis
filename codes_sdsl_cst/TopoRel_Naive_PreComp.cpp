@@ -12,8 +12,8 @@ TopoRelNaivePreComp::TopoRelNaivePreComp(vector<vector<int>> &rs, int cant_stops
 		util::bit_compress(rutas[i]);
 	}
 	n_stops = cant_stops;
-	n_routes = rs.size();
-	relaciones = vector<int_vector<>>(n_routes, int_vector<>(n_routes,0,3));
+	n_rutas = rs.size();
+	relaciones = vector<int_vector<>>(n_rutas, int_vector<>(n_rutas,0));
 	map<string, int> mapNameIdRel;
 	
 	nombresRel = vector<string>(8, "");
@@ -35,10 +35,11 @@ TopoRelNaivePreComp::TopoRelNaivePreComp(vector<vector<int>> &rs, int cant_stops
 	mapNameIdRel[TOUCHES] = 7;
 	nombresRel[7] = TOUCHES;
 
-	for(int i=0; i<n_routes; i++){
-		for(int j=0; j<n_routes; j++){
+	for(int i=0; i<n_rutas; i++){
+		for(int j=0; j<n_rutas; j++){
 			relaciones[i][j] = mapNameIdRel[toporel(rs[i],rs[j])];
 		}
+		util::bit_compress(relaciones[i]);
 	}
 }
 
@@ -117,6 +118,15 @@ bool TopoRelNaivePreComp::intersect(int i, int j){
 	return relaciones[i][j] != 2;
 }
 
+vector<int> TopoRelNaivePreComp::allContain(int x){
+	vector<int> res;
+	for(int i=0; i<n_rutas; i++){
+		if(within(x, i)){
+			res.push_back(i);
+		}
+	}
+	return res;
+}
 
 void TopoRelNaivePreComp::navega(){
     cout << "navega" << endl;

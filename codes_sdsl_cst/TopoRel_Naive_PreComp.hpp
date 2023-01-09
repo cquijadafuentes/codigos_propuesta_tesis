@@ -20,7 +20,7 @@ public:
     vector<string> nombresRel;
     vector<int_vector<>> relaciones;
     int n_stops;
-    int n_routes;
+    int n_rutas;
     
     TopoRelNaivePreComp(vector<vector<int>>&, int);
 
@@ -35,6 +35,9 @@ public:
     bool disjoint(int, int);
     bool touches(int, int);
     bool overlaps(int, int);
+
+    // Relaciones topológicas en conjunto 
+    vector<int> allContain(int);
 
     // Relaciones topológicas binarias agregadas
     bool within(int, int);

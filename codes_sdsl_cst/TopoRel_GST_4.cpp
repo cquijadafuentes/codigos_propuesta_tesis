@@ -603,9 +603,7 @@ vector<int> TopoRelGST_4::tr_allContain(int x){
 //        printRuta(idAux);
 //        cout << endl;
 //        cout << "-----" << endl;
-        if(idAux != x){
-            y.push_back(idAux);
-        }
+        y.push_back(idAux);
     }
     return y;
 }
