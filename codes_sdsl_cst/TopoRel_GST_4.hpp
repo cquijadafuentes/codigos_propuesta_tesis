@@ -31,6 +31,7 @@ public:
     int finSec;
     
     TopoRelGST_4(vector<vector<int>>&, int);
+    TopoRelGST_4(vector<vector<int>>&, int, bool);
     string obtenerRelacion(int, int);
 
     // 8 relaciones topológicas básicas

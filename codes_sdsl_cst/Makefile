@@ -4,7 +4,7 @@ PREFLAGS=-std=c++11 -g -O0 -DNDEBUG -I ~/include -L ~/lib
 
 POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
-BINS=test_sdvector_rank_select test_cst_data test_cst_rep\
+BINS=test_sdvector_rank_select test_cst_data test_cst_rep test_comparaGST4constructores\
 		test_TopoRel_all_contain time_TopoRel_all_contain time_TopoRel_boolean\
 		size_TopoRel TopoRel_testall\
 		TopoRel_Naive_test  TopoRel_Naive_PreComp_test\
@@ -22,6 +22,9 @@ OBJECTS=TopoRel_GST_0.o TopoRel_GST_1.o\
 all: bin
 
 bin: $(OBJECTS) $(BINS)
+
+test_comparaGST4constructores:
+	$(CPP) $(PREFLAGS) -o test_comparaGST4constructores test_comparaGST4constructores.cpp $(POSFLAGS)
 
 test_sdvector_rank_select:
 	$(CPP) $(PREFLAGS) -o test_sdvector_rank_select test_sdvector_rank_select.cpp $(POSFLAGS)
