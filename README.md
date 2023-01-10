@@ -22,10 +22,13 @@ v8 ->
 	Eliminación de map y reducción de marcas
 	Navegación ineficiente de GST por edges. ELIMINAR/MODIFICAR
 
+v9 ->	Implementación con cst-sada y pruebas de funcionamiento del cst sobre trips-madrid
+
+v10 ->	Relación allContains: test y toma de tiempo.
+
+
 # plots
 
 v7 ->	Generación en paralelo usando matriz completa de resultados (tiempos)
 v8 ->	Versión antigua
-v9 ->	Implementación con cst-sada y pruebas de funcionamiento del cst sobre trips-madrid
-v10 ->	Relación allContains: test y toma de tiempo.
 
