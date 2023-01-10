@@ -3,6 +3,7 @@
 #include <vector>
 #include <ctime>
 #include <map>
+#include <algorithm>
 #include "TopoRel_Naive.hpp"
 #include "TopoRel_Naive_PreComp.hpp"
 #include "TopoRel_GST_4.hpp"
@@ -66,7 +67,8 @@ int main(int argc, char const *argv[]){
     	}
 
     }
-    cout << diferencias << " diferencias entre los resultados." << endl;
+    cout << diferencias << " diferencias entre los resultados." << endl; 
+
 }
 
 
