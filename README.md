@@ -27,3 +27,5 @@ v8 ->
 v7 ->	Generación en paralelo usando matriz completa de resultados (tiempos)
 v8 ->	Versión antigua
 v9 ->	Implementación con cst-sada y pruebas de funcionamiento del cst sobre trips-madrid
+v10 ->	Relación allContains: test y toma de tiempo.
+
