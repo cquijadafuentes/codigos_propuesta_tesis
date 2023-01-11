@@ -9,8 +9,8 @@ set key out horiz
 set terminal png size 800,400
 
 set output 'img_allContains_noLog.png'
-set xrange [0.5:2.5]
-set yrange [1:450000000]
+set xrange [0.5:3.5]
+set yrange [1:3000000000]
 
 set title 'Operaciones Booleanas'
 set ylabel "Tiempo [us]"
