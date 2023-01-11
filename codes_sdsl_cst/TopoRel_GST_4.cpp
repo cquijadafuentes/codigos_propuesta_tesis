@@ -213,41 +213,29 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops, bool x){
         sizePostCompr += size_in_bytes(gstStops[i]);
     }
     cout << "Tamaño stops: " << sizePrevCompr << " >> " << sizePostCompr << endl;
-//    cout << "Marcas en bitvector... OK" << endl;
-/*
-    cout << "Marcas: " << endl;
-    for(int i=0; i<gstStops.size(); i++){
-        for(int j=0; j<gstStops[i].size(); j++){
-            cout << gstStops[i][j] << " " ;
+
+    cout << "nueva construcción...";
+
+    // Generar rutas para recorrer
+    // 1- Agregar fin de secuencia:
+    vector<vector<int>> rutasOrd(rutas);
+    for(int i=0; i<rutasOrd.size(); i++){
+        rutasOrd[i].push_back(finSec);
+    }
+    // 2- Ordenar rutas
+    sort(rutasOrd.begin(), rutasOrd.end());
+    cout << "Rutas Ordenadas:" << endl;
+    for(int i=0; i<rutasOrd.size(); i++){
+        for(int j=0; j<rutasOrd[i].size(); j++){
+            cout << rutasOrd[i][j] << " ";
         }
         cout << endl;
     }
-    cout << endl;
-*/
-    // MAP en un vector
-    gstMapa = vector<cst_sada<>::node_type>(n_rutas * 2);
-    for(int i = 0; i < n_rutas; i++){
-        // La primera mitad de mapa para rutas
-        auto v = cst.child(cst.root(), rutas[i][0]);
-        while(v != cst.root() && cst.depth(v) < rutas[i].size()){
-            v = cst.child(v, rutas[i][cst.depth(v)]);
-        }
-        if(cst.depth(v) <= rutas[i].size()){
-            v = cst.child(v, finSec);
-        }
-        gstMapa[i] = v;
-        // La segunda mitad de mapa para rutas reversas
-        int pr = rutas[i].size()-1;
-        v = cst.child(cst.root(), rutas[i][pr]);
-        while(v != cst.root() && cst.depth(v) < rutas[i].size()){
-            v = cst.child(v, rutas[i][pr-cst.depth(v)]);
-        }
-        if(cst.depth(v) <= rutas[i].size()){
-            v = cst.child(v, finSec);
-        }
-        gstMapa[n_rutas + i] = v;
-    }
-//    cout << "Map... OK" << endl;
+    // Construcción gstStops
+    cout << "Texto en nodos del cst dfs:" << endl;
+    for (auto it = cst.begin(); it != cst.end(); ++it) {
+        cout << extract(cst, *it) << endl;      // Text
+    }    
     cout << "Fin constructor" << endl;
 }
 
@@ -974,6 +962,66 @@ int TopoRelGST_4::getLargoRuta(int x){
     }
     int pF = gstMFSselect(x+1) - 1;
     return pF - pI + 1;
+}
+
+bool TopoRelGST_4::iguales(TopoRelGST_4 x){
+    // Compara constantes
+    if(n_rutas != x.n_rutas){
+        return false;
+    }
+    if(n_concat != x.n_concat){
+        return false;
+    }
+    if(n_stops != x.n_stops){
+        return false;
+    }
+    if(finSec != x.finSec){
+        return false;
+    }
+
+    // Compara CSA
+    if(cst.csa.size() != x.cst.csa.size()){
+        return false;
+    }
+    for(int i=0; i<cst.csa.size(); i++){
+        if(cst.csa[i] != x.cst.csa[i]){
+            return false;
+        }
+    }
+
+    // Comparando gstRutas
+    for(int i=0; i<n_rutas; i++){
+        if(gstRutas[i] != x.gstRutas[i]){
+            return false;
+        }
+    }
+
+    // Compararndo gstStops
+    if(gstStops.size() != x.gstStops.size()){
+        return false;
+    }
+    for(int i=0; i<gstStops.size(); i++){
+        if(gstStops[i].size() != x.gstStops[i].size()){
+            return false;
+        }
+        for(int j=0; j<gstStops[i].size(); j++){
+            if(gstStops[i][j] != x.gstStops[i][j]){
+                return false;
+            }
+        }
+    }
+
+    // Comparando gstMFSbv
+    if(gstMFSbv.size() != x.gstMFSbv.size()){
+        return false;
+    }
+    for(int i=0; i<gstMFSbv.size(); i++){
+        if(gstMFSbv[i] != x.gstMFSbv[i]){
+            return false;
+        }
+    }
+
+    return true;
 }
 
 

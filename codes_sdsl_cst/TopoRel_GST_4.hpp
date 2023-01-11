@@ -57,6 +57,7 @@ public:
     void printRutaYPos(int);
     void printRuta(int);
     int getLargoRuta(int);
+    bool iguales(TopoRelGST_4 x);
 
 private:
     bool bordesSeg_touches(int, int);

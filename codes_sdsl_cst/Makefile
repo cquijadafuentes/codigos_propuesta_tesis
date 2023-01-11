@@ -24,7 +24,7 @@ all: bin
 bin: $(OBJECTS) $(BINS)
 
 test_comparaGST4constructores:
-	$(CPP) $(PREFLAGS) -o test_comparaGST4constructores test_comparaGST4constructores.cpp $(POSFLAGS)
+	$(CPP) $(PREFLAGS) -o test_comparaGST4constructores test_comparaGST4constructores.cpp $(OBJECTS) $(POSFLAGS)
 
 test_sdvector_rank_select:
 	$(CPP) $(PREFLAGS) -o test_sdvector_rank_select test_sdvector_rank_select.cpp $(POSFLAGS)

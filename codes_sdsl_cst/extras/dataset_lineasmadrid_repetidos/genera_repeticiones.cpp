@@ -36,13 +36,14 @@ int main(int argc, char const *argv[]){
 	fstream salida;
 	salida.open(argv[3], fstream::out);
 	salida << cantTray << " " << nStops << endl;
-	while(generadas++ < cantTray){
+	while(generadas < cantTray){
 		int x = generadas % nRutas;
 		salida << rutas[x].size();
 		for(int i=0; i < rutas[x].size(); i++){
 			salida << " " << rutas[x][i];
 		}
 		salida << endl;
+		generadas++;
 	}
 
 
