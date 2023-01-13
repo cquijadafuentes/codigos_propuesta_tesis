@@ -3,6 +3,7 @@ size_TopoRel
 test_sdvector_rank_select
 test_cst_data
 test_cst_rep
+test_comparaGST4constructores
 test_TopoRel_all_contain
 time_TopoRel_all_contain
 time_TopoRel_boolean

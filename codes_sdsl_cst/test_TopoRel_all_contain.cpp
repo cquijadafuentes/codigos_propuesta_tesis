@@ -13,7 +13,10 @@ using namespace std;
 void imprime_vector(vector<int> x);
 
 int main(int argc, char const *argv[]){
-
+	int queries = 0;
+	if(argc > 1){
+		queries = (int) atoi(argv[1]);
+	}
 	int n_rutas, n_t, n_stops, aux;
 	vector<vector<int>> rutas;
     cin >> n_rutas >> n_stops;
@@ -25,17 +28,18 @@ int main(int argc, char const *argv[]){
         }
         rutas.push_back(vt);
 	}
+	if(queries == 0){
+		queries = n_rutas;
+	}
 	int diferencias = 0;
 
 	// Construir estructuras preComp y GST4
 	TopoRelNaivePreComp trpc(rutas, n_stops);
 	TopoRelGST_4 tgst(rutas, n_stops);
 
-
 	// Realizar consultas según corresponda
-	for(int i=0; i<rutas.size(); i++){
-		// Consultas con ruta i
-		
+	for(int i=0; i<queries; i++){
+		// Consultas con ruta i		
 		vector<int> resNaive = tr_allContain(rutas, i);
     	vector<int> resPreComp = trpc.allContain(i);
     	vector<int> resGST4 = tgst.tr_allContain(i);
@@ -65,12 +69,10 @@ int main(int argc, char const *argv[]){
     			}
     		}
     	}
-
     }
-    cout << diferencias << " diferencias entre los resultados." << endl; 
-
+    cout << diferencias << " diferencias entre los resultados." << endl;
+    return 0;
 }
-
 
 void imprime_vector(vector<int> x){
 	for(int i=0; i<x.size(); i++){
