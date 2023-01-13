@@ -32,6 +32,8 @@ int main(int argc, char const *argv[]){
 	if(queries == 0){
 		queries = n_rutas;
 	}
+	cout << "Rutas: " << rutas.size() << endl;
+	cout << "Consultas a realizar: " << queries << endl;
 	double t_naive = tiempos_naive(rutas, queries);
 	double t_naivePC = tiempos_naivePC(rutas, n_stops, queries);
 	double t_GST_4 = tiempos_GST_4(rutas, n_stops, queries);
@@ -50,7 +52,7 @@ double tiempos_naive(vector<vector<int>> rutas, int queries){
     }
 	t1 = clock();
 	double tiempo = (((double)(t1 - t0)) / CLOCKS_PER_SEC) * 1000000;
-	double promConten = (0.0 + cont) / rutas.size();
+	double promConten = (0.0 + cont) / queries;
 	cout << "Naive encontró " << cont << " relaciones contenidas en total, ";
 	cout << promConten << " contenidas en promedio." << endl;
 	return tiempo;
@@ -67,7 +69,7 @@ double tiempos_naivePC(vector<vector<int>> rutas, int n_stops, int queries){
     }
 	t1 = clock();
 	double tiempo = (((double)(t1 - t0)) / CLOCKS_PER_SEC) * 1000000;
-	double promConten = (0.0 + cont) / rutas.size();
+	double promConten = (0.0 + cont) / queries;
 	cout << "NaivePC encontró " << cont << " relaciones contenidas en total, ";
 	cout << promConten << " contenidas en promedio." << endl;
 	return tiempo;
@@ -84,7 +86,7 @@ double tiempos_GST_4(vector<vector<int>> rutas, int n_stops, int queries){
     }
 	t1 = clock();
 	double tiempo = (((double)(t1 - t0)) / CLOCKS_PER_SEC) * 1000000;
-	double promConten = (0.0 + cont) / rutas.size();
+	double promConten = (0.0 + cont) / queries;
 	cout << "GST4 encontró " << cont << " relaciones contenidas en total, ";
 	cout << promConten << " contenidas en promedio." << endl;
 	return tiempo;
