@@ -6,7 +6,7 @@
 
 using namespace std;
 
-vector<int> derivarRuta(vector<int> ruta, int n_max, int cantAdic);
+vector<int> derivarRuta(vector<int> ruta, int n_max, int cantPrev, int cantPost);
 
 int main(int argc, char const *argv[]){
 	if(argc < 4){
@@ -49,11 +49,12 @@ int main(int argc, char const *argv[]){
 		generadas++;
 	}
 	srand (time(NULL));
-	int cantAdic;
+	int cantPrev, cantPost;
 	while(generadas < cantTray){
 		int x = generadas % nRutas;
-		cantAdic = rand() % 20 + 1;
-		vector<int> rDerivada = derivarRuta(rutas[x], nStops, cantAdic);
+		cantPrev = rand() % 20 + 1;
+		cantPost = rand() % 20 + 1;
+		vector<int> rDerivada = derivarRuta(rutas[x], nStops, cantPrev, cantPost);
 		salida << rDerivada.size();
 		for(int i=0; i < rDerivada.size(); i++){
 			salida << " " << rDerivada[i];
@@ -67,19 +68,15 @@ int main(int argc, char const *argv[]){
 	return 0;
 }
 
-vector<int> derivarRuta(vector<int> ruta, int n_max, int cantAdic){
+vector<int> derivarRuta(vector<int> ruta, int n_max, int cantPrev, int cantPost){
 	vector<int> derivada;
-	int aux, cantPrev, cantPost;
+	int aux;
 	// Marcar para no repetir los datos en la ruta
 	vector<bool> marcas(n_max+1, false);
 	for(int i=0; i<ruta.size(); i++){
 		marcas[ruta[i]] = true;
 	}
-	// Determinar cantidad adicional de elementos en la ruta derivada
-	
-	cout << cantAdic << endl;
 	// Insertar elementos previos
-	cantPrev = rand() % cantAdic + 1;
 	for(int i=0; i<cantPrev; i++){
 		// Generar un elemento aleatorio que no esté en la ruta original
 		aux = rand() % n_max + 1;
@@ -90,9 +87,8 @@ vector<int> derivarRuta(vector<int> ruta, int n_max, int cantAdic){
 		marcas[aux] = true;
 	}
 	// Insertar ruta original
-	derivada.insert(derivada.begin(), ruta.begin(), ruta.end());
+	derivada.insert(derivada.end(), ruta.begin(), ruta.end());
 	// Insertar elementos post
-	cantPost = cantAdic - cantPrev;
 	vector<int> post(cantPost);
 	for(int i=0; i<cantPost; i++){
 		// Generar un elemento aleatorio que no esté en la ruta original

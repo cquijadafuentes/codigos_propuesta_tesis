@@ -126,12 +126,12 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops){
         gstMapa[n_rutas + i] = v;
     }
 //    cout << "Map... OK" << endl;
-    cout << "Fin constructor" << endl;
+    cout << "Fin constructor TopDown (Completo)" << endl;
 }
 
 
 TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops, bool x){
-    cout << "Constructor TopoRelGST_4" << endl;
+    cout << "Constructor TopoRelGST_4 (version DFS)" << endl;
     n_stops = cant_stops;
     n_concat = 0;
     n_rutas = rutas.size();
@@ -236,7 +236,128 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops, bool x){
     for (auto it = cst.begin(); it != cst.end(); ++it) {
         cout << extract(cst, *it) << endl;      // Text
     }    
-    cout << "Fin constructor" << endl;
+    cout << "Fin constructor DFS (Incompleto)" << endl;
+}
+
+
+TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops, int x){
+    cout << "Constructor TopoRelGST_4 (versión recorrido CSA)" << endl;
+    n_stops = cant_stops;
+    n_concat = 0;
+    n_rutas = rutas.size();
+    int maxID = 0;  // Para obtener símbolo para fin de secuencia
+    for(int i = 0; i < n_rutas; i++){
+        n_concat += (rutas[i].size()+1);   // largo de ruta + fin_char
+        // verificar el max_char del final de stops
+        for(int j = 0; j < rutas[i].size(); j++){
+            if(rutas[i][j] <= 0){
+                cout << "Error! identificadores con valor <= 0 (i:" << i << ", j:" << j <<")" << endl;
+                cout << "valor encontrado: " << rutas[i][j] << " en ruta de tamaño " << rutas[i].size() << endl;
+                return;
+            }
+            if(maxID < rutas[i][j]){
+                maxID = rutas[i][j];
+            }
+        }
+    }
+    finSec = maxID+1;
+    int_vector<> iv(n_concat*2);
+    gstRutas = vector<int_vector<>>(rutas.size());
+    bit_vector MFStemporal = bit_vector(n_concat*2, 0);
+    int pv = 0;
+    int tr = n_rutas;
+    // Concatenar rutas
+    for(int i = 0; i < n_rutas; i++){
+        gstRutas[i] = int_vector<>(rutas[i].size());
+        for(int j = 0; j < rutas[i].size(); j++){
+            iv[pv++] = rutas[i][j];
+            gstRutas[i][j] = rutas[i][j];
+        }
+        MFStemporal[pv] = 1;
+        iv[pv++] = finSec;
+        util::bit_compress(gstRutas[i]);
+    }
+
+    // Concatenar rutas reversas
+    for(int i = 0; i < n_rutas; i++){
+        for(int j = rutas[i].size()-1; j >= 0 ; j--){
+            iv[pv++] = rutas[i][j];
+        }
+        MFStemporal[pv] = 1;
+        iv[pv++] = finSec;
+    }
+    gstMFSbv = sd_vector<>(MFStemporal);
+    gstMFSrank = sd_vector<>::rank_1_type(&gstMFSbv);
+    gstMFSselect = sd_vector<>::select_1_type(&gstMFSbv);
+
+//    cout << "Rutas... concatenadas" << endl;
+
+    //cst_sada<csa_wt<wt_int<rrr_vector<>>>> cst;
+    construct_im(cst, iv);
+//    cout << "GST construido" << endl;
+/*
+    cout << "inner nodes : " << cst.nodes() - cst.csa.size() << endl;
+    auto v = cst.select_child(cst.child(cst.root(), 930),1);
+    auto d = cst.depth(v);
+    cout << "v : " << d << "-[" << cst.lb(v) << "," << cst.rb(v) << "]" << endl;
+    cout << "extract(cst, v) : " << extract(cst, v) << endl;
+
+    v = cst.root();
+    cout << "root\tid: " << cst.id(v) << endl;
+    for(int i=0; i < rutas[0].size(); i++){
+        v = cst.child(v, rutas[0][i]);
+        cout << rutas[0][i] << "\tid: " << cst.id(v) << endl;
+    }
+*/
+    // Marcas en bitvectors
+    int sizePrevCompr = 0;
+    int sizePostCompr = 0;    
+    gstStops = vector<sd_vector<>>(n_rutas);
+    for(int i = 0; i < n_rutas; i++){
+        bit_vector bvt = bit_vector(finSec, 0);
+        for(int j = 0; j < rutas[i].size(); j++){
+            bvt[rutas[i][j]] = 1;
+        }
+        sizePrevCompr += size_in_bytes(bvt);
+        gstStops[i] = sd_vector<>(bvt);
+        sizePostCompr += size_in_bytes(gstStops[i]);
+    }
+    cout << "Tamaño stops: " << sizePrevCompr << " >> " << sizePostCompr << endl;
+
+    cout << "nueva construcción..." << endl;
+    gstMapa = vector<cst_sada<>::node_type>(n_rutas * 2);
+    // Generar rutas para recorrer
+    // 1- Identificar casillas del CSA que coinciden con un inicio de ruta.
+    for(int i=1; i<cst.csa.size(); i++){
+        int valCSA = cst.csa[i];
+        auto nodo = cst.root();
+        int rankV = 0;
+        if(valCSA == 0){
+            // Apunta a primera ruta
+            nodo = cst.inv_id(i);
+            cout << "ruta 0: " << extract(cst, nodo) << endl;
+        }else{
+            rankV = gstMFSrank(valCSA);
+            if(rankV > gstMFSrank(valCSA-1)){
+                nodo = cst.inv_id(i);
+                cout << "ruta " << rankV << ": " << extract(cst, nodo) << endl;  
+            }
+        }
+        if(nodo != cst.root()){
+            cout << "Buscando nodo de ruta " << rankV << ": ";
+            auto nodoAux = cst.parent(nodo);
+            cout << cst.id(nodo) << " ";
+            while((cst.depth(nodoAux)-1) > rutas[rankV].size()){
+                nodo = nodoAux;
+                cout << cst.id(nodo) << " ";
+                nodoAux = cst.parent(nodo);
+            }
+            cout << " -> " << extract(cst, nodo) << endl;
+            gstMapa[rankV] = nodo;
+        }
+    }
+
+    cout << "Fin constructor BottomUp (Incompleto)" << endl;
 }
 
 
@@ -980,11 +1101,13 @@ bool TopoRelGST_4::iguales(TopoRelGST_4 x){
     }
 
     // Compara CSA
-    if(cst.csa.size() != x.cst.csa.size()){
+    if(cst.csa.size() != x.cst.csa.size()){        
+        cout << "cst.csa tiene distinto tamaño." << endl;
         return false;
     }
     for(int i=0; i<cst.csa.size(); i++){
         if(cst.csa[i] != x.cst.csa[i]){
+            cout << "cst.csa tiene distinto contenido." << endl;
             return false;
         }
     }
@@ -992,20 +1115,24 @@ bool TopoRelGST_4::iguales(TopoRelGST_4 x){
     // Comparando gstRutas
     for(int i=0; i<n_rutas; i++){
         if(gstRutas[i] != x.gstRutas[i]){
+            cout << "gstRutas tiene distinto contenido." << endl;
             return false;
         }
     }
 
     // Compararndo gstStops
     if(gstStops.size() != x.gstStops.size()){
+        cout << "gstStops tiene distinto tamaño." << endl;
         return false;
     }
     for(int i=0; i<gstStops.size(); i++){
         if(gstStops[i].size() != x.gstStops[i].size()){
+        cout << "gstStops[i] tiene distinto tamaño." << endl;
             return false;
         }
         for(int j=0; j<gstStops[i].size(); j++){
             if(gstStops[i][j] != x.gstStops[i][j]){
+                cout << "gstStops tiene distinto contenido." << endl;
                 return false;
             }
         }
@@ -1013,10 +1140,24 @@ bool TopoRelGST_4::iguales(TopoRelGST_4 x){
 
     // Comparando gstMFSbv
     if(gstMFSbv.size() != x.gstMFSbv.size()){
+        cout << "gstMFSbv tiene distinto tamaño." << endl;
         return false;
     }
     for(int i=0; i<gstMFSbv.size(); i++){
         if(gstMFSbv[i] != x.gstMFSbv[i]){
+            cout << "gstMFSbv tiene distinto contenido." << endl;
+            return false;
+        }
+    }
+
+    // Comparando gstMapa
+    if(gstMapa.size() != x.gstMapa.size()){
+        cout << "gstMapa tiene distinto tamaño." << endl;
+        return false;
+    }
+    for(int i=0; i<gstMapa.size(); i++){
+        if(gstMapa[i] != x.gstMapa[i]){
+            cout << "gstMapa tiene distinto contenido." << endl;
             return false;
         }
     }
