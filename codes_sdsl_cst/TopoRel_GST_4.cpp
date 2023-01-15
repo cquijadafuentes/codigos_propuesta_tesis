@@ -324,7 +324,7 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops, int x){
     }
     cout << "Tamaño stops: " << sizePrevCompr << " >> " << sizePostCompr << endl;
 
-    cout << "nueva construcción..." << endl;
+//    cout << "nueva construcción..." << endl;
     gstMapa = vector<cst_sada<>::node_type>(n_rutas * 2);
     // Generar rutas para recorrer
     // 1- Identificar casillas del CSA que coinciden con un inicio de ruta.
@@ -335,29 +335,30 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops, int x){
         if(valCSA == 0){
             // Apunta a primera ruta
             nodo = cst.inv_id(i);
-            cout << "ruta 0: " << extract(cst, nodo) << endl;
+//            cout << "ruta 0: " << extract(cst, nodo) << endl;
         }else{
             rankV = gstMFSrank(valCSA);
             if(rankV > gstMFSrank(valCSA-1)){
                 nodo = cst.inv_id(i);
-                cout << "ruta " << rankV << ": " << extract(cst, nodo) << endl;  
+//                cout << "ruta " << rankV << ": " << extract(cst, nodo) << endl;  
             }
         }
         if(nodo != cst.root()){
-            cout << "Buscando nodo de ruta " << rankV << ": ";
+            int sizeR = rutas[rankV % n_rutas].size();
+//            cout << "Buscando nodo de ruta " << rankV << " tamaño " << sizeR << ": ";
             auto nodoAux = cst.parent(nodo);
-            cout << cst.id(nodo) << " ";
-            while((cst.depth(nodoAux)-1) > rutas[rankV].size()){
+//            cout << "id:" << cst.id(nodo) << "-padre:" << cst.id(nodoAux) << " ";
+            while(cst.depth(nodoAux) > sizeR){
                 nodo = nodoAux;
-                cout << cst.id(nodo) << " ";
                 nodoAux = cst.parent(nodo);
+//                cout << "id:" << cst.id(nodo) << "-padre:" << cst.id(nodoAux) << " ";
             }
-            cout << " -> " << extract(cst, nodo) << endl;
+//            cout << " -> " << extract(cst, nodo) << endl;
             gstMapa[rankV] = nodo;
         }
     }
 
-    cout << "Fin constructor BottomUp (Incompleto)" << endl;
+//    cout << "Fin constructor BottomUp (Incompleto)" << endl;
 }
 
 

@@ -27,7 +27,7 @@ int main(int argc, char const *argv[]){
 	unsigned t0 = clock();
 	TopoRelGST_4 tgst_old(rutas, n_stops);
     unsigned t1 = clock();
-	TopoRelGST_4 tgst_dfs(rutas, n_stops, true);
+	//TopoRelGST_4 tgst_dfs(rutas, n_stops, true);
 	unsigned t2 = clock();
 	TopoRelGST_4 tgst_bottomUp(rutas, n_stops, 0);
 	unsigned t3 = clock();
@@ -37,13 +37,13 @@ int main(int argc, char const *argv[]){
 	double tConsBottomUp = (((double)(t3 - t2)) / CLOCKS_PER_SEC) * 1000000;
 
 	cout << "Tiempo Construcción TopDown: " << tConsOld << " - DFS: "  << tConsDfs << " - BottomUp: "  << tConsBottomUp << endl;
-
+/*
 	if(tgst_old.iguales(tgst_dfs)){
 		cout << "Iguales con DFS" << endl;
 	}else{
 		cout << "DISTINTOS con DFS" << endl;
 	}
-
+*/
 	if (tgst_old.iguales(tgst_bottomUp)){
 		cout << "Iguales con BottomUp" << endl;
 	}else{
