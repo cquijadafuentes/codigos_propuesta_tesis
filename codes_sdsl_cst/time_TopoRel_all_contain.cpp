@@ -76,7 +76,7 @@ double tiempos_naivePC(vector<vector<int>> rutas, int n_stops, int queries){
 }
 
 double tiempos_GST_4(vector<vector<int>> rutas, int n_stops, int queries){
-	TopoRelGST_4 tt(rutas, n_stops);
+	TopoRelGST_4 tt(rutas, n_stops, true);
 	int cont = 0;
 	unsigned t0;
     unsigned t1;
