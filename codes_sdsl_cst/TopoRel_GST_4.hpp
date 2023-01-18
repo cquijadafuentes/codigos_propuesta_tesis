@@ -9,6 +9,7 @@
 #include <sdsl/suffix_trees.hpp>
 #include <sdsl/bit_vectors.hpp>
 #include <sdsl/cst_iterators.hpp>
+#include <omp.h>                    // OpenMP para el paralelismo
 #include "TopoRel_Cons.hpp"
 
 using namespace std;
@@ -30,9 +31,9 @@ public:
     int n_stops;
     int finSec;
     
-    TopoRelGST_4(vector<vector<int>>&, int);
-    TopoRelGST_4(vector<vector<int>>&, int, bool);
-    TopoRelGST_4(vector<vector<int>>&, int, int);
+    TopoRelGST_4(vector<vector<int>>&, int);        // Constructor Top-down
+    TopoRelGST_4(vector<vector<int>>&, int, bool);  // Constructor Top-down Paralelo
+    TopoRelGST_4(vector<vector<int>>&, int, int);   // Constructor Bottom-up
     string obtenerRelacion(int, int);
 
     // 8 relaciones topológicas básicas

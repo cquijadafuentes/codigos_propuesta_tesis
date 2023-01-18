@@ -130,8 +130,9 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops){
 }
 
 
-TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops, bool x){
-    cout << "Constructor TopoRelGST_4 (version DFS)" << endl;
+// Versión de constructor Top-down utilizando paralelismo
+TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops, bool bb){
+    cout << "Constructor TopoRelGST_4" << endl;
     n_stops = cant_stops;
     n_concat = 0;
     n_rutas = rutas.size();
@@ -213,30 +214,81 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops, bool x){
         sizePostCompr += size_in_bytes(gstStops[i]);
     }
     cout << "Tamaño stops: " << sizePrevCompr << " >> " << sizePostCompr << endl;
-
-    cout << "nueva construcción...";
-
-    // Generar rutas para recorrer
-    // 1- Agregar fin de secuencia:
-    vector<vector<int>> rutasOrd(rutas);
-    for(int i=0; i<rutasOrd.size(); i++){
-        rutasOrd[i].push_back(finSec);
-    }
-    // 2- Ordenar rutas
-    sort(rutasOrd.begin(), rutasOrd.end());
-    cout << "Rutas Ordenadas:" << endl;
-    for(int i=0; i<rutasOrd.size(); i++){
-        for(int j=0; j<rutasOrd[i].size(); j++){
-            cout << rutasOrd[i][j] << " ";
+//    cout << "Marcas en bitvector... OK" << endl;
+/*
+    cout << "Marcas: " << endl;
+    for(int i=0; i<gstStops.size(); i++){
+        for(int j=0; j<gstStops[i].size(); j++){
+            cout << gstStops[i][j] << " " ;
         }
         cout << endl;
     }
-    // Construcción gstStops
-    cout << "Texto en nodos del cst dfs:" << endl;
-    for (auto it = cst.begin(); it != cst.end(); ++it) {
-        cout << extract(cst, *it) << endl;      // Text
-    }    
-    cout << "Fin constructor DFS (Incompleto)" << endl;
+    cout << endl;
+*/
+    // MAP en un vector
+    int maxThreads = omp_get_max_threads();
+    if(maxThreads > (n_rutas * 2)){
+        maxThreads = n_rutas * 2;
+    }
+    // Vector que contendrá los vectores de cada porción que se genere según la cantidad de threads
+    int porciones = (n_rutas * 2) / maxThreads;
+    if((porciones * maxThreads) < (n_rutas * 2)){
+        porciones++;
+    }
+    vector<vector<cst_sada<>::node_type>> vPorcMap(maxThreads);
+
+    #pragma omp parallel for
+    for(int iParalelo = 0; iParalelo < maxThreads; iParalelo++){
+        vPorcMap[iParalelo] = vector<cst_sada<>::node_type>(porciones);
+        int base = iParalelo * porciones;
+        int tope = base + porciones;
+        if(tope > n_rutas * 2){
+            tope = n_rutas * 2;
+        }
+        for(int i = base; i < tope; i++){
+            auto v = cst.root();
+            if(i < n_rutas){
+                // La primera mitad de mapa para rutas
+                v = cst.child(cst.root(), rutas[i%n_rutas][0]);
+                while(v != cst.root() && cst.depth(v) < rutas[i%n_rutas].size()){
+                    v = cst.child(v, rutas[i%n_rutas][cst.depth(v)]);
+                }
+                if(cst.depth(v) <= rutas[i%n_rutas].size()){
+                    v = cst.child(v, finSec);
+                }
+            }else{
+                // La segunda mitad de mapa para rutas reversas
+                int pr = rutas[i%n_rutas].size()-1;
+                v = cst.child(cst.root(), rutas[i%n_rutas][pr]);
+                while(v != cst.root() && cst.depth(v) < rutas[i%n_rutas].size()){
+                    v = cst.child(v, rutas[i%n_rutas][pr-cst.depth(v)]);
+                }
+                if(cst.depth(v) <= rutas[i%n_rutas].size()){
+                    v = cst.child(v, finSec);
+                }
+            }
+            vPorcMap[iParalelo][i-base] = v;
+            /*
+            string st = "ruta: ";
+            st += to_string(i);
+            st += " id_nodo: ";
+            st += to_string((int)cst.id(v));
+            st += "\n";
+            cout << st;
+            */
+        }
+    }
+
+    // Unir resultados obtenidos en la paralelización en el objeto correspondiente
+    int sobrantes = (porciones * maxThreads) - (n_rutas * 2);
+    for(int i=0; i < maxThreads; i++){
+        gstMapa.insert(gstMapa.end(), vPorcMap[i].begin(), vPorcMap[i].end());
+    }
+    if(sobrantes > 0){
+        gstMapa.erase(gstMapa.end() - sobrantes, gstMapa.end());
+    }
+//    cout << "Map... OK" << endl;
+    cout << "Fin constructor TopDown paralelo (Incompleto)" << endl;
 }
 
 
@@ -358,7 +410,7 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops, int x){
         }
     }
 
-//    cout << "Fin constructor BottomUp (Incompleto)" << endl;
+    cout << "Fin constructor BottomUp (Completo)" << endl;
 }
 
 
@@ -1108,7 +1160,7 @@ bool TopoRelGST_4::iguales(TopoRelGST_4 x){
     }
     for(int i=0; i<cst.csa.size(); i++){
         if(cst.csa[i] != x.cst.csa[i]){
-            cout << "cst.csa tiene distinto contenido." << endl;
+            cout << "cst.csa tiene distinto contenido en ruta " << i << endl;
             return false;
         }
     }
@@ -1116,7 +1168,7 @@ bool TopoRelGST_4::iguales(TopoRelGST_4 x){
     // Comparando gstRutas
     for(int i=0; i<n_rutas; i++){
         if(gstRutas[i] != x.gstRutas[i]){
-            cout << "gstRutas tiene distinto contenido." << endl;
+            cout << "gstRutas tiene distinto contenido en ruta " << i << endl;
             return false;
         }
     }
@@ -1133,7 +1185,7 @@ bool TopoRelGST_4::iguales(TopoRelGST_4 x){
         }
         for(int j=0; j<gstStops[i].size(); j++){
             if(gstStops[i][j] != x.gstStops[i][j]){
-                cout << "gstStops tiene distinto contenido." << endl;
+                cout << "gstStops tiene distinto contenido en ruta " << i << " en la parada " << j << endl;
                 return false;
             }
         }
@@ -1146,7 +1198,7 @@ bool TopoRelGST_4::iguales(TopoRelGST_4 x){
     }
     for(int i=0; i<gstMFSbv.size(); i++){
         if(gstMFSbv[i] != x.gstMFSbv[i]){
-            cout << "gstMFSbv tiene distinto contenido." << endl;
+            cout << "gstMFSbv tiene distinto contenido en ruta " << i << endl;
             return false;
         }
     }
@@ -1158,7 +1210,7 @@ bool TopoRelGST_4::iguales(TopoRelGST_4 x){
     }
     for(int i=0; i<gstMapa.size(); i++){
         if(gstMapa[i] != x.gstMapa[i]){
-            cout << "gstMapa tiene distinto contenido." << endl;
+            cout << "gstMapa tiene distinto contenido en ruta " << i << endl;
             return false;
         }
     }
