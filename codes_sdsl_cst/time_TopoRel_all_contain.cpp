@@ -43,6 +43,7 @@ int main(int argc, char const *argv[]){
 }
 
 double tiempos_naive(vector<vector<int>> rutas, int queries){
+	cout << "Ejecutando Naive ... ";
 	int cont = 0;
 	unsigned t0;
     unsigned t1;
@@ -51,7 +52,7 @@ double tiempos_naive(vector<vector<int>> rutas, int queries){
     	cont += (tr_allContain(rutas, i)).size();
     }
 	t1 = clock();
-	double tiempo = (((double)(t1 - t0)) / CLOCKS_PER_SEC) * 1000000;
+	double tiempo = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries)* 1000000;
 	double promConten = (0.0 + cont) / queries;
 	cout << "Naive encontró " << cont << " relaciones contenidas en total, ";
 	cout << promConten << " contenidas en promedio." << endl;
@@ -59,6 +60,7 @@ double tiempos_naive(vector<vector<int>> rutas, int queries){
 }
 
 double tiempos_naivePC(vector<vector<int>> rutas, int n_stops, int queries){
+	cout << "Ejecutando NaivePC ... ";
 	TopoRelNaivePreComp trpc(rutas, n_stops);
 	int cont = 0;
 	unsigned t0;
@@ -68,7 +70,7 @@ double tiempos_naivePC(vector<vector<int>> rutas, int n_stops, int queries){
     	cont += (trpc.allContain(i)).size();
     }
 	t1 = clock();
-	double tiempo = (((double)(t1 - t0)) / CLOCKS_PER_SEC) * 1000000;
+	double tiempo = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries)* 1000000;
 	double promConten = (0.0 + cont) / queries;
 	cout << "NaivePC encontró " << cont << " relaciones contenidas en total, ";
 	cout << promConten << " contenidas en promedio." << endl;
@@ -76,6 +78,7 @@ double tiempos_naivePC(vector<vector<int>> rutas, int n_stops, int queries){
 }
 
 double tiempos_GST_4(vector<vector<int>> rutas, int n_stops, int queries){
+	cout << "Ejecutando GST4 ... ";
 	TopoRelGST_4 tt(rutas, n_stops, true);
 	int cont = 0;
 	unsigned t0;
@@ -85,7 +88,7 @@ double tiempos_GST_4(vector<vector<int>> rutas, int n_stops, int queries){
     	cont += (tt.tr_allContain(i)).size();
     }
 	t1 = clock();
-	double tiempo = (((double)(t1 - t0)) / CLOCKS_PER_SEC) * 1000000;
+	double tiempo = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries)* 1000000;
 	double promConten = (0.0 + cont) / queries;
 	cout << "GST4 encontró " << cont << " relaciones contenidas en total, ";
 	cout << promConten << " contenidas en promedio." << endl;
