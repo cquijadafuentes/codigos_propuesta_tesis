@@ -43,7 +43,7 @@ int main(int argc, char const *argv[]){
 }
 
 double tiempos_naive(vector<vector<int>> rutas, int queries){
-	cout << "Ejecutando Naive ... ";
+	cout << "Ejecutando Naive ... " << endl;
 	int cont = 0;
 	unsigned t0;
     unsigned t1;
@@ -60,7 +60,7 @@ double tiempos_naive(vector<vector<int>> rutas, int queries){
 }
 
 double tiempos_naivePC(vector<vector<int>> rutas, int n_stops, int queries){
-	cout << "Ejecutando NaivePC ... ";
+	cout << "Ejecutando NaivePC ... " << endl;
 	TopoRelNaivePreComp trpc(rutas, n_stops);
 	int cont = 0;
 	unsigned t0;
@@ -78,7 +78,7 @@ double tiempos_naivePC(vector<vector<int>> rutas, int n_stops, int queries){
 }
 
 double tiempos_GST_4(vector<vector<int>> rutas, int n_stops, int queries){
-	cout << "Ejecutando GST4 ... ";
+	cout << "Ejecutando GST4 ... " << endl;
 	TopoRelGST_4 tt(rutas, n_stops, true);
 	int cont = 0;
 	unsigned t0;
