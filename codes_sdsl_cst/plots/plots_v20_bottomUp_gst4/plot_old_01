@@ -9,21 +9,19 @@ set key out horiz
 set terminal png size 800,400
 
 set output 'img_Construccion_noLog.png'
-set xrange [0.5:4.5]
-set yrange [1:4000000000]
+set xrange [0.5:1.5]
+set yrange [1:40000000]
 
 set title 'Construcción'
 set ylabel "Tiempo [us]"
 set xlabel "Rutas"
 plot 'data' using 2:xtic(1) title 'TopDown' linecolor rgb red,   \
-     'data' using 3 title 'TopDownParallel' linecolor rgb green,   \
-     'data' using 4 title 'BottomUp' linecolor rgb blue
+     'data' using 4 title 'BottomUp' linecolor rgb green
 
 set output 'img_Construccion_log.png'
-set yrange [1:8000000000]
+set yrange [1:100000000]
 set logscale y
 set ylabel "Tiempo [us] (log_{10})"
 set xlabel "Rutas"
 plot 'data' using 2:xtic(1) title 'TopDown' linecolor rgb red,   \
-     'data' using 3 title 'TopDownParallel' linecolor rgb green,   \
-     'data' using 4 title 'BottomUp' linecolor rgb blue
+     'data' using 4 title 'BottomUp' linecolor rgb green
