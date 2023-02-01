@@ -32,7 +32,6 @@ public:
     int finSec;
     
     TopoRelGST_4(vector<vector<int>>&, int);        // Constructor Top-down
-    TopoRelGST_4(vector<vector<int>>&, int, bool);  // Constructor Top-down Paralelo
     TopoRelGST_4(vector<vector<int>>&, int, int);   // Constructor Bottom-up
     string obtenerRelacion(int, int);
 
