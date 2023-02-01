@@ -47,6 +47,12 @@ int main(int argc, char const *argv[]){
 
 	tr_gst.navega(0);
 
+	cout << "CSA:" << endl;
+	for(int i=0; i<tr_gst.cst.csa.size(); i++){
+		cout << tr_gst.cst.csa[i] << " ";
+	}
+	cout << endl;
+
 	vector<vector<int>> conteo(nr, vector<int>(nr, 0));
 
 	cout << "Relaciones:" << endl;
