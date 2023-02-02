@@ -39,7 +39,8 @@ int main(int argc, char const *argv[]){
 	double tConsTDParallel = (((double)(t2 - t1)) / CLOCKS_PER_SEC) * 1000000;
 	double tConsBottomUp = (((double)(t3 - t2)) / CLOCKS_PER_SEC) * 1000000;
 
-	cout << "Tiempo Construcción TopDown: " << tConsOld << " - TDParallel: "  << tConsTDParallel << " - BottomUp: "  << tConsBottomUp << endl;
+	cout << "n_rutas \tt_topdown \tt_parallel-topdown \tt_bottomup" << endl;
+	cout << n_rutas << "\t" << tConsOld << "\t" << tConsTDParallel << "\t" << tConsBottomUp << endl;
 
 	return 0;
 	

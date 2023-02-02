@@ -4,12 +4,16 @@
     - Vector con las rutas
     - Marcas en stops (primer nivel del GST) sd_vector
     - Mapa a las hojas donde terminan las rutas
+
+    Constructor:
+            Versión en paralelo que recorre por cada ruta
+            desde la raíz a los nodos que representan la secuencia
 */
 
 #include "TopoRel_GST_5.hpp"
 
 TopoRelGST_5::TopoRelGST_5(vector<vector<int>> &rutas, int cant_stops){
-    cout << "Constructor TopoRelGST_5" << endl;
+    cout << "Constructor TopoRelGST_5 (parallel top-down)" << endl;
     n_stops = cant_stops;
     n_concat = 0;
     n_rutas = rutas.size();
@@ -112,7 +116,7 @@ TopoRelGST_5::TopoRelGST_5(vector<vector<int>> &rutas, int cant_stops){
         porciones++;
     }
     vector<vector<cst_sada<>::node_type>> vPorcMap(maxThreads);
-
+    cout << "N° Threads: " << maxThreads << endl;
     #pragma omp parallel for
     for(int iParalelo = 0; iParalelo < maxThreads; iParalelo++){
         vPorcMap[iParalelo] = vector<cst_sada<>::node_type>(porciones);
@@ -164,7 +168,7 @@ TopoRelGST_5::TopoRelGST_5(vector<vector<int>> &rutas, int cant_stops){
         gstMapa.erase(gstMapa.end() - sobrantes, gstMapa.end());
     }
 //    cout << "Map... OK" << endl;
-    cout << "Fin constructor TopDown paralelo (Incompleto)" << endl;
+    cout << "Fin constructor (parallel top-down)." << endl;
 }
 
 string TopoRelGST_5::obtenerRelacion(int x, int y){

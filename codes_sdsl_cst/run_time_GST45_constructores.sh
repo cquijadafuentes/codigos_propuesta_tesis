@@ -12,10 +12,10 @@ DATAFOLDER=$3
 
 echo "***************** Madrid *****************" >> ${OUTPUTFILE}
 
-${CODEFOLDER}test_comparaGST4constructores < ${DATAFOLDER}madrid_x1 >> ${OUTPUTFILE}
+${CODEFOLDER}time_GST45_constructores < ${DATAFOLDER}madrid_x1 >> ${OUTPUTFILE}
 echo "***************** Madrid_x2 *****************" >> ${OUTPUTFILE}
-${CODEFOLDER}test_comparaGST4constructores < ${DATAFOLDER}madrid_x2 >> ${OUTPUTFILE}
+${CODEFOLDER}time_GST45_constructores < ${DATAFOLDER}madrid_x2 >> ${OUTPUTFILE}
 echo "***************** Madrid_x4 *****************" >> ${OUTPUTFILE}
-${CODEFOLDER}test_comparaGST4constructores < ${DATAFOLDER}madrid_x4 >> ${OUTPUTFILE}
+${CODEFOLDER}time_GST45_constructores < ${DATAFOLDER}madrid_x4 >> ${OUTPUTFILE}
 echo "***************** Madrid_x8 *****************" >> ${OUTPUTFILE}
-${CODEFOLDER}test_comparaGST4constructores < ${DATAFOLDER}madrid_x8 >> ${OUTPUTFILE}
+${CODEFOLDER}time_GST45_constructores < ${DATAFOLDER}madrid_x8 >> ${OUTPUTFILE}

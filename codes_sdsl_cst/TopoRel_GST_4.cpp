@@ -1,15 +1,23 @@
 /*
-    Versión del GST con todas las ideas iniciales disponibles:
+    Versión del GST con:
     - GST
     - Vector con las rutas
     - Marcas en stops (primer nivel del GST) sd_vector
     - Mapa a las hojas donde terminan las rutas
+    
+    Constructores:
+    - Recorrido Top-Down: por cada ruta se navega desde la raíz 
+            hasta el nodo que representa la secuencia.
+    - Recorrido Bottom-Up, recorriendo el CSA se identifican las 
+            posiciones que tienen como prefijo una secuencia 
+            completa y se navega hacia arriba hasta el nodo que 
+            incluya su marca de fin de secuencia.
 */
 
 #include "TopoRel_GST_4.hpp"
 
 TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops){
-    cout << "Constructor TopoRelGST_4" << endl;
+    cout << "Constructor TopoRelGST_4 (top-down)" << endl;
     n_stops = cant_stops;
     n_concat = 0;
     n_rutas = rutas.size();
@@ -126,12 +134,12 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops){
         gstMapa[n_rutas + i] = v;
     }
 //    cout << "Map... OK" << endl;
-    cout << "Fin constructor TopDown (Completo)" << endl;
+    cout << "Fin constructor (top-down)" << endl;
 }
 
 
 TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops, int x){
-    cout << "Constructor TopoRelGST_4 (versión recorrido CSA)" << endl;
+    cout << "Constructor TopoRelGST_4 (bottom-up)" << endl;
     n_stops = cant_stops;
     n_concat = 0;
     n_rutas = rutas.size();
@@ -248,7 +256,7 @@ TopoRelGST_4::TopoRelGST_4(vector<vector<int>> &rutas, int cant_stops, int x){
         }
     }
 
-    cout << "Fin constructor BottomUp (Completo)" << endl;
+    cout << "Fin constructor (bottom-up)" << endl;
 }
 
 
