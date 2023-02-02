@@ -1,0 +1,32 @@
+***************** Madrid *****************
+cantidad de rutas: 989
+Constructor TopoRelGST_4
+Tamaño stops: 1376688 >> 242590
+Fin constructor TopDown (Completo)
+Constructor TopoRelGST_4 (versión recorrido CSA)
+Tamaño stops: 1376688 >> 242590
+Fin constructor BottomUp (Completo)
+Constructor TopoRelGST_4 (versión recorrido CSA)
+Tamaño stops: 1376688 >> 242590
+Fin constructor BottomUp (Completo)
+Tiempo Construcción TopDown: 1.20617e+07 - TDParallel: 3.71715e+07 - BottomUp: 3.71335e+07
+Comparando con TDParallel ...Iguales con TDParallel
+Comparando con BottomUp ...Iguales con BottomUp
+***************** Madrid_x2 *****************
+cantidad de rutas: 1978
+Constructor TopoRelGST_4
+Tamaño stops: 2753376 >> 485180
+Fin constructor TopDown (Completo)
+Constructor TopoRelGST_4 (versión recorrido CSA)
+Tamaño stops: 2753376 >> 485180
+Fin constructor BottomUp (Completo)
+Constructor TopoRelGST_4 (versión recorrido CSA)
+Tamaño stops: 2753376 >> 485180
+Fin constructor BottomUp (Completo)
+Tiempo Construcción TopDown: 2.3688e+09 - TDParallel: 1.43307e+09 - BottomUp: 1.42921e+09
+Comparando con TDParallel ...Iguales con TDParallel
+Comparando con BottomUp ...Iguales con BottomUp
+***************** Madrid_x4 *****************
+cantidad de rutas: 3956
+Constructor TopoRelGST_4
+Tamaño stops: 5506752 >> 970360
