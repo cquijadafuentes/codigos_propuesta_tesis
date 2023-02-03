@@ -171,6 +171,67 @@ TopoRelGST_5::TopoRelGST_5(vector<vector<int>> &rutas, int cant_stops){
     cout << "Fin constructor (parallel top-down)." << endl;
 }
 
+TopoRelGST_5::TopoRelGST_5(string inputFilename){
+    cout << "Cargando estructura desde archivo" << endl;
+    ifstream infile(inputFilename, ofstream::binary);
+    if(infile){
+        int aux1, aux2;
+//        cout << "El archivo existe." << endl;
+        // Cargando valores enteros
+        infile.read ((char *)&n_rutas,sizeof(int));
+        infile.read ((char *)&n_concat,sizeof(int));
+        infile.read ((char *)&n_stops,sizeof(int));
+        infile.read ((char *)&finSec,sizeof(int));
+//        cout << n_rutas << endl;
+//        cout << n_concat << endl;
+//        cout << n_stops << endl;
+//        cout << finSec << endl;
+        // Cargando CST
+        cst.load(infile);
+//        cout << cst.nodes() << endl;
+//        cout << cst.size() << endl;        
+        // Cargando gstMapa
+        infile.read ((char *)&aux1,sizeof(int));
+        gstMapa = vector<cst_sada<>::node_type>(aux1);
+        for(int i=0; i<aux1; i++){
+            infile.read ((char *)&aux2,sizeof(int));
+            gstMapa[i] = cst.inv_id(aux2);
+//            cout << aux2 << " ";
+        }
+        cout << endl;
+        // Cargando gstRutas
+        infile.read ((char *)&aux1,sizeof(int));
+        gstRutas = vector<int_vector<>>(aux1);
+        for(int i=0; i<aux1; i++){
+            gstRutas[i].load(infile);
+/*            for(int j=0; j<gstRutas[i].size(); j++){
+                cout << gstRutas[i][j] << " ";
+            }
+            cout << endl;
+*/
+        }
+        // Cargando gstStops
+        infile.read ((char *)&aux1,sizeof(int));
+        gstStops = vector<sd_vector<>>(aux1);
+        for(int i=0; i<aux1; i++){
+            gstStops[i].load(infile);
+/*            for(int j=0; j<gstStops[i].size(); j++){
+                cout << gstStops[i][j] << " ";
+            }
+            cout << endl;
+*/
+        }
+        // Cargando gstMFSbv, rank y select.
+        gstMFSbv.load(infile);
+        gstMFSrank.load(infile);
+        gstMFSselect.load(infile);
+        // Cerrando archivo
+        infile.close();
+        return;
+    }    
+    cout << "Error en la carga!" << endl;
+}
+
 string TopoRelGST_5::obtenerRelacion(int x, int y){
 //    cout << endl << "x: " << x << " - y: " << y << endl;
 //    cout << "id x: " << cst.id(gstMapa[x]) << "id y: " << cst.id(gstMapa[y]) << endl;
@@ -972,6 +1033,64 @@ bool TopoRelGST_5::iguales(TopoRelGST_5 x){
         }
     }
 
+    return true;
+}
+
+
+bool TopoRelGST_5::save(string outputFilename){
+    int aux1, aux2;
+//    cout << "Guardando el archivo " << outputFilename << endl;
+    ofstream outfile(outputFilename, ofstream::binary);
+    // Guardando valores enteros
+//    cout << n_rutas << endl;
+//    cout << n_concat << endl;
+//    cout << n_stops << endl;
+//    cout << finSec << endl;
+    outfile.write((char const*)&n_rutas, sizeof(int));
+    outfile.write((char const*)&n_concat, sizeof(int));
+    outfile.write((char const*)&n_stops, sizeof(int));
+    outfile.write((char const*)&finSec, sizeof(int));
+    // Guardando CST
+//    cout << cst.nodes() << endl;
+//    cout << cst.size() << endl;
+    cst.serialize(outfile);
+    // Guardando gstMapa
+    aux1 = gstMapa.size();
+    outfile.write((char const*)&aux1, sizeof(int));
+    for(int i=0; i<aux1; i++){
+        aux2 = cst.id(gstMapa[i]);
+        outfile.write((char const*)&aux2, sizeof(int));
+//        cout << aux2 << " ";
+    }
+//    cout << endl;
+    // Guardando gstRutas
+    aux1 = gstRutas.size();    
+    outfile.write((char const*)&aux1, sizeof(int));
+    for(int i=0; i<aux1; i++){
+        gstRutas[i].serialize(outfile);
+/*        for(int j=0; j<gstRutas[i].size(); j++){
+            cout << gstRutas[i][j] << " ";
+        }
+        cout << endl;
+*/
+    }
+    // Guardando gstStops
+    aux1 = gstStops.size();    
+    outfile.write((char const*)&aux1, sizeof(int));
+    for(int i=0; i<aux1; i++){
+        gstStops[i].serialize(outfile);
+/*        for(int j=0; j<gstStops[i].size(); j++){
+            cout << gstStops[i][j] << " ";
+        }
+        cout << endl;
+*/
+    }
+    // Guardando gstMFSbv, rank y select.
+    gstMFSbv.serialize(outfile);
+    gstMFSrank.serialize(outfile);
+    gstMFSselect.serialize(outfile);
+    // Cerrando archivo
+    outfile.close();
     return true;
 }
 

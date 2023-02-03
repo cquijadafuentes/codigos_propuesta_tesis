@@ -19,21 +19,20 @@ using namespace sdsl;
 //  --------------------Inicio clase TopoRelGST-------------------
 class TopoRelGST_5{
 public:
-    cst_sada<csa_wt<wt_int<rrr_vector<>>>> cst;
-    vector<cst_sada<>::node_type> gstMapa;
-    vector<int_vector<>> gstRutas;
-    vector<sd_vector<>> gstStops;
-    sd_vector<> gstMFSbv;
-    sd_vector<>::rank_1_type gstMFSrank;
-    sd_vector<>::select_1_type gstMFSselect;
     int n_rutas;
     int n_concat;
     int n_stops;
     int finSec;
+    cst_sada<csa_wt<wt_int<rrr_vector<>>>> cst;
+    vector<cst_sada<>::node_type> gstMapa;
+    vector<int_vector<>> gstRutas;
+    vector<sd_vector<>> gstStops;
+    sd_vector<> gstMFSbv;                       // Marcas de fin de secuencia
+    sd_vector<>::rank_1_type gstMFSrank;
+    sd_vector<>::select_1_type gstMFSselect;
     
-    TopoRelGST_5(vector<vector<int>>&, int);        // Constructor Top-down
-    TopoRelGST_5(vector<vector<int>>&, int, bool);  // Constructor Top-down Paralelo
-    TopoRelGST_5(vector<vector<int>>&, int, int);   // Constructor Bottom-up
+    TopoRelGST_5(vector<vector<int>>&, int);    // Constructor Top-down Paralelo
+    TopoRelGST_5(string);                       // Constructor desde archivo
     string obtenerRelacion(int, int);
 
     // 8 relaciones topológicas básicas
@@ -60,6 +59,8 @@ public:
     void printRuta(int);
     int getLargoRuta(int);
     bool iguales(TopoRelGST_5 x);
+
+    bool save(string);
 
 private:
     bool bordesSeg_touches(int, int);

@@ -4,7 +4,8 @@ PREFLAGS=-std=c++11 -g -O0 -DNDEBUG -fopenmp -I ~/include -L ~/lib
 
 POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
-BINS=time_GST45_constructores test_comparaGST4constructores\
+BINS=TopoRel_GST_5_save TopoRel_GST_5_test-save-load\
+		time_GST45_constructores test_comparaGST4constructores\
 		test_sdvector_rank_select test_cst_data test_cst_rep\
 		test_TopoRel_all_contain time_TopoRel_all_contain time_TopoRel_boolean\
 		size_TopoRel TopoRel_testall\
@@ -24,6 +25,12 @@ OBJECTS=TopoRel_GST_0.o TopoRel_GST_1.o\
 all: bin
 
 bin: $(OBJECTS) $(BINS)
+
+TopoRel_GST_5_test-save-load:
+	$(CPP) $(PREFLAGS) -o TopoRel_GST_5_test-save-load TopoRel_GST_5_test-save-load.cpp $(OBJECTS) $(POSFLAGS)
+
+TopoRel_GST_5_save:
+	$(CPP) $(PREFLAGS) -o TopoRel_GST_5_save TopoRel_GST_5_save.cpp $(OBJECTS) $(POSFLAGS)
 
 time_GST45_constructores:
 	$(CPP) $(PREFLAGS) -o time_GST45_constructores time_GST45_constructores.cpp $(OBJECTS) $(POSFLAGS)
