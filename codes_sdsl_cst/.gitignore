@@ -10,6 +10,7 @@ test_sdvector_rank_select
 test_TopoRel_all_contain
 time_GST45_constructores
 time_TopoRel_all_contain
+time_TopoRel_all_contain_GST5
 time_TopoRel_boolean
 TopoRel_*_test
 TopoRel_GST_5_save
