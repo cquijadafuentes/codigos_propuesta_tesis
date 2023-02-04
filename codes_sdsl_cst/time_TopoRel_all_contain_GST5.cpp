@@ -17,7 +17,7 @@ int main(int argc, char const *argv[]){
 	int queries = 0;
 	if(argc < 2){
 		cout << "Error! faltan argumentos." << endl;
-		cout << argv[0] << " <output_filename> [<numb_queries>]" << endl;
+		cout << argv[0] << " <input_filename> [<numb_queries>]" << endl;
 		return 0;
 	}
 	string filename(argv[1]);
