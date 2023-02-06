@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -ne 2 ]; then
+if [ $# -ne 3 ]; then
 	echo "$(basename $0) <input_file_GST5> <input_file_txt> <OUTPUTFILE>"
 	echo "Generará resultados para consultas de 10k, 20k, ..., 100k"
 	exit 1
@@ -12,7 +12,7 @@ OUTPUTFILE=$3
 
 echo "Date: $now" > ${OUTPUTFILE}
 echo "Ejecución para 10000 consultas..."
-./time_TopoRel_all_contain_GST5 ${INPUTGST5} 10000 < ${INPUTTXT} > ${OUTPUTFILE}
+./time_TopoRel_all_contain_GST5 ${INPUTGST5} 10000 < ${INPUTTXT} >> ${OUTPUTFILE}
 echo "Ejecución para 20000 consultas..."
 ./time_TopoRel_all_contain_GST5 ${INPUTGST5} 20000 < ${INPUTTXT} >> ${OUTPUTFILE}
 echo "Ejecución para 30000 consultas..."
