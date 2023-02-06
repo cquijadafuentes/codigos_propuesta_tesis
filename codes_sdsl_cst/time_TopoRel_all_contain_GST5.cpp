@@ -72,8 +72,9 @@ double tiempos_naive(vector<vector<int>> rutas, int queries){
 }
 
 double tiempos_naivePC(vector<vector<int>> rutas, int n_stops, int queries){
-	cout << "Ejecutando NaivePC ... " << endl;
+	cout << "Creando NaivePC ... " << endl;
 	TopoRelNaivePreComp trpc(rutas, n_stops);
+	cout << "Ejecutando consultas NaivePC..." << endl;
 	int cont = 0;
 	unsigned t0;
     unsigned t1;
