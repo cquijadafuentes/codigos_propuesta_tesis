@@ -1090,8 +1090,8 @@ bool TopoRelGST_5::save(string outputFilename){
     }
     // Guardando gstMFSbv, rank y select.
     gstMFSbv.serialize(outfile);
-    gstMFSrank.serialize(outfile);
-    gstMFSselect.serialize(outfile);
+    //gstMFSrank.serialize(outfile);
+    //gstMFSselect.serialize(outfile);
     // Cerrando archivo
     outfile.close();
     return true;
