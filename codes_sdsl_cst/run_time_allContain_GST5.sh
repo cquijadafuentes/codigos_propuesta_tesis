@@ -30,5 +30,5 @@ echo "Ejecución para 80000 consultas..."
 echo "Ejecución para 90000 consultas..."
 ./time_TopoRel_all_contain_GST5 ${INPUTGST5} 90000 < ${INPUTTXT} >> ${OUTPUTFILE}
 echo "Ejecución para 100000 consultas..."
-./time_TopoRel_all_contain_GST5 ${INPUTGST5} 100000 <${INPUTTXT} >> ${OUTPUTFILE}
+./time_TopoRel_all_contain_GST5 ${INPUTGST5} 100000 < ${INPUTTXT} >> ${OUTPUTFILE}
 
