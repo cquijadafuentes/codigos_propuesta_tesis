@@ -1,22 +1,34 @@
 #!/bin/bash
 
-~/GST/codigos_propuesta_tesis/codes_sdsl_cst/time_TopoRel_all_contain 10000 < ~/GST/datasets/gst_tripsMadrid_0100k.txt > ~/GST/resultados/resultados_2023-01-19_allContainTrips.txt
+if [ $# -ne 2 ]; then
+	echo "$(basename $0) <input_file_GST5> <input_file_txt> <OUTPUTFILE>"
+	echo "Generará resultados para consultas de 10k, 20k, ..., 100k"
+	exit 1
+fi
 
-~/GST/codigos_propuesta_tesis/codes_sdsl_cst/time_TopoRel_all_contain 20000 < ~/GST/datasets/gst_tripsMadrid_0100k.txt >> ~/GST/resultados/resultados_2023-01-19_allContainTrips.txt
+INPUTGST5=$1
+INPUTTXT=$2
+OUTPUTFILE=$3
 
-~/GST/codigos_propuesta_tesis/codes_sdsl_cst/time_TopoRel_all_contain 30000 < ~/GST/datasets/gst_tripsMadrid_0100k.txt >> ~/GST/resultados/resultados_2023-01-19_allContainTrips.txt
-
-~/GST/codigos_propuesta_tesis/codes_sdsl_cst/time_TopoRel_all_contain 40000 < ~/GST/datasets/gst_tripsMadrid_0100k.txt >> ~/GST/resultados/resultados_2023-01-19_allContainTrips.txt
-
-~/GST/codigos_propuesta_tesis/codes_sdsl_cst/time_TopoRel_all_contain 50000 < ~/GST/datasets/gst_tripsMadrid_0100k.txt >> ~/GST/resultados/resultados_2023-01-19_allContainTrips.txt
-
-~/GST/codigos_propuesta_tesis/codes_sdsl_cst/time_TopoRel_all_contain 60000 < ~/GST/datasets/gst_tripsMadrid_0100k.txt >> ~/GST/resultados/resultados_2023-01-19_allContainTrips.txt
-
-~/GST/codigos_propuesta_tesis/codes_sdsl_cst/time_TopoRel_all_contain 70000 < ~/GST/datasets/gst_tripsMadrid_0100k.txt >> ~/GST/resultados/resultados_2023-01-19_allContainTrips.txt
-
-~/GST/codigos_propuesta_tesis/codes_sdsl_cst/time_TopoRel_all_contain 80000 < ~/GST/datasets/gst_tripsMadrid_0100k.txt >> ~/GST/resultados/resultados_2023-01-19_allContainTrips.txt
-
-~/GST/codigos_propuesta_tesis/codes_sdsl_cst/time_TopoRel_all_contain 90000 < ~/GST/datasets/gst_tripsMadrid_0100k.txt >> ~/GST/resultados/resultados_2023-01-19_allContainTrips.txt
-
-~/GST/codigos_propuesta_tesis/codes_sdsl_cst/time_TopoRel_all_contain 100000 < ~/GST/datasets/gst_tripsMadrid_0100k.txt >> ~/GST/resultados/resultados_2023-01-19_allContainTrips.txt
+echo "Date: $now" > ${OUTPUTFILE}
+echo "Ejecución para 10000 consultas..."
+./time_TopoRel_all_contain_GST5 ${INPUTGST5} 10000 < ${INPUTTXT} > ${OUTPUTFILE}
+echo "Ejecución para 20000 consultas..."
+./time_TopoRel_all_contain_GST5 ${INPUTGST5} 20000 < ${INPUTTXT} >> ${OUTPUTFILE}
+echo "Ejecución para 30000 consultas..."
+./time_TopoRel_all_contain_GST5 ${INPUTGST5} 30000 < ${INPUTTXT} >> ${OUTPUTFILE}
+echo "Ejecución para 40000 consultas..."
+./time_TopoRel_all_contain_GST5 ${INPUTGST5} 40000 < ${INPUTTXT} >> ${OUTPUTFILE}
+echo "Ejecución para 50000 consultas..."
+./time_TopoRel_all_contain_GST5 ${INPUTGST5} 50000 < ${INPUTTXT} >> ${OUTPUTFILE}
+echo "Ejecución para 60000 consultas..."
+./time_TopoRel_all_contain_GST5 ${INPUTGST5} 60000 < ${INPUTTXT} >> ${OUTPUTFILE}
+echo "Ejecución para 70000 consultas..."
+./time_TopoRel_all_contain_GST5 ${INPUTGST5} 70000 < ${INPUTTXT} >> ${OUTPUTFILE}
+echo "Ejecución para 80000 consultas..."
+./time_TopoRel_all_contain_GST5 ${INPUTGST5} 80000 < ${INPUTTXT} >> ${OUTPUTFILE}
+echo "Ejecución para 90000 consultas..."
+./time_TopoRel_all_contain_GST5 ${INPUTGST5} 90000 < ${INPUTTXT} >> ${OUTPUTFILE}
+echo "Ejecución para 100000 consultas..."
+./time_TopoRel_all_contain_GST5 ${INPUTGST5} 100000 <${INPUTTXT} >> ${OUTPUTFILE}
 
