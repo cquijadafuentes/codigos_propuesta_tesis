@@ -1,6 +1,8 @@
 /*
 	Toma de tiempo promedio para consultas de allcontain sobre implementaciones
 	naive, naiveprecomp y gst5 (desde el archivo)
+	Necesita el nombre del archivo para construir el gst5
+	pero también necesita la entrada para las consultas naive y naivepc
 */
 #include <iostream>
 #include <string>

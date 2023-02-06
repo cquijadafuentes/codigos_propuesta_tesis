@@ -4,7 +4,8 @@ PREFLAGS=-std=c++11 -g -O0 -DNDEBUG -fopenmp -I ~/include -L ~/lib
 
 POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
-BINS=time_TopoRel_all_contain_GST5 TopoRel_GST_5_save TopoRel_GST_5_test-save-load\
+BINS=time_TopoRel_all_contain_GST5 TopoRel_GST_5_save TopoRel_GST_5_load\
+		TopoRel_GST_5_test-save-load\
 		time_GST45_constructores test_comparaGST4constructores\
 		test_sdvector_rank_select test_cst_data test_cst_rep\
 		test_TopoRel_all_contain time_TopoRel_all_contain time_TopoRel_boolean\

@@ -60,8 +60,15 @@ int main(int argc, char const *argv[]){
 	}
 
 	TopoRelGST_5 gst_1(filename);
+	cout << "Archivo cargado exitosamente." << endl;
 
+	cout << "************** size original **************" << endl;
+	gst_0.sizeEstructura();
 
+	cout << "************** size archivo **************" << endl;
+	gst_1.sizeEstructura();
+
+	cout << "Comparando estructuras ... " << endl;
 	if(gst_0.iguales(gst_1)){
 		cout << "Son iguales." << endl;
 	}else{

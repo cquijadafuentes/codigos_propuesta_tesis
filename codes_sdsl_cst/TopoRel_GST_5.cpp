@@ -223,10 +223,12 @@ TopoRelGST_5::TopoRelGST_5(string inputFilename){
         }
         // Cargando gstMFSbv, rank y select.
         gstMFSbv.load(infile);
-        gstMFSrank.load(infile);
-        gstMFSselect.load(infile);
+        //gstMFSrank.load(infile);
+        //gstMFSselect.load(infile);
         // Cerrando archivo
         infile.close();
+        gstMFSrank = sd_vector<>::rank_1_type(&gstMFSbv);
+        gstMFSselect = sd_vector<>::select_1_type(&gstMFSbv);
         return;
     }    
     cout << "Error en la carga!" << endl;
@@ -944,6 +946,7 @@ void TopoRelGST_5::printRuta(int x){
 }
 
 int TopoRelGST_5::getLargoRuta(int x){
+    cout << "consultando largo ruta x:" << x << endl;
     if(x > n_rutas){
         return 0;
     }
