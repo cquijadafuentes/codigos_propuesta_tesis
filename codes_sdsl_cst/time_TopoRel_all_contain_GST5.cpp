@@ -1,3 +1,7 @@
+/*
+	Toma de tiempo promedio para consultas de allcontain sobre implementaciones
+	naive, naiveprecomp y gst5 (desde el archivo)
+*/
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,7 +15,7 @@ using namespace std;
 
 double tiempos_naive(vector<vector<int>> rutas, int queries);
 double tiempos_naivePC(vector<vector<int>> rutas, int n_stops, int queries);
-double tiempos_GST_5(vector<vector<int>> rutas, int n_stops, int queries, string filename);
+double tiempos_GST_5(string filename, int queries);
 
 int main(int argc, char const *argv[]){
 	int queries = 0;
@@ -42,9 +46,9 @@ int main(int argc, char const *argv[]){
 	cout << "Consultas a realizar: " << queries << endl;
 	double t_naive = tiempos_naive(rutas, queries);
 	double t_naivePC = tiempos_naivePC(rutas, n_stops, queries);
-	double t_GST_5 = tiempos_GST_5(rutas, n_stops, queries, filename);
+	double t_GST_5 = tiempos_GST_5(filename, queries);
 
-	cout << "N°Rutas\ttNaive\ttNaivePC\ttGST4" << endl;
+	cout << "N°Rutas\ttNaive\ttNaivePC\ttGST5" << endl;
 	cout << n_rutas << "\t" << t_naive << "\t" << t_naivePC << "\t" << t_GST_5 << "\t[us]" << endl;
 }
 
@@ -83,9 +87,10 @@ double tiempos_naivePC(vector<vector<int>> rutas, int n_stops, int queries){
 	return tiempo;
 }
 
-double tiempos_GST_5(vector<vector<int>> rutas, int n_stops, int queries, string filename){
-	cout << "Ejecutando GST5 ... " << endl;
+double tiempos_GST_5(string filename, int queries){
+	cout << "Creando GST5 ... " << endl;
 	TopoRelGST_5 tt(filename);
+	cout << "Ejecutando consultas GST5..." << endl;
 	int cont = 0;
 	unsigned t0;
     unsigned t1;
@@ -96,7 +101,7 @@ double tiempos_GST_5(vector<vector<int>> rutas, int n_stops, int queries, string
 	t1 = clock();
 	double tiempo = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries)* 1000000;
 	double promConten = (0.0 + cont) / queries;
-	cout << "GST4 encontró " << cont << " relaciones contenidas en total, ";
+	cout << "GST5 encontró " << cont << " relaciones contenidas en total, ";
 	cout << promConten << " contenidas en promedio." << endl;
 	return tiempo;
 }

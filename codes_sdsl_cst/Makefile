@@ -68,6 +68,9 @@ TopoRel_GST_2_test:
 TopoRel_GST_4_test:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_4_test TopoRel_GST_4_test.cpp $(OBJECTS) $(POSFLAGS)
 
+TopoRel_GST_5_load:
+	$(CPP) $(PREFLAGS) -o TopoRel_GST_5_load TopoRel_GST_5_load.cpp $(OBJECTS) $(POSFLAGS)
+
 TopoRel_GST_5_save:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_5_save TopoRel_GST_5_save.cpp $(OBJECTS) $(POSFLAGS)
 

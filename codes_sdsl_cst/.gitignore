@@ -13,6 +13,7 @@ time_TopoRel_all_contain
 time_TopoRel_all_contain_GST5
 time_TopoRel_boolean
 TopoRel_*_test
+TopoRel_GST_5_load
 TopoRel_GST_5_save
 TopoRel_GST_5_test-save-load
 TopoRel_testall
