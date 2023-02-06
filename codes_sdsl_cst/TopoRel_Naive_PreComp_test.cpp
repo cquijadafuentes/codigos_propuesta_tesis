@@ -1,5 +1,6 @@
 #include <iostream>
 #include "TopoRel_Naive_PreComp.hpp"
+#include <ctime>
 
 using namespace std;
 
@@ -29,8 +30,27 @@ int main(int argc, char const *argv[]){
 		cout << endl;
 	}
 	cout << endl;
+	unsigned t0 = clock();
+	TopoRelNaivePreComp trnpc(lx, max, false);
+	unsigned t1 = clock();
+	TopoRelNaivePreComp trnpc_parallel(lx, max);
+	unsigned t2 = clock();
 
-	TopoRelNaivePreComp trnpc(lx, max);
+	double tConsOld = (((double)(t1 - t0)) / CLOCKS_PER_SEC) * 1000;
+	double tConsTDParallel = (((double)(t2 - t1)) / CLOCKS_PER_SEC) * 1000;
+
+	cout << "Construcción normal: " << tConsOld << "[ms]" << endl;
+	cout << "Construcción paralela: " << tConsTDParallel << "[ms]" << endl;
+
+	int diffs = 0;
+	for(int i=0; i<n; i++){
+		for(int j=0; j<n; j++){
+			if(trnpc.obtenerRelacion(i,j) != trnpc_parallel.obtenerRelacion(i,j)){
+				diffs++;
+			}
+		}
+	}
+	cout << "Se han encontrado " << diffs << " diferencias entre rels de los constructores." << endl;
 
 	vector<vector<int>> conteo(n, vector<int>(n, 0));
 

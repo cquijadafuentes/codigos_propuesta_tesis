@@ -2,7 +2,8 @@
 #include <vector>
 #include <map>
 
-TopoRelNaivePreComp::TopoRelNaivePreComp(vector<vector<int>> &rs, int cant_stops){
+// Construcción previa: No paralela
+TopoRelNaivePreComp::TopoRelNaivePreComp(vector<vector<int>> &rs, int cant_stops, bool x=false){
 	rutas = vector<int_vector<>>(rs.size());
 	for(int i=0; i<rs.size(); i++){
 		rutas[i] = int_vector<>(rs[i].size());
@@ -41,6 +42,71 @@ TopoRelNaivePreComp::TopoRelNaivePreComp(vector<vector<int>> &rs, int cant_stops
 		}
 		util::bit_compress(relaciones[i]);
 	}
+}
+
+// Csontrucción paralela
+TopoRelNaivePreComp::TopoRelNaivePreComp(vector<vector<int>> &rs, int cant_stops){
+	rutas = vector<int_vector<>>(rs.size());
+	for(int i=0; i<rs.size(); i++){
+		rutas[i] = int_vector<>(rs[i].size());
+		for(int j=0; j<rs[i].size(); j++){
+			rutas[i][j] = rs[i][j];
+		}
+		util::bit_compress(rutas[i]);
+	}
+	n_stops = cant_stops;
+	n_rutas = rs.size();
+	map<string, int> mapNameIdRel;
+	
+	nombresRel = vector<string>(8, "");
+	
+	mapNameIdRel[COVEREDBY] = 0;
+	nombresRel[0] = COVEREDBY;
+	mapNameIdRel[COVERS] = 1;
+	nombresRel[1] = COVERS;
+	mapNameIdRel[DISJOINT] = 2;
+	nombresRel[2] = DISJOINT;
+	mapNameIdRel[EQUALS] = 3;
+	nombresRel[3] = EQUALS;
+	mapNameIdRel[INCLUDES] = 4;
+	nombresRel[4] = INCLUDES;
+	mapNameIdRel[INSIDE] = 5;
+	nombresRel[5] = INSIDE;
+	mapNameIdRel[OVERLAPS] = 6;
+	nombresRel[6] = OVERLAPS;
+	mapNameIdRel[TOUCHES] = 7;
+	nombresRel[7] = TOUCHES;
+
+	int maxThreads = omp_get_max_threads();
+    if(maxThreads > n_rutas){
+        maxThreads = n_rutas;
+    }
+    // Vector que contendrá los vectores de cada porción que se genere según la cantidad de threads
+    int porciones = n_rutas / maxThreads;
+    if((porciones * maxThreads) < (n_rutas * 2)){
+        porciones++;
+    }
+    vector<vector<int_vector<>>> relXThread(maxThreads, vector<int_vector<>>(porciones, int_vector<>(n_rutas,0)));
+    cout << "N° Threads: " << maxThreads << endl;
+    #pragma omp parallel for
+    for(int iParalelo =0; iParalelo < maxThreads; iParalelo++ ){
+    	int base = iParalelo * porciones;
+		for(int i=0; i<porciones && base+i < n_rutas; i++){
+			for(int j=0; j<n_rutas; j++){
+				relXThread[iParalelo][i][j] = mapNameIdRel[toporel(rs[base+i],rs[j])];
+			}
+			util::bit_compress(relXThread[iParalelo][i]);
+		}
+    }
+
+    relaciones = vector<int_vector<>>(n_rutas);
+    int pos = 0;
+    for(int i=0; i<maxThreads; i++){
+    	for(int j=0; j<relXThread[i].size() && pos < n_rutas; j++){
+    		relaciones[pos++] = relXThread[i][j];
+    	}
+    }
+
 }
 
 string TopoRelNaivePreComp::obtenerRelacion(int x, int y){

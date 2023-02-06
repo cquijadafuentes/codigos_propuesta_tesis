@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <sdsl/vectors.hpp>
+#include <omp.h>                    // OpenMP para el paralelismo
 #include "TopoRel_Naive.hpp"
 #include "TopoRel_Cons.hpp"
 
@@ -22,7 +23,8 @@ public:
     int n_stops;
     int n_rutas;
     
-    TopoRelNaivePreComp(vector<vector<int>>&, int);
+    TopoRelNaivePreComp(vector<vector<int>>&, int);         // Construcción paralela
+    TopoRelNaivePreComp(vector<vector<int>>&, int, bool);   // Construcción antigua, no paralela
 
     string obtenerRelacion(int, int);
 

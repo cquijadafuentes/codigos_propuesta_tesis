@@ -946,7 +946,7 @@ void TopoRelGST_5::printRuta(int x){
 }
 
 int TopoRelGST_5::getLargoRuta(int x){
-    cout << "consultando largo ruta x:" << x << endl;
+    //cout << "consultando largo ruta x:" << x << endl;
     if(x > n_rutas){
         return 0;
     }
