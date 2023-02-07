@@ -1,18 +1,28 @@
 #!/bin/bash
 
-if [ $# -ne 3 ]; then
-	echo "$(basename $0) <input_file_GST5> <input_file_txt> <OUTPUTFILE>"
-	echo "Generará resultados para consultas de 10k, 20k, ..., 100k"
+if [ $# -ne 2 ]; then
+	echo "$(basename $0) <input_file_GST5> <input_file_txt>"
+	echo "Generará resultados para consultas de 10k, 20k, 30k, 40k, 50k para cada archivo de trips"
 	exit 1
 fi
 
-INPUTGST5=$1
-INPUTTXT=$2
-OUTPUTFILE=$3
+DATAFOLDER=$1
+OUTPUTFILE=$2
 
-echo "Date: $now" > ${OUTPUTFILE}
+
+echo "Fecha inicio experimentos: $(date +'%Y/%m/%d %H:%M:%S')" > ${OUTPUTFILE}
+
+for filename in gst_tripsMadrid_0100k gst_tripsMadrid_0200k gst_tripsMadrid_0400k gst_tripsMadrid_0800k gst_tripsMadrid_1600k gst_tripsMadrid_3200k
+do
+	echo "./TopoRel_GST_5_save ${DATAFOLDER}${filename}.gst5 < ${DATAFOLDER}${filename}.txt >> ${OUTPUTFILE}"
+	echo "./time_TopoRel_allContain_GST5_xLote ${DATAFOLDER}${filename}.gst5 10000 5 < ${DATAFOLDER}${filename}.txt >> ${OUTPUTFILE}"
+done
+echo "Fecha fin experimentos: $(date +'%Y/%m/%d %H:%M:%S')" >> ${OUTPUTFILE}
+exit 0
+
+
 echo "Ejecución para 10000 consultas..."
-./time_TopoRel_all_contain_GST5 ${INPUTGST5} 10000 < ${INPUTTXT} >> ${OUTPUTFILE}
+././time_TopoRel_allContain_GST5_xLote ${INPUTGST5} 10000 < ${INPUTTXT} >> ${OUTPUTFILE}
 echo "Ejecución para 20000 consultas..."
 ./time_TopoRel_all_contain_GST5 ${INPUTGST5} 20000 < ${INPUTTXT} >> ${OUTPUTFILE}
 echo "Ejecución para 30000 consultas..."
@@ -32,3 +42,9 @@ echo "Ejecución para 90000 consultas..."
 echo "Ejecución para 100000 consultas..."
 ./time_TopoRel_all_contain_GST5 ${INPUTGST5} 100000 < ${INPUTTXT} >> ${OUTPUTFILE}
 
+gst_tripsMadrid_0100k.txt
+gst_tripsMadrid_0200k.txt
+gst_tripsMadrid_0400k.txt
+gst_tripsMadrid_0800k.txt
+gst_tripsMadrid_1600k.txt
+gst_tripsMadrid_3200k.txt
