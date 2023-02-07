@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -ne 2 ]; then
-	echo "$(basename $0) <input_file_GST5> <input_file_txt>"
+	echo "$(basename $0) <data_folder> <output_file>"
 	echo "Generará resultados para consultas de 10k, 20k, 30k, 40k, 50k para cada archivo de trips"
 	exit 1
 fi
