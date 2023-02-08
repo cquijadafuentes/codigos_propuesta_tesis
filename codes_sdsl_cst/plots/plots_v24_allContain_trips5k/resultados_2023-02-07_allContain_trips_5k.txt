@@ -1,0 +1,192 @@
+Fecha INICIO experimentos: 2023/02/07 21:16:50
+Lectura de rutas...
+Fin lectura de rutas.
+Rutas: 5000
+Stops: 11010
+Construyendo NaivePC...
+N° Threads: 8
+NaivePC construido.
+Construyendo GST5...
+Cargando estructura desde archivo
+
+GST5 construido.
+Se realizarán 5 de tamaño 1000 cada uno.
+****************************************************
+NºQ	tNaive	tNaivePC	tGST5
+1000	3914.48	606.451	5513.03	[us]
+2000	3925.26	603.666	5359.41	[us]
+3000	3886.9	606.255	5448.22	[us]
+4000	3885.22	605.775	5429.51	[us]
+5000	3903.24	609.664	5505.54	[us]
+Lectura de rutas...
+Fin lectura de rutas.
+Rutas: 10000
+Stops: 11010
+Construyendo NaivePC...
+N° Threads: 8
+NaivePC construido.
+Construyendo GST5...
+Cargando estructura desde archivo
+
+GST5 construido.
+Se realizarán 5 de tamaño 1000 cada uno.
+****************************************************
+NºQ	tNaive	tNaivePC	tGST5
+1000	7868.14	1205.47	8157.29	[us]
+2000	7833.3	1205.12	7956.67	[us]
+3000	7832.16	1214.16	7948.16	[us]
+4000	7822.06	1210.75	8016.93	[us]
+5000	7853.26	1218.63	8056.15	[us]
+Lectura de rutas...
+Fin lectura de rutas.
+Rutas: 15000
+Stops: 11010
+Construyendo NaivePC...
+N° Threads: 8
+NaivePC construido.
+Construyendo GST5...
+Cargando estructura desde archivo
+
+GST5 construido.
+Se realizarán 5 de tamaño 1000 cada uno.
+****************************************************
+NºQ	tNaive	tNaivePC	tGST5
+1000	12428.9	1884.62	11822.9	[us]
+2000	12447.1	1878.64	11362.4	[us]
+3000	12390.6	1878.91	11160	[us]
+4000	12433.4	1892.42	11059.7	[us]
+5000	12475.5	1886.92	11123.2	[us]
+Lectura de rutas...
+Fin lectura de rutas.
+Rutas: 20000
+Stops: 11010
+Construyendo NaivePC...
+N° Threads: 8
+NaivePC construido.
+Construyendo GST5...
+Cargando estructura desde archivo
+
+GST5 construido.
+Se realizarán 5 de tamaño 1000 cada uno.
+****************************************************
+NºQ	tNaive	tNaivePC	tGST5
+1000	15875.2	2408.15	12130.8	[us]
+2000	15868.2	2433.9	11662.5	[us]
+3000	15761.9	2433.67	11648.1	[us]
+4000	16044.9	2536.52	12116.5	[us]
+5000	16611.6	2536.45	12114.4	[us]
+Lectura de rutas...
+Fin lectura de rutas.
+Rutas: 25000
+Stops: 11010
+Construyendo NaivePC...
+N° Threads: 8
+NaivePC construido.
+Construyendo GST5...
+Cargando estructura desde archivo
+
+GST5 construido.
+Se realizarán 5 de tamaño 1000 cada uno.
+****************************************************
+NºQ	tNaive	tNaivePC	tGST5
+1000	21334.8	3030.65	14776.4	[us]
+2000	19942	3028.79	13996.8	[us]
+3000	19773.1	3011.91	13854.4	[us]
+4000	20555.3	3172.75	14516.5	[us]
+5000	20950.3	3167.03	14673.6	[us]
+Lectura de rutas...
+Fin lectura de rutas.
+Rutas: 30000
+Stops: 11010
+Construyendo NaivePC...
+N° Threads: 8
+NaivePC construido.
+Construyendo GST5...
+Cargando estructura desde archivo
+
+GST5 construido.
+Se realizarán 5 de tamaño 1000 cada uno.
+****************************************************
+NºQ	tNaive	tNaivePC	tGST5
+1000	24093	3638.2	17960.7	[us]
+2000	23951.2	3618.42	17085.4	[us]
+3000	23977.6	3638.59	16967.4	[us]
+4000	24057.7	3646.22	16907.9	[us]
+5000	23950.3	3651.23	16946.8	[us]
+Lectura de rutas...
+Fin lectura de rutas.
+Rutas: 35000
+Stops: 11010
+Construyendo NaivePC...
+N° Threads: 8
+NaivePC construido.
+Construyendo GST5...
+Cargando estructura desde archivo
+
+GST5 construido.
+Se realizarán 5 de tamaño 1000 cada uno.
+****************************************************
+NºQ	tNaive	tNaivePC	tGST5
+1000	29376.8	4466.34	22178.8	[us]
+2000	28399.9	4223.22	19969.7	[us]
+3000	27793.2	4242.76	19759.6	[us]
+4000	27853.6	4244.72	19768.4	[us]
+5000	29355.9	4259.58	19987.5	[us]
+Lectura de rutas...
+Fin lectura de rutas.
+Rutas: 40000
+Stops: 11010
+Construyendo NaivePC...
+N° Threads: 8
+NaivePC construido.
+Construyendo GST5...
+Cargando estructura desde archivo
+
+GST5 construido.
+Se realizarán 5 de tamaño 1000 cada uno.
+****************************************************
+NºQ	tNaive	tNaivePC	tGST5
+1000	32075.1	4842.07	21598.9	[us]
+2000	31945.5	4892.48	20843.7	[us]
+3000	31950.2	5193.61	22205.1	[us]
+4000	32084.6	4863.63	20683.8	[us]
+5000	31825.5	4842.5	20747.1	[us]
+Lectura de rutas...
+Fin lectura de rutas.
+Rutas: 45000
+Stops: 11010
+Construyendo NaivePC...
+N° Threads: 8
+NaivePC construido.
+Construyendo GST5...
+Cargando estructura desde archivo
+
+GST5 construido.
+Se realizarán 5 de tamaño 1000 cada uno.
+****************************************************
+NºQ	tNaive	tNaivePC	tGST5
+1000	36060.6	5425.91	23386.7	[us]
+2000	35860	5486.68	22402.6	[us]
+3000	35643.5	5450.4	22116.4	[us]
+4000	35729.6	5442.6	22128.6	[us]
+5000	35803.1	5440.65	22145.1	[us]
+Lectura de rutas...
+Fin lectura de rutas.
+Rutas: 50007
+Stops: 11010
+Construyendo NaivePC...
+N° Threads: 8
+NaivePC construido.
+Construyendo GST5...
+Cargando estructura desde archivo
+
+GST5 construido.
+Se realizarán 5 de tamaño 1000 cada uno.
+****************************************************
+NºQ	tNaive	tNaivePC	tGST5
+1000	39898.8	5975.7	26684.5	[us]
+2000	39723.8	5974.28	25484.6	[us]
+3000	39552.8	5922.76	25213.3	[us]
+4000	39664.9	5954.93	25231.7	[us]
+5000	39673.6	5929.22	25284.5	[us]
+Fecha FIN experimentos: 2023/02/08 02:29:34
