@@ -4,292 +4,144 @@
 using namespace std;
 using namespace sdsl;
 
-void print_bool(bool x){
+string print_bool(bool x){
 	if(x){
-		cout << "true";
-	}else{
-		cout << "false";
+		return "true";
+	}
+	return "false";
+}
+
+int desplegarMenu(){
+	int opc = -1;
+	while(opc < 0 || opc > 4){
+		cout << " ****************************** " << endl;
+		cout << "1 - Información general del conjunto." << endl;
+		cout << "2 - Información hijos de la raíz." << endl;
+		cout << "3 - Información hijos de un nodo." << endl;
+		cout << "4 - Espacio de la estrucutra." << endl;
+		cout << "" << endl;
+		cout << "" << endl;
+		cout << "" << endl;
+		cout << "" << endl;
+		cout << "0 - Salir." << endl;
+		cout << " ****************************** " << endl;
+		cout << "INGRESE OPCIÓN: ";
+		cin >> opc;
+	}
+	return opc;
+}
+
+void infoGralConjunto(TopoRelGST_5 gst5){
+	cout << "--- Información del conjunto ---" << endl;
+	cout << "Nº de rutas: " << gst5.n_rutas << endl;
+	cout << "Largo de la secuencia total: " << gst5.n_concat << endl;
+	cout << "Nº de stops: " << gst5.n_stops << endl;
+	cout << "--- Información del CompressedSuffixTree ---" << endl;
+    cout << "Cantidad de nodos: " << gst5.cst.nodes() << endl;
+    cout << "Cantidad de hojas: " << gst5.cst.size() << endl;
+    cout << "Cantidad de nodos del CST: " << gst5.cst.nodes() << endl;
+}
+
+void infoRootChildren(TopoRelGST_5 gst5){
+    auto root = gst5.cst.root();
+	cout << "--- Información de la raíz del CST ---" << endl;
+	cout << "Hojas del árbol: " << gst5.cst.size(root) << endl;
+	cout << "Cantidad de hijos: " << gst5.cst.degree(root) << endl;
+	cout << "--- Hijos de la raíz ---" << endl;
+    cout << "id\ted_1\tdeg\tdep\tndep\tsize\tlb\trb\tsun\tleaf\ttext" << endl;
+    for (auto child: gst5.cst.children(root)) {
+        cout << gst5.cst.id(child) << "\t";
+        cout << "'" << gst5.cst.edge(child, 1) << "'" << "\t";       // D-th char of the edge-label
+        cout << gst5.cst.degree(child) << "\t";      // Number of children
+        cout << gst5.cst.depth(child) << "\t";       // String depth
+        cout << gst5.cst.node_depth(child) << "\t";  // 
+        cout << gst5.cst.size(child) << "\t";        // Number of leaves in the subtree
+        cout << gst5.cst.lb(child) << "\t";          // Leftmost leaf
+        cout << gst5.cst.rb(child) << "\t";          // Rightmost leaf
+        cout << gst5.cst.sn(child) << "\t";          // Suffix number
+        cout << gst5.cst.is_leaf(child) << "\t";     // IsLeaf
+        for(int i=1; i<=gst5.cst.depth(child); i++){
+            cout << gst5.cst.edge(child, i);
+        }
+        cout << "\t" << endl;
+    }
+    cout << endl;
+}
+
+void infoNodo(TopoRelGST_5 gst5){
+	cout << "Ingrese id del nodo a evaluar: ";
+	int id;
+	cin >> id;
+	auto nodo = gst5.cst.inv_id(id);
+	if(gst5.cst.id(nodo) != id){
+		cout << "El nodo solicitado no existe." << endl;
+		return;
+	}
+	cout << "Información del nodo " << id << endl;
+	cout << "Profundidad del nodo: " << gst5.cst.node_depth(nodo) << endl;
+	cout << "Secuencia del nodo: " << extract(gst5.cst, nodo) << endl;
+	cout << "Profundidad : " << gst5.cst.depth(nodo) << endl;
+	cout << "Id del padre del nodo: " << gst5.cst.id(gst5.cst.parent(nodo));
+	cout << "Nodo hoja: " << print_bool(gst5.cst.is_leaf(nodo)) << endl;;
+	cout << "Hojas del sub-árbol: " << gst5.cst.size(nodo);
+	cout << "Cantidad de hijos: " << gst5.cst.degree(nodo);
+	if(!gst5.cst.is_leaf(nodo)){
+		cout << "--- Información de los hijos del nodo ---" << endl;
+		cout << "id\ted_1\tdeg\tdep\tndep\tsize\tlb\trb\tsun\tleaf\ttext" << endl;
+	    for (auto child: gst5.cst.children(nodo)) {
+	        cout << gst5.cst.id(child) << "\t";
+	        cout << "'" << gst5.cst.edge(child, 1) << "'" << "\t";       // D-th char of the edge-label
+	        cout << gst5.cst.degree(child) << "\t";      // Number of children
+	        cout << gst5.cst.depth(child) << "\t";       // String depth
+	        cout << gst5.cst.node_depth(child) << "\t";  // 
+	        cout << gst5.cst.size(child) << "\t";        // Number of leaves in the subtree
+	        cout << gst5.cst.lb(child) << "\t";          // Leftmost leaf
+	        cout << gst5.cst.rb(child) << "\t";          // Rightmost leaf
+	        cout << gst5.cst.sn(child) << "\t";          // Suffix number
+	        cout << gst5.cst.is_leaf(child) << "\t";     // IsLeaf
+	        for(int i=1; i<=gst5.cst.depth(child); i++){
+	            cout << gst5.cst.edge(child, i);
+	        }
+	        cout << "\t" << endl;
+	    }
 	}
 }
 
 int main(int argc, char const *argv[]){
-	cout << "Input:" << endl;
-	cout << "cant_rutas max_stop" << endl;
-	cout << "cant_stops_r1 r1_st1 r1_st2 ···" << endl;
-	cout << "cant_stops_r2 r2_st1 r2_st2 ···" << endl;
-	cout << "···" << endl << endl;
-	
-	int nr, max;
-	cin >> nr >> max;
-	vector<vector<int>> vi;
-	for(int i = 0; i < nr; i++){
-		int n, x;
-		cin >> n;
-		vector<int> v;
-		for(int j = 0; j < n; j++){
-			cin >> x;
-			v.push_back(x);
-		}
-		vi.push_back(v);
+
+	if(argc < 2){
+		cout << "Error! faltan argumentos." << endl;
+		cout << argv[0] << " <input_filename>" << endl;
+		return 0;
 	}
 	
-	cout << vi.size() << endl;
-	for(int i = 0; i < vi.size(); i++){
-		cout << vi[i].size() << " -> ";
-		for(int j = 0; j < vi[i].size(); j++){
-			cout << vi[i][j] << " " ;
-		}
-		cout << endl;
-	}
-	cout << endl;
+	TopoRelGST_5 gst5(argv[1]);
 	
-	TopoRelGST_5 tr_gst(vi, max);
 
-	tr_gst.navega(0);
+    int opc = desplegarMenu();
+    while(opc != 0){    	
+		cout << " ****************************** " << endl;
+    	switch(opc){
+		    case 0:
+		    	cout << "FIN" << endl;
+		    	return 0;
+	    	case 1:
+	    		infoGralConjunto(gst5);
+	    		break;
+	    	case 2:
+	    		infoRootChildren(gst5);
+	    		break;
+	    	case 3:
+	    		infoNodo(gst5);
+	    		break;
+	    	case 4:
+	    		gst5.sizeEstructura();
+	    		break;
+	    	default:
+	    		cout << "Ocurrió algún error..." << endl;
+    	}
 
-	vector<vector<int>> conteo(nr, vector<int>(nr, 0));
-
-	cout << "Relaciones:" << endl;
-	for(int i = 0; i < vi.size(); i++){
-		for(int j = 0; j < vi.size(); j++){
-			cout << tr_gst.obtenerRelacion(i, j) << "  ";
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	cout << COVEREDBY << ": " << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << " _";
-	}
-	cout << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << "|";
-		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_coveredby(i,j)){
-				cout << "X ";
-				conteo[i][j]++;
-			}else{
-				cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	cout << COVERS << ": " << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << " _";
-	}
-	cout << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << "|";
-		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_covers(i,j)){
-				cout << "X ";
-				conteo[i][j]++;
-			}else{
-				cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	cout << INSIDE << ": " << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << " _";
-	}
-	cout << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << "|";
-		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_inside(i,j)){
-				cout << "X ";
-				conteo[i][j]++;
-			}else{
-				cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	cout << INCLUDES << ": " << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << " _";
-	}
-	cout << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << "|";
-		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_includes(i,j)){
-				cout << "X ";
-				conteo[i][j]++;
-			}else{
-				cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	cout << EQUALS << ": " << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << " _";
-	}
-	cout << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << "|";
-		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_equals(i,j)){
-				cout << "X ";
-				conteo[i][j]++;
-			}else{
-				cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	cout << TOUCHES << ": " << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << " _";
-	}
-	cout << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << "|";
-		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_touches(i,j)){
-				cout << "X ";
-				conteo[i][j]++;
-			}else{
-				cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
-	
-	cout << DISJOINT << ": " << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << " _";
-	}
-	cout << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << "|";
-		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_disjoint(i,j)){
-				cout << "X ";
-				conteo[i][j]++;
-			}else{
-				cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	cout << OVERLAPS << ": " << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << " _";
-	}
-	cout << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << "|";
-		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_overlaps(i,j)){
-				cout << "X ";
-				conteo[i][j]++;
-			}else{
-				cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	cout << "Conteo relaciones: " << endl;
-	for(int i=0; i < conteo.size(); i++){
-		cout << " _";
-	}
-	cout << endl;
-	for(int i=0; i < conteo.size(); i++){
-		cout << "|";
-		for(int j=0; j < conteo.size(); j++){
-			cout << conteo[i][j] << " ";
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	cout << "WITHIN: " << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << " _";
-	}
-	cout << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << "|";
-		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_within(i,j)){
-				cout << "X ";
-			}else{
-				cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	cout << "CONTAINS: " << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << " _";
-	}
-	cout << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << "|";
-		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_contains(i,j)){
-				cout << "X ";
-			}else{
-				cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	cout << "INTERSECT: " << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << " _";
-	}
-	cout << endl;
-	for(int i=0; i < vi.size(); i++){
-		cout << "|";
-		for(int j=0; j < vi.size(); j++){
-			if(tr_gst.tr_intersect(i,j)){
-				cout << "X ";
-			}else{
-				cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	tr_gst.sizeEstructura();
-	cout << endl;
-
-	for(int i=0; i<tr_gst.n_rutas; i++){
-		vector<int> r = tr_gst.tr_allContain(i);
-		cout << r.size() << " rutas que contienen " << i << ": ";
-		for(int j=0; j<r.size(); j++){
-			cout << r[j] << " ";
-		}
-		cout << endl;
-	}
-	cout << endl;
-
-	return 0;
+    	opc = desplegarMenu();
+    }
+    return 0;
 }
