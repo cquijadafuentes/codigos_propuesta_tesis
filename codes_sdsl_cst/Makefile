@@ -11,7 +11,8 @@ BINS=time_TopoRel_allContain_GST5_xLote time_TopoRel_all_contain_GST5\
 		test_sdvector_rank_select test_cst_data test_cst_rep\
 		test_TopoRel_all_contain time_TopoRel_all_contain time_TopoRel_boolean\
 		size_TopoRel TopoRel_testall\
-		TopoRel_Naive_test  TopoRel_Naive_PreComp_test\
+		TopoRel_Naive_test  TopoRel_Naive_PreComp_test TopoRel_Naive_PreComp_test-save-load\
+		TopoRel_Naive_PreComp_save TopoRel_Naive_PreComp_load\
 		TopoRel_GST_0_test TopoRel_GST_1_test TopoRel_GST_2_test\
 		TopoRel_GST_4_test TopoRel_GST_5_test
 
@@ -85,8 +86,17 @@ TopoRel_GST_5_test-save-load:
 TopoRel_GST_5_test:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_5_test TopoRel_GST_5_test.cpp $(OBJECTS) $(POSFLAGS)
 
+TopoRel_Naive_PreComp_load:
+	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_load TopoRel_Naive_PreComp_load.cpp $(OBJECTS) $(POSFLAGS)
+
+TopoRel_Naive_PreComp_save:
+	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_save TopoRel_Naive_PreComp_save.cpp $(OBJECTS) $(POSFLAGS)
+
 TopoRel_Naive_PreComp_test:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_test TopoRel_Naive_PreComp_test.cpp $(OBJECTS) $(POSFLAGS)
+
+TopoRel_Naive_PreComp_test-save-load:
+	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_test-save-load TopoRel_Naive_PreComp_test-save-load.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_Naive_test:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_test TopoRel_Naive_test.cpp $(OBJECTS) $(POSFLAGS)

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "TopoRel_GST_5.hpp"
+#include "TopoRel_Naive_PreComp.hpp"
 
 using namespace std;
 using namespace sdsl;
@@ -19,58 +19,64 @@ int main(int argc, char const *argv[]){
 		cout << argv[0] << " <output_filename>" << endl;
 		return 0;
 	}
-
 	cout << "Input:" << endl;
 	cout << "cant_rutas max_stop" << endl;
 	cout << "cant_stops_r1 r1_st1 r1_st2 ···" << endl;
 	cout << "cant_stops_r2 r2_st1 r2_st2 ···" << endl;
 	cout << "···" << endl << endl;
-	
-	int nr, max;
-	cin >> nr >> max;
-	vector<vector<int>> vi;
-	for(int i = 0; i < nr; i++){
-		int n, x;
-		cin >> n;
-		vector<int> v;
-		for(int j = 0; j < n; j++){
-			cin >> x;
-			v.push_back(x);
+
+	int n, x, aux, max;
+	cin >> n >> max;
+	vector<vector<int>> lx(n);
+	for(int i = 0; i < n; i++){
+		cin >> x;
+		for(int j=0; j<x; j++){
+			cin >> aux;
+			lx[i].push_back(aux);
 		}
-		vi.push_back(v);
 	}
-	
-	cout << vi.size() << endl;
-	for(int i = 0; i < vi.size(); i++){
-		cout << vi[i].size() << " -> ";
-		for(int j = 0; j < vi[i].size(); j++){
-			cout << vi[i][j] << " " ;
+	cout << lx.size() << endl;
+	for(int i=0; i<lx.size(); i++){
+		cout << lx[i].size() << ": ";
+		for(int j=0; j<lx[i].size(); j++){
+			cout << lx[i][j] << " ";
 		}
 		cout << endl;
 	}
 	cout << endl;
 	
-	TopoRelGST_5 gst_0(vi, max);
+	unsigned t0 = clock();
+	TopoRelNaivePreComp tpnPC_1(lx, max);
+	unsigned t1 = clock();
 
 	string filename(argv[1]);
-	if(gst_0.save(filename)){
+	if(tpnPC_1.save(filename)){
 		cout << "Se ha guardado exitosamente." << endl;
 	}else{
 		cout << "Falla en el guardado." << endl;
 		return 0;
 	}
 
-	TopoRelGST_5 gst_1(filename);
+	unsigned t2 = clock();
+	TopoRelNaivePreComp tpnPC_2(filename);
+	unsigned t3 = clock();
+
+	double t_const = (((double)(t1 - t0)) / CLOCKS_PER_SEC) * 1000;
+	double t_carga = (((double)(t3 - t2)) / CLOCKS_PER_SEC) * 1000;
+
+	cout << "Tiempo de construcción paralela: " << t_const << "[ms]" << endl;
+	cout << "Tiempo de carga desde archivo: " << t_carga << "[ms]" << endl;
+
 	cout << "Archivo cargado exitosamente." << endl;
 
 	cout << "************** size original **************" << endl;
-	gst_0.sizeEstructura();
+	tpnPC_1.sizeEstructura();
 
 	cout << "************** size archivo **************" << endl;
-	gst_1.sizeEstructura();
+	tpnPC_2.sizeEstructura();
 
 	cout << "Comparando estructuras ... " << endl;
-	if(gst_0.iguales(gst_1)){
+	if(tpnPC_1.iguales(tpnPC_2)){
 		cout << "Son iguales." << endl;
 	}else{
 		cout << "Falla! NO son iguales." << endl;

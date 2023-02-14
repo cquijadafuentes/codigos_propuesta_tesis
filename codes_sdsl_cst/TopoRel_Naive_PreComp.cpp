@@ -109,6 +109,35 @@ TopoRelNaivePreComp::TopoRelNaivePreComp(vector<vector<int>> &rs, int cant_stops
 
 }
 
+TopoRelNaivePreComp::TopoRelNaivePreComp(string inputFilename){
+	ifstream infile(inputFilename, ofstream::binary);
+	if(infile){
+		infile.read ((char *)&n_rutas,sizeof(int));
+		infile.read ((char *)&n_stops,sizeof(int));
+		rutas = vector<int_vector<>>(n_rutas);
+		for(int i=0; i<n_rutas; i++){
+            rutas[i].load(infile);
+        }
+		relaciones = vector<int_vector<>>(n_rutas);
+		for(int i=0; i<n_rutas; i++){
+            relaciones[i].load(infile);
+        }
+
+        nombresRel = vector<string>(8, "");
+		nombresRel[0] = COVEREDBY;
+		nombresRel[1] = COVERS;
+		nombresRel[2] = DISJOINT;
+		nombresRel[3] = EQUALS;
+		nombresRel[4] = INCLUDES;
+		nombresRel[5] = INSIDE;
+		nombresRel[6] = OVERLAPS;
+		nombresRel[7] = TOUCHES;
+
+		return;
+	}
+	cout << "Error! en la carga del archivo." << endl;
+}
+
 string TopoRelNaivePreComp::obtenerRelacion(int x, int y){
 	return nombresRel[relaciones[x][y]];
 }
@@ -211,4 +240,51 @@ void TopoRelNaivePreComp::sizeEstructura(){
     cout << "relaciones [B]: " << bytesRelaciones << endl;
     cout << "**** Elementos ****" << endl;
     cout << "Nº Rutas: " << rutas.size() << endl;
+}
+
+bool TopoRelNaivePreComp::iguales(TopoRelNaivePreComp trnpc2){
+	if(n_rutas != trnpc2.n_rutas){
+		cout << "Diferencia en el número de rutas." << endl;
+		return false;
+	}
+	if(n_stops != trnpc2.n_stops){
+		cout << "Diferencia en el número de stops." << endl;
+		return false;
+	}
+	for(int i=0; i<n_rutas; i++){
+		if(rutas[i] != trnpc2.rutas[i]){
+			cout << "Diferencia en el contenido de rutas." << endl;
+			return false;
+		}
+	}
+	for(int i=0; i<n_rutas; i++){
+		if(relaciones[i] != trnpc2.relaciones[i]){
+			cout << "Diferencia en el contenido de relaciones." << endl;
+			return false;
+		}
+		for(int i=0; i<nombresRel.size(); i++){
+			if(nombresRel[i] != trnpc2.nombresRel[i]){
+				cout << "Diferencia en el contenido de nombresRel." << endl;
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+bool TopoRelNaivePreComp::save(string outputFilename){
+	ofstream outfile(outputFilename, ofstream::binary);
+	// Guardando argumentos enteros
+	outfile.write((char const*)&n_rutas, sizeof(int));
+	outfile.write((char const*)&n_stops, sizeof(int));
+	// Guardando rutas
+	for(int i=0; i<n_rutas; i++){
+        rutas[i].serialize(outfile);
+    }
+    // Guardando relaciones
+	for(int i=0; i<n_rutas; i++){
+        relaciones[i].serialize(outfile);
+    }
+    outfile.close();
+    return true;
 }

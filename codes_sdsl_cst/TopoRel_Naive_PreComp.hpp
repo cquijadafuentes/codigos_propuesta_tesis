@@ -25,6 +25,7 @@ public:
     
     TopoRelNaivePreComp(vector<vector<int>>&, int);         // Construcción paralela
     TopoRelNaivePreComp(vector<vector<int>>&, int, bool);   // Construcción antigua, no paralela
+    TopoRelNaivePreComp(string);                            // Construcción desde archivo
 
     string obtenerRelacion(int, int);
 
@@ -48,6 +49,8 @@ public:
 
     void navega();
     void sizeEstructura();
+    bool iguales(TopoRelNaivePreComp);
+    bool save(string);
 private:
 
 };
