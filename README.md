@@ -26,6 +26,9 @@ v9 ->	Implementación con cst-sada y pruebas de funcionamiento del cst sobre tri
 
 v10 ->	Relación allContains: test y toma de tiempo.
 
+v11 ->	GST_5 que corresponde a versión que se construye en paralelo
+	NaivePC se construye en paralelo
+
 
 # plots
 
