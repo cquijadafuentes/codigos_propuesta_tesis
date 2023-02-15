@@ -223,6 +223,26 @@ vector<int> TopoRelNaivePreComp::allContain(int x){
 	return res;
 }
 
+vector<int> TopoRelNaivePreComp::allEqual(int x){
+	vector<int> res;
+	for(int i=0; i<n_rutas; i++){
+		if(equals(x, i)){
+			res.push_back(i);
+		}
+	}
+	return res;
+}
+
+vector<int> TopoRelNaivePreComp::allContained(int x){
+	vector<int> res;
+	for(int i=0; i<n_rutas; i++){
+		if(contains(x, i)){
+			res.push_back(i);
+		}
+	}
+	return res;
+}
+
 void TopoRelNaivePreComp::navega(){
     cout << "navega" << endl;
 }

@@ -579,3 +579,23 @@ vector<int> tr_allContain(vector<vector<int>> &r, int x){
     }
     return res;
 }
+
+vector<int> tr_allEqual(vector<vector<int>> &r, int x){
+    vector<int> res;
+    for(int i=0; i<r.size(); i++){
+        if(tr_equals(r[x], r[i])){
+            res.push_back(i);
+        }
+    }
+    return res;
+}
+
+vector<int> tr_allContained(vector<vector<int>> &r, int x){
+    vector<int> res;
+    for(int i=0; i<r.size(); i++){
+        if(tr_contains(r[x], r[i])){
+            res.push_back(i);
+        }
+    }
+    return res;
+}

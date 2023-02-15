@@ -13,7 +13,7 @@ using namespace std;
 void imprime_vector(vector<int> x);
 
 int main(int argc, char const *argv[]){
-	cout << "Programa para comparar resultados de operación AllContain en las 3 estructuras" << endl;
+	cout << "Programa para comparar resultados de operación AllEqual en las 3 estructuras" << endl;
 	int queries = 0;
 	if(argc > 1){
 		queries = (int) atoi(argv[1]);
@@ -41,9 +41,9 @@ int main(int argc, char const *argv[]){
 	// Realizar consultas según corresponda
 	for(int i=0; i<queries; i++){
 		// Consultas con ruta i		
-		vector<int> resNaive = tr_allContain(rutas, i);
-    	vector<int> resPreComp = trpc.allContain(i);
-    	vector<int> resGST5 = tgst.tr_allContain(i);
+		vector<int> resNaive = tr_allEqual(rutas, i);
+    	vector<int> resPreComp = trpc.allEqual(i);
+    	vector<int> resGST5 = tgst.tr_allEqual(i);
 
     	if(resNaive.size() != resPreComp.size() || resPreComp.size() != resGST5.size()){
     		diferencias++;

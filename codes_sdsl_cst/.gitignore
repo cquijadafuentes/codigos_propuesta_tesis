@@ -8,11 +8,13 @@ test_cst_data
 test_cst_rep
 test_sdvector_rank_select
 test_TopoRel_all_contain
+test_TopoRel_all_equal
 time_GST45_constructores
 time_TopoRel_all_contain
 time_TopoRel_all_contain_GST5
 time_TopoRel_allContain_GST5_xLote
 time_TopoRel_boolean
+time_TopoRel_groupRelations
 TopoRel_*_test
 TopoRel_GST_5_load
 TopoRel_GST_5_save

@@ -697,7 +697,7 @@ vector<int> TopoRelGST_5::tr_allContain(int x){
 //        cout << "Trabajando con nodo" << endl;        
 //    }
     for(int i=cst.id(idLChST); i <= cst.id(idRChST); i++){
-        auto hoja = cst.inv_id(i);
+//        auto hoja = cst.inv_id(i);
 //        cout << "-----" << endl;
 //        cout << "id_GST: " << i << " - " << extract(cst, hoja) << endl;;
 //        cout << "p_CSA: " << cst.csa[i] << " - ";
@@ -708,6 +708,36 @@ vector<int> TopoRelGST_5::tr_allContain(int x){
 //        cout << "-----" << endl;
         y.push_back(idAux);
     }
+    return y;
+}
+
+vector<int> TopoRelGST_5::tr_allEqual(int x){
+    vector<int> y;
+    if(x > n_rutas) return y;
+
+    auto nX = gstMapa[x];
+    auto idLChST = cst.leftmost_leaf(nX);
+    auto idRChST = cst.rightmost_leaf(nX);
+
+    for(int i=cst.id(idLChST); i <= cst.id(idRChST); i++){
+        int idAux = gstMFSrank(cst.csa[i]);      // Esto entrega el id de la secuencia desde el arreglo con marcas de fin de secuencia
+                                                // Equivalente al retorno de la función getIdRutaSegunPosConcat()
+        if(gstMapa[x] == gstMapa[idAux]){
+            y.push_back(idAux % n_rutas);
+        }
+    }
+    return y;
+}
+
+vector<int> TopoRelGST_5::tr_allContained(int x){
+    vector<int> y;
+    if(x > n_rutas) return y;
+
+    auto nX = gstMapa[x];
+    auto idLChST = cst.leftmost_leaf(nX);
+    auto idRChST = cst.rightmost_leaf(nX);
+    auto nParentX = cst.parent(nX);
+
     return y;
 }
 

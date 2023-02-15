@@ -52,6 +52,8 @@ public:
 
     // Relaciones topológicas en conjunto
     vector<int> tr_allContain(int);
+    vector<int> tr_allEqual(int);
+    vector<int> tr_allContained(int);
 
     void navega(int);
     void sizeEstructura();

@@ -41,6 +41,8 @@ public:
 
     // Relaciones topológicas en conjunto 
     vector<int> allContain(int);
+    vector<int> allEqual(int);
+    vector<int> allContained(int);
 
     // Relaciones topológicas binarias agregadas
     bool within(int, int);
