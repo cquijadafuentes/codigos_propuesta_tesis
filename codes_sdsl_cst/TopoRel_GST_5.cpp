@@ -1032,6 +1032,41 @@ void TopoRelGST_5::sizeEstructura(){
     cout << " (" << porcentaje << "%)" << endl;
 }
 
+void TopoRelGST_5::sizeToPlot(){
+    // Calculo de los bytes para RUTAS
+    unsigned long long bytesRutas = 0;
+    for(int i=0; i<gstRutas.size(); i++){
+        bytesRutas += size_in_bytes(gstRutas[i]);
+    }
+    
+    // Calculo de los bytes para STOPS
+    unsigned long long bytesStops = 0;
+    int bitsUno = 0;
+    int bitsTotal = 0;
+    for(int i=0; i<gstStops.size(); i++){
+        bytesStops += size_in_bytes(gstStops[i]);
+        bitsTotal += gstStops[i].size();
+        for(int j=0; j<gstStops[i].size(); j++){
+            bitsUno += gstStops[i][j];
+        }
+    }
+    double porcentaje = (bitsUno+0.0)/bitsTotal*100;
+    // Calculo de los bytes para MAPA
+    unsigned long long bytesMapa = 0;
+    for(int i=0; i<gstMapa.size(); i++){
+        bytesMapa += sizeof(gstMapa[i]);
+    }
+    cout << "rutas\tstops\tcstsada\trutas\tstops\tmapa\tgstMFSbv" << endl;
+    cout << n_rutas << "\t"; 
+    cout << n_stops << "\t"; 
+    cout << size_in_bytes(cst) << "\t";
+    cout << bytesRutas << "\t";
+    cout << bytesStops << "\t";
+    cout << bytesMapa << "\t";
+    cout << size_in_bytes(gstMFSbv) << "\t";
+    cout << endl;
+}
+
 void TopoRelGST_5::printRutaYPos(int x){
     if(x > n_rutas){
         return;

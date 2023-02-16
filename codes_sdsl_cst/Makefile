@@ -6,7 +6,7 @@ POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
 BINS=time_TopoRel_allContain_GST5_xLote time_TopoRel_all_contain_GST5\
 		TopoRel_GST_5_save TopoRel_GST_5_load\
-		TopoRel_GST_5_test-save-load\
+		TopoRel_GST_5_test-save-load TopoRel_GST_5_size\
 		time_TopoRel_groupRelations\
 		time_GST45_constructores test_comparaGST4constructores\
 		test_sdvector_rank_select test_cst_data test_cst_rep\
@@ -92,6 +92,9 @@ TopoRel_GST_5_load:
 
 TopoRel_GST_5_save:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_5_save TopoRel_GST_5_save.cpp $(OBJECTS) $(POSFLAGS)
+
+TopoRel_GST_5_size:
+	$(CPP) $(PREFLAGS) -o TopoRel_GST_5_size TopoRel_GST_5_size.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_GST_5_test-save-load:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_5_test-save-load TopoRel_GST_5_test-save-load.cpp $(OBJECTS) $(POSFLAGS)

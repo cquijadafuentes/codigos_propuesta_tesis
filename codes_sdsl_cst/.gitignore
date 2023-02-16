@@ -19,6 +19,7 @@ time_TopoRel_groupRelations
 TopoRel_*_test
 TopoRel_GST_5_load
 TopoRel_GST_5_save
+TopoRel_GST_5_size
 TopoRel_GST_5_test-save-load
 TopoRel_Naive_PreComp_load
 TopoRel_Naive_PreComp_save

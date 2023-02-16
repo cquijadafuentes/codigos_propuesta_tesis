@@ -58,6 +58,7 @@ public:
 
     void navega(int);
     void sizeEstructura();
+    void sizeToPlot();
     void printRutaYPos(int);
     void printRuta(int);
     int getLargoRuta(int);
