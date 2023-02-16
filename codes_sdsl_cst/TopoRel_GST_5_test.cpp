@@ -13,15 +13,15 @@ string print_bool(bool x){
 
 int desplegarMenu(){
 	int opc = -1;
-	while(opc < 0 || opc > 5){
+	while(opc < 0 || opc > 7){
 		cout << " ****************************** " << endl;
 		cout << "1 - Información general del conjunto." << endl;
 		cout << "2 - Información hijos de la raíz." << endl;
 		cout << "3 - Información hijos de un nodo." << endl;
 		cout << "4 - Espacio de la estrucutra." << endl;
 		cout << "5 - Información de una ruta." << endl;
-		cout << "" << endl;
-		cout << "" << endl;
+		cout << "6 - Mostrar csa." << endl;
+		cout << "7 - Mostrar marcas fin de secuencia." << endl;
 		cout << "" << endl;
 		cout << "0 - Salir." << endl;
 		cout << " ****************************** " << endl;
@@ -81,13 +81,13 @@ void infoNodo(TopoRelGST_5 gst5){
 	cout << "Profundidad del nodo: " << gst5.cst.node_depth(nodo) << endl;
 	cout << "Secuencia del nodo: " << extract(gst5.cst, nodo) << endl;
 	cout << "Profundidad : " << gst5.cst.depth(nodo) << endl;
-	cout << "Id del padre del nodo: " << gst5.cst.id(gst5.cst.parent(nodo));
-	cout << "Nodo hoja: " << print_bool(gst5.cst.is_leaf(nodo)) << endl;;
-	cout << "Hojas del sub-árbol: " << gst5.cst.size(nodo);
-	cout << "Cantidad de hijos: " << gst5.cst.degree(nodo);
+	cout << "Id del padre del nodo: " << gst5.cst.id(gst5.cst.parent(nodo)) << endl;
+	cout << "Nodo hoja: " << print_bool(gst5.cst.is_leaf(nodo)) << endl;
+	cout << "Hojas del sub-árbol: " << gst5.cst.size(nodo) << endl;
+	cout << "Cantidad de hijos: " << gst5.cst.degree(nodo) << endl;
 	if(!gst5.cst.is_leaf(nodo)){
 		cout << "--- Información de los hijos del nodo ---" << endl;
-		cout << "id\ted_1\tdeg\tdep\tndep\tsize\tlb\trb\tsun\tleaf\ttext" << endl;
+		cout << "id\ted_1\tdeg\tdep\tndep\tsize\tlb\trb\tsun\tleaf" << endl;
 	    for (auto child: gst5.cst.children(nodo)) {
 	        cout << gst5.cst.id(child) << "\t";
 	        cout << "'" << gst5.cst.edge(child, 1) << "'" << "\t";       // D-th char of the edge-label
@@ -99,9 +99,7 @@ void infoNodo(TopoRelGST_5 gst5){
 	        cout << gst5.cst.rb(child) << "\t";          // Rightmost leaf
 	        cout << gst5.cst.sn(child) << "\t";          // Suffix number
 	        cout << gst5.cst.is_leaf(child) << "\t";     // IsLeaf
-	        for(int i=1; i<=gst5.cst.depth(child); i++){
-	            cout << gst5.cst.edge(child, i);
-	        }
+	        //cout << extract(gst5.cst, child);
 	        cout << "\t" << endl;
 	    }
 	}
@@ -117,7 +115,8 @@ void infoRuta(TopoRelGST_5 gst5){
 	}
 
 	auto nodo = gst5.gstMapa[id];
-	cout << "Información del nodo " << id << endl;
+	cout << "Información de la ruta " << id << endl;
+	cout << "Nodo id: " << gst5.cst.id(nodo) << endl;
 	cout << "Profundidad del nodo: " << gst5.cst.node_depth(nodo) << endl;
 	cout << "Secuencia del nodo: " << extract(gst5.cst, nodo) << endl;
 	cout << "Profundidad : " << gst5.cst.depth(nodo) << endl;
@@ -142,6 +141,32 @@ void infoRuta(TopoRelGST_5 gst5){
 	        cout << "\t" << endl;
 	    }
 	}
+}
+
+void infoCSA(TopoRelGST_5 gst5){
+	int size = gst5.cst.csa.size();
+	cout << "Compressed Suffix Array de tamaño " << size << endl;
+	for(int i=0; i<size; i++){
+		cout << gst5.cst.csa[i] << " ";
+	}
+	cout << endl;
+}
+
+void infoMFS(TopoRelGST_5 gst5){
+	int size = gst5.n_concat;
+	cout << "gstMFSbv de tamaño " << size << endl;	
+	for(int i=0; i<size; i++){
+		cout << (i%10);
+	}
+	cout << endl;
+	for(int i=0; i<size; i++){
+		if(gst5.gstMFSbv[i] == 1){
+			cout << "|";
+		}else{
+			cout << " ";
+		}
+	}
+	cout << endl;
 }
 
 int main(int argc, char const *argv[]){
@@ -176,6 +201,12 @@ int main(int argc, char const *argv[]){
 	    		break;
 	    	case 5:
 	    		infoRuta(gst5);
+	    		break;
+	    	case 6:
+	    		infoCSA(gst5);
+	    		break;
+	    	case 7:
+	    		infoMFS(gst5);
 	    		break;
 	    	default:
 	    		cout << "Ocurrió algún error..." << endl;

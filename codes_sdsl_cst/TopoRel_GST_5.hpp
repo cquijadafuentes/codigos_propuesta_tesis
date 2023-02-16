@@ -54,6 +54,7 @@ public:
     vector<int> tr_allContain(int);
     vector<int> tr_allEqual(int);
     vector<int> tr_allContained(int);
+    vector<int> tr_allContained2(int);
 
     void navega(int);
     void sizeEstructura();
@@ -67,7 +68,8 @@ public:
 private:
     bool bordesSeg_touches(int, int);
     cst_sada<>::node_type nodoSubseq(cst_sada<>::node_type, int);
-    int getIdRutaSegunPosConcat(int);
+    int idRutaDesdeCeldaDeSecConcat(int);
+    vector<int> getSecConPrefijoDelNodo(cst_sada<>::node_type, int);
 };
 
 #endif

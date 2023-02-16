@@ -29,15 +29,16 @@ int main(int argc, char const *argv[]){
 		cout << argv[0] << " <input_file_GST5> <input_file_NaivePC> <input_file_txt> num_queries repeticiones" << endl;
 		return 0;
 	}
-	TopoRelGST_5 trgst(argv[1]);
-	TopoRelNaivePreComp trnpc(argv[2]); 
-	ifstream ifsNaive(argv[3], ifstream::in); 
 	int num_queries = (int) atoi(argv[4]);
 	int repeticiones = (int) atoi(argv[5]);
 	if(num_queries < 1 || repeticiones < 1){
 		cout << "Error! en la cantidad de num_queries/repeticiones: " << num_queries << endl;
 		return 0;
 	}
+	cout << "Cargando estructuras..." << endl;
+	TopoRelGST_5 trgst(argv[1]);
+	TopoRelNaivePreComp trnpc(argv[2]); 
+	ifstream ifsNaive(argv[3], ifstream::in); 
 
 	int n_rutas, n_t, n_stops, aux;
 	vector<vector<int>> rutas;
@@ -50,13 +51,14 @@ int main(int argc, char const *argv[]){
         }
         rutas.push_back(vt);
 	}
-
 	if(num_queries > n_rutas){
 		num_queries = n_rutas;
 	}
+
 	cout << "Rutas: " << rutas.size() << endl;
 	cout << "Consultas a realizar: " << num_queries << endl;
 	cout << "Repeticiones a realizar: " << repeticiones << endl;
+
 	vector<int> queries = generarQueries(n_rutas, num_queries);
 	
 	cout << "Operacion\trutas\tqueries\ttNaive\ttNaivePC\ttGST5" << endl;
@@ -70,6 +72,7 @@ int main(int argc, char const *argv[]){
 }
 
 void t_allContain(vector<vector<int>> &rutas, TopoRelNaivePreComp &trnpc, TopoRelGST_5 &gst, vector<int> &queries, int repeticiones){
+	cout << "---- ALL_CONTAIN ----" << endl;
 	cout << "Ejecutando Naive ... " << endl;
 	unsigned t0, t1;
 	t0 = clock();
@@ -105,6 +108,7 @@ void t_allContain(vector<vector<int>> &rutas, TopoRelNaivePreComp &trnpc, TopoRe
 }
 
 void t_allEqual(vector<vector<int>> &rutas, TopoRelNaivePreComp &trnpc, TopoRelGST_5 &gst, vector<int> &queries, int repeticiones){
+	cout << "---- ALL_EQUAL ----" << endl;
 	cout << "Ejecutando Naive ... " << endl;
 	unsigned t0, t1;
 	t0 = clock();
@@ -140,6 +144,7 @@ void t_allEqual(vector<vector<int>> &rutas, TopoRelNaivePreComp &trnpc, TopoRelG
 }
 
 void t_allContained(vector<vector<int>> &rutas, TopoRelNaivePreComp &trnpc, TopoRelGST_5 &gst, vector<int> &queries, int repeticiones){
+	cout << "---- ALL_CONTAINED ----" << endl;
 	cout << "Ejecutando Naive ... " << endl;
 	unsigned t0, t1;
 	t0 = clock();
@@ -175,6 +180,7 @@ void t_allContained(vector<vector<int>> &rutas, TopoRelNaivePreComp &trnpc, Topo
 }
 
 vector<int> generarQueries(int n_rutas, int num_queries){
+	cout << "Generando queries aleatorias ..." << endl;
 	srand((unsigned) time(NULL));
 	set<int> ms;
 	while(ms.size() < num_queries){

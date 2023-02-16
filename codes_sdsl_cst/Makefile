@@ -10,10 +10,12 @@ BINS=time_TopoRel_allContain_GST5_xLote time_TopoRel_all_contain_GST5\
 		time_TopoRel_groupRelations\
 		time_GST45_constructores test_comparaGST4constructores\
 		test_sdvector_rank_select test_cst_data test_cst_rep\
-		test_TopoRel_all_contain test_TopoRel_all_equal\
-		time_TopoRel_all_contain time_TopoRel_boolean\
+		test_TopoRel_all_contain test_TopoRel_all_contained\
+		test_TopoRel_all_equal\
+		time_TopoRel_boolean\
 		size_TopoRel TopoRel_testall\
-		TopoRel_Naive_test  TopoRel_Naive_PreComp_test TopoRel_Naive_PreComp_test-save-load\
+		TopoRel_Naive_test  TopoRel_Naive_PreComp_test\
+		TopoRel_Naive_PreComp_test-save-load\
 		TopoRel_Naive_PreComp_save TopoRel_Naive_PreComp_load\
 		TopoRel_GST_0_test TopoRel_GST_1_test TopoRel_GST_2_test\
 		TopoRel_GST_4_test TopoRel_GST_5_test
@@ -57,6 +59,9 @@ time_GST45_constructores:
 
 time_TopoRel_all_contain:
 	$(CPP) $(PREFLAGS) -o time_TopoRel_all_contain time_TopoRel_all_contain.cpp $(OBJECTS) $(POSFLAGS)
+
+test_TopoRel_all_contained:
+	$(CPP) $(PREFLAGS) -o test_TopoRel_all_contained test_TopoRel_all_contained.cpp $(OBJECTS) $(POSFLAGS)
 
 time_TopoRel_all_contain_GST5:
 	$(CPP) $(PREFLAGS) -o time_TopoRel_all_contain_GST5 time_TopoRel_all_contain_GST5.cpp $(OBJECTS) $(POSFLAGS)

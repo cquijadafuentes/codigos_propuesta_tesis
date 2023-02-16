@@ -8,6 +8,7 @@ test_cst_data
 test_cst_rep
 test_sdvector_rank_select
 test_TopoRel_all_contain
+test_TopoRel_all_contained
 test_TopoRel_all_equal
 time_GST45_constructores
 time_TopoRel_all_contain

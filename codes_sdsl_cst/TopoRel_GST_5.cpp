@@ -701,7 +701,7 @@ vector<int> TopoRelGST_5::tr_allContain(int x){
 //        cout << "-----" << endl;
 //        cout << "id_GST: " << i << " - " << extract(cst, hoja) << endl;;
 //        cout << "p_CSA: " << cst.csa[i] << " - ";
-        int idAux = getIdRutaSegunPosConcat(cst.csa[i]);
+        int idAux = idRutaDesdeCeldaDeSecConcat(cst.csa[i]);
 //        cout << "id_Rutas: " << idAux << " - Ruta: ";
 //        printRuta(idAux);
 //        cout << endl;
@@ -721,7 +721,7 @@ vector<int> TopoRelGST_5::tr_allEqual(int x){
 
     for(int i=cst.id(idLChST); i <= cst.id(idRChST); i++){
         int idAux = gstMFSrank(cst.csa[i]);      // Esto entrega el id de la secuencia desde el arreglo con marcas de fin de secuencia
-                                                // Equivalente al retorno de la función getIdRutaSegunPosConcat()
+                                                // Equivalente al retorno de la función idRutaDesdeCeldaDeSecConcat()
         if(gstMapa[x] == gstMapa[idAux]){
             y.push_back(idAux % n_rutas);
         }
@@ -730,15 +730,100 @@ vector<int> TopoRelGST_5::tr_allEqual(int x){
 }
 
 vector<int> TopoRelGST_5::tr_allContained(int x){
-    vector<int> y;
-    if(x > n_rutas) return y;
-
+//    cout << "\n++++++++++++++++ Operación ALLCONTAINED ++++++++++++++++" << endl;
+    set<int> y;
+    if(x > n_rutas) return vector<int>();
     auto nX = gstMapa[x];
-    auto idLChST = cst.leftmost_leaf(nX);
-    auto idRChST = cst.rightmost_leaf(nX);
-    auto nParentX = cst.parent(nX);
+    y.insert(x);
+    int dephOriginal = getLargoRuta(x);
+    for(int sl = 0; sl < dephOriginal; sl++){
+//        cout << "nX: " << cst.id(nX);
+        auto nXPrev = nX;
+        while(cst.depth(nX) > dephOriginal + 1 - sl){
+            nXPrev = nX;
+            nX = cst.parent(nX);
+        }
+        if(cst.depth(nX) < dephOriginal - sl){
+            nX = nXPrev;
+        }
+//        cout << " ---> actualizado a: " << cst.id(nX) << endl;
+        // Recorrido por suffix link de los nodos
+//        cout << "Texto sec: " << extract(cst, nX) << endl;
+//        cout << "\tRev iguales desde nodo " << cst.id(nX) << endl;
+        auto idLChST = cst.leftmost_leaf(nX);
+        auto idRChST = cst.rightmost_leaf(nX);
+        // Agregar las secuencias que son iguales
+        for(int i=cst.id(idLChST); i <= cst.id(idRChST); i++){
+            if(cst.csa[i] == 0 || gstMFSbv[cst.csa[i] - 1] == 1){
+                int idAux = gstMFSrank(cst.csa[i]);      // Esto entrega el id de la secuencia desde el arreglo con marcas de fin de secuencia
+                                                        // Equivalente al retorno de la función idRutaDesdeCeldaDeSecConcat()
+                if(getLargoRuta(idAux) <= cst.depth(nX)){
+                //if(gstMapa[x] == gstMapa[idAux]){
+//                    cout << "Insertando desde igualdad " << (idAux % n_rutas) << endl;
+                    y.insert(idAux % n_rutas);
+                }
+            }
+        }
 
-    return y;
+//        cout << "\tRev padres desde nodo " << cst.id(nX) << endl;
+        // Revisión de los nodos hacia la raíz
+        auto nParentX = cst.parent(nX);
+        while(nParentX != cst.root()){
+//            cout << "Padre: " << cst.id(nParentX) << endl;
+            auto nodoAux = cst.child(nParentX, finSec);
+            if(nodoAux != cst.root() && nodoAux != nX){
+//                cout << "revisando por arco con finsec " << cst.id(nodoAux) << endl;
+                // Existen sufijos contenidos por el nodo nParentX
+                vector<int> partial = getSecConPrefijoDelNodo(nodoAux, cst.depth(nParentX));
+                y.insert(partial.begin(), partial.end());
+            }
+            nParentX = cst.parent(nParentX);
+        }
+//        cout << "SuffixLink desde nodo " << cst.id(nX);
+        nX = cst.sl(nX); 
+//        cout << " -> " << cst.id(nX) << endl;
+    }
+
+    vector<int> res(y.begin(), y.end());
+/*
+    cout << ">>>> Resultado parcial de operación allContained: ";
+    for(int i=0; i<res.size(); i++){
+        cout << res[i] << " ";
+    }
+    cout << endl;
+*/
+    return res;
+}
+
+vector<int> TopoRelGST_5::tr_allContained2(int x){
+    // Versión de la operación allContained que determina el resultado
+    // por un recorrido lineal del SuffixArray de la estructura
+    // Si una posición del SuffixArray representa una secuencia 
+    // desde su inicio y la secuencia es de largo menor al largo de x
+    // entonces está totalmente contenida por X
+    // Mejora: en vez de recorrer el SA mejor tomar una hoja por cada
+    // nodo del mapa.
+    vector<int> res;
+    // Determinar la posición inicial y final de la secuencia x
+    int pI = 0;
+    if(x > 0){
+        pI = gstMFSselect(x) + 1;
+    }
+    int pF = gstMFSselect(x+1) - 1;
+
+    // Recorrer el SuffixArray identificando aquellas secuencias
+    // que estan desde el inicio
+    for(int i=0; i<gstMapa.size(); i++){
+        auto auxHoja = cst.leftmost_leaf(gstMapa[i]);
+        int idHoja = cst.id(auxHoja);
+        int pIHoja = cst.csa[idHoja];
+        int idRuta = idRutaDesdeCeldaDeSecConcat(pIHoja);
+        int pFHoja = pIHoja + getLargoRuta(idRuta) - 1;
+        if(pIHoja >= pI && pFHoja <= pF){
+            res.push_back(idRuta);
+        }
+    }
+    return res;
 }
 
 
@@ -895,13 +980,13 @@ void TopoRelGST_5::navega(int x){
     cout << endl;
 
     cout << endl << "Id Secuencia de la posición 2 en concatenación: ";
-    int idd = getIdRutaSegunPosConcat(2);
+    int idd = idRutaDesdeCeldaDeSecConcat(2);
     cout << idd << " - ";
     printRutaYPos(idd);
     cout << endl << endl;
 
     cout << endl << "Id Secuencia de la posición 18 en concatenación: ";
-    idd = getIdRutaSegunPosConcat(18);
+    idd = idRutaDesdeCeldaDeSecConcat(18);
     cout << idd << " - ";
     printRutaYPos(idd);
     cout << endl << endl;
@@ -1168,7 +1253,7 @@ cst_sada<>::node_type TopoRelGST_5::nodoSubseq(cst_sada<>::node_type n, int x){
     return r;
 }
 
-int TopoRelGST_5::getIdRutaSegunPosConcat(int x){
+int TopoRelGST_5::idRutaDesdeCeldaDeSecConcat(int x){
     // Recibe una posición referente a la secuencia concatenada e indica el 
     // id de la secuencia a la que corresponde dicha posición
     // Utiliza operaciones de rank sobre el bitmap de fin de secuencia
@@ -1177,4 +1262,24 @@ int TopoRelGST_5::getIdRutaSegunPosConcat(int x){
     }
     int idT = gstMFSrank(x);
     return (idT % n_rutas);
+}
+
+vector<int> TopoRelGST_5::getSecConPrefijoDelNodo(cst_sada<>::node_type nodo, int d){
+    // Dado un nodo determina todas las secuencias que tienen prefijo
+    // la secuencia del nodo y tienen a lo más su mismo largo
+    auto idLChST = cst.leftmost_leaf(nodo);
+    auto idRChST = cst.rightmost_leaf(nodo);
+    vector<int> y;
+    for(int i=cst.id(idLChST); i <= cst.id(idRChST); i++){
+        int pos = cst.csa[i];
+        if(pos == 0 || gstMFSbv[pos-1] == 1){
+            // Es una ruta con prefijo igual al texto del nodo
+            int idRuta = gstMFSrank(pos);
+            if(getLargoRuta(idRuta) == d){
+                y.push_back(idRuta);
+//                cout << "Insertando en prefijos: " << idRuta << endl;
+            }
+        }
+    }
+    return y;
 }
