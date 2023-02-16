@@ -34,4 +34,4 @@ v11 ->	GST_5 que corresponde a versión que se construye en paralelo
 
 v7 ->	Generación en paralelo usando matriz completa de resultados (tiempos)
 v8 ->	Versión antigua
-
+v24 ->	Versión de gráficas de groupOperations sobre Naive, Naive_{PC} y GST_5
