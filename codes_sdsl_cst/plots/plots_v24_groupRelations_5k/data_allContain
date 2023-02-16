@@ -1,0 +1,8 @@
+Operacion	rutas	queries	tNaive	tNaivePC	tGST5
+allContain	5000	2000	1700.77	247.561	2328.09	[us]
+allContain	10000	2000	3430.75	493.78	3483.27	[us]
+allContain	15000	2000	5142.89	741.023	4561.58	[us]
+allContain	20000	2000	6916.43	989.702	4854.26	[us]
+allContain	25000	2000	8747	1234.84	6058.92	[us]
+allContain	30000	2000	10379.7	1481.92	7116.64	[us]
+allContain	35000	2000	12112.2	1729.83	8224.68	[us]
