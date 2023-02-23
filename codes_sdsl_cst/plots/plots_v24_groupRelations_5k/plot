@@ -4,16 +4,16 @@ set key out horiz
 set terminal png size 800,400
 
 set xrange [0.5:10.5]
-set yrange [1:13000]
+set yrange [1:18000]
 
 
 set output 'img_allContain.png'
 set title 'Operación AllContain'
 set ylabel "Tiempo [us]"
 set xlabel "Rutas"
-plot 'data_allContain' using 4:xtic(2) title 'Naive' with linespoints lt 2 pt 6 lc rgb red,   \
+plot 'data_allContain' using 4:xtic(2) title 'Naive' with linespoints lt 2 pt 5 lc rgb red,   \
      'data_allContain' using 5 title 'Naive_{PC}' with linespoints lt 2 pt 6 lc rgb blue,   \
-     'data_allContain' using 6 title 'GST_5' with linespoints lt 2 pt 6 lc rgb green
+     'data_allContain' using 6 title 'GST_5' with linespoints lt 2 pt 7 lc rgb green
 
 
 
@@ -21,9 +21,9 @@ set output 'img_allContained.png'
 set title 'Operación AllContained'
 set ylabel "Tiempo [us]"
 set xlabel "Rutas"
-plot 'data_allContained' using 4:xtic(2) title 'Naive' with linespoints lt 2 pt 6 lc rgb red,   \
+plot 'data_allContained' using 4:xtic(2) title 'Naive' with linespoints lt 2 pt 5 lc rgb red,   \
      'data_allContained' using 5 title 'Naive_{PC}' with linespoints lt 2 pt 6 lc rgb blue,   \
-     'data_allContained' using 6 title 'GST_5' with linespoints lt 2 pt 6 lc rgb green
+     'data_allContained' using 6 title 'GST_5' with linespoints lt 2 pt 7 lc rgb green
 
 
 
@@ -31,9 +31,9 @@ set output 'img_allEqual.png'
 set title 'Operación AllEqual'
 set ylabel "Tiempo [us]"
 set xlabel "Rutas"
-plot 'data_allEqual' using 4:xtic(2) title 'Naive' with linespoints lt 2 pt 6 lc rgb red,   \
+plot 'data_allEqual' using 4:xtic(2) title 'Naive' with linespoints lt 2 pt 5 lc rgb red,   \
      'data_allEqual' using 5 title 'Naive_{PC}' with linespoints lt 2 pt 6 lc rgb blue,   \
-     'data_allEqual' using 6 title 'GST_5' with linespoints lt 2 pt 6 lc rgb green
+     'data_allEqual' using 6 title 'GST_5' with linespoints lt 2 pt 7 lc rgb green
 
 
 
@@ -41,9 +41,9 @@ set output 'img_grouprel_naive.png'
 set title 'Implementación Naive'
 set ylabel "Tiempo [us]"
 set xlabel "Rutas"
-plot 'data_allContain' using 4:xtic(2) title 'allContain' with linespoints lt 2 pt 6 lc rgb red,   \
+plot 'data_allContain' using 4:xtic(2) title 'allContain' with linespoints lt 2 pt 5 lc rgb red,   \
      'data_allContained' using 4 title 'allContained' with linespoints lt 2 pt 6 lc rgb blue,   \
-     'data_allEqual' using 4 title 'allEqual' with linespoints lt 2 pt 6 lc rgb green
+     'data_allEqual' using 4 title 'allEqual' with linespoints lt 2 pt 7 lc rgb green
 
 
 
@@ -51,9 +51,9 @@ set output 'img_grouprel_naivepc.png'
 set title 'Implementación Naive_{PC}'
 set ylabel "Tiempo [us]"
 set xlabel "Rutas"
-plot 'data_allContain' using 5:xtic(2) title 'allContain' with linespoints lt 2 pt 6 lc rgb red,   \
+plot 'data_allContain' using 5:xtic(2) title 'allContain' with linespoints lt 2 pt 5 lc rgb red,   \
      'data_allContained' using 5 title 'allContained' with linespoints lt 2 pt 6 lc rgb blue,   \
-     'data_allEqual' using 5 title 'allEqual' with linespoints lt 2 pt 6 lc rgb green
+     'data_allEqual' using 5 title 'allEqual' with linespoints lt 2 pt 7 lc rgb green
 
 
 
@@ -61,9 +61,9 @@ set output 'img_grouprel_gst5.png'
 set title 'Implementación GST_5'
 set ylabel "Tiempo [us]"
 set xlabel "Rutas"
-plot 'data_allContain' using 6:xtic(2) title 'allContain' with linespoints lt 2 pt 6 lc rgb red,   \
+plot 'data_allContain' using 6:xtic(2) title 'allContain' with linespoints lt 2 pt 5 lc rgb red,   \
      'data_allContained' using 6 title 'allContained' with linespoints lt 2 pt 6 lc rgb blue,   \
-     'data_allEqual' using 6 title 'allEqual' with linespoints lt 2 pt 6 lc rgb green
+     'data_allEqual' using 6 title 'allEqual' with linespoints lt 2 pt 7 lc rgb green
 
 
 set yrange [1:100000000]
@@ -72,8 +72,8 @@ set output 'img_size_gst5.png'
 set title 'Tamaño GST_5'
 set ylabel "Tamaño [B]"
 set xlabel "Rutas"
-plot 'data_size' using 3:xtic(1) title 'cstsada' with linespoints lt 2 pt 6 lc rgb red,   \
-     'data_size' using 4 title 'rutas' with linespoints lt 2 pt 6 lc rgb green,   \
-     'data_size' using 5 title 'stops' with linespoints lt 2 pt 6 lc rgb blue,   \
+plot 'data_size' using 3:xtic(1) title 'cstsada' with linespoints lt 2 pt 3 lc rgb red,   \
+     'data_size' using 4 title 'rutas' with linespoints lt 2 pt 4 lc rgb green,   \
+     'data_size' using 5 title 'stops' with linespoints lt 2 pt 5 lc rgb blue,   \
      'data_size' using 6 title 'mapa' with linespoints lt 2 pt 6 lc rgb skyblue,   \
-     'data_size' using 7 title 'gstMFSbv' with linespoints lt 2 pt 6 lc rgb black
+     'data_size' using 7 title 'gstMFSbv' with linespoints lt 2 pt 7 lc rgb black
