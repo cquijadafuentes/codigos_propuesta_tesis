@@ -13,7 +13,7 @@ string print_bool(bool x){
 
 int desplegarMenu(){
 	int opc = -1;
-	while(opc < 0 || opc > 7){
+	while(opc < 0 || opc > 9){
 		cout << " ****************************** " << endl;
 		cout << "1 - Información general del conjunto." << endl;
 		cout << "2 - Información hijos de la raíz." << endl;
@@ -22,6 +22,8 @@ int desplegarMenu(){
 		cout << "5 - Información de una ruta." << endl;
 		cout << "6 - Mostrar csa." << endl;
 		cout << "7 - Mostrar marcas fin de secuencia." << endl;
+		cout << "8 - Mostrar lcp." << endl;
+		cout << "9 - Arrays en columnas." << endl;
 		cout << "" << endl;
 		cout << "0 - Salir." << endl;
 		cout << " ****************************** " << endl;
@@ -152,6 +154,27 @@ void infoCSA(TopoRelGST_5 gst5){
 	cout << endl;
 }
 
+void infoLCP(TopoRelGST_5 gst5){
+	int size = gst5.cst.lcp.size();
+	cout << "Longest Common Prefix array de tamaño " << size << endl;
+	for(int i=0; i<size; i++){
+		cout << gst5.cst.lcp[i] << " ";
+	}
+	cout << endl;
+}
+
+void infoArrays(TopoRelGST_5 gst5){
+	cout << "Información de Arrays involucrados" << endl;
+	cout << "i\tMFS\trank\tcsa\tlcp" << endl;
+	for(int i=0; i<gst5.cst.csa.size(); i++){
+		cout << i << "\t";
+		cout << gst5.gstMFSbv[i] << "\t";
+		cout << gst5.gstMFSrank(i) << "\t";
+		cout << gst5.cst.csa[i] << "\t";
+		cout << gst5.cst.lcp[i] << endl;
+	}
+}
+
 void infoMFS(TopoRelGST_5 gst5){
 	int size = gst5.n_concat;
 	cout << "gstMFSbv de tamaño " << size << endl;	
@@ -207,6 +230,12 @@ int main(int argc, char const *argv[]){
 	    		break;
 	    	case 7:
 	    		infoMFS(gst5);
+	    		break;
+	    	case 8:
+	    		infoLCP(gst5);
+	    		break;
+	    	case 9:
+	    		infoArrays(gst5);
 	    		break;
 	    	default:
 	    		cout << "Ocurrió algún error..." << endl;
