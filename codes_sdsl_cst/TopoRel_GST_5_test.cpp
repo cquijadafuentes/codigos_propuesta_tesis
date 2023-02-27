@@ -38,6 +38,7 @@ void infoGralConjunto(TopoRelGST_5 gst5){
 	cout << "Nº de rutas: " << gst5.n_rutas << endl;
 	cout << "Largo de la secuencia total: " << gst5.n_concat << endl;
 	cout << "Nº de stops: " << gst5.n_stops << endl;
+	cout << "Largo de secuencia más corta: " << gst5.len_min << endl;
 	cout << "--- Información del CompressedSuffixTree ---" << endl;
     cout << "Cantidad de nodos: " << gst5.cst.nodes() << endl;
     cout << "Cantidad de hojas: " << gst5.cst.size() << endl;

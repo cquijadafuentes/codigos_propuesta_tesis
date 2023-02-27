@@ -33,6 +33,7 @@ TopoRelGST_5::TopoRelGST_5(vector<vector<int>> &rutas, int cant_stops){
         }
     }
     finSec = maxID+1;
+    len_min = rutas[0].size();
     int_vector<> iv(n_concat*2);
     gstRutas = vector<int_vector<>>(rutas.size());
     bit_vector MFStemporal = bit_vector(n_concat*2, 0);
@@ -40,6 +41,9 @@ TopoRelGST_5::TopoRelGST_5(vector<vector<int>> &rutas, int cant_stops){
     int tr = n_rutas;
     // Concatenar rutas
     for(int i = 0; i < n_rutas; i++){
+        if(rutas[i].size() < len_min){
+            len_min = rutas[i].size();
+        }
         gstRutas[i] = int_vector<>(rutas[i].size());
         for(int j = 0; j < rutas[i].size(); j++){
             iv[pv++] = rutas[i][j];
@@ -182,6 +186,8 @@ TopoRelGST_5::TopoRelGST_5(string inputFilename){
         infile.read ((char *)&n_concat,sizeof(int));
         infile.read ((char *)&n_stops,sizeof(int));
         infile.read ((char *)&finSec,sizeof(int));
+        infile.read ((char *)&len_min,sizeof(int));
+
 //        cout << n_rutas << endl;
 //        cout << n_concat << endl;
 //        cout << n_stops << endl;
@@ -729,6 +735,7 @@ vector<int> TopoRelGST_5::tr_allEqual(int x){
     return y;
 }
 
+/*
 vector<int> TopoRelGST_5::tr_allContained(int x){
 //    cout << "\n++++++++++++++++ Operación ALLCONTAINED ++++++++++++++++" << endl;
     set<int> y;
@@ -785,13 +792,93 @@ vector<int> TopoRelGST_5::tr_allContained(int x){
     }
 
     vector<int> res(y.begin(), y.end());
-/*
-    cout << ">>>> Resultado parcial de operación allContained: ";
-    for(int i=0; i<res.size(); i++){
-        cout << res[i] << " ";
-    }
-    cout << endl;
+
+//    cout << ">>>> Resultado parcial de operación allContained: ";
+//    for(int i=0; i<res.size(); i++){
+//        cout << res[i] << " ";
+//    }
+//    cout << endl;
+
+    return res;
+}
 */
+
+vector<int> TopoRelGST_5::tr_allContained(int x, bool verbose){
+    if(verbose){
+        cout << "\n++++++++++++++++ Operación ALLCONTAINED ++++++++++++++++" << endl;
+    }
+    set<int> y;
+    int ls = getLargoRuta(x);
+    auto nodo = gstMapa[x];
+    if(!cst.is_leaf(nodo)){
+        nodo = cst.rightmost_leaf(nodo);
+    }
+    for(int i=0; ls - i >= len_min; i++){
+        int idHoja = cst.id(nodo);
+        if(verbose){
+            cout << "Revisando hoja " << idHoja << endl;
+        }
+        int pos = cst.csa[idHoja];
+        if((pos == 0 || gstMFSbv[pos-1] == 1)){
+            if(verbose){
+                cout << "insertando posición " << pos << endl;
+            }
+            int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
+            if(getLargoRuta(idSecCand) <= ls-i){
+                y.insert(idSecCand);
+            }
+        }
+        // Se realizan operaciones de suffix link mientras el largo 
+        // del sufijo sea mayor que el largo de la secuencia más corta
+        // Revisión del SA hacia el inicio
+        int idNav = idHoja;
+        int min_coincidencia = cst.lcp[idNav];
+        while(min_coincidencia >= len_min){
+            if(verbose){
+                cout << "IdNav: " << idNav << endl;
+            }
+            int pos = cst.csa[idNav-1];
+            if(pos == 0 || gstMFSbv[pos-1] == 1){
+                // Corresponde a una secuencia completamente contenida
+                int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
+                int largoSecCand = getLargoRuta(idSecCand);
+                if(largoSecCand <= min_coincidencia && largoSecCand <= (ls - i)){
+                    y.insert(idSecCand);
+                }
+            }
+            idNav--;
+            if(cst.lcp[idNav] < min_coincidencia){
+                min_coincidencia = cst.lcp[idNav];
+            }
+        }
+
+        // Revisión del SA hacia el final
+        idNav = idHoja+1;
+        min_coincidencia = cst.lcp[idNav];
+        while(min_coincidencia >= len_min){
+            if(verbose){
+                cout << "IdNav: " << idNav << endl;
+            }
+            int pos = cst.csa[idNav];
+            if(pos == 0 || gstMFSbv[pos-1] == 1){
+                // Corresponde a una secuencia completamente contenida
+                int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
+                int largoSecCand = getLargoRuta(idSecCand);
+                if(largoSecCand <= min_coincidencia && largoSecCand <= (ls - i)){
+                    y.insert(idSecCand);
+                }
+            }
+            idNav++;
+            if(cst.lcp[idNav] < min_coincidencia){
+                min_coincidencia = cst.lcp[idNav];
+            }
+        }
+
+        // Suffix link para el siguiente ciclo
+        nodo = cst.sl(nodo);
+    }
+
+    vector<int> res(y.begin(), y.end());
     return res;
 }
 
@@ -1203,6 +1290,7 @@ bool TopoRelGST_5::save(string outputFilename){
     outfile.write((char const*)&n_concat, sizeof(int));
     outfile.write((char const*)&n_stops, sizeof(int));
     outfile.write((char const*)&finSec, sizeof(int));
+    outfile.write((char const*)&len_min, sizeof(int));
     // Guardando CST
 //    cout << cst.nodes() << endl;
 //    cout << cst.size() << endl;

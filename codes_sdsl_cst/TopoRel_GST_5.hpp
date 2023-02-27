@@ -23,6 +23,7 @@ public:
     int n_concat;
     int n_stops;
     int finSec;
+    int len_min;
     cst_sada<csa_wt<wt_int<rrr_vector<>>>> cst;
     vector<cst_sada<>::node_type> gstMapa;
     vector<int_vector<>> gstRutas;
@@ -53,7 +54,7 @@ public:
     // Relaciones topológicas en conjunto
     vector<int> tr_allContain(int);
     vector<int> tr_allEqual(int);
-    vector<int> tr_allContained(int);
+    vector<int> tr_allContained(int,bool=false);
     vector<int> tr_allContained2(int);
 
     void navega(int);

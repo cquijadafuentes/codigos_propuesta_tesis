@@ -43,7 +43,7 @@ int main(int argc, char const *argv[]){
 		// Consultas con ruta i		
 		vector<int> resNaive = tr_allContained(rutas, i);
     	vector<int> resPreComp = trpc.allContained(i);
-    	vector<int> resGST5 = tgst.tr_allContained2(i);
+    	vector<int> resGST5 = tgst.tr_allContained(i);
 
     	//if(resNaive.size() != resPreComp.size()){
     	if(resNaive.size() != resPreComp.size() || resPreComp.size() != resGST5.size()){
