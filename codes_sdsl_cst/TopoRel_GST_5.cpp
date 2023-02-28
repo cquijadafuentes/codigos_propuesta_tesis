@@ -820,6 +820,7 @@ vector<int> TopoRelGST_5::tr_allContained(int x, bool verbose){
         }
         int pos = cst.csa[idHoja];
         if((pos == 0 || gstMFSbv[pos-1] == 1)){
+            // En la celda pos inicia una secuencia
             if(verbose){
                 cout << "insertando posición " << pos << endl;
             }

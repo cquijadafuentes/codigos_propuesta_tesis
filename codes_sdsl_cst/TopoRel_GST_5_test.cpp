@@ -13,7 +13,7 @@ string print_bool(bool x){
 
 int desplegarMenu(){
 	int opc = -1;
-	while(opc < 0 || opc > 9){
+	while(opc < 0 || opc > 10){
 		cout << " ****************************** " << endl;
 		cout << "1 - Información general del conjunto." << endl;
 		cout << "2 - Información hijos de la raíz." << endl;
@@ -24,6 +24,7 @@ int desplegarMenu(){
 		cout << "7 - Mostrar marcas fin de secuencia." << endl;
 		cout << "8 - Mostrar lcp." << endl;
 		cout << "9 - Arrays en columnas." << endl;
+		cout << "10 - Arrays en columnas." << endl;
 		cout << "" << endl;
 		cout << "0 - Salir." << endl;
 		cout << " ****************************** " << endl;
@@ -193,6 +194,22 @@ void infoMFS(TopoRelGST_5 gst5){
 	cout << endl;
 }
 
+void allContainedOperation(TopoRelGST_5 gst5){
+	cout << "All Contained" << endl;
+	cout << "Ingrese la id de la ruta (entre 0 y " << (gst5.n_rutas-1) << "): ";
+	int x;
+	cin >> x;
+	cout << "Desea el debug del proceso (1-SI - 0-NO):";
+	int v;
+	cin >> v;
+	vector<int> res = gst5.tr_allContained(x, v==1);
+	cout << "El resultado contiene " << res.size() << " elementos: " << endl;
+	for(int i=0; i<res.size(); i++){
+		cout << res[i] << "  ";
+	}
+	cout << endl;
+}
+
 int main(int argc, char const *argv[]){
 
 	if(argc < 2){
@@ -237,6 +254,9 @@ int main(int argc, char const *argv[]){
 	    		break;
 	    	case 9:
 	    		infoArrays(gst5);
+	    		break;
+	    	case 10:
+	    		allContainedOperation(gst5);
 	    		break;
 	    	default:
 	    		cout << "Ocurrió algún error..." << endl;
