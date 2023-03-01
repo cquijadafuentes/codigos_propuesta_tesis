@@ -24,6 +24,9 @@ public:
     int n_stops;
     int finSec;
     int len_min;
+
+    int howManyLCP;
+
     cst_sada<csa_wt<wt_int<rrr_vector<>>>> cst;
     vector<cst_sada<>::node_type> gstMapa;
     vector<int_vector<>> gstRutas;

@@ -13,6 +13,7 @@
 #include "TopoRel_GST_5.hpp"
 
 TopoRelGST_5::TopoRelGST_5(vector<vector<int>> &rutas, int cant_stops){
+    howManyLCP = 0;
     cout << "Constructor TopoRelGST_5 (parallel top-down)" << endl;
     n_stops = cant_stops;
     n_concat = 0;
@@ -176,6 +177,7 @@ TopoRelGST_5::TopoRelGST_5(vector<vector<int>> &rutas, int cant_stops){
 }
 
 TopoRelGST_5::TopoRelGST_5(string inputFilename){
+    howManyLCP = 0;
     cout << "Cargando estructura desde archivo" << endl;
     ifstream infile(inputFilename, ofstream::binary);
     if(infile){
@@ -834,6 +836,7 @@ vector<int> TopoRelGST_5::tr_allContained(int x, bool verbose){
         // Revisión del SA hacia el inicio
         int idNav = idHoja;
         int min_coincidencia = cst.lcp[idNav];
+        howManyLCP++;
         while(min_coincidencia >= len_min){
             if(verbose){
                 cout << "IdNav: " << idNav << endl;
@@ -851,11 +854,13 @@ vector<int> TopoRelGST_5::tr_allContained(int x, bool verbose){
             if(cst.lcp[idNav] < min_coincidencia){
                 min_coincidencia = cst.lcp[idNav];
             }
+            howManyLCP++;
         }
 
         // Revisión del SA hacia el final
         idNav = idHoja+1;
         min_coincidencia = cst.lcp[idNav];
+        howManyLCP++;
         while(min_coincidencia >= len_min){
             if(verbose){
                 cout << "IdNav: " << idNav << endl;
@@ -873,6 +878,7 @@ vector<int> TopoRelGST_5::tr_allContained(int x, bool verbose){
             if(cst.lcp[idNav] < min_coincidencia){
                 min_coincidencia = cst.lcp[idNav];
             }
+            howManyLCP++;
         }
 
         // Suffix link para el siguiente ciclo
