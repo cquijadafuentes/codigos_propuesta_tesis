@@ -15,7 +15,7 @@ int desplegarMenu(){
 	int opc = -1;
 	while(opc < 0 || opc > 10){
 		cout << " ****************************** " << endl;
-		cout << "1 - Información general del conjunto." << endl;
+		cout << "1 - Información general." << endl;
 		cout << "2 - Información hijos de la raíz." << endl;
 		cout << "3 - Información hijos de un nodo." << endl;
 		cout << "4 - Espacio de la estrucutra." << endl;
@@ -40,10 +40,17 @@ void infoGralConjunto(TopoRelGST_5 gst5){
 	cout << "Largo de la secuencia total: " << gst5.n_concat << endl;
 	cout << "Nº de stops: " << gst5.n_stops << endl;
 	cout << "Largo de secuencia más corta: " << gst5.len_min << endl;
+	cout << "Largo de secuencia más larga: " << gst5.len_max << endl;
+	cout << "Marca de fin de secuenica: " << gst5.finSec << endl;
+	cout << "Largo de gstMapa: " << gst5.gstMapa.size() << endl;
+	cout << "Largo de gstStops: " << gst5.gstStops.size() << " x " << gst5.gstStops[0].size() << endl;
+	cout << "Largo de gstMFSbv (Marcas fin de secuencia): " << gst5.gstMFSbv.size() << endl;
 	cout << "--- Información del CompressedSuffixTree ---" << endl;
     cout << "Cantidad de nodos: " << gst5.cst.nodes() << endl;
     cout << "Cantidad de hojas: " << gst5.cst.size() << endl;
     cout << "Cantidad de nodos del CST: " << gst5.cst.nodes() << endl;
+    cout << "Largo del Suffix Array: " << gst5.cst.csa.size() << endl;
+    cout << "Largo del LCP Array: " << gst5.cst.lcp.size() << endl;
 }
 
 void infoRootChildren(TopoRelGST_5 gst5){

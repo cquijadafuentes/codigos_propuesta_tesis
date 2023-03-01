@@ -1,0 +1,18 @@
+red = "#FF0000"; green = "#00FF00"; blue = "#0000FF"; skyblue = "#87CEEB"; black = "#000000";
+set grid ytics
+set key out horiz
+set terminal png size 800,400
+
+set xrange [0.5:10.5]
+set yrange [1:100000000]
+set logscale y
+
+set output 'img_size_gst5.png'
+set title 'Tamaño GST_5'
+set ylabel "Tamaño [B]"
+set xlabel "Rutas"
+plot 'data_size' using 3:xtic(1) title 'cst_{sada}' with linespoints lt 2 pt 3 lc rgb red,   \
+     'data_size' using 4 title 'rutas' with linespoints lt 2 pt 4 lc rgb green,   \
+     'data_size' using 5 title 'stops' with linespoints lt 2 pt 5 lc rgb blue,   \
+     'data_size' using 6 title 'mapa' with linespoints lt 2 pt 6 lc rgb skyblue,   \
+     'data_size' using 7 title 'gstMFS' with linespoints lt 2 pt 7 lc rgb black

@@ -24,6 +24,7 @@ public:
     int n_stops;
     int finSec;
     int len_min;
+    int len_max;
 
     int howManyLCP;
 

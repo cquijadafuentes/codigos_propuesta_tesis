@@ -50,10 +50,16 @@ int main(int argc, char const *argv[]){
 	}
 	unsigned t1 = clock();
 	double tiempoGST = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
-	double promCeldasLCP = (gst.howManyLCP + 0.0) / queries.size() / repeticiones / gst.cst.lcp.size()*100;
+	double pCeldasLCP = (gst.howManyLCP + 0.0) / queries.size() / repeticiones / gst.cst.lcp.size()*100;
+
+	cout << "howManyLCP en bruto: " << gst.howManyLCP << endl;
+	double promCeldas = (gst.howManyLCP + 0.0) / queries.size() / repeticiones;
+	cout << "Promedio por consulta: " << promCeldas << endl;
+	cout << "Largo del LCP: " << gst.cst.lcp.size() << endl;
+
 	
 	cout << "Operacion\trutas\tqueries\t%LCPq\ttGST5" << endl;
-	cout << "allContained\t" << gst.n_rutas << "\t" << queries.size() << "\t" << promCeldasLCP << "\t" << tiempoGST << "\t[us]" << endl;
+	cout << "allContained\t" << gst.n_rutas << "\t" << queries.size() << "\t" << pCeldasLCP << "\t" << tiempoGST << "\t[us]" << endl;
 
 	return 0;
 }

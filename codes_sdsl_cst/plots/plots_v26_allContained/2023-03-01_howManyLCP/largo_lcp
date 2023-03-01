@@ -1,0 +1,13 @@
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 5000
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+howManyLCP en bruto: 81430
+Promedio por consulta: 162.86
+Largo del LCP: 109291
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	5000	500	0.149015	407597	[us]

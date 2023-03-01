@@ -1,0 +1,11 @@
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	5000	500	0.153599	267347	[us]
+allContained	10000	500	0.14215	485474	[us]
+allContained	15000	500	0.135415	682621	[us]
+allContained	20000	500	0.133716	815078	[us]
+allContained	25000	500	0.137484	1.0559e+06	[us]
+allContained	30000	500	0.127027	1.20086e+06	[us]
+allContained	35000	500	0.128667	1.45155e+06	[us]
+allContained	40000	500	0.123766	1.49879e+06	[us]
+allContained	45000	500	0.135242	1.77357e+06	[us]
+allContained	50007	500	0.129179	1.96159e+06	[us]

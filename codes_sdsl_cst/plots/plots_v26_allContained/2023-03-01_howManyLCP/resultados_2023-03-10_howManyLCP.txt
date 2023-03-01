@@ -1,0 +1,102 @@
+Fecha INICIO experimentos: 2023/03/01 02:24:17
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 5000
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	5000	500	0.153599	267347	[us]
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 10000
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	10000	500	0.14215	485474	[us]
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 15000
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	15000	500	0.135415	682621	[us]
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 20000
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	20000	500	0.133716	815078	[us]
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 25000
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	25000	500	0.137484	1.0559e+06	[us]
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 30000
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	30000	500	0.127027	1.20086e+06	[us]
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 35000
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	35000	500	0.128667	1.45155e+06	[us]
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 40000
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	40000	500	0.123766	1.49879e+06	[us]
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 45000
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	45000	500	0.135242	1.77357e+06	[us]
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 50007
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	50007	500	0.129179	1.96159e+06	[us]
+Fecha FIN experimentos: 2023/03/01 03:57:36

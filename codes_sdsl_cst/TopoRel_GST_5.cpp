@@ -35,6 +35,7 @@ TopoRelGST_5::TopoRelGST_5(vector<vector<int>> &rutas, int cant_stops){
     }
     finSec = maxID+1;
     len_min = rutas[0].size();
+    len_max = rutas[0].size();
     int_vector<> iv(n_concat*2);
     gstRutas = vector<int_vector<>>(rutas.size());
     bit_vector MFStemporal = bit_vector(n_concat*2, 0);
@@ -44,6 +45,9 @@ TopoRelGST_5::TopoRelGST_5(vector<vector<int>> &rutas, int cant_stops){
     for(int i = 0; i < n_rutas; i++){
         if(rutas[i].size() < len_min){
             len_min = rutas[i].size();
+        }
+        if(rutas[i].size() > len_max){
+            len_max = rutas[i].size();
         }
         gstRutas[i] = int_vector<>(rutas[i].size());
         for(int j = 0; j < rutas[i].size(); j++){
@@ -189,6 +193,7 @@ TopoRelGST_5::TopoRelGST_5(string inputFilename){
         infile.read ((char *)&n_stops,sizeof(int));
         infile.read ((char *)&finSec,sizeof(int));
         infile.read ((char *)&len_min,sizeof(int));
+        infile.read ((char *)&len_max,sizeof(int));
 
 //        cout << n_rutas << endl;
 //        cout << n_concat << endl;
@@ -1298,6 +1303,7 @@ bool TopoRelGST_5::save(string outputFilename){
     outfile.write((char const*)&n_stops, sizeof(int));
     outfile.write((char const*)&finSec, sizeof(int));
     outfile.write((char const*)&len_min, sizeof(int));
+    outfile.write((char const*)&len_max, sizeof(int));
     // Guardando CST
 //    cout << cst.nodes() << endl;
 //    cout << cst.size() << endl;
