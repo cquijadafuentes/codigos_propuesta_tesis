@@ -24,10 +24,12 @@ int main(){
 		}
 	}
 
+	int tope, cant = 0;
 	cout << "Ingrese mínimo de rutas para mostrar: ";
-	cin >> aux;
+	cin >> tope;
 	for(int i=0; i<n; i++){
-		if(lx[i].size() >= aux){
+		if(lx[i].size() >= tope){
+			cant++;
 			cout << lx[i].size() << " ";
 			for(int j=0; j<lx[i].size(); j++){
 				cout << lx[i][j] << " ";
@@ -35,4 +37,8 @@ int main(){
 			cout << endl;
 		}
 	}
+
+	cout << cant << " rutas encontradas." << endl;
+	cout << max << " id stop max." << endl;
+	return 0;
 }
