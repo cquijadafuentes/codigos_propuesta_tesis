@@ -11,8 +11,12 @@ void print_bool(bool x){
 	}
 }
 
-
-int main(){
+int main(int argc, char const *argv[]){
+	if(argc < 2){
+		cout << "Faltan argumentos!" << endl;
+		cout << argv[0] << " <min_rutas>" << endl;
+		return 0;
+	}
 	int n, x, aux, max;
 	cin >> n >> max;
 	vector<vector<int>> lx(n);
@@ -24,7 +28,8 @@ int main(){
 		}
 	}
 
-	int tope, cant = 0;
+	int tope = atoi(argv[1]);
+	int cant = 0;
 	cout << "Ingrese mínimo de rutas para mostrar: ";
 	cin >> tope;
 	for(int i=0; i<n; i++){
