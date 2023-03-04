@@ -3,14 +3,6 @@
 
 using namespace std;
 
-void print_bool(bool x){
-	if(x){
-		cout << "true";
-	}else{
-		cout << "false";
-	}
-}
-
 int main(int argc, char const *argv[]){
 	if(argc < 2){
 		cout << "Faltan argumentos!" << endl;
@@ -43,7 +35,7 @@ int main(int argc, char const *argv[]){
 		}
 	}
 
-	cout << cant << " rutas encontradas." << endl;
+	cout << cant << " rutas encontradas con largo mayor a " << tope << endl;
 	cout << max << " id stop max." << endl;
 	return 0;
 }
