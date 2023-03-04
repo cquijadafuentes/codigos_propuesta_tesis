@@ -22,8 +22,6 @@ int main(int argc, char const *argv[]){
 
 	int tope = atoi(argv[1]);
 	int cant = 0;
-	cout << "Ingrese mínimo de rutas para mostrar: ";
-	cin >> tope;
 	for(int i=0; i<n; i++){
 		if(lx[i].size() >= tope){
 			cant++;
