@@ -1,0 +1,67 @@
+Fecha INICIO experimentos: 2023/03/06 14:01:51
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 5000
+Consultas a realizar: 2000
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+howManyLCP en bruto: 96523
+Promedio por consulta: 48.2615
+Largo del LCP: 246499
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	5000	2000	0.0195788	68938.7	[us]
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 10000
+Consultas a realizar: 2000
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+howManyLCP en bruto: 159342
+Promedio por consulta: 79.671
+Largo del LCP: 492185
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	10000	2000	0.0161872	112715	[us]
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 15000
+Consultas a realizar: 2000
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+howManyLCP en bruto: 238889
+Promedio por consulta: 119.445
+Largo del LCP: 737791
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	15000	2000	0.0161895	170161	[us]
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 20000
+Consultas a realizar: 2000
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+howManyLCP en bruto: 291146
+Promedio por consulta: 145.573
+Largo del LCP: 983923
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	20000	2000	0.0147952	193927	[us]
+Cargando estructuras...
+Cargando estructura desde archivo
+
+Rutas: 25000
+Consultas a realizar: 2000
+Repeticiones a realizar: 1
+Generando queries aleatorias ...
+Ejecutando consultas GST5...
+howManyLCP en bruto: 383565
+Promedio por consulta: 191.782
+Largo del LCP: 1230379
+Operacion	rutas	queries	%LCPq	tGST5
+allContained	25000	2000	0.0155873	251615	[us]
+Fecha FIN experimentos: 2023/03/06 14:28:27

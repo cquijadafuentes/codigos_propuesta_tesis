@@ -1,0 +1,66 @@
+red = "#FF0000"; green = "#00FF00"; blue = "#0000FF"; skyblue = "#87CEEB"; black = "#000000";
+set grid ytics
+set key out horiz
+set terminal png size 800,400
+
+set xrange [0.5:5.5]
+set yrange [1:18000]
+
+
+set output 'img_allContain.png'
+set title 'Operación AllContain [rutas 20+]'
+set ylabel "Tiempo [us]"
+set xlabel "Rutas"
+plot 'data_allContain' using 4:xtic(2) title 'Naive' with linespoints lt 2 pt 5 lc rgb red,   \
+     'data_allContain' using 5 title 'Naive_{PC}' with linespoints lt 2 pt 6 lc rgb blue,   \
+     'data_allContain' using 6 title 'GST_5' with linespoints lt 2 pt 7 lc rgb green
+
+
+
+set output 'img_allContained.png'
+set title 'Operación AllContained [rutas 20+]'
+set ylabel "Tiempo [us]"
+set xlabel "Rutas"
+plot 'data_allContained' using 4:xtic(2) title 'Naive' with linespoints lt 2 pt 5 lc rgb red,   \
+     'data_allContained' using 5 title 'Naive_{PC}' with linespoints lt 2 pt 6 lc rgb blue,   \
+     'data_allContained' using 6 title 'GST_5' with linespoints lt 2 pt 7 lc rgb green
+
+
+
+set output 'img_allEqual.png'
+set title 'Operación AllEqual [rutas 20+]'
+set ylabel "Tiempo [us]"
+set xlabel "Rutas"
+plot 'data_allEqual' using 4:xtic(2) title 'Naive' with linespoints lt 2 pt 5 lc rgb red,   \
+     'data_allEqual' using 5 title 'Naive_{PC}' with linespoints lt 2 pt 6 lc rgb blue,   \
+     'data_allEqual' using 6 title 'GST_5' with linespoints lt 2 pt 7 lc rgb green
+
+
+
+set output 'img_grouprel_naive.png'
+set title 'Implementación Naive [rutas 20+]'
+set ylabel "Tiempo [us]"
+set xlabel "Rutas"
+plot 'data_allContain' using 4:xtic(2) title 'allContain' with linespoints lt 2 pt 5 lc rgb red,   \
+     'data_allContained' using 4 title 'allContained' with linespoints lt 2 pt 6 lc rgb blue,   \
+     'data_allEqual' using 4 title 'allEqual' with linespoints lt 2 pt 7 lc rgb green
+
+
+
+set output 'img_grouprel_naivepc.png'
+set title 'Implementación Naive_{PC} [rutas 20+]'
+set ylabel "Tiempo [us]"
+set xlabel "Rutas"
+plot 'data_allContain' using 5:xtic(2) title 'allContain' with linespoints lt 2 pt 5 lc rgb red,   \
+     'data_allContained' using 5 title 'allContained' with linespoints lt 2 pt 6 lc rgb blue,   \
+     'data_allEqual' using 5 title 'allEqual' with linespoints lt 2 pt 7 lc rgb green
+
+
+
+set output 'img_grouprel_gst5.png'
+set title 'Implementación GST_5 [rutas 20+]'
+set ylabel "Tiempo [us]"
+set xlabel "Rutas"
+plot 'data_allContain' using 6:xtic(2) title 'allContain' with linespoints lt 2 pt 5 lc rgb red,   \
+     'data_allContained' using 6 title 'allContained' with linespoints lt 2 pt 6 lc rgb blue,   \
+     'data_allEqual' using 6 title 'allEqual' with linespoints lt 2 pt 7 lc rgb green
