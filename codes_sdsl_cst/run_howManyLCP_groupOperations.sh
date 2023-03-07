@@ -2,7 +2,7 @@
 
 if [ $# -ne 4 ]; then
 	echo "$(basename $0) <data_folder> <output_file> consultas repeticiones"
-	echo "Generará resultados operación de allContained con 500 consultas y 1 repetición y promedio de celdas recorridas del LCP durante la operación."
+	echo "Generará resultados operación de allContained el promedio de celdas recorridas del LCP durante la operación con 'consultas' y 'repeticiones'."
 	exit 1
 fi
 
