@@ -3,11 +3,11 @@ set grid ytics
 set key out horiz
 set terminal png size 800,400
 
-set xrange [0.5:10.5]
+set xrange [0.5:5.5]
 set yrange [0.01:1]
 
 set output 'img_gst5_howmanyLCP.png'
-set title '% LCP recorrido en AllContained'
+set title '% LCP recorrido en AllContained_{rutas >= 20}'
 set ylabel "Porcentaje [%]"
 set xlabel "Rutas"
-plot 'data_hmlcp' using 4:xtic(2) title 'GST_5' with linespoints lt 2 pt 3 lc rgb red
+plot 'data_lcp' using 4:xtic(2) title 'GST_5' with linespoints lt 2 pt 3 lc rgb red
