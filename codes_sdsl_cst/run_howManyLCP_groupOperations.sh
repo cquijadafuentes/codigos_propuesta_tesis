@@ -14,7 +14,7 @@ REPETICIONES=$4
 
 echo "Fecha INICIO experimentos: $(date +'%Y/%m/%d %H:%M:%S')" > ${OUTPUTFILE}
 
-for filename in 20stops_min_05k  20stops_min_10k  20stops_min_15k  20stops_min_20k  20stops_min_25k
+for filename in gst_tripsMadrid_0005k gst_tripsMadrid_0010k gst_tripsMadrid_0015k gst_tripsMadrid_0020k gst_tripsMadrid_0025k gst_tripsMadrid_0030k gst_tripsMadrid_0035k gst_tripsMadrid_0040k gst_tripsMadrid_0045k gst_tripsMadrid_0050k 
 do
 	./test_TopoRel_all_contained_howManyLCP ${DATAFOLDER}${filename}.gst5 ${CONSULTAS} ${REPETICIONES} >> ${OUTPUTFILE}
 done
