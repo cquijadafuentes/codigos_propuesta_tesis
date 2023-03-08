@@ -59,7 +59,7 @@ public:
     vector<int> tr_allContain(int);
     vector<int> tr_allEqual(int);
     vector<int> tr_allContained(int,bool=false);
-    vector<int> tr_allContained2(int);
+    vector<int> tr_allContained2(int,bool=false);
 
     void navega(int);
     void sizeEstructura();

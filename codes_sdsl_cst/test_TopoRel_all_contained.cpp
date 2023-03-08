@@ -44,9 +44,10 @@ int main(int argc, char const *argv[]){
 		vector<int> resNaive = tr_allContained(rutas, i);
     	vector<int> resPreComp = trpc.allContained(i);
     	vector<int> resGST5 = tgst.tr_allContained(i);
+    	vector<int> resGST52 = tgst.tr_allContained2(i);
 
     	//if(resNaive.size() != resPreComp.size()){
-    	if(resNaive.size() != resPreComp.size() || resPreComp.size() != resGST5.size()){
+    	if(resNaive.size() != resPreComp.size() || resPreComp.size() != resGST5.size() || resGST5.size() != resGST52.size()){
     		diferencias++;
     		cout << "Ruta " << i << endl;
     		cout << "\tNaive (" << resNaive.size() << "): ";
@@ -55,13 +56,16 @@ int main(int argc, char const *argv[]){
     		imprime_vector(resPreComp);
     		cout << "\tGST_5 (" << resGST5.size() << "): ";
     		imprime_vector(resGST5);
+    		cout << "\tGST_5 (" << resGST52.size() << "): ";
+    		imprime_vector(resGST52);
     	}else{
     		sort(resNaive.begin(), resNaive.end());
     		sort(resPreComp.begin(), resPreComp.end());
     		sort(resGST5.begin(), resGST5.end());
+    		sort(resGST52.begin(), resGST52.end());
     		for(int j=0; j<resGST5.size(); j++){
     			//if(resNaive[j] != resPreComp[j]){
-    			if(resNaive[j] != resPreComp[j] || resPreComp[j] != resGST5[j]){
+    			if(resNaive[j] != resPreComp[j] || resPreComp[j] != resGST5[j] || resGST5[j] != resGST52[j]){
     				cout << "Ruta " << i << endl;
 		    		cout << "\tNaive (" << resNaive.size() << "): ";
 		    		imprime_vector(resNaive);
@@ -69,6 +73,8 @@ int main(int argc, char const *argv[]){
 		    		imprime_vector(resPreComp);
 		    		cout << "\tGST_5 (" << resGST5.size() << "): ";
 		    		imprime_vector(resGST5);
+		    		cout << "\tGST_5 (" << resGST52.size() << "): ";
+		    		imprime_vector(resGST52);
     			}
     		}
     	}

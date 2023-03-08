@@ -1,0 +1,55 @@
+Cargando estructura desde archivo
+
+ ****************************** 
+1 - Información general.
+2 - Información hijos de la raíz.
+3 - Información hijos de un nodo.
+4 - Espacio de la estrucutra.
+5 - Información de una ruta.
+6 - Mostrar csa.
+7 - Mostrar marcas fin de secuencia.
+8 - Mostrar lcp.
+9 - Arrays en columnas.
+10 - Operación allContained.
+11 - Operación allContained2.
+
+0 - Salir.
+ ****************************** 
+INGRESE OPCIÓN:  ****************************** 
+All Contained
+Ingrese la id de la ruta (entre 0 y 4): Desea el debug del proceso (1-SI - 0-NO):Iniciando en 59
+i: 0 ii: 1 depth: 1
+	Llegando a por 21
+	En nodo 21
+Iniciando en 46
+i: 1 ii: 1 depth: 1
+	Llegando a por 47
+	Llegando a por 48
+	Evaluando rama desde 2
+		Verificando hojas desde 2 hasta 2
+	Llegando a por 1
+	En nodo 1
+Iniciando en 50
+i: 2 ii: 1 depth: 1
+	Llegando a por 53
+	Llegando a por 54
+	En nodo 54
+		Verificando hojas desde 10 hasta 11
+El resultado contiene 2 elementos: 
+0  3  
+ ****************************** 
+1 - Información general.
+2 - Información hijos de la raíz.
+3 - Información hijos de un nodo.
+4 - Espacio de la estrucutra.
+5 - Información de una ruta.
+6 - Mostrar csa.
+7 - Mostrar marcas fin de secuencia.
+8 - Mostrar lcp.
+9 - Arrays en columnas.
+10 - Operación allContained.
+11 - Operación allContained2.
+
+0 - Salir.
+ ****************************** 
+INGRESE OPCIÓN: 

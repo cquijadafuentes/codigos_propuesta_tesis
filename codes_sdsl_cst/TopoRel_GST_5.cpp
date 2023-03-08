@@ -894,34 +894,80 @@ vector<int> TopoRelGST_5::tr_allContained(int x, bool verbose){
     return res;
 }
 
-vector<int> TopoRelGST_5::tr_allContained2(int x){
+vector<int> TopoRelGST_5::tr_allContained2(int x, bool verbose){
     // Versión de la operación allContained que determina el resultado
-    // por un recorrido lineal del SuffixArray de la estructura
-    // Si una posición del SuffixArray representa una secuencia 
-    // desde su inicio y la secuencia es de largo menor al largo de x
-    // entonces está totalmente contenida por X
-    // Mejora: en vez de recorrer el SA mejor tomar una hoja por cada
-    // nodo del mapa.
-    vector<int> res;
-    // Determinar la posición inicial y final de la secuencia x
-    int pI = 0;
-    if(x > 0){
-        pI = gstMFSselect(x) + 1;
-    }
-    int pF = gstMFSselect(x+1) - 1;
+    // por un recorrido del GST desde la raíz
+    set<int> setRes;
+    setRes.insert(x);
+    // Primer ciclo recorre los sub-árboles con los sufijos
+    // que corresponden a la secuencia posible.
+    int topeSec = gstRutas[x].size() - len_min;
+    auto raiz = cst.root();
+    for(int i=0; i<=topeSec; i++){
+        auto nodo = cst.child(raiz, gstRutas[x][i]);
+        int ii = cst.depth(nodo);
+        if(verbose){
+            cout << "Iniciando en " << cst.id(nodo) << endl;
+            cout << "i: " << i << " ii: " << ii << " depth: " << cst.depth(nodo) << endl;
+        }
+        // Comenzar con un sufijo de largo al menos len_min
+        while(nodo != raiz && i+ii <= gstRutas[x].size()){
+            if(cst.depth(nodo) >= len_min){
+                // Son nodos que representan sufijos cuyo largo 
+                // supera el de la secuencia menor del conjunto
+                auto nodoAux = cst.child(nodo, finSec);
+                if(verbose){
+                    cout << "\tEvaluando rama desde " << cst.id(nodoAux) << endl;
+                }
+                if(nodoAux != raiz){
+                    // Revisar hojas de esta subsecuencia
+                    int pi = cst.lb(nodoAux);
+                    int pf = cst.rb(nodoAux);
+                    if(verbose){
+                        cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
+                    }
+                    for(int i=pi; i<= pf; i++){
+                        if(cst.csa[i] == 0 || gstMFSbv[cst.csa[i]-1] == 1){
+                            // Corresponde a una secuencia completa
+                            setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[i]));
+                        }
+                    }
+                }
+            }
 
-    // Recorrer el SuffixArray identificando aquellas secuencias
-    // que estan desde el inicio
-    for(int i=0; i<gstMapa.size(); i++){
-        auto auxHoja = cst.leftmost_leaf(gstMapa[i]);
-        int idHoja = cst.id(auxHoja);
-        int pIHoja = cst.csa[idHoja];
-        int idRuta = idRutaDesdeCeldaDeSecConcat(pIHoja);
-        int pFHoja = pIHoja + getLargoRuta(idRuta) - 1;
-        if(pIHoja >= pI && pFHoja <= pF){
-            res.push_back(idRuta);
+            nodo = cst.child(nodo, gstRutas[x][i+ii]);
+            ii = cst.depth(nodo);
+            if(verbose){
+                cout << "\tLlegando a por " << cst.id(nodo) << endl;
+            }
+        }
+
+        if(verbose){
+            cout << "\tEn nodo " << cst.id(nodo) << endl;
+        }
+        // Comenzar a verificar si en el nodo que resta por recorrer
+        // existen secuencias que contengan el resultado
+        
+
+        // Verificando el último nodo
+        if(nodo != raiz && cst.size(nodo) > 1){
+            // Existe un nodo que es sufijo de la secuencia
+            // Verificando sub-árbol
+            int pi = cst.lb(nodo);
+            int pf = cst.rb(nodo);
+            if(verbose){
+                cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
+            }
+            for(int i=pi; i<= pf; i++){
+                if(cst.csa[i] == 0 || gstMFSbv[cst.csa[i]-1] == 1){
+                    // Corresponde a una secuencia completa
+                    setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[i]));
+                }
+            }
         }
     }
+
+    vector<int> res(setRes.begin(), setRes.end());
     return res;
 }
 
