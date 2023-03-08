@@ -10,4 +10,6 @@ set output 'img_gst5_howmanyLCP.png'
 set title '% LCP recorrido en AllContained_{rutas >= 20}'
 set ylabel "Porcentaje [%]"
 set xlabel "Rutas"
-plot 'data_lcp' using 4:xtic(2) title 'GST_5' with linespoints lt 2 pt 3 lc rgb red
+plot 'data_lcp' using 4:xtic(2) title 'd 20+' with linespoints pt 4 lc rgb red, \
+	'data_lcp' using 6 title 'd 1+' with linespoints pt 5 lc rgb red
+
