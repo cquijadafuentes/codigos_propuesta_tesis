@@ -41,6 +41,7 @@ int main(int argc, char const *argv[]){
 	cout << "Rutas: " << tgst.n_rutas << endl;
 	cout << "Ruta más corta: " << tgst.len_min << endl;
 	cout << "Ruta más larga: " << tgst.len_max << endl;
+	cout << "Consultas: " << queries << endl;
 
 	// Realizar consultas según corresponda
 	for(int i=0; i<queries; i++){
