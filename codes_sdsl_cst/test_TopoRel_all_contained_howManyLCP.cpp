@@ -36,6 +36,8 @@ int main(int argc, char const *argv[]){
 	}
 
 	cout << "Rutas: " << gst.n_rutas << endl;
+	cout << "Ruta más corta: " << gst.len_min << endl;
+	cout << "Ruta más larga: " << gst.len_max << endl;
 	cout << "Consultas a realizar: " << num_queries << endl;
 	cout << "Repeticiones a realizar: " << repeticiones << endl;
 

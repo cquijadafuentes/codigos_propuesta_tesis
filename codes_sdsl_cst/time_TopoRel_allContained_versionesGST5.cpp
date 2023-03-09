@@ -20,7 +20,7 @@ vector<int> generarQueries(int n_rutas, int num_queries);
 
 int main(int argc, char const *argv[]){
 	if(argc < 4){
-		cout << "Programa para registrar la cantidad de celdas del LCP que se comprueban en la operación allContained" << endl;
+		cout << "Programa para medir tiempo promedio en la operación allContained" << endl;
 		cout << "Error! faltan argumentos:" << endl;
 		cout << argv[0] << " <input_file_GST5> num_queries repeticiones" << endl;
 		return 0;
@@ -41,6 +41,8 @@ int main(int argc, char const *argv[]){
 	}
 
 	cout << "Rutas: " << gst.n_rutas << endl;
+	cout << "Ruta más corta: " << gst.len_min << endl;
+	cout << "Ruta más larga: " << gst.len_max << endl;
 	cout << "Consultas a realizar: " << num_queries << endl;
 	cout << "Repeticiones a realizar: " << repeticiones << endl;
 

@@ -38,6 +38,10 @@ int main(int argc, char const *argv[]){
 	TopoRelNaivePreComp trpc(rutas, n_stops);
 	TopoRelGST_5 tgst(rutas, n_stops);
 
+	cout << "Rutas: " << tgst.n_rutas << endl;
+	cout << "Ruta más corta: " << tgst.len_min << endl;
+	cout << "Ruta más larga: " << tgst.len_max << endl;
+
 	// Realizar consultas según corresponda
 	for(int i=0; i<queries; i++){
 		// Consultas con ruta i		
