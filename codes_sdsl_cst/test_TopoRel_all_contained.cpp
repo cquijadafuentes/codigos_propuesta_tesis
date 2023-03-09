@@ -61,11 +61,11 @@ int main(int argc, char const *argv[]){
     		imprime_vector(resNaive);
     		cout << "\tPreCo (" << resPreComp.size() << "): ";
     		imprime_vector(resPreComp);
-    		cout << "\tGST_5 (" << resGST5.size() << "): ";
+    		cout << "\tGST_5 v1 (" << resGST5.size() << "): ";
     		imprime_vector(resGST5);
-    		cout << "\tGST_52 (" << resGST52.size() << "): ";
+    		cout << "\tGST_5 v2 (" << resGST52.size() << "): ";
     		imprime_vector(resGST52);
-    		cout << "\tGST_53 (" << resGST53.size() << "): ";
+    		cout << "\tGST_5 v3 (" << resGST53.size() << "): ";
     		imprime_vector(resGST53);
     	}else{
     		sort(resNaive.begin(), resNaive.end());
@@ -82,11 +82,11 @@ int main(int argc, char const *argv[]){
 		    		imprime_vector(resNaive);
 		    		cout << "\tPreCo (" << resPreComp.size() << "): ";
 		    		imprime_vector(resPreComp);
-		    		cout << "\tGST_5 (" << resGST5.size() << "): ";
+		    		cout << "\tGST_5 v1 (" << resGST5.size() << "): ";
 		    		imprime_vector(resGST5);
-		    		cout << "\tGST_52 (" << resGST52.size() << "): ";
+		    		cout << "\tGST_5 v2 (" << resGST52.size() << "): ";
 		    		imprime_vector(resGST52);
-		    		cout << "\tGST_53 (" << resGST53.size() << "): ";
+		    		cout << "\tGST_5 v3 (" << resGST53.size() << "): ";
 		    		imprime_vector(resGST53);
     			}
     		}
