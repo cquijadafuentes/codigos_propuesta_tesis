@@ -12,10 +12,10 @@ set title 'Operación AllContain'
 set ylabel "Tiempo [us]"
 set xlabel "Rutas"
 plot 'data_allContain' using 4:xtic(2) title 'Naive_{d 20+}' with linespoints pt 4 lc rgb red,   \
-     'data_allContain' using 5 title 'NaivePC_{d 20+}' with linespoints pt 6 lc rgb blue,   \
-     'data_allContain' using 6 title 'GST5_{d 20+}' with linespoints pt 8 lc rgb green,  \
      'data_allContain' using 7 title 'Naive' with linespoints pt 5 lc rgb red,   \
+     'data_allContain' using 5 title 'NaivePC_{d 20+}' with linespoints pt 6 lc rgb blue,   \
      'data_allContain' using 8 title 'NaivePC' with linespoints pt 7 lc rgb blue,   \
+     'data_allContain' using 6 title 'GST5_{d 20+}' with linespoints pt 8 lc rgb green,  \
      'data_allContain' using 9 title 'GST5' with linespoints pt 9 lc rgb green
 
 
@@ -25,10 +25,10 @@ set title 'Operación AllContained'
 set ylabel "Tiempo [us]"
 set xlabel "Rutas"
 plot 'data_allContained' using 4:xtic(2) title 'Naive_{d 20+}' with linespoints pt 4 lc rgb red,   \
-     'data_allContained' using 5 title 'NaivePC_{d 20+}' with linespoints pt 6 lc rgb blue,   \
-     'data_allContained' using 6 title 'GST5_{d 20+}' with linespoints pt 8 lc rgb green,  \
      'data_allContained' using 7 title 'Naive' with linespoints pt 5 lc rgb red,   \
+     'data_allContained' using 5 title 'NaivePC_{d 20+}' with linespoints pt 6 lc rgb blue,   \
      'data_allContained' using 8 title 'NaivePC' with linespoints pt 7 lc rgb blue,   \
+     'data_allContained' using 6 title 'GST5_{d 20+}' with linespoints pt 8 lc rgb green,  \
      'data_allContained' using 9 title 'GST5' with linespoints pt 9 lc rgb green
 
 
@@ -38,10 +38,10 @@ set title 'Operación AllEqual'
 set ylabel "Tiempo [us]"
 set xlabel "Rutas"
 plot 'data_allEqual' using 4:xtic(2) title 'Naive_{d 20+}' with linespoints pt 4 lc rgb red,   \
-     'data_allEqual' using 5 title 'NaivePC_{d 20+}' with linespoints pt 6 lc rgb blue,   \
-     'data_allEqual' using 6 title 'GST5_{d 20+}' with linespoints pt 8 lc rgb green,  \
      'data_allEqual' using 7 title 'Naive' with linespoints pt 5 lc rgb red,   \
+     'data_allEqual' using 5 title 'NaivePC_{d 20+}' with linespoints pt 6 lc rgb blue,   \
      'data_allEqual' using 8 title 'NaivePC' with linespoints pt 7 lc rgb blue,   \
+     'data_allEqual' using 6 title 'GST5_{d 20+}' with linespoints pt 8 lc rgb green,  \
      'data_allEqual' using 9 title 'GST5' with linespoints pt 9 lc rgb green
 
 
