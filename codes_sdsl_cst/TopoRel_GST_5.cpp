@@ -972,6 +972,76 @@ vector<int> TopoRelGST_5::tr_allContained2(int x, bool verbose){
 }
 
 
+vector<int> TopoRelGST_5::tr_allContained3(int x, bool verbose){
+    // Versión de la operación allContained que determina el resultado
+    // iniciando en el nodo del mapa[x], recorriendo hacia la raíz y usando
+    // wl para cambiar de rama
+    set<int> setRes;
+    setRes.insert(x);
+
+    // Calculando el nodo inicial con el sufijo de la secuencia de largo len_min
+    auto raiz = cst.root();
+    auto nodo = raiz;
+    int pISec = gstRutas[x].size() - len_min;
+    int ps;
+    while(cst.depth(nodo) < len_min){
+        ps = pISec + cst.depth(nodo);
+        nodo = cst.child(nodo, gstRutas[x][ps]);
+        if(verbose){
+            cout << "Fase 0 por nodo: " << cst.id(nodo) << " por elemento " << gstRutas[x][ps] << endl;
+        }
+    }
+    bool conFS = cst.depth(nodo) > len_min;
+
+    // Nodo esta ubicado en el sufijo más corto de la secuencia.
+    for(int i=1; i<=pISec; i++){
+        // Recorrido de las ramas por medio de WL
+        auto nodoAux = nodo;
+        if(verbose){
+            cout << "\tDesde el nodo " << cst.id(nodoAux) << endl;
+        }
+        while(cst.depth(nodoAux) >= len_min){
+            auto nodoExp = nodoAux;
+            if(!conFS){
+                nodoExp = cst.child(nodoAux, finSec);
+            }
+            if(verbose){
+                cout << "\tExplorando nodo: " << cst.id(nodoExp) << endl;
+            }
+            // Verificando rama por candidato
+            if(nodoExp != raiz && cst.size(nodoExp) > 1){
+                // Existe un nodo que es sufijo de la secuencia
+                // Verificando sub-árbol
+                int pi = cst.lb(nodoExp);
+                int pf = cst.rb(nodoExp);
+                if(verbose){
+                    cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
+                }
+                for(int i=pi; i<= pf; i++){
+                    if(cst.csa[i] == 0 || gstMFSbv[cst.csa[i]-1] == 1){
+                        // Corresponde a una secuencia completa
+                        setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[i]));
+                    }
+                }
+            }
+            nodoAux = cst.parent(nodoAux);
+        }
+        if(verbose){
+            cout << "Usando wl desde " << cst.id(nodo);
+        }
+        nodo = cst.wl(nodo, gstRutas[x][pISec - i]);
+        if(verbose){
+            cout << " hasta " << cst.id(nodo) << " por elemento " << gstRutas[x][pISec - i] << endl;
+        }
+    }
+
+    vector<int> res(setRes.begin(), setRes.end());
+    return res;
+
+
+}
+
+
 /*******************************************************
             Otras funcionalidades
 *******************************************************/

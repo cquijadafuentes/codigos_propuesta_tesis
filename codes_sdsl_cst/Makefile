@@ -4,7 +4,8 @@ PREFLAGS=-std=c++11 -g -O0 -DNDEBUG -fopenmp -I ~/include -L ~/lib
 
 POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
-BINS=time_TopoRel_allContain_GST5_xLote time_TopoRel_all_contain_GST5\
+BINS=time_TopoRel_allContained_versionesGST5\
+		time_TopoRel_allContain_GST5_xLote time_TopoRel_all_contain_GST5\
 		TopoRel_GST_5_save TopoRel_GST_5_load\
 		TopoRel_GST_5_test-save-load TopoRel_GST_5_size\
 		time_TopoRel_groupRelations test_TopoRel_all_contained_howManyLCP\
@@ -68,6 +69,9 @@ time_TopoRel_all_contain_GST5:
 
 time_TopoRel_allContain_GST5_xLote:
 	$(CPP) $(PREFLAGS) -o time_TopoRel_allContain_GST5_xLote time_TopoRel_allContain_GST5_xLote.cpp $(OBJECTS) $(POSFLAGS)
+
+time_TopoRel_allContained_versionesGST5:
+	$(CPP) $(PREFLAGS) -o time_TopoRel_allContained_versionesGST5 time_TopoRel_allContained_versionesGST5.cpp $(OBJECTS) $(POSFLAGS)
 
 time_TopoRel_boolean:
 	$(CPP) $(PREFLAGS) -o time_TopoRel_boolean time_TopoRel_boolean.cpp $(OBJECTS) $(POSFLAGS)

@@ -18,5 +18,6 @@ for filename in gst_tripsMadrid_0005k gst_tripsMadrid_0010k gst_tripsMadrid_0015
 do
 	./time_TopoRel_groupRelations ${DATAFOLDER}${filename}.gst5 ${DATAFOLDER}${filename}.naivepc ${DATAFOLDER}${filename}.txt ${CONSULTAS} ${REPETICIONES} >> ${OUTPUTFILE}
 done
+
 echo "Fecha FIN experimentos: $(date +'%Y/%m/%d %H:%M:%S')" >> ${OUTPUTFILE}
 exit 0

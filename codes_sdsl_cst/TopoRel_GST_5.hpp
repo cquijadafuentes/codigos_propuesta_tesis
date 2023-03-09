@@ -59,7 +59,8 @@ public:
     vector<int> tr_allContain(int);
     vector<int> tr_allEqual(int);
     vector<int> tr_allContained(int,bool=false);
-    vector<int> tr_allContained2(int,bool=false);
+    vector<int> tr_allContained2(int,bool=false);   // Recorrido desde la raíz de los distintos sufijos
+    vector<int> tr_allContained3(int,bool=false);   // Recorrido desde el nodo de la secuencia usando wl
 
     void navega(int);
     void sizeEstructura();

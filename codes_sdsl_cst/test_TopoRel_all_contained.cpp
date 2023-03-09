@@ -45,36 +45,44 @@ int main(int argc, char const *argv[]){
     	vector<int> resPreComp = trpc.allContained(i);
     	vector<int> resGST5 = tgst.tr_allContained(i);
     	vector<int> resGST52 = tgst.tr_allContained2(i);
+    	vector<int> resGST53 = tgst.tr_allContained3(i);
 
     	//if(resNaive.size() != resPreComp.size()){
-    	if(resNaive.size() != resPreComp.size() || resPreComp.size() != resGST5.size() || resGST5.size() != resGST52.size()){
+    	if(resNaive.size() != resPreComp.size() || resPreComp.size() != resGST5.size() || 
+    			resGST5.size() != resGST52.size() || resGST52.size() != resGST53.size()){
     		diferencias++;
-    		cout << "Ruta " << i << endl;
+    		cout << "Ruta " << i << " con diferencia en tamaño." << endl;
     		cout << "\tNaive (" << resNaive.size() << "): ";
     		imprime_vector(resNaive);
     		cout << "\tPreCo (" << resPreComp.size() << "): ";
     		imprime_vector(resPreComp);
     		cout << "\tGST_5 (" << resGST5.size() << "): ";
     		imprime_vector(resGST5);
-    		cout << "\tGST_5 (" << resGST52.size() << "): ";
+    		cout << "\tGST_52 (" << resGST52.size() << "): ";
     		imprime_vector(resGST52);
+    		cout << "\tGST_53 (" << resGST53.size() << "): ";
+    		imprime_vector(resGST53);
     	}else{
     		sort(resNaive.begin(), resNaive.end());
     		sort(resPreComp.begin(), resPreComp.end());
     		sort(resGST5.begin(), resGST5.end());
     		sort(resGST52.begin(), resGST52.end());
+    		sort(resGST53.begin(), resGST53.end());
     		for(int j=0; j<resGST5.size(); j++){
     			//if(resNaive[j] != resPreComp[j]){
-    			if(resNaive[j] != resPreComp[j] || resPreComp[j] != resGST5[j] || resGST5[j] != resGST52[j]){
-    				cout << "Ruta " << i << endl;
+    			if(resNaive[j] != resPreComp[j] || resPreComp[j] != resGST5[j] || 
+    					resGST5[j] != resGST52[j] || resGST52[j] != resGST53[j]){
+    				cout << "Ruta " << i << " con diferencia en contenido." << endl;
 		    		cout << "\tNaive (" << resNaive.size() << "): ";
 		    		imprime_vector(resNaive);
 		    		cout << "\tPreCo (" << resPreComp.size() << "): ";
 		    		imprime_vector(resPreComp);
 		    		cout << "\tGST_5 (" << resGST5.size() << "): ";
 		    		imprime_vector(resGST5);
-		    		cout << "\tGST_5 (" << resGST52.size() << "): ";
+		    		cout << "\tGST_52 (" << resGST52.size() << "): ";
 		    		imprime_vector(resGST52);
+		    		cout << "\tGST_53 (" << resGST53.size() << "): ";
+		    		imprime_vector(resGST53);
     			}
     		}
     	}
