@@ -24,6 +24,7 @@ int main(int argc, char const *argv[]){
 			puntox++;
 		}
 		cout << mit->first << "\t" << mit->second << endl;
+		puntox++;
 	}
 
 	return 0;
