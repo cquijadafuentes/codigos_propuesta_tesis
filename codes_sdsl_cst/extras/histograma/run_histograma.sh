@@ -12,7 +12,7 @@ g++ -o histograma histograma.cpp
 
 for filename in 20stops_min_05k.txt  20stops_min_10k.txt  20stops_min_15k.txt  20stops_min_20k.txt  20stops_min_25k.txt
 do
-	./histograma ${DATAFOLDER}${filename} > histo_${filename}
+	./histograma < ${DATAFOLDER}${filename} > histo_${filename}
 done
 
 exit 0
