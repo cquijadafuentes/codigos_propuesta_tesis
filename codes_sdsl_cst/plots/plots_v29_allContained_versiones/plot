@@ -8,9 +8,22 @@ set yrange [1:500000]
 
 
 set output 'img_allContained.png'
-set title 'Operación AllContain [trips20+ - udecs]'
+set title 'Operación AllContained [trips - udecs]'
 set ylabel "Tiempo [us]"
 set xlabel "Rutas"
-plot 'data' using 3:xtic(1) title 'versión 1' with linespoints pt 4 lc rgb red,   \
-     'data' using 4 title 'versión 2' with linespoints pt 5 lc rgb green,   \
-     'data' using 5 title 'versión 3' with linespoints pt 6 lc rgb blue
+plot 'data_trips1+' using 3:xtic(1) title 'v1_{1+}' with linespoints pt 4 lc rgb red,   \
+     'data_trips20+' using 3:xtic(1) title 'v1_{20+}' with linespoints pt 5 lc rgb red,   \
+     'data_trips1+' using 4 title 'v2_{1+}' with linespoints pt 4 lc rgb green,   \
+     'data_trips20+' using 4 title 'v2_{20+}' with linespoints pt 5 lc rgb green,   \
+     'data_trips1+' using 5 title 'v3_{1+}' with linespoints pt 4 lc rgb blue,   \
+     'data_trips20+' using 5 title 'v3_{20+}' with linespoints pt 5 lc rgb blue
+
+
+set yrange [1:850000]
+set output 'img_allContained_XL.png'
+plot 'data_trips1+' using 3:xtic(1) title 'v1_{1+}' with linespoints pt 4 lc rgb red,   \
+     'data_trips20+' using 3:xtic(1) title 'v1_{20+}' with linespoints pt 5 lc rgb red,   \
+     'data_trips1+' using 4 title 'v2_{1+}' with linespoints pt 4 lc rgb green,   \
+     'data_trips20+' using 4 title 'v2_{20+}' with linespoints pt 5 lc rgb green,   \
+     'data_trips1+' using 5 title 'v3_{1+}' with linespoints pt 4 lc rgb blue,   \
+     'data_trips20+' using 5 title 'v3_{20+}' with linespoints pt 5 lc rgb blue

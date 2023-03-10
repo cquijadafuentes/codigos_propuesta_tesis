@@ -17,7 +17,12 @@ int main(int argc, char const *argv[]){
 	}
 
 	map<int,int>::iterator mit;
+	int puntox = 1;
 	for(mit = m.begin(); mit != m.end(); mit++){
+		while(puntox != mit->first){
+			cout << puntox << "\t" << 0 << endl;
+			puntox++;
+		}
 		cout << mit->first << "\t" << mit->second << endl;
 	}
 
