@@ -83,7 +83,7 @@ int main(int argc, char const *argv[]){
 	double tV3 = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
 
 	cout << "rutas\tqueries\tv1\tv2\tv3" << endl;
-	cout << gst.n_rutas << "\t" << num_queries << "\t" << tV1 << "\t" << tV2 << "\t" << tV3 << "[us]" << endl;
+	cout << gst.n_rutas << "\t" << num_queries << "\t" << tV1 << "\t" << tV2 << "\t" << tV3 << "\t[us]" << endl;
 	return 0;
 }
 
