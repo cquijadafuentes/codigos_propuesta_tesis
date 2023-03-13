@@ -1,16 +1,15 @@
 #!/bin/bash
 
-if [ $# -ne 5 ]; then
-	echo "$(basename $0) <data_folder_1> <data_folder_2> <output_file> consultas repeticiones"
-	echo "Generará resultados para las 3 operaciones de conjunto con <consultas> y <repeticiones>."
+if [ $# -ne 4 ]; then
+	echo "$(basename $0) <data_folder_1> <data_folder_2> <output_file> repeticiones"
+	echo "Generará resultados para las 3 operaciones de conjunto <repeticiones> veces con los archivos de consulta correspondientes."
 	exit 1
 fi
 
 DATAFOLDER1=$1
 DATAFOLDER2=$2
 OUTPUTFILE=$3
-CONSULTAS=$4
-REPETICIONES=$5
+REPETICIONES=$4
 
 
 echo "Fecha INICIO experimentos: $(date +'%Y/%m/%d %H:%M:%S')" > ${OUTPUTFILE}
