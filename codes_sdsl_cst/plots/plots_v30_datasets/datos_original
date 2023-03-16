@@ -1,0 +1,77 @@
+----------------------------------
+trips 1+
+
+
+Nº de rutas: 5000
+Largo de la secuencia total: 54645
+Nº de stops: 11010
+Largo de secuencia más corta: 1
+Largo de secuencia más larga: 54
+
+
+Nº de rutas: 10000
+Largo de la secuencia total: 109782
+Nº de stops: 11010
+Largo de secuencia más corta: 1
+Largo de secuencia más larga: 54
+
+
+Nº de rutas: 15000
+Largo de la secuencia total: 165757
+Nº de stops: 11010
+Largo de secuencia más corta: 1
+Largo de secuencia más larga: 56
+
+
+Nº de rutas: 20000
+Largo de la secuencia total: 220912
+Nº de stops: 11010
+Largo de secuencia más corta: 1
+Largo de secuencia más larga: 56
+
+
+Nº de rutas: 25000
+Largo de la secuencia total: 277056
+Nº de stops: 11010
+Largo de secuencia más corta: 1
+Largo de secuencia más larga: 56
+
+
+
+--------------------------------
+trips 20+
+
+
+Nº de rutas: 5000
+Largo de la secuencia total: 123249
+Nº de stops: 11010
+Largo de secuencia más corta: 20
+Largo de secuencia más larga: 65
+
+
+Nº de rutas: 10000
+Largo de la secuencia total: 246092
+Nº de stops: 11010
+Largo de secuencia más corta: 20
+Largo de secuencia más larga: 65
+
+
+Nº de rutas: 15000
+Largo de la secuencia total: 368895
+Nº de stops: 11010
+Largo de secuencia más corta: 20
+Largo de secuencia más larga: 65
+
+
+Nº de rutas: 20000
+Largo de la secuencia total: 491961
+Nº de stops: 11010
+Largo de secuencia más corta: 20
+Largo de secuencia más larga: 65
+
+
+Nº de rutas: 25000
+Largo de la secuencia total: 615189
+Nº de stops: 11010
+Largo de secuencia más corta: 20
+Largo de secuencia más larga: 65
