@@ -9,7 +9,7 @@ set logscale y
 
 set output 'img_size_gst5.png'
 set title 'Tamaño GST_5'
-set ylabel "Tamaño [B]"
+set ylabel "Tamaño [B] (log)"
 set xlabel "Rutas"
 plot 'data_size' using 3:xtic(1) title 'cst_{sada}' with linespoints lt 2 pt 3 lc rgb red,   \
      'data_size' using 6 title 'mapa' with linespoints lt 2 pt 6 lc rgb skyblue,   \
