@@ -91,7 +91,7 @@ int main(int argc, char const *argv[]){
 			cantFallasV3++;
 		}
 	}
-	cout << "nRutas\tnQueries\tresV1\tresV2\tresV3" << endl;
+	cout << "nRutas\tnQueries\tfails_{V1}\tfails_{V2}\tfails_{V3}" << endl;
 	cout << gst5.n_rutas << "\t";
 	cout << nQueries << "\t";
 	cout << cantFallasV1 << "\t";
