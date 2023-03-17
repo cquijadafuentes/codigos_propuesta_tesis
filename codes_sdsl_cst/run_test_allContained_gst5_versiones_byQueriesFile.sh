@@ -39,7 +39,7 @@ do
 	for i in 1 2 3 
 	do
 		./TopoRel_Naive_test_allContained_byQueries ${DATAFOLDER2}${filename}.txt ${DATAFOLDER2}${filename}.queries.${i} > ${DATAFOLDER2}${filename}.results.${i}
-		./TopoRel_GST_5_test_allContained_byQueries ${DATAFOLDER2}${filename}.gst5 ${DATAFOLDER2}${filename}.queries.${i}  ${DATAFOLDER1}${filename}.results.${i} >> ${OUTPUTFILE}
+		./TopoRel_GST_5_test_allContained_byQueries ${DATAFOLDER2}${filename}.gst5 ${DATAFOLDER2}${filename}.queries.${i}  ${DATAFOLDER2}${filename}.results.${i} >> ${OUTPUTFILE}
 	done
 	echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
 done
