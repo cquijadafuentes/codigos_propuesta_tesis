@@ -1,0 +1,138 @@
+Fecha INICIO Comparación de resultados: 2023/03/17 01:53:24
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************** DATASET = /home/carlos/GST/datasets/ ****************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+5000	2000	0	0	1119
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+5000	100	0	0	53
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+5000	100	0	0	20
+ ----------------------------------------------------- 
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+10000	2000	0	0	1317
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+10000	100	0	0	73
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+10000	100	0	0	46
+ ----------------------------------------------------- 
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+15000	2000	0	0	1414
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+15000	100	0	0	81
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+15000	100	0	0	54
+ ----------------------------------------------------- 
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+20000	2000	0	0	1498
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+20000	100	0	0	86
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+20000	100	0	0	61
+ ----------------------------------------------------- 
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+25000	2000	0	0	1568
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+25000	100	0	0	83
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+25000	100	0	0	70
+ ----------------------------------------------------- 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************** DATASET = /home/carlos/GST/datasets/20stops_min/ ****************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+5000	2000	0	0	1007
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+5000	100	0	0	89
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+5000	100	0	0	34
+ ----------------------------------------------------- 
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+10000	2000	0	0	1305
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+10000	100	0	0	92
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+10000	100	0	0	43
+ ----------------------------------------------------- 
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+15000	2000	0	0	1482
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+15000	100	0	0	95
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+15000	100	0	0	53
+ ----------------------------------------------------- 
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+20000	2000	0	0	1609
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+20000	100	0	0	96
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+20000	100	0	0	56
+ ----------------------------------------------------- 
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+25000	2000	0	0	1651
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+25000	100	0	0	95
+Cargando estructura desde archivo
+
+nRutas	nQueries	resV1	resV2	resV3
+25000	100	0	0	61
+ ----------------------------------------------------- 
+Fecha FIN Comparación de resultados: 2023/03/17 08:25:38
