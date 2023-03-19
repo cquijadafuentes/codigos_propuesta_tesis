@@ -13,7 +13,7 @@ set output 'img_allContained_errores.png'
 set title 'Porcentaje de Errores en Operación AllContained v3 [s:udecs]'
 plot 'data_v3_trips1+' using ($4/$2*100):xtic(1) title 'random_{1+}' with linespoints pt 4 lc rgb red,   \
      'data_v3_trips20+' using ($4/$2*100):xtic(1) title 'random_{20+}' with linespoints pt 5 lc rgb red,   \
-     'data_v3_trips1+' using 5 title 'largest_{1+}' with linespoints pt 4 lc rgb green,   \
-     'data_v3_trips20+' using 5 title 'largest_{20+}' with linespoints pt 5 lc rgb green,   \
-     'data_v3_trips1+' using 6 title 'shortest_{1+}' with linespoints pt 4 lc rgb blue,   \
-     'data_v3_trips20+' using 6 title 'shortest_{20+}' with linespoints pt 5 lc rgb blue
+     'data_v3_trips1+' using ($5/$3*100) title 'largest_{1+}' with linespoints pt 4 lc rgb green,   \
+     'data_v3_trips20+' using ($5/$3*100) title 'largest_{20+}' with linespoints pt 5 lc rgb green,   \
+     'data_v3_trips1+' using ($6/$3*100) title 'shortest_{1+}' with linespoints pt 4 lc rgb blue,   \
+     'data_v3_trips20+' using ($6/$3*100) title 'shortest_{20+}' with linespoints pt 5 lc rgb blue
