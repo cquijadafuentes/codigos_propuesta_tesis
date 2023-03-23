@@ -12,5 +12,6 @@ set title 'Tamaño GST_5'
 set ylabel "Tamaño [B] (log)"
 set xlabel "Rutas"
 plot 'data_size' using 3:xtic(1) title 'cst_{sada}' with linespoints lt 2 pt 3 lc rgb red,   \
+     'data_size' using 4 title 'Naive' with linespoints lt 2 pt 4 lc rgb green,   \
      'data_size' using 6 title 'mapa' with linespoints lt 2 pt 6 lc rgb skyblue,   \
      'data_size' using 7 title 'gstMFS' with linespoints lt 2 pt 7 lc rgb black
