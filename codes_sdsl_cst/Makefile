@@ -26,7 +26,7 @@ BINS=TopoRel_Naive_test_allContained_byQueries\
 
 OBJECTS=TopoRel_GST_0.o TopoRel_GST_1.o\
 		TopoRel_GST_2.o TopoRel_GST_4.o\
-		TopoRel_GST_5.o\
+		TopoRel_GST_5.o TopoRel_GST_6.o\
 		TopoRel_Naive.o TopoRel_Naive_PreComp.o
 
 %.o: %.cpp

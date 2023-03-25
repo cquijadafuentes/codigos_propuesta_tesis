@@ -10,11 +10,11 @@
             desde la raíz a los nodos que representan la secuencia
 */
 
-#include "TopoRel_GST_5.hpp"
+#include "TopoRel_GST_6.hpp"
 
-TopoRelGST_5::TopoRelGST_5(vector<vector<int>> &rutas, int cant_stops){
+TopoRelGST_6::TopoRelGST_6(vector<vector<int>> &rutas, int cant_stops){
     howManyLCP = 0;
-    cout << "Constructor TopoRelGST_5 (parallel top-down)" << endl;
+    cout << "Constructor TopoRelGST_6 (parallel top-down)" << endl;
     n_stops = cant_stops;
     n_concat = 0;
     n_rutas = rutas.size();
@@ -71,10 +71,16 @@ TopoRelGST_5::TopoRelGST_5(vector<vector<int>> &rutas, int cant_stops){
     gstMFSrank = sd_vector<>::rank_1_type(&gstMFSbv);
     gstMFSselect = sd_vector<>::select_1_type(&gstMFSbv);
 
+
+    
+
 //    cout << "Rutas... concatenadas" << endl;
 
     //cst_sada<csa_wt<wt_int<rrr_vector<>>>> cst;
     construct_im(cst, iv);
+
+    bit_vector MNtemporal = bit_vector(cst.nodes(), 0);
+
 //    cout << "GST construido" << endl;
 /*
     cout << "inner nodes : " << cst.nodes() - cst.csa.size() << endl;
@@ -177,10 +183,13 @@ TopoRelGST_5::TopoRelGST_5(vector<vector<int>> &rutas, int cant_stops){
         gstMapa.erase(gstMapa.end() - sobrantes, gstMapa.end());
     }
 //    cout << "Map... OK" << endl;
+
+    gstMN = sd_vector<>(MNtemporal);
+
     cout << "Fin constructor (parallel top-down)." << endl;
 }
 
-TopoRelGST_5::TopoRelGST_5(string inputFilename){
+TopoRelGST_6::TopoRelGST_6(string inputFilename){
     howManyLCP = 0;
     cout << "Cargando estructura desde archivo" << endl;
     ifstream infile(inputFilename, ofstream::binary);
@@ -236,8 +245,7 @@ TopoRelGST_5::TopoRelGST_5(string inputFilename){
         }
         // Cargando gstMFSbv, rank y select.
         gstMFSbv.load(infile);
-        //gstMFSrank.load(infile);
-        //gstMFSselect.load(infile);
+        gstMN.load(infile);
         // Cerrando archivo
         infile.close();
         gstMFSrank = sd_vector<>::rank_1_type(&gstMFSbv);
@@ -247,7 +255,7 @@ TopoRelGST_5::TopoRelGST_5(string inputFilename){
     cout << "Error en la carga!" << endl;
 }
 
-string TopoRelGST_5::obtenerRelacion(int x, int y){
+string TopoRelGST_6::obtenerRelacion(int x, int y){
 //    cout << endl << "x: " << x << " - y: " << y << endl;
 //    cout << "id x: " << cst.id(gstMapa[x]) << "id y: " << cst.id(gstMapa[y]) << endl;
     // Identificar igualdad en cualquiera de los dos sentidos
@@ -371,14 +379,14 @@ string TopoRelGST_5::obtenerRelacion(int x, int y){
 *******************************************************/
 
 
-bool TopoRelGST_5::tr_equals(int x, int y){
+bool TopoRelGST_6::tr_equals(int x, int y){
     if(gstMapa[x] == gstMapa[y] || gstMapa[x] == gstMapa[y+n_rutas]){
         return true;
     }
     return false;
 }
 
-bool TopoRelGST_5::tr_coveredby(int x, int y){
+bool TopoRelGST_6::tr_coveredby(int x, int y){
     // Descarte por largo de secuencias
     int lx = gstRutas[x].size();
     int ly = gstRutas[y].size();
@@ -407,11 +415,11 @@ bool TopoRelGST_5::tr_coveredby(int x, int y){
     return false;
 }
 
-bool TopoRelGST_5::tr_covers(int x, int y){
+bool TopoRelGST_6::tr_covers(int x, int y){
     return tr_coveredby(y,x);
 }
 
-bool TopoRelGST_5::tr_inside(int x, int y){
+bool TopoRelGST_6::tr_inside(int x, int y){
     // Descarte por largo de secuencias
     int lx = gstRutas[x].size();
     int ly = gstRutas[y].size();
@@ -470,11 +478,11 @@ bool TopoRelGST_5::tr_inside(int x, int y){
     return false;
 }
 
-bool TopoRelGST_5::tr_includes(int x, int y){
+bool TopoRelGST_6::tr_includes(int x, int y){
     return tr_inside(y,x);
 }
 
-bool TopoRelGST_5::tr_disjoint(int x, int y){
+bool TopoRelGST_6::tr_disjoint(int x, int y){
     // Descartar igualdad
     if(gstMapa[x] == gstMapa[y] || gstMapa[x] == gstMapa[y+n_rutas]){
         return false;
@@ -512,7 +520,7 @@ bool TopoRelGST_5::tr_disjoint(int x, int y){
     return true;
 }
 
-bool TopoRelGST_5::tr_touches(int x, int y){
+bool TopoRelGST_6::tr_touches(int x, int y){
     // Descarte por igualdad
     if(gstMapa[x] == gstMapa[y] || gstMapa[x] == gstMapa[y+n_rutas]){
         return false;
@@ -544,7 +552,7 @@ bool TopoRelGST_5::tr_touches(int x, int y){
     return true;
 }
 
-bool TopoRelGST_5::tr_overlaps(int x, int y){
+bool TopoRelGST_6::tr_overlaps(int x, int y){
     // Descartar igualdad
     if(gstMapa[x] == gstMapa[y] || gstMapa[x] == gstMapa[y+n_rutas]){
         return false;
@@ -614,7 +622,7 @@ bool TopoRelGST_5::tr_overlaps(int x, int y){
 *******************************************************/
 
 
-bool TopoRelGST_5::tr_within(int x, int y){
+bool TopoRelGST_6::tr_within(int x, int y){
     // Debe ser EQUALS, COVEREDBY o INSIDE
     // Descarte por largo de secuencia
     int lx = gstRutas[x].size();
@@ -673,11 +681,11 @@ bool TopoRelGST_5::tr_within(int x, int y){
     return false;
 }
 
-bool TopoRelGST_5::tr_contains(int x, int y){
+bool TopoRelGST_6::tr_contains(int x, int y){
     return tr_within(y, x);
 }    
 
-bool TopoRelGST_5::tr_intersect(int x, int y){
+bool TopoRelGST_6::tr_intersect(int x, int y){
     return !tr_disjoint(x, y);
 }
 
@@ -687,7 +695,7 @@ bool TopoRelGST_5::tr_intersect(int x, int y){
 *******************************************************/
 
 
-vector<int> TopoRelGST_5::tr_allContain(int x){
+vector<int> TopoRelGST_6::tr_allContain(int x){
     vector<int> y;
     if(x > n_rutas) return y;
 
@@ -724,7 +732,7 @@ vector<int> TopoRelGST_5::tr_allContain(int x){
     return y;
 }
 
-vector<int> TopoRelGST_5::tr_allEqual(int x){
+vector<int> TopoRelGST_6::tr_allEqual(int x){
     vector<int> y;
     if(x > n_rutas) return y;
 
@@ -743,7 +751,7 @@ vector<int> TopoRelGST_5::tr_allEqual(int x){
 }
 
 /*
-vector<int> TopoRelGST_5::tr_allContained(int x){
+vector<int> TopoRelGST_6::tr_allContained(int x){
 //    cout << "\n++++++++++++++++ Operación ALLCONTAINED ++++++++++++++++" << endl;
     set<int> y;
     if(x > n_rutas) return vector<int>();
@@ -810,7 +818,7 @@ vector<int> TopoRelGST_5::tr_allContained(int x){
 }
 */
 
-vector<int> TopoRelGST_5::tr_allContained(int x, bool verbose){
+vector<int> TopoRelGST_6::tr_allContained(int x, bool verbose){
     if(verbose){
         cout << "\n++++++++++++++++ Operación ALLCONTAINED ++++++++++++++++" << endl;
     }
@@ -894,7 +902,7 @@ vector<int> TopoRelGST_5::tr_allContained(int x, bool verbose){
     return res;
 }
 
-vector<int> TopoRelGST_5::tr_allContained2(int x, bool verbose){
+vector<int> TopoRelGST_6::tr_allContained2(int x, bool verbose){
     // Versión de la operación allContained que determina el resultado
     // por un recorrido del GST desde la raíz
     set<int> setRes;
@@ -972,7 +980,7 @@ vector<int> TopoRelGST_5::tr_allContained2(int x, bool verbose){
 }
 
 
-vector<int> TopoRelGST_5::tr_allContained3(int x, bool verbose){
+vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
     // Versión de la operación allContained que determina el resultado
     // iniciando en el nodo del mapa[x], recorriendo hacia la raíz y usando
     // wl para cambiar de rama
@@ -1047,7 +1055,7 @@ vector<int> TopoRelGST_5::tr_allContained3(int x, bool verbose){
 *******************************************************/
 
 
-void TopoRelGST_5::navega(int x){
+void TopoRelGST_6::navega(int x){
 
     cout << "Información del CompressedSuffixTree:" << endl;
     cout << "Cantidad de nodos: " << cst.nodes() << endl;
@@ -1207,7 +1215,7 @@ void TopoRelGST_5::navega(int x){
     cout << endl << endl;
 }
 
-void TopoRelGST_5::sizeEstructura(){
+void TopoRelGST_6::sizeEstructura(){
     cout << "**** Tamaño en bytes ****" << endl;
     cout << "cst_sada [B]: " << size_in_bytes(cst) << endl;
     // Calculo de los bytes para RUTAS
@@ -1247,7 +1255,7 @@ void TopoRelGST_5::sizeEstructura(){
     cout << " (" << porcentaje << "%)" << endl;
 }
 
-void TopoRelGST_5::sizeToPlot(){
+void TopoRelGST_6::sizeToPlot(){
     // Calculo de los bytes para RUTAS
     unsigned long long bytesRutas = 0;
     for(int i=0; i<gstRutas.size(); i++){
@@ -1282,7 +1290,7 @@ void TopoRelGST_5::sizeToPlot(){
     cout << endl;
 }
 
-void TopoRelGST_5::printRutaYPos(int x){
+void TopoRelGST_6::printRutaYPos(int x){
     if(x > n_rutas){
         return;
     }
@@ -1297,7 +1305,7 @@ void TopoRelGST_5::printRutaYPos(int x){
 
 }
 
-void TopoRelGST_5::printRuta(int x){
+void TopoRelGST_6::printRuta(int x){
     if(x > n_rutas){
         return;
     }
@@ -1310,7 +1318,7 @@ void TopoRelGST_5::printRuta(int x){
     cout << extract(cst.csa,pI, pF);    
 }
 
-int TopoRelGST_5::getLargoRuta(int x){
+int TopoRelGST_6::getLargoRuta(int x){
     //cout << "consultando largo ruta x:" << x << endl;
     if(x > n_rutas){
         return 0;
@@ -1324,7 +1332,7 @@ int TopoRelGST_5::getLargoRuta(int x){
     return pF - pI + 1;
 }
 
-bool TopoRelGST_5::iguales(TopoRelGST_5 x){
+bool TopoRelGST_6::iguales(TopoRelGST_6 x){
     // Compara constantes
     if(n_rutas != x.n_rutas){
         return false;
@@ -1405,7 +1413,7 @@ bool TopoRelGST_5::iguales(TopoRelGST_5 x){
 }
 
 
-bool TopoRelGST_5::save(string outputFilename){
+bool TopoRelGST_6::save(string outputFilename){
     int aux1, aux2;
 //    cout << "Guardando el archivo " << outputFilename << endl;
     ofstream outfile(outputFilename, ofstream::binary);
@@ -1456,9 +1464,8 @@ bool TopoRelGST_5::save(string outputFilename){
 */
     }
     // Guardando gstMFSbv, rank y select.
-    gstMFSbv.serialize(outfile);
-    //gstMFSrank.serialize(outfile);
-    //gstMFSselect.serialize(outfile);
+    gstMFSbv.serialize(outfile);    
+    gstMN.serialize(outfile);
     // Cerrando archivo
     outfile.close();
     return true;
@@ -1469,7 +1476,7 @@ bool TopoRelGST_5::save(string outputFilename){
             FUNCIONALIDADES PRIVADAS
 *******************************************************/
 
-bool TopoRelGST_5::bordesSeg_touches(int t1, int t2){
+bool TopoRelGST_6::bordesSeg_touches(int t1, int t2){
     // Comprueba si hay segmentos finales que se intersecan
     // Esto implica una intersección Interior-Interior entre los bordes
     // que se considera como un touches falso-positivo
@@ -1491,7 +1498,7 @@ bool TopoRelGST_5::bordesSeg_touches(int t1, int t2){
     return false;
 }
 
-cst_sada<>::node_type TopoRelGST_5::nodoSubseq(cst_sada<>::node_type n, int x){
+cst_sada<>::node_type TopoRelGST_6::nodoSubseq(cst_sada<>::node_type n, int x){
     // Retorna el nodo con la subsequencia de largo x desde el nodo n
     auto r = cst.root();
     if(x <= 0 || x > cst.depth(n)){
@@ -1505,7 +1512,7 @@ cst_sada<>::node_type TopoRelGST_5::nodoSubseq(cst_sada<>::node_type n, int x){
     return r;
 }
 
-int TopoRelGST_5::idRutaDesdeCeldaDeSecConcat(int x){
+int TopoRelGST_6::idRutaDesdeCeldaDeSecConcat(int x){
     // Recibe una posición referente a la secuencia concatenada e indica el 
     // id de la secuencia a la que corresponde dicha posición
     // Utiliza operaciones de rank sobre el bitmap de fin de secuencia
@@ -1516,7 +1523,7 @@ int TopoRelGST_5::idRutaDesdeCeldaDeSecConcat(int x){
     return (idT % n_rutas);
 }
 
-vector<int> TopoRelGST_5::getSecConPrefijoDelNodo(cst_sada<>::node_type nodo, int d){
+vector<int> TopoRelGST_6::getSecConPrefijoDelNodo(cst_sada<>::node_type nodo, int d){
     // Dado un nodo determina todas las secuencias que tienen prefijo
     // la secuencia del nodo y tienen a lo más su mismo largo
     auto idLChST = cst.leftmost_leaf(nodo);
