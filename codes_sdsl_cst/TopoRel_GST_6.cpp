@@ -97,7 +97,7 @@ TopoRelGST_6::TopoRelGST_6(vector<vector<int>> &rutas, int cant_stops){
 */
     // Marcas en bitvectors
     int sizePrevCompr = 0;
-    int sizePostCompr = 0;    
+    int sizePostCompr = 0;
     gstStops = vector<sd_vector<>>(n_rutas);
     for(int i = 0; i < n_rutas; i++){
         bit_vector bvt = bit_vector(finSec, 0);
@@ -211,7 +211,7 @@ TopoRelGST_6::TopoRelGST_6(string inputFilename){
         // Cargando CST
         cst.load(infile);
 //        cout << cst.nodes() << endl;
-//        cout << cst.size() << endl;        
+//        cout << cst.size() << endl;    
         // Cargando gstMapa
         infile.read ((char *)&aux1,sizeof(int));
         gstMapa = vector<cst_sada<>::node_type>(aux1);
@@ -715,7 +715,7 @@ vector<int> TopoRelGST_6::tr_allContain(int x){
         idRChST = cst.rightmost_leaf(nParentX);
     }
 //    else{
-//        cout << "Trabajando con nodo" << endl;        
+//        cout << "Trabajando con nodo" << endl;    
 //    }
     for(int i=cst.id(idLChST); i <= cst.id(idRChST); i++){
 //        auto hoja = cst.inv_id(i);
@@ -741,7 +741,7 @@ vector<int> TopoRelGST_6::tr_allEqual(int x){
     auto idRChST = cst.rightmost_leaf(nX);
 
     for(int i=cst.id(idLChST); i <= cst.id(idRChST); i++){
-        int idAux = gstMFSrank(cst.csa[i]);      // Esto entrega el id de la secuencia desde el arreglo con marcas de fin de secuencia
+        int idAux = gstMFSrank(cst.csa[i]);  // Esto entrega el id de la secuencia desde el arreglo con marcas de fin de secuencia
                                                 // Equivalente al retorno de la función idRutaDesdeCeldaDeSecConcat()
         if(gstMapa[x] == gstMapa[idAux]){
             y.push_back(idAux % n_rutas);
@@ -777,7 +777,7 @@ vector<int> TopoRelGST_6::tr_allContained(int x){
         // Agregar las secuencias que son iguales
         for(int i=cst.id(idLChST); i <= cst.id(idRChST); i++){
             if(cst.csa[i] == 0 || gstMFSbv[cst.csa[i] - 1] == 1){
-                int idAux = gstMFSrank(cst.csa[i]);      // Esto entrega el id de la secuencia desde el arreglo con marcas de fin de secuencia
+                int idAux = gstMFSrank(cst.csa[i]);  // Esto entrega el id de la secuencia desde el arreglo con marcas de fin de secuencia
                                                         // Equivalente al retorno de la función idRutaDesdeCeldaDeSecConcat()
                 if(getLargoRuta(idAux) <= cst.depth(nX)){
                 //if(gstMapa[x] == gstMapa[idAux]){
@@ -1066,15 +1066,15 @@ void TopoRelGST_6::navega(int x){
     cout << "id\ted_1\tdeg\tdep\tndep\tsize\tlb\trb\tsun\tleaf\ttext" << endl;
     for (auto child: cst.children(root)) {
         cout << cst.id(child) << "\t";
-        cout << "'" << cst.edge(child, 1) << "'" << "\t";       // D-th char of the edge-label
-        cout << cst.degree(child) << "\t";      // Number of children
-        cout << cst.depth(child) << "\t";       // String depth
+        cout << "'" << cst.edge(child, 1) << "'" << "\t";   // D-th char of the edge-label
+        cout << cst.degree(child) << "\t";  // Number of children
+        cout << cst.depth(child) << "\t";   // String depth
         cout << cst.node_depth(child) << "\t";  // 
-        cout << cst.size(child) << "\t";        // Number of leaves in the subtree
-        cout << cst.lb(child) << "\t";          // Leftmost leaf
-        cout << cst.rb(child) << "\t";          // Rightmost leaf
-        cout << cst.sn(child) << "\t";          // Suffix number
-        cout << cst.is_leaf(child) << "\t";     // IsLeaf
+        cout << cst.size(child) << "\t";    // Number of leaves in the subtree
+        cout << cst.lb(child) << "\t";      // Leftmost leaf
+        cout << cst.rb(child) << "\t";      // Rightmost leaf
+        cout << cst.sn(child) << "\t";      // Suffix number
+        cout << cst.is_leaf(child) << "\t"; // IsLeaf
         for(int i=1; i<=cst.depth(child); i++){
             cout << cst.edge(child, i);
         }
@@ -1090,16 +1090,16 @@ void TopoRelGST_6::navega(int x){
     int count = 0;
     for (iterator it = begin; it != end; ++it) {
         cout << cst.id(*it) << "\t";
-        cout << "'" << cst.edge(*it, 1) << "'" << "\t";     // D-th char of the edge-label
-        cout << cst.degree(*it) << "\t";        // Number of children
-        cout << cst.depth(*it) << "\t";         // String depth
-        cout << cst.node_depth(*it) << "\t";    // 
-        cout << cst.size(*it) << "\t";          // Number of leaves in the subtree
-        cout << cst.lb(*it) << "\t";            // Leftmost leaf
-        cout << cst.rb(*it) << "\t";            // Rightmost leaf
-        cout << cst.sn(*it) << "\t";            // Suffix number
-        cout << cst.is_leaf(*it) << "\t";       // IsLeaf
-        cout << extract(cst, *it) << "\t";      // Text
+        cout << "'" << cst.edge(*it, 1) << "'" << "\t"; // D-th char of the edge-label
+        cout << cst.degree(*it) << "\t";    // Number of children
+        cout << cst.depth(*it) << "\t";     // String depth
+        cout << cst.node_depth(*it) << "\t";// 
+        cout << cst.size(*it) << "\t";      // Number of leaves in the subtree
+        cout << cst.lb(*it) << "\t";        // Leftmost leaf
+        cout << cst.rb(*it) << "\t";        // Rightmost leaf
+        cout << cst.sn(*it) << "\t";        // Suffix number
+        cout << cst.is_leaf(*it) << "\t";   // IsLeaf
+        cout << extract(cst, *it) << "\t";  // Text
 
         cout << endl;
 
@@ -1315,7 +1315,7 @@ void TopoRelGST_6::printRuta(int x){
         pI = gstMFSselect(x) + 1;
     }
     int pF = gstMFSselect(x+1) - 1;
-    cout << extract(cst.csa,pI, pF);    
+    cout << extract(cst.csa,pI, pF);
 }
 
 int TopoRelGST_6::getLargoRuta(int x){
@@ -1442,7 +1442,7 @@ bool TopoRelGST_6::save(string outputFilename){
     }
 //    cout << endl;
     // Guardando gstRutas
-    aux1 = gstRutas.size();    
+    aux1 = gstRutas.size();
     outfile.write((char const*)&aux1, sizeof(int));
     for(int i=0; i<aux1; i++){
         gstRutas[i].serialize(outfile);
@@ -1453,7 +1453,7 @@ bool TopoRelGST_6::save(string outputFilename){
 */
     }
     // Guardando gstStops
-    aux1 = gstStops.size();    
+    aux1 = gstStops.size();
     outfile.write((char const*)&aux1, sizeof(int));
     for(int i=0; i<aux1; i++){
         gstStops[i].serialize(outfile);
@@ -1464,7 +1464,7 @@ bool TopoRelGST_6::save(string outputFilename){
 */
     }
     // Guardando gstMFSbv, rank y select.
-    gstMFSbv.serialize(outfile);    
+    gstMFSbv.serialize(outfile);
     gstMN.serialize(outfile);
     // Cerrando archivo
     outfile.close();
