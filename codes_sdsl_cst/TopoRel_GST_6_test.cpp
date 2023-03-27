@@ -182,6 +182,10 @@ void infoMNodos(TopoRelGST_6 gst){
 		cout << gst.gstMN[i] << " ";
 	}
 	cout << endl;
+	for(int i=0; i<size; i++){
+		cout << i%10 << " ";
+	}
+	cout << endl;
 }
 
 void infoArrays(TopoRelGST_6 gst){
