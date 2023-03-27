@@ -45,6 +45,7 @@ int main(int argc, char const *argv[]){
 			ifsNaive >> x;
 		}
 	}
+	ifsNaive.close();
 
 	if(op_queries == 1){
 		// Ordenar aleatoriamente el vector de rutas
@@ -77,5 +78,6 @@ int main(int argc, char const *argv[]){
 		outfile << rutas[i].second << "\t";
 	}
 	outfile << endl;
+	outfile.close();
 	return 0;
 }

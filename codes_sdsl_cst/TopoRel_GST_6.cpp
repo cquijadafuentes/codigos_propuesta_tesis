@@ -163,6 +163,7 @@ TopoRelGST_6::TopoRelGST_6(vector<vector<int>> &rutas, int cant_stops){
                 }
             }
             vPorcMap[iParalelo][i-base] = v;
+            MNtemporal[cst.id(v)] = 1;
             /*
             string st = "ruta: ";
             st += to_string(i);

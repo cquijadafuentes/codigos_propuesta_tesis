@@ -26,7 +26,7 @@ int desplegarMenu(){
 		cout << "9 - Arrays en columnas." << endl;
 		cout << "10 - Operación allContained." << endl;
 		cout << "11 - Operación allContained2." << endl;
-		cout << "12 - Operación allContained2." << endl;
+		cout << "12 - Operación allContained3." << endl;
 		cout << "" << endl;
 		cout << "0 - Salir." << endl;
 		cout << " ****************************** " << endl;
