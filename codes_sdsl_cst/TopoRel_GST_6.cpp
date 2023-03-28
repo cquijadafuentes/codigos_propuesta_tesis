@@ -69,10 +69,7 @@ TopoRelGST_6::TopoRelGST_6(vector<vector<int>> &rutas, int cant_stops){
     }
     gstMFSbv = sd_vector<>(MFStemporal);
     gstMFSrank = sd_vector<>::rank_1_type(&gstMFSbv);
-    gstMFSselect = sd_vector<>::select_1_type(&gstMFSbv);
-
-
-    
+    gstMFSselect = sd_vector<>::select_1_type(&gstMFSbv);    
 
 //    cout << "Rutas... concatenadas" << endl;
 
@@ -80,6 +77,7 @@ TopoRelGST_6::TopoRelGST_6(vector<vector<int>> &rutas, int cant_stops){
     construct_im(cst, iv);
 
     bit_vector MNtemporal = bit_vector(cst.nodes(), 0);
+    bit_vector MRtemporal = bit_vector(cst.nodes(), 0);
 
 //    cout << "GST construido" << endl;
 /*
@@ -164,6 +162,11 @@ TopoRelGST_6::TopoRelGST_6(vector<vector<int>> &rutas, int cant_stops){
             }
             vPorcMap[iParalelo][i-base] = v;
             MNtemporal[cst.id(v)] = 1;
+            auto mr = cst.parent(v);
+            while(mr != cst.root()){
+                MRtemporal[cst.id(mr)] = 1;
+                mr = cst.parent(mr);
+            }
             /*
             string st = "ruta: ";
             st += to_string(i);
@@ -185,9 +188,10 @@ TopoRelGST_6::TopoRelGST_6(vector<vector<int>> &rutas, int cant_stops){
     }
 //    cout << "Map... OK" << endl;
 
-    gstMN = sd_vector<>(MNtemporal);
+    gstMNodos = sd_vector<>(MNtemporal);
+    gstMRamas = sd_vector<>(MRtemporal);
 
-    cout << "Fin constructor (parallel top-down)." << endl;
+    cout << "Fin constructor (parallel top-down  -)." << endl;
 }
 
 TopoRelGST_6::TopoRelGST_6(string inputFilename){
@@ -246,7 +250,8 @@ TopoRelGST_6::TopoRelGST_6(string inputFilename){
         }
         // Cargando gstMFSbv, rank y select.
         gstMFSbv.load(infile);
-        gstMN.load(infile);
+        gstMNodos.load(infile);
+        gstMRamas.load(infile);
         // Cerrando archivo
         infile.close();
         gstMFSrank = sd_vector<>::rank_1_type(&gstMFSbv);
@@ -1247,6 +1252,7 @@ void TopoRelGST_6::sizeEstructura(){
     cout << "gstMFSbv [B]: " << size_in_bytes(gstMFSbv) << endl;
     cout << "gstMFS_rank_1 [B]: " << size_in_bytes(gstMFSrank) << endl;
     cout << "gstMFS_select_1 [B]: " << size_in_bytes(gstMFSselect) << endl;
+    cout << "gstMNodos [B]: " << size_in_bytes(gstMNodos) << endl;
 
     cout << "**** Elementos ****" << endl;
     cout << "Nº Rutas: " << gstStops.size() << endl;
@@ -1466,7 +1472,8 @@ bool TopoRelGST_6::save(string outputFilename){
     }
     // Guardando gstMFSbv, rank y select.
     gstMFSbv.serialize(outfile);
-    gstMN.serialize(outfile);
+    gstMNodos.serialize(outfile);
+    gstMRamas.serialize(outfile);
     // Cerrando archivo
     outfile.close();
     return true;

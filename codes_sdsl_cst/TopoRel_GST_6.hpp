@@ -35,7 +35,8 @@ public:
     sd_vector<> gstMFSbv;                       // Marcas de fin de secuencia
     sd_vector<>::rank_1_type gstMFSrank;
     sd_vector<>::select_1_type gstMFSselect;
-    sd_vector<> gstMN;                         // Marcas de Nodos en Mapa
+    sd_vector<> gstMNodos;                         // Marcas de Nodos en Mapa
+    sd_vector<> gstMRamas;                         // Marcas de Ramas con hijos en Mapa
     
     TopoRelGST_6(vector<vector<int>>&, int);    // Constructor Top-down Paralelo
     TopoRelGST_6(string);                       // Constructor desde archivo

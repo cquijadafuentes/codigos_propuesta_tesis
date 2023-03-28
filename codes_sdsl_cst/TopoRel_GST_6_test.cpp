@@ -23,12 +23,21 @@ int desplegarMenu(){
 		cout << "6 - Mostrar csa." << endl;
 		cout << "7 - Mostrar marcas fin de secuencia." << endl;
 		cout << "8 - Mostrar lcp." << endl;
-		cout << "9 - Mostrar Marcas de Nodos." << endl;
+		cout << "9 - Mostrar Marcas de Nodos y Ramas." << endl;
 		cout << "10 - Arrays en columnas." << endl;
 		cout << "11 - Operación allContained." << endl;
 		cout << "12 - Operación allContained2." << endl;
 		cout << "13 - Operación allContained3." << endl;
-		cout << "" << endl;
+		cout << " ***** Navegación en Nodos ****" << endl;
+		cout << "14 - " << endl;
+		cout << "15 - " << endl;
+		cout << "16 - " << endl;
+		cout << "17 - " << endl;
+		cout << "18 - " << endl;
+		cout << "19 - " << endl;
+		cout << "20 - " << endl;
+		cout << "21 - " << endl;
+		cout << " ****************************** " << endl;
 		cout << "0 - Salir." << endl;
 		cout << " ****************************** " << endl;
 		cout << "INGRESE OPCIÓN: ";
@@ -176,10 +185,21 @@ void infoLCP(TopoRelGST_6 gst){
 }
 
 void infoMNodos(TopoRelGST_6 gst){
-	int size = gst.gstMN.size();
+	int size = gst.gstMNodos.size();
 	cout << "Arreglo de Nodos Marcados: " << size << endl;
 	for(int i=0; i<size; i++){
-		cout << gst.gstMN[i] << " ";
+		cout << gst.gstMNodos[i] << " ";
+	}
+	cout << endl;
+	for(int i=0; i<size; i++){
+		cout << i%10 << " ";
+	}
+	cout << endl;
+	
+	size = gst.gstMRamas.size();
+	cout << "Arreglo de Ramas con hijos Marcados: " << size << endl;
+	for(int i=0; i<size; i++){
+		cout << gst.gstMRamas[i] << " ";
 	}
 	cout << endl;
 	for(int i=0; i<size; i++){
