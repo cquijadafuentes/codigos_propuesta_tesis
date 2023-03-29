@@ -26,6 +26,7 @@ TopoRel_GST_5_save-load-test
 TopoRel_GST_5_size
 TopoRel_GST_5_test_allContained_byQueries
 TopoRel_GST_6_build
+TopoRel_GST_6_test_allContained_byQueries
 TopoRel_Naive_PreComp_load
 TopoRel_Naive_PreComp_save
 TopoRel_Naive_PreComp_save-load-test

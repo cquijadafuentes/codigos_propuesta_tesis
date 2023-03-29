@@ -4,7 +4,8 @@ PREFLAGS=-std=c++11 -g -O0 -DNDEBUG -fopenmp -I ~/include -L ~/lib
 
 POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
-BINS=TopoRel_GST_6_build TopoRel_GST_6_test\
+BINS=TopoRel_GST_6_test_allContained_byQueries\
+		TopoRel_GST_6_build TopoRel_GST_6_test\
 		TopoRel_Naive_test_allContained_byQueries\
 		time_TopoRel_allContained_vsGST5_byQueriesFile\
 		time_TopoRel_allContained_versionesGST5\
@@ -119,11 +120,17 @@ TopoRel_Naive_test_allContained_byQueries:
 TopoRel_GST_5_test:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_5_test TopoRel_GST_5_test.cpp $(OBJECTS) $(POSFLAGS)
 
+TopoRel_GST_5_test_allContained_byQueries:
+	$(CPP) $(PREFLAGS) -o TopoRel_GST_5_test_allContained_byQueries TopoRel_GST_5_test_allContained_byQueries.cpp $(OBJECTS) $(POSFLAGS)
+
 TopoRel_GST_6_build:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_6_build TopoRel_GST_6_build.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_GST_6_test:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_6_test TopoRel_GST_6_test.cpp $(OBJECTS) $(POSFLAGS)
+
+TopoRel_GST_6_test_allContained_byQueries:
+	$(CPP) $(PREFLAGS) -o TopoRel_GST_6_test_allContained_byQueries TopoRel_GST_6_test_allContained_byQueries.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_Naive_PreComp_load:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_load TopoRel_Naive_PreComp_load.cpp $(OBJECTS) $(POSFLAGS)
@@ -136,9 +143,6 @@ TopoRel_Naive_PreComp_test:
 
 TopoRel_Naive_PreComp_save-load-test:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_save-load-test TopoRel_Naive_PreComp_save-load-test.cpp $(OBJECTS) $(POSFLAGS)
-
-TopoRel_GST_5_test_allContained_byQueries:
-	$(CPP) $(PREFLAGS) -o TopoRel_GST_5_test_allContained_byQueries TopoRel_GST_5_test_allContained_byQueries.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_Naive_test:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_test TopoRel_Naive_test.cpp $(OBJECTS) $(POSFLAGS)
