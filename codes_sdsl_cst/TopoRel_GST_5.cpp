@@ -926,10 +926,10 @@ vector<int> TopoRelGST_5::tr_allContained2(int x, bool verbose){
                     if(verbose){
                         cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
                     }
-                    for(int i=pi; i<= pf; i++){
-                        if(cst.csa[i] == 0 || gstMFSbv[cst.csa[i]-1] == 1){
+                    for(int ii=pi; ii<= pf; ii++){
+                        if(cst.csa[ii] == 0 || gstMFSbv[cst.csa[ii]-1] == 1){
                             // Corresponde a una secuencia completa
-                            setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[i]));
+                            setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[ii]));
                         }
                     }
                 }
@@ -958,10 +958,10 @@ vector<int> TopoRelGST_5::tr_allContained2(int x, bool verbose){
             if(verbose){
                 cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
             }
-            for(int i=pi; i<= pf; i++){
-                if(cst.csa[i] == 0 || gstMFSbv[cst.csa[i]-1] == 1){
+            for(int ii=pi; ii<= pf; ii++){
+                if(cst.csa[ii] == 0 || gstMFSbv[cst.csa[ii]-1] == 1){
                     // Corresponde a una secuencia completa
-                    setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[i]));
+                    setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[ii]));
                 }
             }
         }
@@ -994,7 +994,7 @@ vector<int> TopoRelGST_5::tr_allContained3(int x, bool verbose){
     bool conFS = cst.depth(nodo) > len_min;
 
     // Nodo esta ubicado en el sufijo más corto de la secuencia.
-    for(int i=1; i<=pISec; i++){
+    for(int i=1; i<=pISec+1; i++){
         // Recorrido de las ramas por medio de WL
         auto nodoAux = nodo;
         if(verbose){
@@ -1017,10 +1017,10 @@ vector<int> TopoRelGST_5::tr_allContained3(int x, bool verbose){
                 if(verbose){
                     cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
                 }
-                for(int i=pi; i<= pf; i++){
-                    if(cst.csa[i] == 0 || gstMFSbv[cst.csa[i]-1] == 1){
+                for(int ii=pi; ii<= pf; ii++){
+                    if(cst.csa[ii] == 0 || gstMFSbv[cst.csa[ii]-1] == 1){
                         // Corresponde a una secuencia completa
-                        setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[i]));
+                        setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[ii]));
                     }
                 }
             }
@@ -1029,9 +1029,11 @@ vector<int> TopoRelGST_5::tr_allContained3(int x, bool verbose){
         if(verbose){
             cout << "Usando wl desde " << cst.id(nodo);
         }
-        nodo = cst.wl(nodo, gstRutas[x][pISec - i]);
-        if(verbose){
-            cout << " hasta " << cst.id(nodo) << " por elemento " << gstRutas[x][pISec - i] << endl;
+        if(i!=pISec+1){
+            nodo = cst.wl(nodo, gstRutas[x][pISec - i]);
+            if(verbose){
+                cout << " hasta " << cst.id(nodo) << " por elemento " << gstRutas[x][pISec - i] << endl;
+            }
         }
     }
 
