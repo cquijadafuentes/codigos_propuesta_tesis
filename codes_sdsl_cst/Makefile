@@ -7,6 +7,7 @@ POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 BINS=TopoRel_GST_6_test_allContained_byQueries\
 		TopoRel_GST_6_build TopoRel_GST_6_test\
 		TopoRel_Naive_test_allContained_byQueries\
+		time_TopoRel_allContained_vsGST6_byQueriesFile\
 		time_TopoRel_allContained_vsGST5_byQueriesFile\
 		time_TopoRel_allContained_versionesGST5\
 		time_TopoRel_allContain_GST5_xLote time_TopoRel_all_contain_GST5\
@@ -77,6 +78,9 @@ time_TopoRel_allContain_GST5_xLote:
 
 time_TopoRel_allContained_vsGST5_byQueriesFile:
 	$(CPP) $(PREFLAGS) -o time_TopoRel_allContained_vsGST5_byQueriesFile time_TopoRel_allContained_vsGST5_byQueriesFile.cpp $(OBJECTS) $(POSFLAGS)
+
+time_TopoRel_allContained_vsGST6_byQueriesFile:
+	$(CPP) $(PREFLAGS) -o time_TopoRel_allContained_vsGST6_byQueriesFile time_TopoRel_allContained_vsGST6_byQueriesFile.cpp $(OBJECTS) $(POSFLAGS)
 
 time_TopoRel_allContained_versionesGST5:
 	$(CPP) $(PREFLAGS) -o time_TopoRel_allContained_versionesGST5 time_TopoRel_allContained_versionesGST5.cpp $(OBJECTS) $(POSFLAGS)

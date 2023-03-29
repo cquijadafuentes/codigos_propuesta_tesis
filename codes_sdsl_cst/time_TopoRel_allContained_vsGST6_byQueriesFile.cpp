@@ -1,6 +1,6 @@
 /*
 	Toma de tiempo promedio para consultas allContained sobre implementaciones
-	gst5 (versión original recorriendo SA, versión 2 reccoriendo desde raíz y
+	GST6 (versión original recorriendo SA, versión 2 reccoriendo desde raíz y
 	versión 3 utilizando wl)
 	Las consultas provienen de un archivo de consulta generado con 
 	./extras/generador_consultas
@@ -14,7 +14,7 @@
 #include <cstdlib>
 #include "TopoRel_Naive.hpp"
 #include "TopoRel_Naive_PreComp.hpp"
-#include "TopoRel_GST_5.hpp"
+#include "TopoRel_GST_6.hpp"
 
 using namespace std;
 
@@ -22,14 +22,14 @@ vector<int> generarQueries(int n_rutas, int num_queries);
 
 int main(int argc, char const *argv[]){
 	if(argc < 4){
-		cout << "Programa para medir tiempo promedio en la operación allContained en GST5" << endl;
+		cout << "Programa para medir tiempo promedio en la operación allContained en GST6" << endl;
 		cout << "Error! faltan argumentos:" << endl;
-		cout << argv[0] << " <input_file_GST5> <queries_file> repeticiones" << endl;
+		cout << argv[0] << " <input_file_GST6> <queries_file> repeticiones" << endl;
 		return 0;
 	}
 	
 	cout << "Cargando estructuras..." << endl;
-	TopoRelGST_5 gst(argv[1]);
+	TopoRelGST_6 gst(argv[1]);
 
 	cout << "Cargando consultas..." << endl;
 	ifstream qFile(argv[2], ifstream::in);
@@ -59,7 +59,7 @@ int main(int argc, char const *argv[]){
 
 	unsigned t0, t1;
 
-	cout << "Ejecutando consultas GST5 versión 1..." << endl;
+	cout << "Ejecutando consultas GST6 versión 1..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
 	    for(int i=0; i<queries.size(); i++){
@@ -70,7 +70,7 @@ int main(int argc, char const *argv[]){
 	double tV1 = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
 
 
-	cout << "Ejecutando consultas GST5 versión 2..." << endl;
+	cout << "Ejecutando consultas GST6 versión 2..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
 	    for(int i=0; i<queries.size(); i++){
@@ -81,7 +81,7 @@ int main(int argc, char const *argv[]){
 	double tV2 = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
 
 
-	cout << "Ejecutando consultas GST5 versión 3..." << endl;
+	cout << "Ejecutando consultas GST6 versión 3..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
 	    for(int i=0; i<queries.size(); i++){

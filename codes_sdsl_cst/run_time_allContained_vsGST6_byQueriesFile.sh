@@ -14,7 +14,7 @@ REPETICIONES1=$4
 REPETICIONES2=$5
 
 
-echo "Fecha INICIO experimentos: $(date +'%Y/%m/%d %H:%M:%S') allContainedByQueriesFile_GST5" > ${OUTPUTFILE}
+echo "Fecha INICIO experimentos: $(date +'%Y/%m/%d %H:%M:%S') allContainedByQueriesFile_GST6" > ${OUTPUTFILE}
 
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFILE}
 echo "**************** DATASET = ${DATAFOLDER1} ****************" >> ${OUTPUTFILE}
@@ -22,7 +22,7 @@ echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFI
 
 for filename in gst_tripsMadrid_0005k gst_tripsMadrid_0010k gst_tripsMadrid_0015k gst_tripsMadrid_0020k gst_tripsMadrid_0025k
 do
-	./time_TopoRel_allContained_vsGST5_byQueriesFile ${DATAFOLDER1}${filename}.gst5 ${DATAFOLDER1}${filename}.queries.1 ${REPETICIONES1} >> ${OUTPUTFILE}
+	./time_TopoRel_allContained_vsGST6_byQueriesFile ${DATAFOLDER1}${filename}.gst6 ${DATAFOLDER1}${filename}.queries.1 ${REPETICIONES1} >> ${OUTPUTFILE}
 done
 echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
 
@@ -30,7 +30,7 @@ for i in 2 3
 do
 	for filename in gst_tripsMadrid_0005k gst_tripsMadrid_0010k gst_tripsMadrid_0015k gst_tripsMadrid_0020k gst_tripsMadrid_0025k
 	do
-		./time_TopoRel_allContained_vsGST5_byQueriesFile ${DATAFOLDER1}${filename}.gst5 ${DATAFOLDER1}${filename}.queries.${i} ${REPETICIONES2} >> ${OUTPUTFILE}
+		./time_TopoRel_allContained_vsGST6_byQueriesFile ${DATAFOLDER1}${filename}.gst6 ${DATAFOLDER1}${filename}.queries.${i} ${REPETICIONES2} >> ${OUTPUTFILE}
 	done
 	echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
 done
@@ -41,7 +41,7 @@ echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFI
 
 for filename in 20stops_min_05k  20stops_min_10k  20stops_min_15k  20stops_min_20k  20stops_min_25k
 do
-	./time_TopoRel_allContained_vsGST5_byQueriesFile ${DATAFOLDER2}${filename}.gst5 ${DATAFOLDER2}${filename}.queries.1 ${REPETICIONES1} >> ${OUTPUTFILE}
+	./time_TopoRel_allContained_vsGST6_byQueriesFile ${DATAFOLDER2}${filename}.gst6 ${DATAFOLDER2}${filename}.queries.1 ${REPETICIONES1} >> ${OUTPUTFILE}
 done
 echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
 
@@ -51,7 +51,7 @@ for i in 2 3
 do
 	for filename in 20stops_min_05k  20stops_min_10k  20stops_min_15k  20stops_min_20k  20stops_min_25k
 	do
-		./time_TopoRel_allContained_vsGST5_byQueriesFile ${DATAFOLDER2}${filename}.gst5 ${DATAFOLDER2}${filename}.queries.${i} ${REPETICIONES2} >> ${OUTPUTFILE}
+		./time_TopoRel_allContained_vsGST6_byQueriesFile ${DATAFOLDER2}${filename}.gst6 ${DATAFOLDER2}${filename}.queries.${i} ${REPETICIONES2} >> ${OUTPUTFILE}
 	done
 	echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
 done
