@@ -926,10 +926,10 @@ vector<int> TopoRelGST_5::tr_allContained2(int x, bool verbose){
                     if(verbose){
                         cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
                     }
-                    for(int ii=pi; ii<= pf; ii++){
-                        if(cst.csa[ii] == 0 || gstMFSbv[cst.csa[ii]-1] == 1){
+                    for(int j=pi; j<= pf; j++){
+                        if(cst.csa[j] == 0 || gstMFSbv[cst.csa[j]-1] == 1){
                             // Corresponde a una secuencia completa
-                            setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[ii]));
+                            setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[j]));
                         }
                     }
                 }
@@ -958,10 +958,10 @@ vector<int> TopoRelGST_5::tr_allContained2(int x, bool verbose){
             if(verbose){
                 cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
             }
-            for(int ii=pi; ii<= pf; ii++){
-                if(cst.csa[ii] == 0 || gstMFSbv[cst.csa[ii]-1] == 1){
+            for(int j=pi; j<= pf; j++){
+                if(cst.csa[j] == 0 || gstMFSbv[cst.csa[j]-1] == 1){
                     // Corresponde a una secuencia completa
-                    setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[ii]));
+                    setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[j]));
                 }
             }
         }
@@ -1017,10 +1017,10 @@ vector<int> TopoRelGST_5::tr_allContained3(int x, bool verbose){
                 if(verbose){
                     cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
                 }
-                for(int ii=pi; ii<= pf; ii++){
-                    if(cst.csa[ii] == 0 || gstMFSbv[cst.csa[ii]-1] == 1){
+                for(int j=pi; j<= pf; j++){
+                    if(cst.csa[j] == 0 || gstMFSbv[cst.csa[j]-1] == 1){
                         // Corresponde a una secuencia completa
-                        setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[ii]));
+                        setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[j]));
                     }
                 }
             }

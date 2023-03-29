@@ -59,6 +59,8 @@ int main(int argc, char const *argv[]){
 
 	unsigned t0, t1;
 
+	gst.howManyLCP = 0;
+	gst.howManyNodes = 0;
 	cout << "Ejecutando consultas GST6 versión 1..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
@@ -68,8 +70,12 @@ int main(int argc, char const *argv[]){
 	}
 	t1 = clock();
 	double tV1 = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
+	double cantLCPv1 = (0.0 + gst.howManyLCP) / queries.size() / repeticiones;
+	double cantNodosv1 = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
 
 
+	gst.howManyLCP = 0;
+	gst.howManyNodes = 0;
 	cout << "Ejecutando consultas GST6 versión 2..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
@@ -79,8 +85,12 @@ int main(int argc, char const *argv[]){
 	}
 	t1 = clock();
 	double tV2 = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
+	double cantLCPv2 = (0.0 + gst.howManyLCP) / queries.size() / repeticiones;
+	double cantNodosv2 = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
 
 
+	gst.howManyLCP = 0;
+	gst.howManyNodes = 0;
 	cout << "Ejecutando consultas GST6 versión 3..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
@@ -90,8 +100,13 @@ int main(int argc, char const *argv[]){
 	}
 	t1 = clock();
 	double tV3 = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
+	double cantLCPv3 = (0.0 + gst.howManyLCP) / queries.size() / repeticiones;
+	double cantNodosv3 = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
 
 	cout << "rutas\tqueries\tv1\tv2\tv3" << endl;
 	cout << gst.n_rutas << "\t" << num_queries << "\t" << tV1 << "\t" << tV2 << "\t" << tV3 << "\t[us]" << endl;
+	cout << "howMany\trutas\tcantv1\tcantv2\tcantv3" << endl;
+	cout << "LCP\t" << gst.n_rutas << "\t" << cantLCPv1 << "\t" << cantLCPv2 << "\t" << cantLCPv3 << endl;
+	cout << "Nodos\t" << gst.n_rutas << "\t" << cantNodosv1 << "\t" << cantNodosv2 << "\t" << cantNodosv3 << endl;
 	return 0;
 }

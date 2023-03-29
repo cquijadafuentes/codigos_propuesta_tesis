@@ -27,6 +27,7 @@ public:
     int len_max;
 
     int howManyLCP;
+    int howManyNodes;
 
     cst_sada<csa_wt<wt_int<rrr_vector<>>>> cst;
     vector<cst_sada<>::node_type> gstMapa;
