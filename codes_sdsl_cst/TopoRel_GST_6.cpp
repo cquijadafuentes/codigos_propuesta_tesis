@@ -4,6 +4,8 @@
     - Vector con las rutas
     - Marcas en stops (primer nivel del GST) sd_vector
     - Mapa a las hojas donde terminan las rutas
+    - Marcas de los nodos que estan en marcas
+    - Marcas de las ramas que poseen nodos en marcas
 
     Constructor:
             Versión en paralelo que recorre por cada ruta
@@ -988,8 +990,8 @@ vector<int> TopoRelGST_6::tr_allContained2(int x, bool verbose){
 
 vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
     // Versión de la operación allContained que determina el resultado
-    // iniciando en el nodo del mapa[x], recorriendo hacia la raíz y usando
-    // wl para cambiar de rama
+    // iniciando en el nodo del sufijo de largo <minlen> de la secuencia
+    // recorriendo hacia la raíz usando wl para agregar elementos
     set<int> setRes;
     setRes.insert(x);
 
@@ -1023,8 +1025,8 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
                 cout << "\tExplorando nodo: " << cst.id(nodoExp) << endl;
             }
             // Verificando rama por candidato
-            if(nodoExp != raiz && cst.size(nodoExp) > 1){
-                // Existe un nodo que es sufijo de la secuencia
+            if(nodoExp != raiz && cst.size(nodoExp) > 1 && (gstMRamas[cst.id(nodoExp)] == 1 || gstMNodos[cst.id(nodoExp)] == 1)){
+                // Existe un nodo que es sufijo de la secuencia y en la rama hay nodos de secuencia completa
                 // Verificando sub-árbol
                 int pi = cst.lb(nodoExp);
                 int pf = cst.rb(nodoExp);
@@ -1051,7 +1053,6 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
 
     vector<int> res(setRes.begin(), setRes.end());
     return res;
-
 
 }
 

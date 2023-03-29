@@ -13,7 +13,7 @@ string print_bool(bool x){
 
 int desplegarMenu(){
 	int opc = -1;
-	while(opc < 0 || opc > 12){
+	while(opc < 0 || opc > 14){
 		cout << " ****************************** " << endl;
 		cout << "1 - Información general." << endl;
 		cout << "2 - Información hijos de la raíz." << endl;
@@ -29,7 +29,7 @@ int desplegarMenu(){
 		cout << "12 - Operación allContained2." << endl;
 		cout << "13 - Operación allContained3." << endl;
 		cout << " ***** Navegación en Nodos ****" << endl;
-		cout << "14 - " << endl;
+		cout << "14 - Weiner Link de un nodo" << endl;
 		cout << "15 - " << endl;
 		cout << "16 - " << endl;
 		cout << "17 - " << endl;
@@ -106,11 +106,16 @@ void infoNodo(TopoRelGST_6 gst){
 	cout << "Profundidad : " << gst.cst.depth(nodo) << endl;
 	cout << "Id del padre del nodo: " << gst.cst.id(gst.cst.parent(nodo)) << endl;
 	cout << "Nodo hoja: " << print_bool(gst.cst.is_leaf(nodo)) << endl;
-	cout << "Hojas del sub-árbol: " << gst.cst.size(nodo) << endl;
+	cout << "Hojas del sub-árbol: " << gst.cst.size(nodo);
+	int left = gst.cst.lb(nodo);
+	int right = gst.cst.rb(nodo);
+	cout << " - desde " << left << " hasta " << right << endl;
+	cout << "Sibling: " << gst.cst.id(gst.cst.sibling(nodo)) << endl;
+	cout << "SuffixLink: " << gst.cst.id(gst.cst.sl(nodo)) << endl;
 	cout << "Cantidad de hijos: " << gst.cst.degree(nodo) << endl;
 	if(!gst.cst.is_leaf(nodo)){
 		cout << "--- Información de los hijos del nodo ---" << endl;
-		cout << "id\ted_1\tdeg\tdep\tndep\tsize\tlb\trb\tsun\tleaf" << endl;
+		cout << "id\ted_1\tdeg\tdep\tndep\tsize\tlb\trb\tsun\tleaf\ttext" << endl;
 	    for (auto child: gst.cst.children(nodo)) {
 	        cout << gst.cst.id(child) << "\t";
 	        cout << "'" << gst.cst.edge(child, 1) << "'" << "\t";       // D-th char of the edge-label
@@ -122,7 +127,7 @@ void infoNodo(TopoRelGST_6 gst){
 	        cout << gst.cst.rb(child) << "\t";          // Rightmost leaf
 	        cout << gst.cst.sn(child) << "\t";          // Suffix number
 	        cout << gst.cst.is_leaf(child) << "\t";     // IsLeaf
-	        //cout << extract(gst.cst, child);
+	        cout << extract(gst.cst, child);
 	        cout << "\t" << endl;
 	    }
 	}
@@ -149,7 +154,7 @@ void infoRuta(TopoRelGST_6 gst){
 	cout << "Cantidad de hijos: " << gst.cst.degree(nodo);
 	if(!gst.cst.is_leaf(nodo)){
 		cout << "--- Información de los hijos del nodo ---" << endl;
-		cout << "id\ted_1\tdeg\tdep\tndep\tsize\tlb\trb\tsun\tleaf" << endl;
+		cout << "id\ted_1\tdeg\tdep\tndep\tsize\tlb\trb\tsun\tleaf\ttext" << endl;
 	    for (auto child: gst.cst.children(nodo)) {
 	        cout << gst.cst.id(child) << "\t";
 	        cout << "'" << gst.cst.edge(child, 1) << "'" << "\t";       // D-th char of the edge-label
@@ -161,7 +166,7 @@ void infoRuta(TopoRelGST_6 gst){
 	        cout << gst.cst.rb(child) << "\t";          // Rightmost leaf
 	        cout << gst.cst.sn(child) << "\t";          // Suffix number
 	        cout << gst.cst.is_leaf(child) << "\t";     // IsLeaf
-	        cout << "\t" << endl;
+	        cout << "\t" << extract(gst.cst, child) << endl;
 	    }
 	}
 }
@@ -285,6 +290,22 @@ void allContainedOperation3(TopoRelGST_6 gst){
 	cout << endl;
 }
 
+void weinerLink(TopoRelGST_6 gst){
+	cout << "Weiner Link de un nodo" << endl;
+	cout << "Ingrese el id del nodo que desea consultar: ";
+	int x;
+	cin >> x;
+	auto nodo = gst.cst.inv_id(x);
+	cout << "Ingrese el elemento para la consulta de wl: ";
+	int c;
+	cin >> c;
+	auto nodoWL = gst.cst.wl(nodo, c);
+	cout << "Nodo resultante id: " << gst.cst.id(nodoWL) << endl;
+	cout << "Secuencia original: " << extract(gst.cst, nodo) << endl;
+	cout << "Secuencia obtenida: " << extract(gst.cst, nodoWL) << endl;
+	cout << endl;
+}
+
 int main(int argc, char const *argv[]){
 
 	if(argc < 2){
@@ -341,6 +362,9 @@ int main(int argc, char const *argv[]){
 	    		break;
 	    	case 13:
 	    		allContainedOperation3(gst);
+	    		break;
+	    	case 14:
+	    		weinerLink(gst);
 	    		break;
 	    	default:
 	    		cout << "Ocurrió algún error..." << endl;
