@@ -64,6 +64,7 @@ public:
     vector<int> tr_allContained(int,bool=false);
     vector<int> tr_allContained2(int,bool=false);   // Recorrido desde la raíz de los distintos sufijos
     vector<int> tr_allContained3(int,bool=false);   // Recorrido desde el nodo de la secuencia usando wl
+    vector<int> tr_allIntersect(int,bool=false);
 
     void navega(int);
     void sizeEstructura();

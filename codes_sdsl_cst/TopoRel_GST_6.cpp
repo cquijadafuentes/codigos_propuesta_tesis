@@ -1069,7 +1069,26 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
 
     vector<int> res(setRes.begin(), setRes.end());
     return res;
+}
 
+
+vector<int> TopoRelGST_6::tr_allIntersect(int x, bool verbose){
+    set<int> setRes;
+    setRes.insert(x);
+
+    // Calculando el nodo inicial con el sufijo de la secuencia de largo len_min
+    auto raiz = cst.root();
+    for(int i=0; i<gstRutas[x].size(); i++){
+        auto nodo = cst.child(raiz, gstRutas[x][i]);
+        int idL = cst.lb(nodo);
+        int idR = cst.rb(nodo);
+        for(int j=idL; j<=idR; j++){
+            setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[j]));
+        }
+    }
+
+    vector<int> res(setRes.begin(), setRes.end());
+    return res;
 }
 
 

@@ -13,21 +13,27 @@ void print_bool(bool x){
 }
 
 
-int main(){
+int main(int argc, char const *argv[]){
+	if(argc < 2){
+		cout << "Error! faltan argumentos." << endl;
+		cout << argv[0] << "<input_filename.txt>" << endl;
+		cout << "Input_File format:" << endl;
+		cout << "cant_rutas max_stop" << endl;
+		cout << "cant_stops_r1 r1_st1 r1_st2 ···" << endl;
+		cout << "cant_stops_r2 r2_st1 r2_st2 ···" << endl;
+		cout << "···" << endl << endl;
+		return 0;
+	}
 
-	cout << "Input:" << endl;
-	cout << "cant_rutas max_stop" << endl;
-	cout << "cant_stops_r1 r1_st1 r1_st2 ···" << endl;
-	cout << "cant_stops_r2 r2_st1 r2_st2 ···" << endl;
-	cout << "···" << endl << endl;
+	ifstream txtInput(argv[1], ifstream::in);
 
 	int n, x, aux, max;
-	cin >> n >> max;
+	txtInput >> n >> max;
 	vector<vector<int>> lx(n);
 	for(int i = 0; i < n; i++){
-		cin >> x;
+		txtInput >> x;
 		for(int j=0; j<x; j++){
-			cin >> aux;
+			txtInput >> aux;
 			lx[i].push_back(aux);
 		}
 	}
