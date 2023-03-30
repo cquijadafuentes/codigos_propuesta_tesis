@@ -112,14 +112,11 @@ TopoRel_GST_5_save-load-test:
 TopoRel_GST_5_size:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_5_size TopoRel_GST_5_size.cpp $(OBJECTS) $(POSFLAGS)
 
-TopoRel_Naive_test_allContained_byQueries:
-	$(CPP) $(PREFLAGS) -o TopoRel_Naive_test_allContained_byQueries TopoRel_Naive_test_allContained_byQueries.cpp $(OBJECTS) $(POSFLAGS)
+TopoRel_GST_5_test_allContained_byQueries:
+	$(CPP) $(PREFLAGS) -o TopoRel_GST_5_test_allContained_byQueries TopoRel_GST_5_test_allContained_byQueries.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_GST_5_test:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_5_test TopoRel_GST_5_test.cpp $(OBJECTS) $(POSFLAGS)
-
-TopoRel_GST_5_test_allContained_byQueries:
-	$(CPP) $(PREFLAGS) -o TopoRel_GST_5_test_allContained_byQueries TopoRel_GST_5_test_allContained_byQueries.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_Naive_PreComp_load:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_load TopoRel_Naive_PreComp_load.cpp $(OBJECTS) $(POSFLAGS)
@@ -132,6 +129,9 @@ TopoRel_Naive_PreComp_test:
 
 TopoRel_Naive_PreComp_save-load-test:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_save-load-test TopoRel_Naive_PreComp_save-load-test.cpp $(OBJECTS) $(POSFLAGS)
+
+TopoRel_Naive_test_allContained_byQueries:
+	$(CPP) $(PREFLAGS) -o TopoRel_Naive_test_allContained_byQueries TopoRel_Naive_test_allContained_byQueries.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_Naive_test:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_test TopoRel_Naive_test.cpp $(OBJECTS) $(POSFLAGS)
