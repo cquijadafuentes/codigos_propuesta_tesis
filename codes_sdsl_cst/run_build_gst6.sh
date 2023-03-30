@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -ne 5 ]; then
+if [ $# -ne 1 ]; then
 	echo "$(basename $0) <data_folder>"
 	echo "Generará arcvivos en formato gst6"
 	exit 1
