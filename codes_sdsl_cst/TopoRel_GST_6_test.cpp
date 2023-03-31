@@ -169,6 +169,15 @@ void infoRuta(TopoRelGST_6 gst){
 	        cout << "\t" << extract(gst.cst, child) << endl;
 	    }
 	}
+/*
+	int pi = 0;
+	if(id != 0){
+		pi =  + gst.gstMFSselect(id - 1);
+	}
+	int pf = gst.gstMFSselect(id);
+	cout << "Información de la ruta como substring entre las posiciones " << pi << " y " << pf <<
+			": " << gst.cst.substring(pi, pf) << endl;
+*/
 }
 
 void infoCSA(TopoRelGST_6 gst){
