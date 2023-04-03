@@ -169,6 +169,7 @@ void infoRuta(TopoRelGST_6 gst){
 	        cout << "\t" << extract(gst.cst, child) << endl;
 	    }
 	}
+	cout << endl;
 /*
 	int pi = 0;
 	if(id != 0){
@@ -178,6 +179,22 @@ void infoRuta(TopoRelGST_6 gst){
 	cout << "Información de la ruta como substring entre las posiciones " << pi << " y " << pf <<
 			": " << gst.cst.substring(pi, pf) << endl;
 */
+
+	cout << "Extracción desde int_vector..." << endl;
+	vector<long unsigned int> iv = extract(gst.cst, nodo);
+
+    // Imprimir los enteros en el vector
+    for (uint64_t i = 0; i < iv.size(); i++) {
+        cout << iv[i] << " ";
+    }
+    cout << endl;
+
+    cout << "Desde método getRuta" << endl;
+    vector<int> r = gst.getRuta(id);
+    for (int i = 0; i < r.size(); ++i){
+    	cout << r[i] << " ";
+    }
+    cout << endl;
 }
 
 void infoCSA(TopoRelGST_6 gst){

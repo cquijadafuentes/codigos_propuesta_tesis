@@ -72,6 +72,7 @@ public:
     void printRutaYPos(int);
     void printRuta(int);
     int getLargoRuta(int);
+    vector<int> getRuta(int);
     bool iguales(TopoRelGST_6 x);
 
     bool save(string);

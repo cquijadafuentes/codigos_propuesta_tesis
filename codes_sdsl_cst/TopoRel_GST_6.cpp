@@ -278,8 +278,8 @@ string TopoRelGST_6::obtenerRelacion(int x, int y){
     // Identificar contención según nodo
     // Inside, includes, coveredBy, covers
     int corto, largo, lC, lL;
-    int lx = gstRutas[x].size();
-    int ly = gstRutas[y].size();
+    int lx = getLargoRuta(x);
+    int ly = getLargoRuta(y);
     if(lx < ly){
         corto = x;
         lC = lx;
@@ -398,8 +398,8 @@ bool TopoRelGST_6::tr_equals(int x, int y){
 
 bool TopoRelGST_6::tr_coveredby(int x, int y){
     // Descarte por largo de secuencias
-    int lx = gstRutas[x].size();
-    int ly = gstRutas[y].size();
+    int lx = getLargoRuta(x);
+    int ly = getLargoRuta(y);
     if(lx >= ly){
         return false;
     }
@@ -431,13 +431,13 @@ bool TopoRelGST_6::tr_covers(int x, int y){
 
 bool TopoRelGST_6::tr_inside(int x, int y){
     // Descarte por largo de secuencias
-    int lx = gstRutas[x].size();
-    int ly = gstRutas[y].size();
+    int lx = getLargoRuta(x);
+    int ly = getLargoRuta(y);
     if(lx >= ly){
         return false;
     }
     // Descarte por CoveredBy
-    int l = gstRutas[x].size();
+    int l = getLargoRuta(x);
     auto lca1 = cst.lca(gstMapa[x], gstMapa[y]);
     auto lca2 = cst.lca(gstMapa[x], gstMapa[y+n_rutas]);
     auto lca3 = cst.lca(gstMapa[x+n_rutas], gstMapa[y]);
@@ -459,7 +459,7 @@ bool TopoRelGST_6::tr_inside(int x, int y){
     auto lcaCrL = cst.root();
     auto lcaCrLr = cst.root();
 
-    int tempL = gstRutas[y].size();
+    int tempL = getLargoRuta(y);
     do{
         // Acortar la secuencia Larga
         L = cst.sl(L);
@@ -472,7 +472,7 @@ bool TopoRelGST_6::tr_inside(int x, int y){
         // Existe contención
         return true;
     }
-    tempL = gstRutas[y].size();
+    tempL = getLargoRuta(y);
     do{
         // Acortar la secuencia LargaReversa
         Lr = cst.sl(Lr);
@@ -503,16 +503,16 @@ bool TopoRelGST_6::tr_disjoint(int x, int y){
     }
     // Descartar posible TO
     int bXi = gstRutas[x][0];
-    int bXf = gstRutas[x][gstRutas[x].size()-1];
+    int bXf = gstRutas[x][getLargoRuta(x)-1];
     int bYi = gstRutas[y][0];
-    int bYf = gstRutas[y][gstRutas[y].size()-1];
+    int bYf = gstRutas[y][getLargoRuta(y)-1];
     if(gstStops[y][bXi] == 1 || gstStops[y][bXf] == 1 || gstStops[x][bYi] == 1 || gstStops[x][bYf] == 1){
         // Hay bordes en contacto con la otra secuencia
         return false;
     }
     // Comprobar cualquier intersección
-    int lx = gstRutas[x].size();
-    int ly = gstRutas[y].size();
+    int lx = getLargoRuta(x);
+    int ly = getLargoRuta(y);
 
     for(int i=2; i<lx; i++){
         if(gstStops[y][gstRutas[x][i-1]] == 1){
@@ -537,9 +537,9 @@ bool TopoRelGST_6::tr_touches(int x, int y){
     }
     // Verifica candidato por bordes
     int bXi = gstRutas[x][0];
-    int bXf = gstRutas[x][gstRutas[x].size()-1];
+    int bXf = gstRutas[x][getLargoRuta(x)-1];
     int bYi = gstRutas[y][0];
-    int bYf = gstRutas[y][gstRutas[y].size()-1];
+    int bYf = gstRutas[y][getLargoRuta(y)-1];
     if(gstStops[y][bXi] != 1 && gstStops[y][bXf] != 1 && gstStops[x][bYi] != 1 && gstStops[x][bYf] != 1){
         // No hay bordes en contacto con la otra secuencia
         return false;
@@ -552,7 +552,7 @@ bool TopoRelGST_6::tr_touches(int x, int y){
     // Verificar OV (intersección interior-interior)
     // Se recorre x para identificar cualquier coincidencia con y
     int aux;
-    int lx = gstRutas[x].size();
+    int lx = getLargoRuta(x);
     for(int i=2; i<lx; i++){
         aux = gstRutas[x][i-1];
         if(aux != bYi && aux != bYf && gstStops[y][aux]){
@@ -573,14 +573,14 @@ bool TopoRelGST_6::tr_overlaps(int x, int y){
     }
     // Bordes de las secuencias
     int bXi = gstRutas[x][0];
-    int bXf = gstRutas[x][gstRutas[x].size()-1];
+    int bXf = gstRutas[x][getLargoRuta(x)-1];
     int bYi = gstRutas[y][0];
-    int bYf = gstRutas[y][gstRutas[y].size()-1];
+    int bYf = gstRutas[y][getLargoRuta(y)-1];
     // Comprobar intersección Ix-Iy y Ix-Ey (al menos una de cada una)
     int iXiY = 0;
     int iXeY = 0;
-    int lx = gstRutas[x].size();
-    int ly = gstRutas[y].size();
+    int lx = getLargoRuta(x);
+    int ly = getLargoRuta(y);
     int px = 2;
     int ed;
     if(gstStops[y][bXi] == 0 || gstStops[y][bXf] == 0){
@@ -635,8 +635,8 @@ bool TopoRelGST_6::tr_overlaps(int x, int y){
 bool TopoRelGST_6::tr_within(int x, int y){
     // Debe ser EQUALS, COVEREDBY o INSIDE
     // Descarte por largo de secuencia
-    int lx = gstRutas[x].size();
-    int ly = gstRutas[y].size();
+    int lx = getLargoRuta(x);
+    int ly = getLargoRuta(y);
     if(lx > ly){
         return false;
     }
@@ -661,8 +661,8 @@ bool TopoRelGST_6::tr_within(int x, int y){
     auto lcaCLr = cst.root();
     auto lcaCrL = cst.root();
     auto lcaCrLr = cst.root();
-    int l = gstRutas[x].size();
-    int tempL = gstRutas[y].size();
+    int l = getLargoRuta(x);
+    int tempL = getLargoRuta(y);
     do{
         // Acortar la secuencia Larga
         L = cst.sl(L);
@@ -676,7 +676,7 @@ bool TopoRelGST_6::tr_within(int x, int y){
         return true;
     }
 
-    tempL = gstRutas[y].size();
+    tempL = getLargoRuta(y);
     do{
         // Acortar la secuencia LargaReversa
         Lr = cst.sl(Lr);
@@ -921,12 +921,14 @@ vector<int> TopoRelGST_6::tr_allContained2(int x, bool verbose){
     // por un recorrido del GST desde la raíz
     set<int> setRes;
     setRes.insert(x);
+    vector<int> gstRutaX = getRuta(x);
+
     // Primer ciclo recorre los sub-árboles con los sufijos
     // que corresponden a la secuencia posible.
-    int topeSec = gstRutas[x].size() - len_min;
+    int topeSec = getLargoRuta(x) - len_min;
     auto raiz = cst.root();
     for(int i=0; i<=topeSec; i++){
-        auto nodo = cst.child(raiz, gstRutas[x][i]);
+        auto nodo = cst.child(raiz, gstRutaX[i]);
         howManyNodes++;
         int ii = cst.depth(nodo);
         if(verbose){
@@ -934,7 +936,7 @@ vector<int> TopoRelGST_6::tr_allContained2(int x, bool verbose){
             cout << "i: " << i << " ii: " << ii << " depth: " << cst.depth(nodo) << endl;
         }
         // Comenzar con un sufijo de largo al menos len_min
-        while(nodo != raiz && i+ii <= gstRutas[x].size() && (gstMRamas[cst.id(nodo)] == 1 || gstMNodos[cst.id(nodo)] == 1)){
+        while(nodo != raiz && i+ii <= getLargoRuta(x) && (gstMRamas[cst.id(nodo)] == 1 || gstMNodos[cst.id(nodo)] == 1)){
             if(cst.depth(nodo) >= len_min && (gstMRamas[cst.id(nodo)] == 1 || gstMNodos[cst.id(nodo)] == 1)){
                 // Son nodos que representan sufijos cuyo largo 
                 // supera el de la secuencia menor del conjunto
@@ -959,7 +961,7 @@ vector<int> TopoRelGST_6::tr_allContained2(int x, bool verbose){
                 }
             }
 
-            nodo = cst.child(nodo, gstRutas[x][i+ii]);
+            nodo = cst.child(nodo, gstRutaX[i+ii]);
             howManyNodes++;
             ii = cst.depth(nodo);
             if(verbose){
@@ -1003,19 +1005,20 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
     // recorriendo hacia la raíz usando wl para agregar elementos
     set<int> setRes;
     setRes.insert(x);
+    vector<int> gstRutaX = getRuta(x);
 
     // Calculando el nodo inicial con el sufijo de la secuencia de largo len_min
     auto raiz = cst.root();
     howManyNodes++;
     auto nodo = raiz;
-    int pISec = gstRutas[x].size() - len_min;
+    int pISec = getLargoRuta(x) - len_min;
     int ps;
     while(cst.depth(nodo) < len_min){
         ps = pISec + cst.depth(nodo);
-        nodo = cst.child(nodo, gstRutas[x][ps]);
+        nodo = cst.child(nodo, gstRutaX[ps]);
         howManyNodes++;
         if(verbose){
-            cout << "Fase 0 por nodo: " << cst.id(nodo) << " por elemento " << gstRutas[x][ps] << endl;
+            cout << "Fase 0 por nodo: " << cst.id(nodo) << " por elemento " << gstRutaX[ps] << endl;
         }
     }
     bool conFS = cst.depth(nodo) > len_min;
@@ -1059,10 +1062,10 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
             cout << "Usando wl desde " << cst.id(nodo);
         }
         if(i!=pISec+1){
-            nodo = cst.wl(nodo, gstRutas[x][pISec - i]);
+            nodo = cst.wl(nodo, gstRutaX[pISec - i]);
             howManyNodes++;
             if(verbose){
-                cout << " hasta " << cst.id(nodo) << " por elemento " << gstRutas[x][pISec - i] << endl;
+                cout << " hasta " << cst.id(nodo) << " por elemento " << gstRutaX[pISec - i] << endl;
             }
         }
     }
@@ -1075,11 +1078,12 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
 vector<int> TopoRelGST_6::tr_allIntersect(int x, bool verbose){
     set<int> setRes;
     setRes.insert(x);
+    vector<int> gstRutaX = getRuta(x);
 
     // Calculando el nodo inicial con el sufijo de la secuencia de largo len_min
     auto raiz = cst.root();
-    for(int i=0; i<gstRutas[x].size(); i++){
-        auto nodo = cst.child(raiz, gstRutas[x][i]);
+    for(int i=0; i<getLargoRuta(x); i++){
+        auto nodo = cst.child(raiz, gstRutaX[i]);
         int idL = cst.lb(nodo);
         int idR = cst.rb(nodo);
         for(int j=idL; j<=idR; j++){
@@ -1376,6 +1380,12 @@ int TopoRelGST_6::getLargoRuta(int x){
     }
     int pF = gstMFSselect(x+1) - 1;
     return pF - pI + 1;
+}
+
+vector<int> TopoRelGST_6::getRuta(int x){
+    vector<long unsigned int> iv = extract(cst, gstMapa[x]);
+    vector<int> r(iv.begin(), iv.begin() + getLargoRuta(x));
+    return r;
 }
 
 bool TopoRelGST_6::iguales(TopoRelGST_6 x){
