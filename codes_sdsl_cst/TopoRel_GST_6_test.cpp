@@ -144,11 +144,23 @@ void infoRuta(TopoRelGST_6 gst){
 
 	auto nodo = gst.gstMapa[id];
 	cout << "Información de la ruta " << id << endl;
+    cout << "getRuta: ";
+    vector<int> r = gst.getRuta(id);
+    for (int i = 0; i < r.size(); ++i){
+    	cout << r[i] << " ";
+    }
+    cout << endl;
+    cout << "Largo ruta: " << gst.getLargoRuta(id) << endl;
 	cout << "Nodo id: " << gst.cst.id(nodo) << endl;
+	if(gst.cst.depth(nodo) > 100){
+		cout << "Largo de la secuencia del nodo muy extensa... omitida" << endl;
+	}else{
+		cout << "Secuencia del nodo: " << extract(gst.cst, nodo) << endl;
+	}
+	cout << "Profundidad secuencia: " << gst.cst.depth(nodo) << endl;
 	cout << "Profundidad del nodo: " << gst.cst.node_depth(nodo) << endl;
-	cout << "Secuencia del nodo: " << extract(gst.cst, nodo) << endl;
-	cout << "Profundidad : " << gst.cst.depth(nodo) << endl;
-	cout << "Id del padre del nodo: " << gst.cst.id(gst.cst.parent(nodo));
+	cout << "Id del padre del nodo: " << gst.cst.id(gst.cst.parent(nodo)) << endl;
+	cout << "Nodo raíz: " << print_bool(gst.cst.parent(nodo) == gst.cst.root()) << endl;
 	cout << "Nodo hoja: " << print_bool(gst.cst.is_leaf(nodo)) << endl;;
 	cout << "Hojas del sub-árbol: " << gst.cst.size(nodo);
 	cout << "Cantidad de hijos: " << gst.cst.degree(nodo);
@@ -166,35 +178,10 @@ void infoRuta(TopoRelGST_6 gst){
 	        cout << gst.cst.rb(child) << "\t";          // Rightmost leaf
 	        cout << gst.cst.sn(child) << "\t";          // Suffix number
 	        cout << gst.cst.is_leaf(child) << "\t";     // IsLeaf
-	        cout << "\t" << extract(gst.cst, child) << endl;
+	        //cout << "\t" << extract(gst.cst, child) << endl;
 	    }
 	}
 	cout << endl;
-/*
-	int pi = 0;
-	if(id != 0){
-		pi =  + gst.gstMFSselect(id - 1);
-	}
-	int pf = gst.gstMFSselect(id);
-	cout << "Información de la ruta como substring entre las posiciones " << pi << " y " << pf <<
-			": " << gst.cst.substring(pi, pf) << endl;
-*/
-
-	cout << "Extracción desde int_vector..." << endl;
-	vector<long unsigned int> iv = extract(gst.cst, nodo);
-
-    // Imprimir los enteros en el vector
-    for (uint64_t i = 0; i < iv.size(); i++) {
-        cout << iv[i] << " ";
-    }
-    cout << endl;
-
-    cout << "Desde método getRuta" << endl;
-    vector<int> r = gst.getRuta(id);
-    for (int i = 0; i < r.size(); ++i){
-    	cout << r[i] << " ";
-    }
-    cout << endl;
 }
 
 void infoCSA(TopoRelGST_6 gst){
