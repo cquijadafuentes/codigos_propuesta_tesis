@@ -1008,6 +1008,7 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
     vector<int> gstRutaX = getRuta(x);
 
     // Calculando el nodo inicial con el sufijo de la secuencia de largo len_min
+    // Fase 0
     auto raiz = cst.root();
     howManyNodes++;
     auto nodo = raiz;
@@ -1032,7 +1033,7 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
         }
         while(cst.depth(nodoAux) >= len_min){
             auto nodoExp = nodoAux;
-            if(!conFS){
+            if(len_min + i - 1 >= cst.depth(nodoAux)){
                 nodoExp = cst.child(nodoAux, finSec);
                 howManyNodes++;
             }
@@ -1040,8 +1041,10 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
                 cout << "\tExplorando nodo: " << cst.id(nodoExp) << endl;
             }
             // Verificando rama por candidato
-            if(nodoExp != raiz && cst.size(nodoExp) > 1 && (gstMRamas[cst.id(nodoExp)] == 1 || gstMNodos[cst.id(nodoExp)] == 1)){
-                // Existe un nodo que es sufijo de la secuencia y en la rama hay nodos de secuencia completa
+            if(nodoExp != raiz && (gstMRamas[cst.id(nodoExp)] == 1 || 
+                gstMNodos[cst.id(nodoExp)] == 1)){
+                // Existe un nodo que es sufijo de la secuencia y en la rama hay nodos 
+                // de secuencia completa
                 // Verificando sub-árbol
                 int pi = cst.lb(nodoExp);
                 int pf = cst.rb(nodoExp);
@@ -1052,17 +1055,24 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
                     if(cst.csa[j] == 0 || gstMFSbv[cst.csa[j]-1] == 1){
                         // Corresponde a una secuencia completa
                         setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[j]));
+                        if(verbose){
+                            cout << "\t\t\tInsertando " << cst.csa[j] << endl;
+                        }
                     }
                 }
             }
             nodoAux = cst.parent(nodoAux);
             howManyNodes++;
+            if(verbose){
+                cout << "Hacia el padre " << cst.id(nodoAux) << endl;
+            }
         }
         if(verbose){
             cout << "Usando wl desde " << cst.id(nodo);
         }
         if(i!=pISec+1){
             nodo = cst.wl(nodo, gstRutaX[pISec - i]);
+            conFS = (cst.depth(nodo) - i) > len_min;
             howManyNodes++;
             if(verbose){
                 cout << " hasta " << cst.id(nodo) << " por elemento " << gstRutaX[pISec - i] << endl;

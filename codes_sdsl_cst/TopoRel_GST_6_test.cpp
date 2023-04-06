@@ -137,6 +137,7 @@ void infoRuta(TopoRelGST_6 gst){
 	cout << "Ingrese id de la ruta: ";
 	int id;
 	cin >> id;
+	cout << endl;
 	if(id < 0 || id >= gst.n_rutas){
 		cout << "La ruta debe ser un número entre 0 y " << gst.n_rutas << "." << endl;
 		return;
@@ -241,6 +242,7 @@ void infoArrays(TopoRelGST_6 gst){
 void infoMFS(TopoRelGST_6 gst){
 	int size = gst.n_concat;
 	cout << "gstMFSbv de tamaño " << size << endl;	
+	cout << endl;
 	for(int i=0; i<size; i++){
 		cout << (i%10);
 	}
@@ -263,6 +265,7 @@ void allContainedOperation(TopoRelGST_6 gst){
 	cout << "Desea el debug del proceso (1-SI - 0-NO):";
 	int v;
 	cin >> v;
+	cout << endl;
 	vector<int> res = gst.tr_allContained(x, v==1);
 	cout << "El resultado contiene " << res.size() << " elementos: " << endl;
 	for(int i=0; i<res.size(); i++){
@@ -279,6 +282,7 @@ void allContainedOperation2(TopoRelGST_6 gst){
 	cout << "Desea el debug del proceso (1-SI - 0-NO):";
 	int v;
 	cin >> v;
+	cout << endl;
 	vector<int> res = gst.tr_allContained2(x, v==1);
 	cout << "El resultado contiene " << res.size() << " elementos: " << endl;
 	for(int i=0; i<res.size(); i++){
@@ -295,6 +299,7 @@ void allContainedOperation3(TopoRelGST_6 gst){
 	cout << "Desea el debug del proceso (1-SI - 0-NO):";
 	int v;
 	cin >> v;
+	cout << endl;
 	vector<int> res = gst.tr_allContained3(x, v==1);
 	cout << "El resultado contiene " << res.size() << " elementos: " << endl;
 	for(int i=0; i<res.size(); i++){
@@ -312,6 +317,7 @@ void weinerLink(TopoRelGST_6 gst){
 	cout << "Ingrese el elemento para la consulta de wl: ";
 	int c;
 	cin >> c;
+	cout << endl;
 	auto nodoWL = gst.cst.wl(nodo, c);
 	cout << "Nodo resultante id: " << gst.cst.id(nodoWL) << endl;
 	cout << "Secuencia original: " << extract(gst.cst, nodo) << endl;
