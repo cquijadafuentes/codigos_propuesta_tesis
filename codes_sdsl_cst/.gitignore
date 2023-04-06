@@ -3,6 +3,7 @@ extras/dataset_lineasmadrid_repetidos/genera_repeticiones
 extras/dataset_madrid/procesa_linesStops
 extras/dataset_madrid/procesa_madrid_trips
 time_TopoRel_allContained_vsGST6_byQueriesFile
+time_allTopoRels_byQueriesFile
 TopoRel_*_test
 TopoRel_GST_6_allContained
 TopoRel_GST_6_build

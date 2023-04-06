@@ -4,7 +4,8 @@ PREFLAGS=-std=c++11 -g -O0 -DNDEBUG -fopenmp -I ~/include -L ~/lib
 
 POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
-BINS=TopoRel_Naive_test_allContained_byQueries\
+BINS=time_allTopoRels_byQueriesFile\
+		TopoRel_Naive_test_allContained_byQueries\
 		TopoRel_GST_6_size TopoRel_GST_6_allContained\
 		TopoRel_GST_6_test_allContained_byQueries\
 		TopoRel_GST_6_test_allIntersect_byQueries\
@@ -26,6 +27,9 @@ OBJECTS=TopoRel_GST_6.o\
 all: bin
 
 bin: $(OBJECTS) $(BINS)
+
+time_allTopoRels_byQueriesFile:
+	$(CPP) $(PREFLAGS) -o time_allTopoRels_byQueriesFile time_allTopoRels_byQueriesFile.cpp $(OBJECTS) $(POSFLAGS)
 
 time_TopoRel_allContained_vsGST6_byQueriesFile:
 	$(CPP) $(PREFLAGS) -o time_TopoRel_allContained_vsGST6_byQueriesFile time_TopoRel_allContained_vsGST6_byQueriesFile.cpp $(OBJECTS) $(POSFLAGS)
