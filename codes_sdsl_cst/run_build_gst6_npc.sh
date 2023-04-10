@@ -8,7 +8,7 @@ fi
 
 DATAFOLDER=$1
 
-for filename in gst_tripsMadrid_0005k.txt gst_tripsMadrid_0010k.txt gst_tripsMadrid_0015k.txt gst_tripsMadrid_0020k.txt gst_tripsMadrid_0025k.txt
+for filename in gst_tripsMadrid_0005k gst_tripsMadrid_0010k gst_tripsMadrid_0015k gst_tripsMadrid_0020k gst_tripsMadrid_0025k
 
 do
 	./TopoRel_GST_6_build ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.gst6
