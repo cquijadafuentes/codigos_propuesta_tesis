@@ -126,5 +126,6 @@ int main(int argc, char const *argv[]){
 	cout << visitedNodesV1[0] << "\t" << visitedNodesV2[0] << "\t" << visitedNodesV3[0] << "\t";
 	cout << visitedNodesV1[nQueries/2] << "\t" << visitedNodesV2[nQueries/2] << "\t" << visitedNodesV3[nQueries/2] << "\t";
 	cout << visitedNodesV1[nQueries-1] << "\t" << visitedNodesV2[nQueries-1] << "\t" << visitedNodesV3[nQueries-1] << endl;
+	cout << endl;
     return 0;
 }

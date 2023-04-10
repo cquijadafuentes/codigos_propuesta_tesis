@@ -1,0 +1,6 @@
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 5000	2.63	6.58	8.19	2	3	4	3	6	8	3	8	9
+visNods 10000	2.68	6.3	7.8	2	3	4	3	6	8	3	8	9
+visNods 15000	2.69	6.19	7.67	2	3	4	3	6	8	3	8	9
+visNods 20000	2.68	6.1	7.55	2	3	4	3	6	8	3	8	9
+visNods 25000	2.66	5.83	7.24	2	3	4	3	6	8	3	8	9
