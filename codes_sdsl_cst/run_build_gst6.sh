@@ -8,7 +8,8 @@ fi
 
 DATAFOLDER=$1
 
-for filename in 20stops_min_05k  20stops_min_10k  20stops_min_15k  20stops_min_20k  20stops_min_25k
+for filename in gst_tripsMadrid_0005k.txt gst_tripsMadrid_0010k.txt gst_tripsMadrid_0015k.txt gst_tripsMadrid_0020k.txt gst_tripsMadrid_0025k.txt
+
 do
 	./TopoRel_GST_6_build ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.gst6
 	./TopoRel_Naive_PreComp_build ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.naivepc

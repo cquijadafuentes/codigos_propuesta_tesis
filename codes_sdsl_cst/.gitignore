@@ -1,3 +1,4 @@
+nohup.out
 *.o
 extras/dataset_lineasmadrid_repetidos/genera_repeticiones
 extras/dataset_madrid/procesa_linesStops
