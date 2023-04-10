@@ -6,96 +6,96 @@ Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	5000	2000	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	10.374	35.4235	69.1895	2	3	4	10	30	56	36	199	404
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 5000	10.374	35.4235	69.1895	2	3	4	10	30	56	36	199	404
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	5000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	9.48	29.95	57.74	2	6	8	9	27	52	29	89	250
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 5000	9.48	29.95	57.74	2	6	8	9	27	52	29	89	250
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	5000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	2.63	6.58	8.19	2	3	4	3	6	8	3	8	9
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 5000	2.63	6.58	8.19	2	3	4	3	6	8	3	8	9
  ----------------------------------------------------- 
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	10000	2000	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	10.4015	51.2785	82.1055	2	3	4	10	42	62	43	313	522
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 10000	10.4015	51.2785	82.1055	2	3	4	10	42	62	43	313	522
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	10000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	10.82	47.73	77.33	3	6	8	10	38	62	29	157	252
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 10000	10.82	47.73	77.33	3	6	8	10	38	62	29	157	252
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	10000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	2.68	6.3	7.8	2	3	4	3	6	8	3	8	9
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 10000	2.68	6.3	7.8	2	3	4	3	6	8	3	8	9
  ----------------------------------------------------- 
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	15000	2000	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	10.572	64.687	93.1035	2	3	4	10	51	71	33	326	543
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 15000	10.572	64.687	93.1035	2	3	4	10	51	71	33	326	543
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	15000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	10.49	58.95	84.88	2	6	8	10	47	70	38	324	596
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 15000	10.49	58.95	84.88	2	6	8	10	47	70	38	324	596
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	15000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	2.69	6.19	7.67	2	3	4	3	6	8	3	8	9
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 15000	2.69	6.19	7.67	2	3	4	3	6	8	3	8	9
  ----------------------------------------------------- 
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	20000	2000	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	10.6755	76.0415	101.633	2	3	4	10	59	74	42	420	669
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 20000	10.6755	76.0415	101.633	2	3	4	10	59	74	42	420	669
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	20000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	10.67	72.71	98.9	3	6	8	10	54	70	38	462	776
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 20000	10.67	72.71	98.9	3	6	8	10	54	70	38	462	776
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	20000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	2.68	6.1	7.55	2	3	4	3	6	8	3	8	9
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 20000	2.68	6.1	7.55	2	3	4	3	6	8	3	8	9
  ----------------------------------------------------- 
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	25000	2000	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	10.7775	85.2235	109.085	2	3	4	10	63	78	42	474	727
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 25000	10.7775	85.2235	109.085	2	3	4	10	63	78	42	474	727
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	25000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	10.92	84.62	107.82	3	6	8	10	63	74	26	358	503
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 25000	10.92	84.62	107.82	3	6	8	10	63	74	26	358	503
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	25000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	2.66	5.83	7.24	2	3	4	3	6	8	3	8	9
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 25000	2.66	5.83	7.24	2	3	4	3	6	8	3	8	9
  ----------------------------------------------------- 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 **************** DATASET = ../../datasets/20stops_min/ ****************
@@ -104,94 +104,94 @@ Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	5000	2000	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	5.093	31.6995	32.189	1	2	4	4	16	17	41	534	674
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 5000	5.093	31.6995	32.189	1	2	4	4	16	17	41	534	674
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	5000	100	0	1	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	24.86	250.76	288.49	17	30	58	23	222	240	46	613	824
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 5000	24.86	250.76	288.49	17	30	58	23	222	240	46	613	824
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	5000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	1.63	6.22	7.78	1	2	4	2	6	7	2	19	20
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 5000	1.63	6.22	7.78	1	2	4	2	6	7	2	19	20
  ----------------------------------------------------- 
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	10000	2000	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	5.1935	48.0145	39.4905	1	2	4	4	24	21	38	848	1017
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 10000	5.1935	48.0145	39.4905	1	2	4	4	24	21	38	848	1017
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	10000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	29.35	491.26	482.28	22	51	76	28	494	465	46	1028	1017
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 10000	29.35	491.26	482.28	22	51	76	28	494	465	46	1028	1017
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	10000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	1.74	7.88	9.35	1	2	4	2	7	9	2	21	22
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 10000	1.74	7.88	9.35	1	2	4	2	7	9	2	21	22
  ----------------------------------------------------- 
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	15000	2000	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	5.1965	57.815	43.894	1	2	4	4	30	23	38	1153	1138
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 15000	5.1965	57.815	43.894	1	2	4	4	30	23	38	1153	1138
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	15000	100	0	1	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	31.12	729.33	617.83	25	69	108	30	757	616	46	1348	1218
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 15000	31.12	729.33	617.83	25	69	108	30	757	616	46	1348	1218
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	15000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	1.8	8.82	10.27	1	2	4	2	8	9	2	21	22
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 15000	1.8	8.82	10.27	1	2	4	2	8	9	2	21	22
  ----------------------------------------------------- 
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	20000	2000	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	5.3545	65.2485	47.638	1	2	4	4	33	25	38	1208	1176
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 20000	5.3545	65.2485	47.638	1	2	4	4	33	25	38	1208	1176
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	20000	100	0	1	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	32.94	866.64	719.38	28	91	105	32	919	753	46	1617	1529
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 20000	32.94	866.64	719.38	28	91	105	32	919	753	46	1617	1529
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	20000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	1.83	9.6	11.04	1	2	4	2	9	10	2	22	23
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 20000	1.83	9.6	11.04	1	2	4	2	9	10	2	22	23
  ----------------------------------------------------- 
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	25000	2000	0	1	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	5.343	69.503	48.5915	1	2	4	4	35	25	41	1611	1315
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 25000	5.343	69.503	48.5915	1	2	4	4	35	25	41	1611	1315
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	25000	100	0	1	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	34.58	998.62	817.71	29	146	133	34	1070	897	46	1750	1585
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 25000	34.58	998.62	817.71	29	146	133	34	1070	897	46	1750	1585
 Cargando estructura desde archivo
 
 fallas	nRutas	nQueries	fails_{V1}	fails_{V2}	fails_{V3}
 fallas	25000	100	0	0	0
-visNods	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
-visNods	1.86	10.28	11.72	1	2	4	2	9	10	2	22	23
+visNods	nRutas	promV1	promV2	promV3	minV1	minV2	minV3	medV1	medV2	medV3	maxV1	maxV2	maxV3
+visNods 25000	1.86	10.28	11.72	1	2	4	2	9	10	2	22	23
  ----------------------------------------------------- 
