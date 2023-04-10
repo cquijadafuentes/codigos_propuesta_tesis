@@ -29,6 +29,9 @@ v10 ->	Relación allContains: test y toma de tiempo.
 v11 ->	GST_5 que corresponde a versión que se construye en paralelo
 	NaivePC se construye en paralelo
 
+v12	->	GST_6 implementada con 3 versiones para la operaciones allContained + allContain + allEqual + allIntersect
+	Se recibe como parámetro el archivos en las operaciones con .txt
+
 
 # plots
 
