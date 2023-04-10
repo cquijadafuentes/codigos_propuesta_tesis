@@ -120,8 +120,9 @@ int main(int argc, char const *argv[]){
 	cout << cantFallasV3 << endl;
 	queries.close();
 	results.close();
-	cout << "visNods\tpromV1\tpromV2\tpromV3\tminV1\tminV2\tminV3\tmedV1\tmedV2\tmedV3\tmaxV1\tmaxV2\tmaxV3" << endl;
-	cout << "visNods\t" << promVisitedNodesV1 << "\t" << promVisitedNodesV2 << "\t" << promVisitedNodesV3 << "\t";
+	cout << "visNods\tnRutas\tpromV1\tpromV2\tpromV3\tminV1\tminV2\tminV3\tmedV1\tmedV2\tmedV3\tmaxV1\tmaxV2\tmaxV3" << endl;
+	cout << "visNods\t" << gst.n_rutas << "\t";
+	cout << promVisitedNodesV1 << "\t" << promVisitedNodesV2 << "\t" << promVisitedNodesV3 << "\t";
 	cout << visitedNodesV1[0] << "\t" << visitedNodesV2[0] << "\t" << visitedNodesV3[0] << "\t";
 	cout << visitedNodesV1[nQueries/2] << "\t" << visitedNodesV2[nQueries/2] << "\t" << visitedNodesV3[nQueries/2] << "\t";
 	cout << visitedNodesV1[nQueries-1] << "\t" << visitedNodesV2[nQueries-1] << "\t" << visitedNodesV3[nQueries-1] << endl;
