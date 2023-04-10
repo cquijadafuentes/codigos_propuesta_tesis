@@ -13,6 +13,7 @@ REPETICIONES=$4
 
 
 echo "Fecha INICIO experimentos: $(date +'%Y/%m/%d %H:%M:%S') allContainedByQueriesFile_GST6" > ${OUTPUTFILE}
+echo "Experimentos de todas las relaciones tipo all en dos datasets." >> ${OUTPUTFILE}
 
 for i in 1 2 3 
 do
