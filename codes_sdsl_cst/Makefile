@@ -15,7 +15,7 @@ BINS=time_allTopoRels_byQueriesFile\
 		time_TopoRel_allContained_vsGST6_byQueriesFile\
 		TopoRel_Naive_test  TopoRel_Naive_PreComp_test\
 		TopoRel_Naive_PreComp_save-load-test\
-		TopoRel_Naive_PreComp_save TopoRel_Naive_PreComp_load\
+		TopoRel_Naive_PreComp_build TopoRel_Naive_PreComp_load\
 
 OBJECTS=TopoRel_GST_6.o\
 		TopoRel_Naive.o TopoRel_Naive_PreComp.o
@@ -61,8 +61,8 @@ TopoRel_GST_6_test_allIntersect_byQueries:
 TopoRel_Naive_PreComp_load:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_load TopoRel_Naive_PreComp_load.cpp $(OBJECTS) $(POSFLAGS)
 
-TopoRel_Naive_PreComp_save:
-	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_save TopoRel_Naive_PreComp_save.cpp $(OBJECTS) $(POSFLAGS)
+TopoRel_Naive_PreComp_build:
+	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_build TopoRel_Naive_PreComp_build.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_Naive_PreComp_test:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_test TopoRel_Naive_PreComp_test.cpp $(OBJECTS) $(POSFLAGS)
