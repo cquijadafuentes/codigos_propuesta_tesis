@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include <unordered_set>
 #include <sdsl/vectors.hpp>
 #include <sdsl/suffix_trees.hpp>
 #include <sdsl/bit_vectors.hpp>
@@ -28,6 +29,11 @@ public:
 
     int howManyLCP;
     int howManyNodes;
+    int howManyInserts;
+    int howManyIfs;
+    int howManyidRutaDesdeCeldaDeSecConcat;
+    int howManygetLargoRuta;
+
 
     cst_sada<csa_wt<wt_int<rrr_vector<>>>> cst;
     vector<cst_sada<>::node_type> gstMapa;

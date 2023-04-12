@@ -17,6 +17,10 @@
 TopoRelGST_6::TopoRelGST_6(vector<vector<int>> &rutas, int cant_stops){
     howManyLCP = 0;
     howManyNodes = 0;
+    howManyInserts = 0;
+    howManyIfs = 0;
+    howManyidRutaDesdeCeldaDeSecConcat = 0;
+    howManygetLargoRuta = 0;
     cout << "Constructor TopoRelGST_6 (parallel top-down)" << endl;
     n_stops = cant_stops;
     n_concat = 0;
@@ -166,9 +170,10 @@ TopoRelGST_6::TopoRelGST_6(vector<vector<int>> &rutas, int cant_stops){
             vPorcMap[iParalelo][i-base] = v;
             MNtemporal[cst.id(v)] = 1;
             auto mr = cst.parent(v);
+            MRtemporal[cst.id(mr)] = 1;
             while(mr != cst.root()){
-                MRtemporal[cst.id(mr)] = 1;
                 mr = cst.parent(mr);
+                MRtemporal[cst.id(mr)] = 1;
             }
             /*
             string st = "ruta: ";
@@ -832,27 +837,33 @@ vector<int> TopoRelGST_6::tr_allContained(int x, bool verbose){
     if(verbose){
         cout << "\n++++++++++++++++ Operación ALLCONTAINED ++++++++++++++++" << endl;
     }
-    set<int> y;
+    unordered_set<int> y;
     int ls = getLargoRuta(x);
     auto nodo = gstMapa[x];
+    howManyIfs++;
     if(!cst.is_leaf(nodo)){
         nodo = cst.rightmost_leaf(nodo);
         howManyNodes++;
     }
     for(int i=0; ls - i >= len_min; i++){
         int idHoja = cst.id(nodo);
+        howManyIfs++;
         if(verbose){
             cout << "Revisando hoja " << idHoja << endl;
         }
         int pos = cst.csa[idHoja];
+        howManyIfs++;
         if((pos == 0 || gstMFSbv[pos-1] == 1)){
             // En la celda pos inicia una secuencia
+            howManyIfs++;
             if(verbose){
                 cout << "insertando posición " << pos << endl;
             }
             int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
+            howManyIfs++;
             if(getLargoRuta(idSecCand) <= ls-i){
                 y.insert(idSecCand);
+                howManyInserts++;
             }
         }
         // Se realizan operaciones de suffix link mientras el largo 
@@ -862,24 +873,29 @@ vector<int> TopoRelGST_6::tr_allContained(int x, bool verbose){
         int min_coincidencia = cst.lcp[idNav];
         howManyLCP++;
         while(min_coincidencia >= len_min){
+            howManyIfs++;
             if(verbose){
                 cout << "IdNav: " << idNav << endl;
             }
             int pos = cst.csa[idNav-1];
+            howManyIfs++;
             if(pos == 0 || gstMFSbv[pos-1] == 1){
                 // Corresponde a una secuencia completamente contenida
                 int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
                 int largoSecCand = getLargoRuta(idSecCand);
                 if(largoSecCand <= min_coincidencia && largoSecCand <= (ls - i)){
                     y.insert(idSecCand);
+                    howManyInserts++;
                 }
             }
             idNav--;
+            howManyIfs++;
             if(cst.lcp[idNav] < min_coincidencia){
                 min_coincidencia = cst.lcp[idNav];
                 howManyLCP++;
             }
             howManyLCP++;
+            howManyIfs++;
         }
 
         // Revisión del SA hacia el final
@@ -887,29 +903,35 @@ vector<int> TopoRelGST_6::tr_allContained(int x, bool verbose){
         min_coincidencia = cst.lcp[idNav];
         howManyLCP++;
         while(min_coincidencia >= len_min){
+            howManyIfs++;
             if(verbose){
                 cout << "IdNav: " << idNav << endl;
             }
             int pos = cst.csa[idNav];
+            howManyIfs++;
             if(pos == 0 || gstMFSbv[pos-1] == 1){
                 // Corresponde a una secuencia completamente contenida
                 int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
                 int largoSecCand = getLargoRuta(idSecCand);
                 if(largoSecCand <= min_coincidencia && largoSecCand <= (ls - i)){
                     y.insert(idSecCand);
+                    howManyInserts++;
                 }
             }
             idNav++;
+            howManyIfs++;
             if(cst.lcp[idNav] < min_coincidencia){
                 min_coincidencia = cst.lcp[idNav];
                 howManyLCP++;
             }
             howManyLCP++;
+            howManyIfs++;
         }
 
         // Suffix link para el siguiente ciclo
         nodo = cst.sl(nodo);
         howManyNodes++;
+        howManyIfs++;
     }
 
     vector<int> res(y.begin(), y.end());
@@ -919,8 +941,9 @@ vector<int> TopoRelGST_6::tr_allContained(int x, bool verbose){
 vector<int> TopoRelGST_6::tr_allContained2(int x, bool verbose){
     // Versión de la operación allContained que determina el resultado
     // por un recorrido del GST desde la raíz
-    set<int> setRes;
+    unordered_set<int> setRes;
     setRes.insert(x);
+    howManyInserts++;
     vector<int> gstRutaX = getRuta(x);
 
     // Primer ciclo recorre los sub-árboles con los sufijos
@@ -931,32 +954,40 @@ vector<int> TopoRelGST_6::tr_allContained2(int x, bool verbose){
         auto nodo = cst.child(raiz, gstRutaX[i]);
         howManyNodes++;
         int ii = cst.depth(nodo);
+        howManyIfs++;
         if(verbose){
             cout << "Iniciando en " << cst.id(nodo) << endl;
             cout << "i: " << i << " ii: " << ii << " depth: " << cst.depth(nodo) << endl;
         }
         // Comenzar con un sufijo de largo al menos len_min
         while(nodo != raiz && i+ii <= getLargoRuta(x) && (gstMRamas[cst.id(nodo)] == 1 || gstMNodos[cst.id(nodo)] == 1)){
+            howManyIfs++;
             if(cst.depth(nodo) >= len_min && (gstMRamas[cst.id(nodo)] == 1 || gstMNodos[cst.id(nodo)] == 1)){
                 // Son nodos que representan sufijos cuyo largo 
                 // supera el de la secuencia menor del conjunto
                 auto nodoAux = cst.child(nodo, finSec);
                 howManyNodes++;
+                howManyIfs++;
                 if(verbose){
                     cout << "\tEvaluando rama desde " << cst.id(nodoAux) << endl;
                 }
-                if(nodoAux != raiz){
+                howManyIfs++;
+                if(nodoAux != raiz){ // && gstMNodos[cst.id(nodoAux)] == 1
                     // Revisar hojas de esta subsecuencia
                     int pi = cst.lb(nodoAux);
                     int pf = cst.rb(nodoAux);
+                    howManyIfs++;
                     if(verbose){
                         cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
                     }
                     for(int j=pi; j<= pf; j++){
+                        howManyIfs++;
                         if(cst.csa[j] == 0 || gstMFSbv[cst.csa[j]-1] == 1){
                             // Corresponde a una secuencia completa
                             setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[j]));
+                            howManyInserts++;
                         }
+                        howManyIfs++;
                     }
                 }
             }
@@ -964,11 +995,13 @@ vector<int> TopoRelGST_6::tr_allContained2(int x, bool verbose){
             nodo = cst.child(nodo, gstRutaX[i+ii]);
             howManyNodes++;
             ii = cst.depth(nodo);
+            howManyIfs++;
             if(verbose){
                 cout << "\tLlegando a por " << cst.id(nodo) << endl;
             }
+            howManyIfs++;
         }
-
+        howManyIfs++;
         if(verbose){
             cout << "\tEn nodo " << cst.id(nodo) << endl;
         }
@@ -977,21 +1010,27 @@ vector<int> TopoRelGST_6::tr_allContained2(int x, bool verbose){
         
 
         // Verificando el último nodo
+        howManyIfs++;
         if(nodo != raiz && cst.size(nodo) > 1 && (gstMRamas[cst.id(nodo)] == 1 || gstMNodos[cst.id(nodo)] == 1)){
             // Existe un nodo que es sufijo de la secuencia
             // Verificando sub-árbol
             int pi = cst.lb(nodo);
             int pf = cst.rb(nodo);
+            howManyIfs++;
             if(verbose){
                 cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
             }
             for(int j=pi; j<= pf; j++){
+                howManyIfs++;
                 if(cst.csa[j] == 0 || gstMFSbv[cst.csa[j]-1] == 1){
                     // Corresponde a una secuencia completa
                     setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[j]));
+                    howManyInserts++;
                 }
+                howManyIfs++;
             }
         }
+        howManyIfs++;
     }
 
     vector<int> res(setRes.begin(), setRes.end());
@@ -1003,8 +1042,9 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
     // Versión de la operación allContained que determina el resultado
     // iniciando en el nodo del sufijo de largo <minlen> de la secuencia
     // recorriendo hacia la raíz usando wl para agregar elementos
-    set<int> setRes;
+    unordered_set<int> setRes;
     setRes.insert(x);
+    howManyInserts++;
     vector<int> gstRutaX = getRuta(x);
 
     // Calculando el nodo inicial con el sufijo de la secuencia de largo len_min
@@ -1014,13 +1054,15 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
     auto nodo = raiz;
     int pISec = getLargoRuta(x) - len_min;
     int ps;
-    while(cst.depth(nodo) < len_min){
+    while(cst.depth(nodo) < len_min ){
         ps = pISec + cst.depth(nodo);
         nodo = cst.child(nodo, gstRutaX[ps]);
         howManyNodes++;
+        howManyIfs++;
         if(verbose){
             cout << "Fase 0 por nodo: " << cst.id(nodo) << " por elemento " << gstRutaX[ps] << endl;
         }
+        howManyIfs++;
     }
     bool conFS = cst.depth(nodo) > len_min;
 
@@ -1028,19 +1070,23 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
     for(int i=1; i<=pISec+1; i++){
         // Recorrido de las ramas por medio de WL
         auto nodoAux = nodo;
+        howManyIfs++;
         if(verbose){
             cout << "\tDesde el nodo " << cst.id(nodoAux) << endl;
         }
         while(cst.depth(nodoAux) >= len_min){
             auto nodoExp = nodoAux;
+            howManyIfs++;
             if(len_min + i - 1 >= cst.depth(nodoAux)){
                 nodoExp = cst.child(nodoAux, finSec);
                 howManyNodes++;
             }
+            howManyIfs++;
             if(verbose){
                 cout << "\tExplorando nodo: " << cst.id(nodoExp) << endl;
             }
             // Verificando rama por candidato
+            howManyIfs++;
             if(nodoExp != raiz && (gstMRamas[cst.id(nodoExp)] == 1 || 
                 gstMNodos[cst.id(nodoExp)] == 1)){
                 // Existe un nodo que es sufijo de la secuencia y en la rama hay nodos 
@@ -1048,36 +1094,47 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
                 // Verificando sub-árbol
                 int pi = cst.lb(nodoExp);
                 int pf = cst.rb(nodoExp);
+                howManyIfs++;
                 if(verbose){
                     cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
                 }
                 for(int j=pi; j<= pf; j++){
+                    howManyIfs++;
                     if(cst.csa[j] == 0 || gstMFSbv[cst.csa[j]-1] == 1){
                         // Corresponde a una secuencia completa
                         setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[j]));
+                        howManyInserts++;
+                        howManyIfs++;
                         if(verbose){
                             cout << "\t\t\tInsertando " << cst.csa[j] << endl;
                         }
                     }
+                    howManyIfs++;
                 }
             }
             nodoAux = cst.parent(nodoAux);
             howManyNodes++;
+            howManyIfs++;
             if(verbose){
                 cout << "Hacia el padre " << cst.id(nodoAux) << endl;
             }
+            howManyIfs++;
         }
+        howManyIfs++;
         if(verbose){
             cout << "Usando wl desde " << cst.id(nodo);
         }
+        howManyIfs++;
         if(i!=pISec+1){
             nodo = cst.wl(nodo, gstRutaX[pISec - i]);
             conFS = (cst.depth(nodo) - i) > len_min;
             howManyNodes++;
+            howManyIfs++;
             if(verbose){
                 cout << " hasta " << cst.id(nodo) << " por elemento " << gstRutaX[pISec - i] << endl;
             }
         }
+        howManyIfs++;
     }
 
     vector<int> res(setRes.begin(), setRes.end());
@@ -1086,7 +1143,7 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
 
 
 vector<int> TopoRelGST_6::tr_allIntersect(int x, bool verbose){
-    set<int> setRes;
+    unordered_set<int> setRes;
     setRes.insert(x);
     vector<int> gstRutaX = getRuta(x);
 
@@ -1098,7 +1155,9 @@ vector<int> TopoRelGST_6::tr_allIntersect(int x, bool verbose){
         int idR = cst.rb(nodo);
         for(int j=idL; j<=idR; j++){
             setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[j]));
+            howManyIfs++;
         }
+        howManyIfs++;
     }
 
     vector<int> res(setRes.begin(), setRes.end());
@@ -1379,6 +1438,7 @@ void TopoRelGST_6::printRuta(int x){
 }
 
 int TopoRelGST_6::getLargoRuta(int x){
+    howManygetLargoRuta++;
     //cout << "consultando largo ruta x:" << x << endl;
     if(x > n_rutas){
         return 0;
@@ -1580,6 +1640,7 @@ cst_sada<>::node_type TopoRelGST_6::nodoSubseq(cst_sada<>::node_type n, int x){
 }
 
 int TopoRelGST_6::idRutaDesdeCeldaDeSecConcat(int x){
+    howManyidRutaDesdeCeldaDeSecConcat++;
     // Recibe una posición referente a la secuencia concatenada e indica el 
     // id de la secuencia a la que corresponde dicha posición
     // Utiliza operaciones de rank sobre el bitmap de fin de secuencia
