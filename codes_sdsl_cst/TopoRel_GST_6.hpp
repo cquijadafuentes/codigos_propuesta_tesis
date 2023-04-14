@@ -33,6 +33,7 @@ public:
     int howManyIfs;
     int howManyidRutaDesdeCeldaDeSecConcat;
     int howManygetLargoRuta;
+    int howManyCSTviews;
 
 
     cst_sada<csa_wt<wt_int<rrr_vector<>>>> cst;

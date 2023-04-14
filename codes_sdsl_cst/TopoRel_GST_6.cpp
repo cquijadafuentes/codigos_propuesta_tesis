@@ -21,6 +21,7 @@ TopoRelGST_6::TopoRelGST_6(vector<vector<int>> &rutas, int cant_stops){
     howManyIfs = 0;
     howManyidRutaDesdeCeldaDeSecConcat = 0;
     howManygetLargoRuta = 0;
+    howManyCSTviews = 0;
     cout << "Constructor TopoRelGST_6 (parallel top-down)" << endl;
     n_stops = cant_stops;
     n_concat = 0;
@@ -205,6 +206,11 @@ TopoRelGST_6::TopoRelGST_6(vector<vector<int>> &rutas, int cant_stops){
 TopoRelGST_6::TopoRelGST_6(string inputFilename){
     howManyLCP = 0;
     howManyNodes = 0;
+    howManyInserts = 0;
+    howManyIfs = 0;
+    howManyidRutaDesdeCeldaDeSecConcat = 0;
+    howManygetLargoRuta = 0;
+    howManyCSTviews = 0;
     cout << "Cargando estructura desde archivo" << endl;
     ifstream infile(inputFilename, ofstream::binary);
     if(infile){
@@ -980,6 +986,7 @@ vector<int> TopoRelGST_6::tr_allContained2(int x, bool verbose){
                     if(verbose){
                         cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
                     }
+                    howManyCSTviews += (pf - pi + 1);
                     for(int j=pi; j<= pf; j++){
                         howManyIfs++;
                         if(cst.csa[j] == 0 || gstMFSbv[cst.csa[j]-1] == 1){
@@ -1020,6 +1027,7 @@ vector<int> TopoRelGST_6::tr_allContained2(int x, bool verbose){
             if(verbose){
                 cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
             }
+            howManyCSTviews += (pf - pi + 1);
             for(int j=pi; j<= pf; j++){
                 howManyIfs++;
                 if(cst.csa[j] == 0 || gstMFSbv[cst.csa[j]-1] == 1){
@@ -1036,8 +1044,14 @@ vector<int> TopoRelGST_6::tr_allContained2(int x, bool verbose){
     vector<int> res(setRes.begin(), setRes.end());
     return res;
 }
+/*
+ 1 2 3 4 5 6 7 8 9        len_min: 3
+            -------    
+          ---------
+          -------
+        -----------
 
-
+*/
 vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
     // Versión de la operación allContained que determina el resultado
     // iniciando en el nodo del sufijo de largo <minlen> de la secuencia
@@ -1077,7 +1091,7 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
         while(cst.depth(nodoAux) >= len_min){
             auto nodoExp = nodoAux;
             howManyIfs++;
-            if(len_min + i - 1 >= cst.depth(nodoAux)){
+            if(len_min + i - 1 >= cst.depth(nodoAux)){  // Conocer si la secuenci contiene caracter de fin
                 nodoExp = cst.child(nodoAux, finSec);
                 howManyNodes++;
             }
@@ -1098,6 +1112,7 @@ vector<int> TopoRelGST_6::tr_allContained3(int x, bool verbose){
                 if(verbose){
                     cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
                 }
+                howManyCSTviews += (pf - pi + 1);
                 for(int j=pi; j<= pf; j++){
                     howManyIfs++;
                     if(cst.csa[j] == 0 || gstMFSbv[cst.csa[j]-1] == 1){

@@ -1,0 +1,65 @@
+red = "#FF0000"; green = "#00FF00"; blue = "#0000FF"; skyblue = "#87CEEB"; black = "#000000";
+set grid ytics
+set key out horiz
+set terminal png size 800,400
+
+set xrange [0.5:5.5]
+set ylabel "Cantidad"
+set xlabel "Nº Rutas"
+
+
+
+set output 'img_allContained_ins_short.png'
+set title 'Inserciones de allContained [q:shortest - s:chome]'
+plot 'data_1+_shortest' using 4:xtic(2) title 'v1' with linespoints pt 5 lc rgb red,   \
+     'data_1+_shortest' using 5 title 'v2' with linespoints pt 5 lc rgb green,   \
+     'data_1+_shortest' using 6 title 'v3' with linespoints pt 5 lc rgb blue,   \
+     'data_20+_shortest' using 4:xtic(2) title 'v1' with linespoints pt 6 lc rgb red,   \
+     'data_20+_shortest' using 5 title 'v2' with linespoints pt 6 lc rgb green,   \
+     'data_20+_shortest' using 6 title 'v3' with linespoints pt 6 lc rgb blue
+
+
+
+set output 'img_allContained_ifs_short.png'
+set title 'Cant ifs de allContained [q:shortest - s:chome]'
+plot 'data_1+_shortest' using 7:xtic(2) title 'v1' with linespoints pt 5 lc rgb red,   \
+     'data_1+_shortest' using 8 title 'v2' with linespoints pt 5 lc rgb green,   \
+     'data_1+_shortest' using 9 title 'v3' with linespoints pt 5 lc rgb blue,   \
+     'data_20+_shortest' using 7:xtic(2) title 'v1' with linespoints pt 6 lc rgb red,   \
+     'data_20+_shortest' using 8 title 'v2' with linespoints pt 6 lc rgb green,   \
+     'data_20+_shortest' using 9 title 'v3' with linespoints pt 6 lc rgb blue
+
+
+
+set output 'img_allContained_idsRutas_short.png'
+set title 'Cant idsRutas de allContained [q:shortest - s:chome]'
+plot 'data_1+_shortest' using 10:xtic(2) title 'v1' with linespoints pt 5 lc rgb red,   \
+     'data_1+_shortest' using 11 title 'v2' with linespoints pt 5 lc rgb green,   \
+     'data_1+_shortest' using 12 title 'v3' with linespoints pt 5 lc rgb blue,   \
+     'data_20+_shortest' using 10:xtic(2) title 'v1' with linespoints pt 6 lc rgb red,   \
+     'data_20+_shortest' using 11 title 'v2' with linespoints pt 6 lc rgb green,   \
+     'data_20+_shortest' using 12 title 'v3' with linespoints pt 6 lc rgb blue
+
+
+
+set output 'img_allContained_largoRutas_short.png'
+set title 'Cant largoRutas de allContained [q:shortest - s:chome]'
+plot 'data_1+_shortest' using 13:xtic(2) title 'v1' with linespoints pt 5 lc rgb red,   \
+     'data_1+_shortest' using 14 title 'v2' with linespoints pt 5 lc rgb green,   \
+     'data_1+_shortest' using 15 title 'v3' with linespoints pt 5 lc rgb blue,   \
+     'data_20+_shortest' using 13:xtic(2) title 'v1' with linespoints pt 6 lc rgb red,   \
+     'data_20+_shortest' using 14 title 'v2' with linespoints pt 6 lc rgb green,   \
+     'data_20+_shortest' using 15 title 'v3' with linespoints pt 6 lc rgb blue
+
+
+
+set output 'img_allContained_resultados_short.png'
+set title 'Cant resultados de allContained [q:shortest - s:chome]'
+plot 'data_1+_shortest' using 16:xtic(2) title 'v1' with linespoints pt 5 lc rgb red,   \
+     'data_1+_shortest' using 17 title 'v2' with linespoints pt 5 lc rgb green,   \
+     'data_1+_shortest' using 18 title 'v3' with linespoints pt 5 lc rgb blue,   \
+     'data_20+_shortest' using 16:xtic(2) title 'v1' with linespoints pt 6 lc rgb red,   \
+     'data_20+_shortest' using 17 title 'v2' with linespoints pt 6 lc rgb green,   \
+     'data_20+_shortest' using 18 title 'v3' with linespoints pt 6 lc rgb blue
+
+     

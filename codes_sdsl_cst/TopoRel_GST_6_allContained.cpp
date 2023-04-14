@@ -18,7 +18,7 @@ int main(int argc, char const *argv[]){
 	queries >> nQueries;
 
 	int version = (int) atoi(argv[3]);
-	if(version >3 || version < 1){
+	if(version > 3 || version < 1){
 		cout << "Error! Versión ingresada no es correcta (1, 2 ó 3)." << endl;
 		return 0;
 	}
