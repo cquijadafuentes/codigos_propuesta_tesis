@@ -54,11 +54,7 @@ int main(int argc, char const *argv[]){
 			results >> naiveResult[ii];
 		}
 		// Obtener resultados de la versión 1
-		gst.howManyNodes = 0;
-		gst.howManyInserts = 0;
-		gst.howManyIfs = 0;
-		gst.howManyidRutaDesdeCeldaDeSecConcat = 0;
-		gst.howManygetLargoRuta = 0;
+		gst.statsReset();
 		vector<int> resV1 = gst.tr_allContained(x);
 		visitedNodesV1[i] = gst.howManyNodes;
 		promVisitedNodesV1 += gst.howManyNodes;
@@ -79,11 +75,7 @@ int main(int argc, char const *argv[]){
 			}
 		}
 		// Obtener resultados de la versión 2
-		gst.howManyNodes = 0;
-		gst.howManyInserts = 0;
-		gst.howManyIfs = 0;
-		gst.howManyidRutaDesdeCeldaDeSecConcat = 0;
-		gst.howManygetLargoRuta = 0;
+		gst.statsReset();
 		vector<int> resV2 = gst.tr_allContained2(x);
 		visitedNodesV2[i] = gst.howManyNodes;
 		promVisitedNodesV2 += gst.howManyNodes;
@@ -104,11 +96,7 @@ int main(int argc, char const *argv[]){
 			}
 		}
 		// Obtener resultados de la versión 3
-		gst.howManyNodes = 0;
-		gst.howManyInserts = 0;
-		gst.howManyIfs = 0;
-		gst.howManyidRutaDesdeCeldaDeSecConcat = 0;
-		gst.howManygetLargoRuta = 0;
+		gst.statsReset();
 		vector<int> resV3 = gst.tr_allContained3(x);
 		visitedNodesV3[i] = gst.howManyNodes;
 		promVisitedNodesV3 += gst.howManyNodes;

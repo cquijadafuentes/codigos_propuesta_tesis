@@ -37,7 +37,9 @@ public:
 
 
     cst_sada<csa_wt<wt_int<rrr_vector<>>>> cst;
-    vector<cst_sada<>::node_type> gstMapa;
+    vector<cst_sada<>::node_type> gstMapRuta2Nodo;  // Se guarda en la posición que representa la ID de la Ruta, el nodo que la representa
+    unordered_multimap<int,int> gstMapNodo2Ruta;    // Las claves serán el id del nodo, y los valores serán las id de la secuencia 
+                                                    // (un nodo puede representar más de una secuencia)
     vector<int_vector<>> gstRutas;
     vector<sd_vector<>> gstStops;
     sd_vector<> gstMFSbv;                       // Marcas de fin de secuencia
@@ -71,6 +73,7 @@ public:
     vector<int> tr_allContained(int,bool=false);
     vector<int> tr_allContained2(int,bool=false);   // Recorrido desde la raíz de los distintos sufijos
     vector<int> tr_allContained3(int,bool=false);   // Recorrido desde el nodo de la secuencia usando wl
+    vector<int> tr_allContained4(int,bool=false);  
     vector<int> tr_allIntersect(int,bool=false);
 
     void navega(int);
@@ -81,6 +84,7 @@ public:
     int getLargoRuta(int);
     vector<int> getRuta(int);
     bool iguales(TopoRelGST_6 x);
+    void statsReset();
 
     bool save(string);
 

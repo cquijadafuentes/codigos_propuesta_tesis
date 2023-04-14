@@ -13,7 +13,7 @@ string print_bool(bool x){
 
 int desplegarMenu(){
 	int opc = -1;
-	while(opc < 0 || opc > 14){
+	while(opc < 0 || opc > 15){
 		cout << " ****************************** " << endl;
 		cout << "1 - Información general." << endl;
 		cout << "2 - Información hijos de la raíz." << endl;
@@ -30,7 +30,7 @@ int desplegarMenu(){
 		cout << "13 - Operación allContained3." << endl;
 		cout << " ***** Navegación en Nodos ****" << endl;
 		cout << "14 - Weiner Link de un nodo" << endl;
-		cout << "15 - " << endl;
+		cout << "15 - Mostrar contenido de gstMapNodo2Ruta" << endl;
 		cout << "16 - " << endl;
 		cout << "17 - " << endl;
 		cout << "18 - " << endl;
@@ -46,6 +46,7 @@ int desplegarMenu(){
 	return opc;
 }
 
+//--------------	CASE 	------------//
 void infoGralConjunto(TopoRelGST_6 gst){
 	cout << "--- Información del conjunto ---" << endl;
 	cout << "Nº de rutas: " << gst.n_rutas << endl;
@@ -54,7 +55,8 @@ void infoGralConjunto(TopoRelGST_6 gst){
 	cout << "Largo de secuencia más corta: " << gst.len_min << endl;
 	cout << "Largo de secuencia más larga: " << gst.len_max << endl;
 	cout << "Marca de fin de secuenica: " << gst.finSec << endl;
-	cout << "Largo de gstMapa: " << gst.gstMapa.size() << endl;
+	cout << "Largo de gstMapRuta2Nodo: " << gst.gstMapRuta2Nodo.size() << endl;
+	cout << "Largo de gstMapNodo2Ruta: " << gst.gstMapNodo2Ruta.size() << endl;
 	cout << "Largo de gstStops: " << gst.gstStops.size() << " x " << gst.gstStops[0].size() << endl;
 	cout << "Largo de gstMFSbv (Marcas fin de secuencia): " << gst.gstMFSbv.size() << endl;
 	cout << "--- Información del CompressedSuffixTree ---" << endl;
@@ -65,6 +67,7 @@ void infoGralConjunto(TopoRelGST_6 gst){
     cout << "Largo del LCP Array: " << gst.cst.lcp.size() << endl;
 }
 
+//--------------	CASE 	------------//
 void infoRootChildren(TopoRelGST_6 gst){
     auto root = gst.cst.root();
 	cout << "--- Información de la raíz del CST ---" << endl;
@@ -91,6 +94,7 @@ void infoRootChildren(TopoRelGST_6 gst){
     cout << endl;
 }
 
+//--------------	CASE 	------------//
 void infoNodo(TopoRelGST_6 gst){
 	cout << "Ingrese id del nodo a evaluar: ";
 	int id;
@@ -133,6 +137,7 @@ void infoNodo(TopoRelGST_6 gst){
 	}
 }
 
+//--------------	CASE 	------------//
 void infoRuta(TopoRelGST_6 gst){
 	cout << "Ingrese id de la ruta: ";
 	int id;
@@ -143,7 +148,7 @@ void infoRuta(TopoRelGST_6 gst){
 		return;
 	}
 
-	auto nodo = gst.gstMapa[id];
+	auto nodo = gst.gstMapRuta2Nodo[id];
 	cout << "Información de la ruta " << id << endl;
     cout << "getRuta: ";
     vector<int> r = gst.getRuta(id);
@@ -185,6 +190,7 @@ void infoRuta(TopoRelGST_6 gst){
 	cout << endl;
 }
 
+//--------------	CASE 	------------//
 void infoCSA(TopoRelGST_6 gst){
 	int size = gst.cst.csa.size();
 	cout << "Compressed Suffix Array de tamaño " << size << endl;
@@ -194,6 +200,7 @@ void infoCSA(TopoRelGST_6 gst){
 	cout << endl;
 }
 
+//--------------	CASE 	------------//
 void infoLCP(TopoRelGST_6 gst){
 	int size = gst.cst.lcp.size();
 	cout << "Longest Common Prefix array de tamaño " << size << endl;
@@ -203,6 +210,7 @@ void infoLCP(TopoRelGST_6 gst){
 	cout << endl;
 }
 
+//--------------	CASE 	------------//
 void infoMNodos(TopoRelGST_6 gst){
 	int size = gst.gstMNodos.size();
 	cout << "Arreglo de Nodos Marcados: " << size << endl;
@@ -227,6 +235,7 @@ void infoMNodos(TopoRelGST_6 gst){
 	cout << endl;
 }
 
+//--------------	CASE 	------------//
 void infoArrays(TopoRelGST_6 gst){
 	cout << "Información de Arrays involucrados" << endl;
 	cout << "i\tMFS\trank\tcsa\tlcp" << endl;
@@ -239,6 +248,7 @@ void infoArrays(TopoRelGST_6 gst){
 	}
 }
 
+//--------------	CASE 	------------//
 void infoMFS(TopoRelGST_6 gst){
 	int size = gst.n_concat;
 	cout << "gstMFSbv de tamaño " << size << endl;	
@@ -257,6 +267,7 @@ void infoMFS(TopoRelGST_6 gst){
 	cout << endl;
 }
 
+//--------------	CASE 	------------//
 void allContainedOperation(TopoRelGST_6 gst){
 	cout << "All Contained" << endl;
 	cout << "Ingrese la id de la ruta (entre 0 y " << (gst.n_rutas-1) << "): ";
@@ -274,6 +285,7 @@ void allContainedOperation(TopoRelGST_6 gst){
 	cout << endl;
 }
 
+//--------------	CASE 	------------//
 void allContainedOperation2(TopoRelGST_6 gst){
 	cout << "All Contained versión 2" << endl;
 	cout << "Ingrese la id de la ruta (entre 0 y " << (gst.n_rutas-1) << "): ";
@@ -291,6 +303,7 @@ void allContainedOperation2(TopoRelGST_6 gst){
 	cout << endl;
 }
 
+//--------------	CASE 	------------//
 void allContainedOperation3(TopoRelGST_6 gst){
 	cout << "All Contained versión 3" << endl;
 	cout << "Ingrese la id de la ruta (entre 0 y " << (gst.n_rutas-1) << "): ";
@@ -308,6 +321,7 @@ void allContainedOperation3(TopoRelGST_6 gst){
 	cout << endl;
 }
 
+//--------------	CASE 	------------//
 void weinerLink(TopoRelGST_6 gst){
 	cout << "Weiner Link de un nodo" << endl;
 	cout << "Ingrese el id del nodo que desea consultar: ";
@@ -322,6 +336,15 @@ void weinerLink(TopoRelGST_6 gst){
 	cout << "Nodo resultante id: " << gst.cst.id(nodoWL) << endl;
 	cout << "Secuencia original: " << extract(gst.cst, nodo) << endl;
 	cout << "Secuencia obtenida: " << extract(gst.cst, nodoWL) << endl;
+	cout << endl;
+}
+
+//--------------	CASE 	------------//
+void nodo2Rutas(TopoRelGST_6 gst){
+	cout << "gstMapNodo2Ruta contiene " << gst.gstMapNodo2Ruta.size() << " elementos." << endl;
+	for(auto it=gst.gstMapNodo2Ruta.begin(); it != gst.gstMapNodo2Ruta.end(); it++){
+		cout << "Nodo " << it->first << " contiene la ruta " << it->second << endl;
+	}
 	cout << endl;
 }
 
@@ -384,6 +407,9 @@ int main(int argc, char const *argv[]){
 	    		break;
 	    	case 14:
 	    		weinerLink(gst);
+	    		break;
+	    	case 15:
+	    		nodo2Rutas(gst);
 	    		break;
 	    	default:
 	    		cout << "Ocurrió algún error..." << endl;
