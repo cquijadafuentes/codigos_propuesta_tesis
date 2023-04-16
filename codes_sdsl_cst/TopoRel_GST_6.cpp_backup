@@ -1114,9 +1114,8 @@ vector<int> TopoRelGST_6::tr_allContained4(int x, bool verbose){
     // Versión de la operación allContained que determina el resultado
     // iniciando en el nodo del sufijo de largo <minlen> de la secuencia
     // recorriendo hacia la raíz usando wl para agregar elementos
-    // Esta versión usa gstMapNodo2Ruta para agregar resultados.
     unordered_set<int> setRes;
-    //setRes.insert(x);
+    setRes.insert(x);
     howManyInserts++;
     vector<int> gstRutaX = getRuta(x);
 
@@ -1160,23 +1159,29 @@ vector<int> TopoRelGST_6::tr_allContained4(int x, bool verbose){
             }
             // Verificando rama por candidato
             howManyIfs++;
-            if(nodoExp != raiz && gstMNodos[cst.id(nodoExp)] == 1){
+            if(nodoExp != raiz && (gstMRamas[cst.id(nodoExp)] == 1 || 
+                gstMNodos[cst.id(nodoExp)] == 1)){
                 // Existe un nodo que es sufijo de la secuencia y en la rama hay nodos 
                 // de secuencia completa
-                int nodoExpID = cst.id(nodoExp);
-                int count = gstMapNodo2Ruta.count(nodoExpID);
+                // Verificando sub-árbol
+                int pi = cst.lb(nodoExp);
+                int pf = cst.rb(nodoExp);
                 howManyIfs++;
                 if(verbose){
-                    cout << "\t\tInsertando " << count << " rutas desde nodo " << nodoExpID << endl;
+                    cout << "\t\tVerificando hojas desde " << pi << " hasta " << pf << endl;
                 }
-                auto rango = gstMapNodo2Ruta.equal_range(nodoExpID);
-                for(auto j=rango.first; j!=rango.second; j++){
+                howManyCSTviews += (pf - pi + 1);
+                for(int j=pi; j<= pf; j++){
                     howManyIfs++;
-                    if(verbose){
-                        cout << "\t\t\tInsertando " << j->second << endl;
+                    if(cst.csa[j] == 0 || gstMFSbv[cst.csa[j]-1] == 1){
+                        // Corresponde a una secuencia completa
+                        setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[j]));
+                        howManyInserts++;
+                        howManyIfs++;
+                        if(verbose){
+                            cout << "\t\t\tInsertando " << cst.csa[j] << endl;
+                        }
                     }
-                    setRes.insert(j->second);
-                    howManyInserts++;
                     howManyIfs++;
                 }
             }

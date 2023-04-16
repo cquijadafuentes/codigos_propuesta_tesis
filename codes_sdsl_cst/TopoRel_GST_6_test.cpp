@@ -13,7 +13,7 @@ string print_bool(bool x){
 
 int desplegarMenu(){
 	int opc = -1;
-	while(opc < 0 || opc > 15){
+	while(opc < 0 || opc > 16){
 		cout << " ****************************** " << endl;
 		cout << "1 - Información general." << endl;
 		cout << "2 - Información hijos de la raíz." << endl;
@@ -31,7 +31,7 @@ int desplegarMenu(){
 		cout << " ***** Navegación en Nodos ****" << endl;
 		cout << "14 - Weiner Link de un nodo" << endl;
 		cout << "15 - Mostrar contenido de gstMapNodo2Ruta" << endl;
-		cout << "16 - " << endl;
+		cout << "16 - Compara allContained versión 3 y versión 4." << endl;
 		cout << "17 - " << endl;
 		cout << "18 - " << endl;
 		cout << "19 - " << endl;
@@ -348,6 +348,33 @@ void nodo2Rutas(TopoRelGST_6 gst){
 	cout << endl;
 }
 
+//--------------	CASE 	------------//
+void allContainedOperation4(TopoRelGST_6 gst){
+	cout << "Comparando allContained versión 3 y versión 4" << endl;
+	cout << "Ingrese la id de la ruta (entre 0 y " << (gst.n_rutas-1) << "): ";
+	int x;
+	cin >> x;
+	int v;
+	cout << "Desea el debug de la versión 3 (1-SI - 0-NO):";
+	cin >> v;
+	cout << endl;
+	vector<int> res = gst.tr_allContained3(x, v==1);
+	cout << "El resultado v3 contiene " << res.size() << " elementos: " << endl;
+	for(int i=0; i<res.size(); i++){
+		cout << res[i] << "  ";
+	}
+	cout << endl;
+	cout << "Desea el debug de la versión 4 (1-SI - 0-NO):";
+	cin >> v;
+	cout << endl;
+	vector<int> res2 = gst.tr_allContained4(x, v==1);
+	cout << "El resultado v4 contiene " << res2.size() << " elementos: " << endl;
+	for(int i=0; i<res2.size(); i++){
+		cout << res2[i] << "  ";
+	}
+	cout << endl;
+}
+
 int main(int argc, char const *argv[]){
 
 	if(argc < 2){
@@ -410,6 +437,9 @@ int main(int argc, char const *argv[]){
 	    		break;
 	    	case 15:
 	    		nodo2Rutas(gst);
+	    		break;
+	    	case 16:
+	    		allContainedOperation4(gst);
 	    		break;
 	    	default:
 	    		cout << "Ocurrió algún error..." << endl;

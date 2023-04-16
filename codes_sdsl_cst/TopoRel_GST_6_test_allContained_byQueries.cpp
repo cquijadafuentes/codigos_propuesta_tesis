@@ -30,19 +30,24 @@ int main(int argc, char const *argv[]){
 	int cantFallasV1 = 0;
 	int cantFallasV2 = 0;
 	int cantFallasV3 = 0;
+	int cantFallasV4 = 0;
 	vector<int> visitedNodesV1(nQueries, 0);
 	vector<int> visitedNodesV2(nQueries, 0);
 	vector<int> visitedNodesV3(nQueries, 0);
+	vector<int> visitedNodesV4(nQueries, 0);
 	vector<int> statsV1(5, 0);
 	vector<int> statsV2(5, 0);
 	vector<int> statsV3(5, 0);
+	vector<int> statsV4(5, 0);
 	double promVisitedNodesV1 = 0.0;
 	double promVisitedNodesV2 = 0.0;
 	double promVisitedNodesV3 = 0.0;
+	double promVisitedNodesV4 = 0.0;
 	for(int i=0; i<nQueries; i++){
 		bool fallaV1 = false;
 		bool fallaV2 = false;
 		bool fallaV3 = false;
+		bool fallaV4 = false;
 		// Carga de la consulta en x
 		int x;
 		queries >> x;
@@ -116,6 +121,27 @@ int main(int argc, char const *argv[]){
 				}
 			}
 		}
+		// Obtener resultados de la versión 4
+		gst.statsReset();
+		vector<int> resV4 = gst.tr_allContained4(x);
+		visitedNodesV4[i] = gst.howManyNodes;
+		promVisitedNodesV4 += gst.howManyNodes;
+		statsV4[0] += gst.howManyInserts;
+		statsV4[1] += gst.howManyIfs;
+		statsV4[2] += gst.howManyidRutaDesdeCeldaDeSecConcat;
+		statsV4[3] += gst.howManygetLargoRuta;
+		statsV4[4] += resV1.size();
+		// Comparar los resultados de la versión 4
+		sort(resV4.begin(), resV4.end());
+		if(resV4.size() != y){
+			fallaV4 = true;
+		}else{
+			for(int j=0; j<y; j++){
+				if(resV4[j] != naiveResult[j]){
+					fallaV4 = true;
+				}
+			}
+		}
 		// Contabilizar fallas
 		if(fallaV1){
 			cantFallasV1++;
@@ -126,34 +152,40 @@ int main(int argc, char const *argv[]){
 		if(fallaV3){
 			cantFallasV3++;
 		}
+		if(fallaV4){
+			cantFallasV4++;
+		}
 	}
 	queries.close();
 	results.close();
 	sort(visitedNodesV1.begin(), visitedNodesV1.end());
 	sort(visitedNodesV2.begin(), visitedNodesV2.end());
 	sort(visitedNodesV3.begin(), visitedNodesV3.end());
+	sort(visitedNodesV4.begin(), visitedNodesV4.end());
 	promVisitedNodesV1 /= nQueries;
 	promVisitedNodesV2 /= nQueries;
 	promVisitedNodesV3 /= nQueries;
-	cout << "fallas\tnRutas\tnQueries\tfails_{V1}\tfails_{V2}\tfails_{V3}" << endl;
+	promVisitedNodesV4 /= nQueries;
+	cout << "fallas\tnRutas\tnQueries\tfails_{V1}\tfails_{V2}\tfails_{V3}\tfails_{V4}" << endl;
 	cout << "fallas\t" << gst.n_rutas << "\t";
 	cout << nQueries << "\t";
 	cout << cantFallasV1 << "\t";
 	cout << cantFallasV2 << "\t";
-	cout << cantFallasV3 << endl;
-	cout << "visNods\tnRutas\tpromV1\tpromV2\tpromV3\tminV1\tminV2\tminV3\tmedV1\tmedV2\tmedV3\tmaxV1\tmaxV2\tmaxV3" << endl;
+	cout << cantFallasV3 << "\t";
+	cout << cantFallasV4 << endl;
+	cout << "visNods\tnRutas\tpromV1\tpromV2\tpromV3\tpromV4\tminV1\tminV2\tminV3\tminV4\tmedV1\tmedV2\tmedV3\tmedV4\tmaxV1\tmaxV2\tmaxV3\tmaxV4" << endl;
 	cout << "visNods\t" << gst.n_rutas << "\t";
-	cout << promVisitedNodesV1 << "\t" << promVisitedNodesV2 << "\t" << promVisitedNodesV3 << "\t";
-	cout << visitedNodesV1[0] << "\t" << visitedNodesV2[0] << "\t" << visitedNodesV3[0] << "\t";
-	cout << visitedNodesV1[nQueries/2] << "\t" << visitedNodesV2[nQueries/2] << "\t" << visitedNodesV3[nQueries/2] << "\t";
-	cout << visitedNodesV1[nQueries-1] << "\t" << visitedNodesV2[nQueries-1] << "\t" << visitedNodesV3[nQueries-1] << endl;
-	cout << "stats\tnRutas\tnQueries\tins_{V1}\tins_{V2}\tins_{V3}\tifs_{V1}\tifs_{V2}\tifs_{V3}\tidsR_{V1}\tidsR_{V2}\tidsR_{V3}\tlarR_{V1}\tlarR_{V2}\tlarR_{V3}\tcRes_{V1}\tcRes_{V2}\tcRes_{V3}" << endl;
+	cout << promVisitedNodesV1 << "\t" << promVisitedNodesV2 << "\t" << promVisitedNodesV3 << "\t" << promVisitedNodesV4 << "\t";
+	cout << visitedNodesV1[0] << "\t" << visitedNodesV2[0] << "\t" << visitedNodesV3[0] << "\t" << visitedNodesV4[0] << "\t";
+	cout << visitedNodesV1[nQueries/2] << "\t" << visitedNodesV2[nQueries/2] << "\t" << visitedNodesV3[nQueries/2] << "\t" << visitedNodesV4[nQueries/2] << "\t";
+	cout << visitedNodesV1[nQueries-1] << "\t" << visitedNodesV2[nQueries-1] << "\t" << visitedNodesV3[nQueries-1] << "\t" << visitedNodesV4[nQueries-1] << endl;
+	cout << "stats\tnRutas\tnQueries\tins_{V1}\tins_{V2}\tins_{V3}\tins_{V4}\tifs_{V1}\tifs_{V2}\tifs_{V3}\tifs_{V4}\tidsR_{V1}\tidsR_{V2}\tidsR_{V3}\tidsR_{V4}\tlarR_{V1}\tlarR_{V2}\tlarR_{V3}\tlarR_{V4}\tcRes_{V1}\tcRes_{V2}\tcRes_{V3}\tcRes_{V4}" << endl;
 	cout << "visNods\t" << gst.n_rutas << "\t" << nQueries << "\t";
-	cout << statsV1[0] << "\t" << statsV2[0] << "\t" << statsV3[0] << "\t";
-	cout << statsV1[1] << "\t" << statsV2[1] << "\t" << statsV3[1] << "\t";
-	cout << statsV1[2] << "\t" << statsV2[2] << "\t" << statsV3[2] << "\t";
-	cout << statsV1[3] << "\t" << statsV2[3] << "\t" << statsV3[3] << "\t";
-	cout << statsV1[4] << "\t" << statsV2[4] << "\t" << statsV3[4] << endl;
+	cout << statsV1[0] << "\t" << statsV2[0] << "\t" << statsV3[0] << "\t" << statsV4[0] << "\t";
+	cout << statsV1[1] << "\t" << statsV2[1] << "\t" << statsV3[1] << "\t" << statsV4[1] << "\t";
+	cout << statsV1[2] << "\t" << statsV2[2] << "\t" << statsV3[2] << "\t" << statsV4[2] << "\t";
+	cout << statsV1[3] << "\t" << statsV2[3] << "\t" << statsV3[3] << "\t" << statsV4[3] << "\t";
+	cout << statsV1[4] << "\t" << statsV2[4] << "\t" << statsV3[4] << "\t" << statsV4[4] << endl;
 	cout << endl;
     return 0;
 }
