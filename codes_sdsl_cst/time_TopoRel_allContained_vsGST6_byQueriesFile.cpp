@@ -59,6 +59,7 @@ int main(int argc, char const *argv[]){
 
 	unsigned t0, t1;
 
+	gst.statsReset();
 	cout << "Ejecutando consultas GST6 versión 1..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
@@ -72,8 +73,7 @@ int main(int argc, char const *argv[]){
 	double cantNodosv1 = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
 
 
-	gst.howManyLCP = 0;
-	gst.howManyNodes = 0;
+	gst.statsReset();
 	cout << "Ejecutando consultas GST6 versión 2..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
@@ -87,8 +87,7 @@ int main(int argc, char const *argv[]){
 	double cantNodosv2 = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
 
 
-	gst.howManyLCP = 0;
-	gst.howManyNodes = 0;
+	gst.statsReset();
 	cout << "Ejecutando consultas GST6 versión 3..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
@@ -101,9 +100,23 @@ int main(int argc, char const *argv[]){
 	double cantLCPv3 = (0.0 + gst.howManyLCP) / queries.size() / repeticiones;
 	double cantNodosv3 = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
 
-	cout << "rutas\tqueries\tv1\tv2\tv3" << endl;
-	cout << gst.n_rutas << "\t" << num_queries << "\t" << tV1 << "\t" << tV2 << "\t" << tV3 << "\t[us]" << endl;
-	cout << "howMany\trutas\tcantv1\tcantv2\tcantv3" << endl;
-	cout << "LCP\t" << gst.n_rutas << "\t" << cantLCPv1 << "\t" << cantLCPv2 << "\t" << cantLCPv3 << endl;
+
+	gst.statsReset();
+	cout << "Ejecutando consultas GST6 versión 4..." << endl;
+	t0 = clock();
+	for(int j=0; j<repeticiones; j++){
+	    for(int i=0; i<queries.size(); i++){
+	    	gst.tr_allContained4(queries[i]);
+	    }
+	}
+	t1 = clock();
+	double tV4 = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
+	double cantLCPv4 = (0.0 + gst.howManyLCP) / queries.size() / repeticiones;
+	double cantNodosv4 = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
+
+	cout << "rutas\tqueries\tv1\tv2\tv3\tv4" << endl;
+	cout << gst.n_rutas << "\t" << num_queries << "\t" << tV1 << "\t" << tV2 << "\t" << tV3 << "\t" << tV4 << "\t[us]" << endl;
+	cout << "howMany\trutas\tcantv1\tcantv2\tcantv3\tcantv4" << endl;
+	cout << "LCP\t" << gst.n_rutas << "\t" << cantLCPv1 << "\t" << cantLCPv2 << "\t" << cantLCPv3 << "\t" << cantLCPv4 << endl;
 	return 0;
 }
