@@ -74,12 +74,24 @@ int main(int argc, char const *argv[]){
 			}
 			cout << endl;
 			cout << "Creando mini-dataset de ruta " << i << endl;
-			cout << resNaive.size() << " " << gst.n_stops << endl;
+			// Preparando datos...
+			unordered_map<int,int> mapRutas;
+			int stops = 0;
+			for(int j=0; j<resNaive.size(); j++){
+				vector<int> lx = gst.getRuta(resNaive[j]);
+				for(int k=0; k<lx.size(); k++){
+					if(mapRutas[lx[k]] == 0){
+						mapRutas[lx[k]] = ++stops;
+					}
+				}
+			}
+			// Imprimiendo datos
+			cout << resNaive.size() << " " << stops << endl;
 			for(int j=0; j<resNaive.size(); j++){
 				vector<int> lx = gst.getRuta(resNaive[j]);
 				cout << lx.size() << "\t";
 				for(int k=0; k<lx.size(); k++){
-					cout << lx[k] << "\t";
+					cout << mapRutas[lx[k]] << "\t";
 				}
 				cout << endl;
 			}
