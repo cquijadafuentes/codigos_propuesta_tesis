@@ -1116,7 +1116,7 @@ vector<int> TopoRelGST_6::tr_allContained4(int x, bool verbose){
     // recorriendo hacia la raíz usando wl para agregar elementos
     // Esta versión usa gstMapNodo2Ruta para agregar resultados.
     unordered_set<int> setRes;
-    //setRes.insert(x);
+    setRes.insert(x);
     howManyInserts++;
     vector<int> gstRutaX = getRuta(x);
 
