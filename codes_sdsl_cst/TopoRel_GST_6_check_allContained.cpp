@@ -14,20 +14,8 @@ int main(int argc, char const *argv[]){
 		return 0;
 	}
 
-	// Cargando rutas
-	ifstream txtInput(argv[1], ifstream::in);
-	int n, x, aux, max;
-	txtInput >> n >> max;
-	vector<vector<int>> lx(n);
-	for(int i = 0; i < n; i++){
-		txtInput >> x;
-		for(int j=0; j<x; j++){
-			txtInput >> aux;
-			lx[i].push_back(aux);
-		}
-	}
 	// Creando GST
-	TopoRelGST_6 gst(lx, max);
+	TopoRelGST_6 gst(argv[1]);
 	// Cargando consultas
 	int nQueries;
 	ifstream queries(argv[2], ifstream::in);
@@ -85,13 +73,13 @@ int main(int argc, char const *argv[]){
 				cout << resGST[j] << "\t";
 			}
 			cout << endl;
-			cout << "Creando mini-dataset" << endl;
-			vector<vector<int>> minidata;
-			cout << resNaive.size() << " " << max << endl;
+			cout << "Creando mini-dataset de ruta " << i << endl;
+			cout << resNaive.size() << " " << gst.n_stops << endl;
 			for(int j=0; j<resNaive.size(); j++){
-				cout << lx[resNaive[j]].size() << "\t";
-				for(int k=0; k<lx[resNaive[j]].size(); k++){
-					cout << lx[resNaive[j]][k] << "\t";
+				vector<int> lx = gst.getRuta(resNaive[j]);
+				cout << lx.size() << "\t";
+				for(int k=0; k<lx.size(); k++){
+					cout << lx[k] << "\t";
 				}
 				cout << endl;
 			}
