@@ -1,0 +1,13 @@
+Constructor TopoRelGST_6 (parallel top-down)
+Tamaño stops: 27840000 >> 4036824
+N° Threads: 3
+Fin constructor (parallel top-down  -).
+------------------------
+Resultados naive (4):	614	7818	12548	19038	
+Resultados GST (4):	614	12548	19038	27818	
+Creando mini-dataset
+4 11010
+2	7674	7673	
+2	7673	7674	
+14	8291	7674	7673	7672	7671	8229	7935	7483	6473	7969	7938	7039	9456	6710	
+2	7935	7483	

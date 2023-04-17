@@ -4,7 +4,7 @@ PREFLAGS=-std=c++11 -g -O0 -DNDEBUG -fopenmp -I ~/include -L ~/lib
 
 POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
-BINS=time_allTopoRels_byQueriesFile\
+BINS=TopoRel_GST_6_check_allContained time_allTopoRels_byQueriesFile\
 		TopoRel_Naive_test_allContained_byQueries\
 		TopoRel_GST_6_size TopoRel_GST_6_allContained\
 		TopoRel_GST_6_test_allContained_byQueries\
@@ -45,6 +45,9 @@ TopoRel_GST_6_allContained:
 
 TopoRel_GST_6_build:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_6_build TopoRel_GST_6_build.cpp $(OBJECTS) $(POSFLAGS)
+
+TopoRel_GST_6_check_allContained:
+	$(CPP) $(PREFLAGS) -o TopoRel_GST_6_check_allContained TopoRel_GST_6_check_allContained.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_GST_6_test:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_6_test TopoRel_GST_6_test.cpp $(OBJECTS) $(POSFLAGS)

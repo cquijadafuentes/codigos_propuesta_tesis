@@ -1173,9 +1173,9 @@ vector<int> TopoRelGST_6::tr_allContained4(int x, bool verbose){
                 for(auto j=rango.first; j!=rango.second; j++){
                     howManyIfs++;
                     if(verbose){
-                        cout << "\t\t\tInsertando " << j->second << endl;
+                        cout << "\t\t\tInsertando " << (j->second)%n_rutas << endl;
                     }
-                    setRes.insert(j->second);
+                    setRes.insert((j->second)%n_rutas);
                     howManyInserts++;
                     howManyIfs++;
                 }

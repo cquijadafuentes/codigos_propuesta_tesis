@@ -8,6 +8,7 @@ time_allTopoRels_byQueriesFile
 TopoRel_*_test
 TopoRel_GST_6_allContained
 TopoRel_GST_6_build
+TopoRel_GST_6_check_allContained
 TopoRel_GST_6_size
 TopoRel_GST_6_test_allContained_byQueries
 TopoRel_GST_6_test_allIntersect_byQueries
