@@ -1210,6 +1210,107 @@ vector<int> TopoRelGST_6::tr_allContained4(int x, bool verbose){
 }
 
 
+vector<int> TopoRelGST_6::tr_allContained5(int x, bool verbose){
+    // Versión de la operación allContained que determina el resultado
+    // por un recorrido del GST desde la raíz usando mapNodo2Ruta
+    unordered_set<int> setRes;
+    setRes.insert(x);
+    howManyInserts++;
+    vector<int> gstRutaX = getRuta(x);
+
+    // Primer ciclo recorre los sub-árboles con los sufijos
+    // que corresponden a la secuencia posible.
+    int topeSec = getLargoRuta(x) - len_min;
+    auto raiz = cst.root();
+    for(int i=0; i<=topeSec; i++){
+        auto nodo = cst.child(raiz, gstRutaX[i]);
+        int nodoID = cst.id(nodo);
+        int nodoDepth = cst.depth(nodo);
+        howManyNodes++;
+        int ii = nodoDepth;
+        howManyIfs++;
+        if(verbose){
+            cout << "Iniciando en " << cst.id(nodo) << endl;
+            cout << "i: " << i << " ii: " << ii << " depth: " << cst.depth(nodo) << endl;
+        }
+        // Comenzar con un sufijo de largo al menos len_min
+        while(nodo != raiz && i+ii <= getLargoRuta(x) && (gstMRamas[nodoID] == 1 || gstMNodos[nodoID] == 1)){
+            howManyIfs++;
+            if(nodoDepth >= len_min && (gstMRamas[nodoID] == 1 || gstMNodos[nodoID] == 1)){
+                // Son nodos que representan sufijos cuyo largo 
+                // supera el de la secuencia menor del conjunto
+                auto nodoAux = cst.child(nodo, finSec);
+                int nodoAuxID = cst.id(nodoAux);
+                int nodoAuxDepth = cst.depth(nodoAux);
+                int count = gstMapNodo2Ruta.count(nodoAuxID);
+                howManyIfs++;
+                if(verbose){
+                    cout << "\t\tInsertando " << count << " rutas desde nodo " << nodoAuxID << endl;
+                }
+                howManyIfs++;
+                if(nodoAux != raiz && gstMNodos[nodoAuxID] == 1){ 
+                    // El nodo con el fin de secuencia existe y tiene al menos una secuencia
+                    auto rango = gstMapNodo2Ruta.equal_range(nodoAuxID);
+                    for(auto j=rango.first; j!=rango.second; j++){
+                        howManyIfs++;
+                        if(verbose){
+                            cout << "\t\t\tInsertando " << (j->second)%n_rutas << endl;
+                        }
+                        setRes.insert((j->second)%n_rutas);
+                        howManyInserts++;
+                        howManyIfs++;
+                    }
+                }
+            }
+
+            nodo = cst.child(nodo, gstRutaX[i+ii]);
+            nodoID = cst.id(nodo);
+            nodoDepth = cst.depth(nodo);
+            howManyNodes++;
+            ii = nodoDepth;
+            howManyIfs++;
+            if(verbose){
+                cout << "\tLlegando a por " << nodoID << endl;
+            }
+            howManyIfs++;
+        }
+        howManyIfs++;
+        if(verbose){
+            cout << "\tEn nodo " << nodoID << endl;
+        }
+        // Comenzar a verificar si en el nodo que resta por recorrer
+        // existen secuencias que contengan el resultado
+        
+
+        // Verificando el último nodo
+        howManyIfs++;
+        if(nodo != raiz && (gstMRamas[nodoID] == 1 || gstMNodos[nodoID] == 1)){
+            // Existe un nodo que es sufijo de la secuencia
+            // Verificando sub-árbol
+            int count = gstMapNodo2Ruta.count(nodoID);
+            howManyIfs++;
+            if(verbose){
+                cout << "\t\tInsertando " << count << " rutas desde nodo " << nodoID << endl;
+            }
+            auto rango = gstMapNodo2Ruta.equal_range(nodoID);
+            for(auto j=rango.first; j!=rango.second; j++){
+                howManyIfs++;
+                if(verbose){
+                    cout << "\t\t\tInsertando " << (j->second)%n_rutas << endl;
+                }
+                setRes.insert((j->second)%n_rutas);
+                howManyInserts++;
+                howManyIfs++;
+            }
+        }
+        howManyIfs++;
+    }
+
+    vector<int> res(setRes.begin(), setRes.end());
+    return res;
+}
+
+
 vector<int> TopoRelGST_6::tr_allIntersect(int x, bool verbose){
     unordered_set<int> setRes;
     setRes.insert(x);

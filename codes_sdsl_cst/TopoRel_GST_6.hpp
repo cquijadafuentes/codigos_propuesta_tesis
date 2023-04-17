@@ -73,7 +73,8 @@ public:
     vector<int> tr_allContained(int,bool=false);
     vector<int> tr_allContained2(int,bool=false);   // Recorrido desde la raíz de los distintos sufijos
     vector<int> tr_allContained3(int,bool=false);   // Recorrido desde el nodo de la secuencia usando wl
-    vector<int> tr_allContained4(int,bool=false);  
+    vector<int> tr_allContained4(int,bool=false);   // Mejora de la versión 3 usando mapNodosRuta
+    vector<int> tr_allContained5(int,bool=false);   // Mejora de la versión 2 usando mapNodosRuta
     vector<int> tr_allIntersect(int,bool=false);
 
     void navega(int);

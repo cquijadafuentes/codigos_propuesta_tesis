@@ -47,7 +47,7 @@ int main(int argc, char const *argv[]){
 		}
 		// Obtener resultados desde GST versión 4
 		gst.statsReset();
-		vector<int> resGST = gst.tr_allContained4(x);
+		vector<int> resGST = gst.tr_allContained5(x);
 		// Comparar los resultados de la versión 4
 		sort(resGST.begin(), resGST.end());
 		if(resGST.size() != resNaive.size()){
