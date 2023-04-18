@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -ne 2 ]; then
-	echo "$(basename $0) <data_folder_trips> <data_folder_20+>"
+	echo "$(basename $0) <data_folder>"
 	echo "Generará arcvivos en formato gst6"
 	exit 1
 fi
