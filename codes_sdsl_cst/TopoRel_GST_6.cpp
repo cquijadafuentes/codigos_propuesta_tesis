@@ -1599,9 +1599,9 @@ void TopoRelGST_6::sizeEstructura(){
         bytesMapaRuta2Nodo += sizeof(gstMapRuta2Nodo[i]);
     }
     // Calculo de los bytes para gstMapNodo2Ruta
-    unsigned long long bytesMapNodo2Ruta = 0;
+    unsigned long long bytesMapaNodo2Ruta = 0;
     for(int i=0; i<gstMapNodo2Ruta.size(); i++){
-        bytesMapNodo2Ruta += sizeof(int)*2;
+        bytesMapaNodo2Ruta += sizeof(int)*2;
     }
     cout << "gstMapRuta2Nodo [B]: " << bytesMapaRuta2Nodo << endl;
     cout << "gstMapNodo2Ruta [B]: " << bytesMapaNodo2Ruta << endl;
@@ -1626,9 +1626,9 @@ void TopoRelGST_6::sizeToPlot(){
         bytesMapaRuta2Nodo += sizeof(gstMapRuta2Nodo[i]);
     }
     // Calculo de los bytes para gstMapNodo2Ruta
-    unsigned long long bytesMapNodo2Ruta = 0;
+    unsigned long long bytesMapaNodo2Ruta = 0;
     for(int i=0; i<gstMapNodo2Ruta.size(); i++){
-        bytesMapNodo2Ruta += sizeof(int)*2;
+        bytesMapaNodo2Ruta += sizeof(int)*2;
     }
     
     // Calculo de los bytes para STOPS
