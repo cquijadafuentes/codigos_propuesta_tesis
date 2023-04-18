@@ -949,7 +949,9 @@ vector<int> TopoRelGST_6::tr_allContained2(int x, bool verbose){
                     for(int j=pi; j<= pf; j++){
                         howManyIfs++;
                         if(cst.csa[j] == 0 || gstMFSbv[cst.csa[j]-1] == 1){
-                            cout << "\t\t\tInsertando " << idRutaDesdeCeldaDeSecConcat(cst.csa[j]) << endl;
+                            if(verbose){
+                                cout << "\t\t\tInsertando " << idRutaDesdeCeldaDeSecConcat(cst.csa[j]) << endl;
+                            }
                             // Corresponde a una secuencia completa
                             setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[j]));
                             howManyInserts++;
