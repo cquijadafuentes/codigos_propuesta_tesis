@@ -1247,6 +1247,7 @@ vector<int> TopoRelGST_6::tr_allContained5(int x, bool verbose){
                 howManyIfs++;
                 if(nodoDepth + i <= gstRutaX.size()){
                      nodoAux = cst.child(nodo, finSec);
+                     howManyNodes++;
                      nodoAuxID = cst.id(nodoAux);
                      nodoAuxDepth = cst.depth(nodoAux);
                 }
@@ -1288,6 +1289,7 @@ vector<int> TopoRelGST_6::tr_allContained5(int x, bool verbose){
             }
             howManyIfs++;
         }while(nodo != raiz && (gstMRamas[nodoID] == 1 || gstMNodos[nodoID] == 1));
+        howManyIfs++;
     }
     vector<int> res(setRes.begin(), setRes.end());
     return res;
@@ -1303,6 +1305,7 @@ vector<int> TopoRelGST_6::tr_allContained6(int x, bool verbose){
     int sizeX = getLargoRuta(x);
     int topeSec = sizeX - len_min;
     auto raiz = cst.root();
+    howManyNodes++;
     auto nodo = gstMapRuta2Nodo[x]; // Se usa para navegación por suffix-link
     int nodoID = cst.id(nodo);
     int nodoDepth = cst.depth(nodo);
@@ -1325,17 +1328,22 @@ vector<int> TopoRelGST_6::tr_allContained6(int x, bool verbose){
             auto nodoExp = nodoAux;     // Se usa para verificar los nodos con secuencia
             int nodoExpID = nodoAuxID;
             int nodoExpDepth = nodoAuxDepth;
+            howManyIfs++;
             if(verbose){
                 cout << "NodoExp id: " << nodoExpID << " - peso: " << nodoExpDepth << endl;
             }
+            howManyIfs++;
             if(gstMNodos[nodoExpID] != 1){
                 nodoExp = cst.child(nodoAux, finSec);
+                howManyNodes++;
                 nodoExpID = cst.id(nodoExp);
                 nodoExpDepth = cst.depth(nodoExp);
             }
+            howManyIfs++;
             if (verbose){
                 cout << "\t\tRevisando " << nodoAuxID << endl;
             }
+            howManyIfs++;
             if(nodoExp != raiz && gstMNodos[nodoExpID]){
                 // Hay nodos marcados en nodoExp
                 int count = gstMapNodo2Ruta.count(nodoExpID);
@@ -1351,19 +1359,24 @@ vector<int> TopoRelGST_6::tr_allContained6(int x, bool verbose){
                 }
             }
             nodoAux = cst.parent(nodoAux);
+            howManyNodes++;
             nodoAuxID = cst.id(nodoAux);
             nodoAuxDepth = cst.depth(nodoAux);
+            howManyIfs++;
         }
         // Cambio de rama con suffix link
+        howManyIfs++;
         if (verbose){
             cout << "SuffixLink desde " << nodoID;
         }
         nodo = cst.sl(nodo);
+        howManyNodes++;
         nodoID = cst.id(nodo);
         nodoDepth = cst.depth(nodo);
         if (verbose){
             cout << " hasta " << nodoID << endl;
         }
+        howManyIfs++;
     }
     vector<int> res(setRes.begin(), setRes.end());
     return res;
@@ -1580,12 +1593,18 @@ void TopoRelGST_6::sizeEstructura(){
     }
     double porcentaje = (bitsUno+0.0)/bitsTotal*100;
     cout << "stops [B]: " << bytesStops << endl;
-    // Calculo de los bytes para MAPA
-    unsigned long long bytesMapa = 0;
+    // Calculo de los bytes para gstMapRuta2Nodo
+    unsigned long long bytesMapaRuta2Nodo = 0;
     for(int i=0; i<gstMapRuta2Nodo.size(); i++){
-        bytesMapa += sizeof(gstMapRuta2Nodo[i]);
+        bytesMapaRuta2Nodo += sizeof(gstMapRuta2Nodo[i]);
     }
-    cout << "mapa [B]: " << bytesMapa << endl;
+    // Calculo de los bytes para gstMapNodo2Ruta
+    unsigned long long bytesMapNodo2Ruta = 0;
+    for(int i=0; i<gstMapNodo2Ruta.size(); i++){
+        bytesMapNodo2Ruta += sizeof(int)*2;
+    }
+    cout << "gstMapRuta2Nodo [B]: " << bytesMapaRuta2Nodo << endl;
+    cout << "gstMapNodo2Ruta [B]: " << bytesMapaNodo2Ruta << endl;
     cout << "gstMFSbv [B]: " << size_in_bytes(gstMFSbv) << endl;
     cout << "gstMFS_rank_1 [B]: " << size_in_bytes(gstMFSrank) << endl;
     cout << "gstMFS_select_1 [B]: " << size_in_bytes(gstMFSselect) << endl;
@@ -1601,10 +1620,15 @@ void TopoRelGST_6::sizeEstructura(){
 }
 
 void TopoRelGST_6::sizeToPlot(){
-    // Calculo de los bytes para RUTAS
-    unsigned long long bytesRutas = 0;
-    for(int i=0; i<gstRutas.size(); i++){
-        bytesRutas += size_in_bytes(gstRutas[i]);
+    // Calculo de los bytes para gstMapRuta2Nodo
+    unsigned long long bytesMapaRuta2Nodo = 0;
+    for(int i=0; i<gstMapRuta2Nodo.size(); i++){
+        bytesMapaRuta2Nodo += sizeof(gstMapRuta2Nodo[i]);
+    }
+    // Calculo de los bytes para gstMapNodo2Ruta
+    unsigned long long bytesMapNodo2Ruta = 0;
+    for(int i=0; i<gstMapNodo2Ruta.size(); i++){
+        bytesMapNodo2Ruta += sizeof(int)*2;
     }
     
     // Calculo de los bytes para STOPS
@@ -1624,11 +1648,12 @@ void TopoRelGST_6::sizeToPlot(){
     for(int i=0; i<gstMapRuta2Nodo.size(); i++){
         bytesMapa += sizeof(gstMapRuta2Nodo[i]);
     }
-    cout << "rutas\tstops\tcstsada\trutas\tstops\tmapa\tgstMFSbv\tgstMNodos\tgstMRamas" << endl;
+    cout << "rutas\tstops\tcstsada\trutas\tstops\tmapR2N\tmapN2R\tgstMFSbv\tgstMNodos\tgstMRamas" << endl;
     cout << n_rutas << "\t"; 
     cout << n_stops << "\t"; 
     cout << size_in_bytes(cst) << "\t";
-    cout << bytesRutas << "\t";
+    cout << bytesMapaRuta2Nodo << "\t";
+    cout << bytesMapaNodo2Ruta << "\t";
     cout << bytesStops << "\t";
     cout << bytesMapa << "\t";
     cout << size_in_bytes(gstMFSbv) << "\t";
