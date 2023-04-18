@@ -75,6 +75,7 @@ public:
     vector<int> tr_allContained3(int,bool=false);   // Recorrido desde el nodo de la secuencia usando wl
     vector<int> tr_allContained4(int,bool=false);   // Mejora de la versión 3 usando mapNodosRuta
     vector<int> tr_allContained5(int,bool=false);   // Mejora de la versión 2 usando mapNodosRuta
+    vector<int> tr_allContained6(int,bool=false);   // Versión de navegación desde map usando sl
     vector<int> tr_allIntersect(int,bool=false);
 
     void navega(int);

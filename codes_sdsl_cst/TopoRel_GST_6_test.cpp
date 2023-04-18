@@ -13,7 +13,7 @@ string print_bool(bool x){
 
 int desplegarMenu(){
 	int opc = -1;
-	while(opc < 0 || opc > 17){
+	while(opc < 0 || opc > 21){
 		cout << " ****************************** " << endl;
 		cout << "1 - Información general." << endl;
 		cout << "2 - Información hijos de la raíz." << endl;
@@ -33,10 +33,15 @@ int desplegarMenu(){
 		cout << "15 - Mostrar contenido de gstMapNodo2Ruta" << endl;
 		cout << "16 - Compara allContained versión 3 y versión 4." << endl;
 		cout << "17 - Compara allContained versión 2 y versión 5. - " << endl;
-		cout << "18 - " << endl;
-		cout << "19 - " << endl;
-		cout << "20 - " << endl;
-		cout << "21 - " << endl;
+		cout << "18 - Mostrar gstMapNodo2Ruta de un nodo" << endl;
+		cout << "19 - Operación allContained4" << endl;
+		cout << "20 - Operación allContained5" << endl;
+		cout << "21 - Operación allContained6" << endl;
+		cout << "22 - " << endl;
+		cout << "23 - " << endl;
+		cout << "24 - " << endl;
+		cout << "25 - " << endl;
+		cout << "26 - " << endl;
 		cout << " ****************************** " << endl;
 		cout << "0 - Salir." << endl;
 		cout << " ****************************** " << endl;
@@ -46,7 +51,7 @@ int desplegarMenu(){
 	return opc;
 }
 
-//--------------	CASE 	------------//
+//--------------	CASE 1	------------//
 void infoGralConjunto(TopoRelGST_6 gst){
 	cout << "--- Información del conjunto ---" << endl;
 	cout << "Nº de rutas: " << gst.n_rutas << endl;
@@ -67,7 +72,7 @@ void infoGralConjunto(TopoRelGST_6 gst){
     cout << "Largo del LCP Array: " << gst.cst.lcp.size() << endl;
 }
 
-//--------------	CASE 	------------//
+//--------------	CASE 2	------------//
 void infoRootChildren(TopoRelGST_6 gst){
     auto root = gst.cst.root();
 	cout << "--- Información de la raíz del CST ---" << endl;
@@ -94,7 +99,7 @@ void infoRootChildren(TopoRelGST_6 gst){
     cout << endl;
 }
 
-//--------------	CASE 	------------//
+//--------------	CASE 3	------------//
 void infoNodo(TopoRelGST_6 gst){
 	cout << "Ingrese id del nodo a evaluar: ";
 	int id;
@@ -109,6 +114,8 @@ void infoNodo(TopoRelGST_6 gst){
 	cout << "Secuencia del nodo: " << extract(gst.cst, nodo) << endl;
 	cout << "Profundidad : " << gst.cst.depth(nodo) << endl;
 	cout << "Id del padre del nodo: " << gst.cst.id(gst.cst.parent(nodo)) << endl;
+	cout << "Marca en gstMRamas: " << gst.gstMRamas[id] << endl;
+	cout << "Marca en gstMNodos: " << gst.gstMNodos[id] << endl;
 	cout << "Nodo hoja: " << print_bool(gst.cst.is_leaf(nodo)) << endl;
 	cout << "Hojas del sub-árbol: " << gst.cst.size(nodo);
 	int left = gst.cst.lb(nodo);
@@ -267,7 +274,7 @@ void infoMFS(TopoRelGST_6 gst){
 	cout << endl;
 }
 
-//--------------	CASE 	------------//
+//--------------	CASE 11	------------//
 void allContainedOperation(TopoRelGST_6 gst){
 	cout << "All Contained" << endl;
 	cout << "Ingrese la id de la ruta (entre 0 y " << (gst.n_rutas-1) << "): ";
@@ -285,7 +292,7 @@ void allContainedOperation(TopoRelGST_6 gst){
 	cout << endl;
 }
 
-//--------------	CASE 	------------//
+//--------------	CASE 12	------------//
 void allContainedOperation2(TopoRelGST_6 gst){
 	cout << "All Contained versión 2" << endl;
 	cout << "Ingrese la id de la ruta (entre 0 y " << (gst.n_rutas-1) << "): ";
@@ -303,7 +310,7 @@ void allContainedOperation2(TopoRelGST_6 gst){
 	cout << endl;
 }
 
-//--------------	CASE 	------------//
+//--------------	CASE 13	------------//
 void allContainedOperation3(TopoRelGST_6 gst){
 	cout << "All Contained versión 3" << endl;
 	cout << "Ingrese la id de la ruta (entre 0 y " << (gst.n_rutas-1) << "): ";
@@ -349,7 +356,7 @@ void nodo2Rutas(TopoRelGST_6 gst){
 }
 
 //--------------	CASE 16	------------//
-void allContainedOperation4(TopoRelGST_6 gst){
+void comparaAllContained_3vs4(TopoRelGST_6 gst){
 	cout << "Comparando allContained versión 3 y versión 4" << endl;
 	cout << "Ingrese la id de la ruta (entre 0 y " << (gst.n_rutas-1) << "): ";
 	int x;
@@ -376,7 +383,7 @@ void allContainedOperation4(TopoRelGST_6 gst){
 }
 
 //--------------	CASE 17	------------//
-void allContainedOperation5(TopoRelGST_6 gst){
+void comparaAllContained_2vs5(TopoRelGST_6 gst){
 	cout << "Comparando allContained versión 2 y versión 5" << endl;
 	cout << "Ingrese la id de la ruta (entre 0 y " << (gst.n_rutas-1) << "): ";
 	int x;
@@ -398,6 +405,77 @@ void allContainedOperation5(TopoRelGST_6 gst){
 	cout << "El resultado v5 contiene " << res2.size() << " elementos: " << endl;
 	for(int i=0; i<res2.size(); i++){
 		cout << res2[i] << "  ";
+	}
+	cout << endl;
+}
+
+//--------------	CASE 18	------------//
+void nodo2RutasEnNodo(TopoRelGST_6 gst){
+	cout << "Nodo2Ruta de un nodo" << endl;
+	cout << "Ingrese el id del nodo que desea consultar: ";
+	int x;
+	cin >> x;
+	auto nodo = gst.cst.inv_id(x);
+	x = gst.cst.id(nodo);
+	int count = gst.gstMapNodo2Ruta.count(x);
+	cout << "El nodo con id " << x << " tiene " << count << " rutas asociadas." << endl;
+	auto rango = gst.gstMapNodo2Ruta.equal_range(x);
+    for(auto j=rango.first; j!=rango.second; j++){
+		cout << j->second << " ";
+    }
+    cout << endl;
+}
+
+//--------------	CASE 19	------------//
+void allContainedOperation4(TopoRelGST_6 gst){
+	cout << "All Contained versión 4" << endl;
+	cout << "Ingrese la id de la ruta (entre 0 y " << (gst.n_rutas-1) << "): ";
+	int x;
+	cin >> x;
+	cout << "Desea el debug del proceso (1-SI - 0-NO):";
+	int v;
+	cin >> v;
+	cout << endl;
+	vector<int> res = gst.tr_allContained4(x, v==1);
+	cout << "El resultado contiene " << res.size() << " elementos: " << endl;
+	for(int i=0; i<res.size(); i++){
+		cout << res[i] << "  ";
+	}
+	cout << endl;
+}
+
+//--------------	CASE 20	------------//
+void allContainedOperation5(TopoRelGST_6 gst){
+	cout << "All Contained versión 5" << endl;
+	cout << "Ingrese la id de la ruta (entre 0 y " << (gst.n_rutas-1) << "): ";
+	int x;
+	cin >> x;
+	cout << "Desea el debug del proceso (1-SI - 0-NO):";
+	int v;
+	cin >> v;
+	cout << endl;
+	vector<int> res = gst.tr_allContained5(x, v==1);
+	cout << "El resultado contiene " << res.size() << " elementos: " << endl;
+	for(int i=0; i<res.size(); i++){
+		cout << res[i] << "  ";
+	}
+	cout << endl;
+}
+
+//--------------	CASE 21	------------//
+void allContainedOperation6(TopoRelGST_6 gst){
+	cout << "All Contained versión 6" << endl;
+	cout << "Ingrese la id de la ruta (entre 0 y " << (gst.n_rutas-1) << "): ";
+	int x;
+	cin >> x;
+	cout << "Desea el debug del proceso (1-SI - 0-NO):";
+	int v;
+	cin >> v;
+	cout << endl;
+	vector<int> res = gst.tr_allContained6(x, v==1);
+	cout << "El resultado contiene " << res.size() << " elementos: " << endl;
+	for(int i=0; i<res.size(); i++){
+		cout << res[i] << "  ";
 	}
 	cout << endl;
 }
@@ -466,11 +544,22 @@ int main(int argc, char const *argv[]){
 	    		nodo2Rutas(gst);
 	    		break;
 	    	case 16:
-	    		allContainedOperation4(gst);
-	    		break;
+	    		comparaAllContained_3vs4(gst);
 	    		break;
 	    	case 17:
+	    		comparaAllContained_2vs5(gst);
+	    		break;
+	    	case 18:
+	    		nodo2RutasEnNodo(gst);
+	    		break;
+	    	case 19:
+	    		allContainedOperation4(gst);
+	    		break;
+	    	case 20:
 	    		allContainedOperation5(gst);
+	    		break;
+	    	case 21:
+	    		allContainedOperation6(gst);
 	    		break;
 	    	default:
 	    		cout << "Ocurrió algún error..." << endl;

@@ -6,14 +6,20 @@ using namespace std;
 using namespace sdsl;
 
 int main(int argc, char const *argv[]){
-
-	if(argc < 4){
+	// Verifica los resultados de la versión de allContained que se especifique
+	if(argc < 5){
 		cout << "Error! faltan argumentos." << endl;
-		cout << argv[0] << " <input_filename.gst6> <queries_file> <results_file>" << endl;
+		cout << argv[0] << " <input_filename.gst6> <queries_file> <results_file> <version>" << endl;
 		cout << endl;
 		return 0;
 	}
 
+	// Cargando versión
+	int version = (int) atoi(argv[4]);
+	if(version < 1 || version > 6){
+		cout << "Error! la versión indicada no es correcta. Se usará la versión 6" << endl;
+		version = 6;
+	}
 	// Creando GST
 	TopoRelGST_6 gst(argv[1]);
 	// Cargando consultas
@@ -47,7 +53,29 @@ int main(int argc, char const *argv[]){
 		}
 		// Obtener resultados desde GST versión 4
 		gst.statsReset();
-		vector<int> resGST = gst.tr_allContained5(x);
+		vector<int> resGST;
+		switch(version){
+			case 1:
+				resGST = gst.tr_allContained(x);
+				break;
+			case 2:
+				resGST = gst.tr_allContained2(x);
+				break;
+			case 3:
+				resGST = gst.tr_allContained3(x);
+				break;
+			case 4:
+				resGST = gst.tr_allContained4(x);
+				break;
+			case 5:
+				resGST = gst.tr_allContained5(x);
+				break;
+			case 6:
+				resGST = gst.tr_allContained6(x);
+				break;
+			default:
+				cout << "Opción sin definir" << endl;
+		}
 		// Comparar los resultados de la versión 4
 		sort(resGST.begin(), resGST.end());
 		if(resGST.size() != resNaive.size()){
@@ -68,12 +96,12 @@ int main(int argc, char const *argv[]){
 				cout << resNaive[j] << "\t";
 			}
 			cout << endl;
-			cout << "Resultados GST (" << resGST.size() << "):\t";
+			cout << "Resultados GST_v" << version << " (" << resGST.size() << "):\t";
 			for(int j=0; j<resGST.size(); j++){
 				cout << resGST[j] << "\t";
 			}
 			cout << endl;
-			cout << "Creando mini-dataset de ruta " << i << endl;
+			cout << "Creando mini-dataset de ruta " << x << " por consulta " << i << endl;
 			// Preparando datos...
 			unordered_map<int,int> mapRutas;
 			int stops = 0;
@@ -98,6 +126,6 @@ int main(int argc, char const *argv[]){
 		}
 	}
 	cout << "------------------------" << endl;
-	cout << "Total fallas: " << cantFallas << endl;
+	cout << "Total fallas en version " << version << ": " << cantFallas << endl;
     return 0;
 }

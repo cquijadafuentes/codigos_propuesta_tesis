@@ -949,6 +949,7 @@ vector<int> TopoRelGST_6::tr_allContained2(int x, bool verbose){
                     for(int j=pi; j<= pf; j++){
                         howManyIfs++;
                         if(cst.csa[j] == 0 || gstMFSbv[cst.csa[j]-1] == 1){
+                            cout << "\t\t\tInsertando " << idRutaDesdeCeldaDeSecConcat(cst.csa[j]) << endl;
                             // Corresponde a una secuencia completa
                             setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[j]));
                             howManyInserts++;
@@ -1222,90 +1223,148 @@ vector<int> TopoRelGST_6::tr_allContained5(int x, bool verbose){
     // que corresponden a la secuencia posible.
     int topeSec = getLargoRuta(x) - len_min;
     auto raiz = cst.root();
+    int raizID = cst.id(raiz);
+    int raizDepth = cst.depth(raiz);
     for(int i=0; i<=topeSec; i++){
         auto nodo = cst.child(raiz, gstRutaX[i]);
+        howManyNodes++;
         int nodoID = cst.id(nodo);
         int nodoDepth = cst.depth(nodo);
-        howManyNodes++;
-        int ii = nodoDepth;
         howManyIfs++;
         if(verbose){
             cout << "Iniciando en " << cst.id(nodo) << endl;
-            cout << "i: " << i << " ii: " << ii << " depth: " << cst.depth(nodo) << endl;
+            cout << "i: " << i << " nodoDepth: " << nodoDepth << endl;
         }
         // Comenzar con un sufijo de largo al menos len_min
-        while(nodo != raiz && i+ii <= getLargoRuta(x) && (gstMRamas[nodoID] == 1 || gstMNodos[nodoID] == 1)){
+        do{
             howManyIfs++;
             if(nodoDepth >= len_min && (gstMRamas[nodoID] == 1 || gstMNodos[nodoID] == 1)){
                 // Son nodos que representan sufijos cuyo largo 
                 // supera el de la secuencia menor del conjunto
-                auto nodoAux = cst.child(nodo, finSec);
-                int nodoAuxID = cst.id(nodoAux);
-                int nodoAuxDepth = cst.depth(nodoAux);
-                int count = gstMapNodo2Ruta.count(nodoAuxID);
+                auto nodoAux = nodo;
+                int nodoAuxID = nodoID;
+                int nodoAuxDepth = nodoDepth;
                 howManyIfs++;
-                if(verbose){
-                    cout << "\t\tInsertando " << count << " rutas desde nodo " << nodoAuxID << endl;
+                if(nodoDepth + i <= gstRutaX.size()){
+                     nodoAux = cst.child(nodo, finSec);
+                     nodoAuxID = cst.id(nodoAux);
+                     nodoAuxDepth = cst.depth(nodoAux);
                 }
                 howManyIfs++;
-                if(nodoAux != raiz && gstMNodos[nodoAuxID] == 1){ 
-                    // El nodo con el fin de secuencia existe y tiene al menos una secuencia
-                    auto rango = gstMapNodo2Ruta.equal_range(nodoAuxID);
-                    for(auto j=rango.first; j!=rango.second; j++){
-                        howManyIfs++;
-                        if(verbose){
-                            cout << "\t\t\tInsertando " << (j->second)%n_rutas << endl;
+                if(gstMNodos[nodoAuxID] == 1){
+                    int count = gstMapNodo2Ruta.count(nodoAuxID);
+                    howManyIfs++;
+                    if(verbose){
+                        cout << "\t\tInsertando+ " << count << " rutas desde nodo " << nodoAuxID << endl;
+                    }
+                    howManyIfs++;
+                    if(nodoAux != raiz && gstMNodos[nodoAuxID] == 1){ 
+                        // El nodo con el fin de secuencia existe y tiene al menos una secuencia
+                        auto rango = gstMapNodo2Ruta.equal_range(nodoAuxID);
+                        for(auto j=rango.first; j!=rango.second; j++){
+                            howManyIfs++;
+                            if(verbose){
+                                cout << "\t\t\tInsertando " << (j->second)%n_rutas << endl;
+                            }
+                            setRes.insert((j->second)%n_rutas);
+                            howManyInserts++;
+                            howManyIfs++;
                         }
-                        setRes.insert((j->second)%n_rutas);
-                        howManyInserts++;
-                        howManyIfs++;
                     }
                 }
             }
-
-            nodo = cst.child(nodo, gstRutaX[i+ii]);
-            nodoID = cst.id(nodo);
-            nodoDepth = cst.depth(nodo);
-            howManyNodes++;
-            ii = nodoDepth;
             howManyIfs++;
-            if(verbose){
-                cout << "\tLlegando a por " << nodoID << endl;
+            if(nodoDepth + i < gstRutaX.size()){
+                nodo = cst.child(nodo, gstRutaX[i+nodoDepth]);
+                howManyNodes++;
+                nodoID = cst.id(nodo);
+                nodoDepth = cst.depth(nodo);
+            }else{
+                nodo = raiz;
             }
             howManyIfs++;
-        }
+            if(verbose){
+                cout << "\tLlegando por " << nodoID << endl;
+            }
+            howManyIfs++;
+        }while(nodo != raiz && (gstMRamas[nodoID] == 1 || gstMNodos[nodoID] == 1));
+    }
+    vector<int> res(setRes.begin(), setRes.end());
+    return res;
+}
+
+
+vector<int> TopoRelGST_6::tr_allContained6(int x, bool verbose){
+    // Versión de la operación allContained que determina el resultado
+    // por un recorrido del GST desde el nodo obtenido de mapRuta2Nodo
+    // y luego por medio de operaciones parent para subir, y 
+    // suffixlink para moverse de rama
+    unordered_set<int> setRes;
+    int sizeX = getLargoRuta(x);
+    int topeSec = sizeX - len_min;
+    auto raiz = cst.root();
+    auto nodo = gstMapRuta2Nodo[x]; // Se usa para navegación por suffix-link
+    int nodoID = cst.id(nodo);
+    int nodoDepth = cst.depth(nodo);
+    for(int i=0; i<=topeSec; i++){
+        // For para navegación entre ramas
         howManyIfs++;
         if(verbose){
-            cout << "\tEn nodo " << nodoID << endl;
+            cout << "Iniciando en " << cst.id(nodo) << endl;
+            cout << "i: " << i << " nodoDepth: " << nodoDepth << endl;
         }
-        // Comenzar a verificar si en el nodo que resta por recorrer
-        // existen secuencias que contengan el resultado
-        
-
-        // Verificando el último nodo
-        howManyIfs++;
-        if(nodo != raiz && (gstMRamas[nodoID] == 1 || gstMNodos[nodoID] == 1)){
-            // Existe un nodo que es sufijo de la secuencia
-            // Verificando sub-árbol
-            int count = gstMapNodo2Ruta.count(nodoID);
-            howManyIfs++;
+        // Verificar si hay secuencia desde nodo en bottom-up
+        auto nodoAux = nodo;        // Se usa para navegación por cst.parent
+        int nodoAuxID = nodoID;
+        int nodoAuxDepth = nodoDepth;
+        if (verbose){
+            cout << "nodoAux id: " << nodoAuxID << " - peso: " << nodoAuxDepth << endl;
+        }
+        while(nodoAuxDepth >= len_min){
+            // El largo permite una secuencia
+            auto nodoExp = nodoAux;     // Se usa para verificar los nodos con secuencia
+            int nodoExpID = nodoAuxID;
+            int nodoExpDepth = nodoAuxDepth;
             if(verbose){
-                cout << "\t\tInsertando " << count << " rutas desde nodo " << nodoID << endl;
+                cout << "NodoExp id: " << nodoExpID << " - peso: " << nodoExpDepth << endl;
             }
-            auto rango = gstMapNodo2Ruta.equal_range(nodoID);
-            for(auto j=rango.first; j!=rango.second; j++){
-                howManyIfs++;
-                if(verbose){
-                    cout << "\t\t\tInsertando " << (j->second)%n_rutas << endl;
+            if(gstMNodos[nodoExpID] != 1){
+                nodoExp = cst.child(nodoAux, finSec);
+                nodoExpID = cst.id(nodoExp);
+                nodoExpDepth = cst.depth(nodoExp);
+            }
+            if (verbose){
+                cout << "\t\tRevisando " << nodoAuxID << endl;
+            }
+            if(nodoExp != raiz && gstMNodos[nodoExpID]){
+                // Hay nodos marcados en nodoExp
+                int count = gstMapNodo2Ruta.count(nodoExpID);
+                auto rango = gstMapNodo2Ruta.equal_range(nodoExpID);
+                for(auto j=rango.first; j!=rango.second; j++){
+                    howManyIfs++;
+                    if(verbose){
+                        cout << "\t\t\tInsertando " << (j->second)%n_rutas << endl;
+                    }
+                    setRes.insert((j->second)%n_rutas);
+                    howManyInserts++;
+                    howManyIfs++;
                 }
-                setRes.insert((j->second)%n_rutas);
-                howManyInserts++;
-                howManyIfs++;
             }
+            nodoAux = cst.parent(nodoAux);
+            nodoAuxID = cst.id(nodoAux);
+            nodoAuxDepth = cst.depth(nodoAux);
         }
-        howManyIfs++;
+        // Cambio de rama con suffix link
+        if (verbose){
+            cout << "SuffixLink desde " << nodoID;
+        }
+        nodo = cst.sl(nodo);
+        nodoID = cst.id(nodo);
+        nodoDepth = cst.depth(nodo);
+        if (verbose){
+            cout << " hasta " << nodoID << endl;
+        }
     }
-
     vector<int> res(setRes.begin(), setRes.end());
     return res;
 }
