@@ -256,7 +256,7 @@ TopoRelGST_6::TopoRelGST_6(string inputFilename){
             gstMapRuta2Nodo[i] = cst.inv_id(aux2);
 //            cout << aux2 << " ";
         }
-        cout << endl;
+//        cout << endl;
         // Cargando gstRutas
         infile.read ((char *)&aux1,sizeof(int));
         gstRutas = vector<int_vector<>>(aux1);

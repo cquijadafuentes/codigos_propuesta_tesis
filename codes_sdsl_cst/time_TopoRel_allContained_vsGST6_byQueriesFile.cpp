@@ -12,8 +12,6 @@
 #include <ctime>
 #include <set>
 #include <cstdlib>
-#include "TopoRel_Naive.hpp"
-#include "TopoRel_Naive_PreComp.hpp"
 #include "TopoRel_GST_6.hpp"
 
 using namespace std;
@@ -22,7 +20,7 @@ vector<int> generarQueries(int n_rutas, int num_queries);
 
 int main(int argc, char const *argv[]){
 	if(argc < 4){
-		cout << "Programa para medir tiempo promedio en la operación allContained en GST6" << endl;
+		cout << "Programa para medir tiempo promedio en todas las versiones de la operación allContained en GST6" << endl;
 		cout << "Error! faltan argumentos:" << endl;
 		cout << argv[0] << " <input_file_GST6> <queries_file> repeticiones" << endl;
 		return 0;
@@ -30,7 +28,7 @@ int main(int argc, char const *argv[]){
 	
 	cout << "Cargando estructuras..." << endl;
 	TopoRelGST_6 gst(argv[1]);
-
+	
 	cout << "Cargando consultas..." << endl;
 	ifstream qFile(argv[2], ifstream::in);
 	int num_queries;
