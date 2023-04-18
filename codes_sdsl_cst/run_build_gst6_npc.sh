@@ -16,5 +16,5 @@ done
 
 for filename in 20stops_min_05k 20stops_min_10k 20stops_min_15k 20stops_min_20k 20stops_min_25k 
 do
-	./TopoRel_GST_6_build ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.gst6
+	./TopoRel_GST_6_build ${DATAFOLDER2}${filename}.txt ${DATAFOLDER2}${filename}.gst6
 done
