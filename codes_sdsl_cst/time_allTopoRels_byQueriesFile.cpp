@@ -1,6 +1,6 @@
 /*
 	Toma de tiempo promedio para consultas allContain, allEqual, allContained y allIntersect 
-	sobre implementaciones Naive, NaivePreComp y GST6 (versión 3 de allContained)
+	sobre implementaciones Naive, NaivePreComp y GST6 versión 6 de allContained)
 	Las consultas provienen de un archivo de consulta generado con 
 	./extras/generador_consultas
 */
@@ -100,11 +100,11 @@ int main(int argc, char const *argv[]){
 	tNaivePC = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
 	
 
-	cout << "Ejecutando allContain GST6 versión 3..." << endl;
+	cout << "Ejecutando allContain GST6..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
 	    for(int i=0; i<queries.size(); i++){
-	    	gst.tr_allContained3(queries[i]);
+	    	gst.tr_allContain(queries[i]);
 	    }
 	}
 	t1 = clock();
@@ -137,7 +137,7 @@ int main(int argc, char const *argv[]){
 	tNaivePC = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
 	
 
-	cout << "Ejecutando allEqual GST6 versión 3..." << endl;
+	cout << "Ejecutando allEqual GST6..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
 	    for(int i=0; i<queries.size(); i++){
@@ -175,7 +175,7 @@ int main(int argc, char const *argv[]){
 	tNaivePC = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
 	
 
-	cout << "Ejecutando allIntersect GST6 versión 3..." << endl;
+	cout << "Ejecutando allIntersect GST6..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
 	    for(int i=0; i<queries.size(); i++){
@@ -213,11 +213,11 @@ int main(int argc, char const *argv[]){
 	tNaivePC = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
 	
 
-	cout << "Ejecutando allContained GST6 versión 3..." << endl;
+	cout << "Ejecutando allContained GST6..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
 	    for(int i=0; i<queries.size(); i++){
-	    	gst.tr_allContained3(queries[i]);
+	    	gst.tr_allContained6(queries[i]);
 	    }
 	}
 	t1 = clock();
