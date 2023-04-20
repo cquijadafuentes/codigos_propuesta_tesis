@@ -1,0 +1,6 @@
+operacion   rutas   queries tnaive  tnpc    tgst6
+allIntersect    5000    50  10436.5 226.66  2.84569e+06 [us]
+allIntersect    10000   50  20724.5 458.32  5.56966e+06 [us]
+allIntersect    15000   50  30807.8 679.96  5.37872e+06 [us]
+allIntersect    20000   50  41107.5 907.92  5.98469e+06 [us]
+allIntersect    25000   50  51052   1135.4  6.61555e+06 [us]

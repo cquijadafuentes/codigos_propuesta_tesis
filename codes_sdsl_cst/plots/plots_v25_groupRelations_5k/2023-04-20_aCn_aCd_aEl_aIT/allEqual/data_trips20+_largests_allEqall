@@ -1,0 +1,6 @@
+operacion	rutas	queries	tnaive	tnpc	tgst6
+allEqual	5000	50	142.76	227.62	2199.76	[us]
+allEqual	10000	50	301.68	484.16	3459.94	[us]
+allEqual	15000	50	444.16	710.1	3607.96	[us]
+allEqual	20000	50	559.36	909.46	2684.26	[us]
+allEqual	25000	50	698.58	1130.08	3105.9	[us]

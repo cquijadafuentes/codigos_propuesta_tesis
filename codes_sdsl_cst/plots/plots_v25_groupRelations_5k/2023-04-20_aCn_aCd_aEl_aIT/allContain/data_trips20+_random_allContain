@@ -1,0 +1,6 @@
+operacion	rutas	queries	tnaive	tnpc	tgst6
+allContain	10000	50	13645.7	480.38	10256	[us]
+allContain	15000	50	20608.1	710.92	17572.4	[us]
+allContain	20000	50	28676.4	945.96	21119	[us]
+allContain	25000	50	39180	1197.24	28631.4	[us]
+allContain	5000	50	8023.64	248.86	7176.92	[us]
