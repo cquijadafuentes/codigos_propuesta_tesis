@@ -995,10 +995,10 @@ vector<int> TopoRelGST_6::tr_allContained2(int x, bool verbose){
                 if(cst.csa[j] == 0 || gstMFSbv[cst.csa[j]-1] == 1){
                     // Corresponde a una secuencia completa
                     setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[j]));
+                    howManyInserts++;
                     if(verbose){
                         cout << "\t\t\tInsertando " << idRutaDesdeCeldaDeSecConcat(cst.csa[j]) << endl;
                     }
-                    howManyInserts++;
                 }
                 howManyIfs++;
             }
@@ -1201,8 +1201,8 @@ vector<int> TopoRelGST_6::tr_allContained4(int x, bool verbose){
         howManyIfs++;
         if(i!=pISec+1){
             nodo = cst.wl(nodo, gstRutaX[pISec - i]);
-            conFS = (cst.depth(nodo) - i) > len_min;
             howManyNodes++;
+            conFS = (cst.depth(nodo) - i) > len_min;
             howManyIfs++;
             if(verbose){
                 cout << " hasta " << cst.id(nodo) << " por elemento " << gstRutaX[pISec - i] << endl;
