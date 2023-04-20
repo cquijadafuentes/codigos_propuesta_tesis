@@ -1,10 +1,37 @@
+Fecha INICIO experimentos: 2023/04/20 13:08:32
 Cargando estructura desde archivo
-Cargando estructura desde archivo
-Cargando estructura desde archivo
-Cargando estructura desde archivo
-Cargando estructura desde archivo
-Fecha INICIO experimentos: 2023/04/20 11:38:18
 rutas	stops	cstsada	mapR2N	mapN2R	stops	gstMFSbv	gstMNodos	gstMRamas
+5000	11010	288251	40000	80000	1006272	7955	8851	15705	
+Cargando estructura desde archivo
 rutas	stops	cstsada	mapR2N	mapN2R	stops	gstMFSbv	gstMNodos	gstMRamas
+10000	11010	518711	80000	80000	2015008	15713	16905	43240	
+Cargando estructura desde archivo
 rutas	stops	cstsada	mapR2N	mapN2R	stops	gstMFSbv	gstMNodos	gstMRamas
+15000	11010	737138	120000	120000	3028344	24780	25163	68150	
+Cargando estructura desde archivo
 rutas	stops	cstsada	mapR2N	mapN2R	stops	gstMFSbv	gstMNodos	gstMRamas
+20000	11010	925746	160000	160000	4036824	39942	31685	81829	
+Cargando estructura desde archivo
+rutas	stops	cstsada	mapR2N	mapN2R	stops	gstMFSbv	gstMNodos	gstMRamas
+25000	11010	1132372	200000	200000	5050440	51545	44830	94603	
+Cargando estructura desde archivo
+Error en la carga!
+rutas	stops	cstsada	mapR2N	mapN2R	stops	gstMFSbv	gstMNodos	gstMRamas
+1697796721	16	254	0	0	0	42	42	42	
+Cargando estructura desde archivo
+Error en la carga!
+rutas	stops	cstsada	mapR2N	mapN2R	stops	gstMFSbv	gstMNodos	gstMRamas
+1144148593	16	254	0	0	0	42	42	42	
+Cargando estructura desde archivo
+Error en la carga!
+rutas	stops	cstsada	mapR2N	mapN2R	stops	gstMFSbv	gstMNodos	gstMRamas
+543552113	16	254	0	0	0	42	42	42	
+Cargando estructura desde archivo
+Error en la carga!
+rutas	stops	cstsada	mapR2N	mapN2R	stops	gstMFSbv	gstMNodos	gstMRamas
+-963620239	16	254	0	0	0	42	42	42	
+Cargando estructura desde archivo
+Error en la carga!
+rutas	stops	cstsada	mapR2N	mapN2R	stops	gstMFSbv	gstMNodos	gstMRamas
+28463729	16	254	0	0	0	42	42	42	
+Fecha FIN experimentos: 2023/04/20 13:10:58

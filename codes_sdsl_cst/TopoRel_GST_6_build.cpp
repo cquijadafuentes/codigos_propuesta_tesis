@@ -42,7 +42,7 @@ int main(int argc, char const *argv[]){
 		vi.push_back(v);
 	}
 	txtInput.close();
-	
+/*	
 	cout << "mostrando entrada" << endl;
 	cout << vi.size() << endl;
 	for(int i = 0; i < vi.size(); i++){
@@ -53,7 +53,7 @@ int main(int argc, char const *argv[]){
 		cout << endl;
 	}
 	cout << endl;
-	
+*/	
 	TopoRelGST_6 gst(vi, max);
 
 	string filename(argv[2]);
