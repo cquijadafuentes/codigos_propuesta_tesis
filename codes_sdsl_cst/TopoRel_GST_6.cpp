@@ -1599,10 +1599,7 @@ void TopoRelGST_6::sizeEstructura(){
     double porcentaje = (bitsUno+0.0)/bitsTotal*100;
     cout << "stops [B]: " << bytesStops << endl;
     // Calculo de los bytes para gstMapRuta2Nodo
-    unsigned long long bytesMapaRuta2Nodo = 0;
-    for(int i=0; i<gstMapRuta2Nodo.size(); i++){
-        bytesMapaRuta2Nodo += sizeof(gstMapRuta2Nodo[i]);
-    }
+    unsigned long long bytesMapaRuta2Nodo = sizeof(int)*gstMapRuta2Nodo.size();
     // Calculo de los bytes para gstMapNodo2Ruta
     unsigned long long bytesMapaNodo2Ruta = 0;
     for(int i=0; i<gstMapNodo2Ruta.size(); i++){
@@ -1626,10 +1623,7 @@ void TopoRelGST_6::sizeEstructura(){
 
 void TopoRelGST_6::sizeToPlot(){
     // Calculo de los bytes para gstMapRuta2Nodo
-    unsigned long long bytesMapaRuta2Nodo = 0;
-    for(int i=0; i<gstMapRuta2Nodo.size(); i++){
-        bytesMapaRuta2Nodo += sizeof(gstMapRuta2Nodo[i]);
-    }
+    unsigned long long bytesMapaRuta2Nodo = sizeof(int)*gstMapRuta2Nodo.size();
     // Calculo de los bytes para gstMapNodo2Ruta
     unsigned long long bytesMapaNodo2Ruta = 0;
     for(int i=0; i<gstMapNodo2Ruta.size(); i++){
@@ -1648,19 +1642,14 @@ void TopoRelGST_6::sizeToPlot(){
         }
     }
     double porcentaje = (bitsUno+0.0)/bitsTotal*100;
-    // Calculo de los bytes para MAPA
-    unsigned long long bytesMapa = 0;
-    for(int i=0; i<gstMapRuta2Nodo.size(); i++){
-        bytesMapa += sizeof(gstMapRuta2Nodo[i]);
-    }
-    cout << "rutas\tstops\tcstsada\trutas\tstops\tmapR2N\tmapN2R\tgstMFSbv\tgstMNodos\tgstMRamas" << endl;
+
+    cout << "rutas\tstops\tcstsada\tmapR2N\tmapN2R\tstops\tgstMFSbv\tgstMNodos\tgstMRamas" << endl;
     cout << n_rutas << "\t"; 
     cout << n_stops << "\t"; 
     cout << size_in_bytes(cst) << "\t";
     cout << bytesMapaRuta2Nodo << "\t";
     cout << bytesMapaNodo2Ruta << "\t";
     cout << bytesStops << "\t";
-    cout << bytesMapa << "\t";
     cout << size_in_bytes(gstMFSbv) << "\t";
     cout << size_in_bytes(gstMNodos) << "\t";
     cout << size_in_bytes(gstMRamas) << "\t";

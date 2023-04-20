@@ -10,7 +10,7 @@ set xlabel "Rutas"
 
 
 set output 'tiempo_allIntersect_random.png'
-set title 'Tiempo en Operación AllIntersect [d:trips - q:random [2000] - s:compostela]'
+set title 'Tiempo en Operación AllIntersect [d:trips - q:random [50] - s:compostela]'
 plot 'data_trips1+_random_allIntersect' using 4:xtic(2) title 'Naive_{1+}' with linespoints pt 4 lc rgb red,   \
      'data_trips20+_random_allIntersect' using 4:xtic(2) title 'Naive_{20+}' with linespoints pt 5 lc rgb red,   \
      'data_trips1+_random_allIntersect' using 5 title 'NaivePC_{1+}' with linespoints pt 4 lc rgb green,   \
@@ -21,7 +21,7 @@ plot 'data_trips1+_random_allIntersect' using 4:xtic(2) title 'Naive_{1+}' with 
 
 
 set output 'tiempo_allIntersect_largests.png'
-set title 'Tiempo en Operación AllIntersect [d:trips - q:largests [100] - s:compostela]'
+set title 'Tiempo en Operación AllIntersect [d:trips - q:largests [50] - s:compostela]'
 plot 'data_trips1+_largests_allIntersect' using 4:xtic(2) title 'Naive_{1+}' with linespoints pt 4 lc rgb red,   \
      'data_trips20+_largests_allIntersect' using 4:xtic(2) title 'Naive_{20+}' with linespoints pt 5 lc rgb red,   \
      'data_trips1+_largests_allIntersect' using 5 title 'NaivePC_{1+}' with linespoints pt 4 lc rgb green,   \
@@ -32,7 +32,7 @@ plot 'data_trips1+_largests_allIntersect' using 4:xtic(2) title 'Naive_{1+}' wit
 
 
 set output 'tiempo_allIntersect_shortests.png'
-set title 'Tiempo en Operación AllIntersect [d:trips - q:shortests [100] - s:compostela]'
+set title 'Tiempo en Operación AllIntersect [d:trips - q:shortests [50] - s:compostela]'
 plot 'data_trips1+_shortests_allIntersect' using 4:xtic(2) title 'Naive_{1+}' with linespoints pt 4 lc rgb red,   \
      'data_trips20+_shortests_allIntersect' using 4:xtic(2) title 'Naive_{20+}' with linespoints pt 5 lc rgb red,   \
      'data_trips1+_shortests_allIntersect' using 5 title 'NaivePC_{1+}' with linespoints pt 4 lc rgb green,   \

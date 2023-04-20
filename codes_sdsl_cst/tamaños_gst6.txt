@@ -1,0 +1,10 @@
+Cargando estructura desde archivo
+Cargando estructura desde archivo
+Cargando estructura desde archivo
+Cargando estructura desde archivo
+Cargando estructura desde archivo
+Fecha INICIO experimentos: 2023/04/20 11:38:18
+rutas	stops	cstsada	mapR2N	mapN2R	stops	gstMFSbv	gstMNodos	gstMRamas
+rutas	stops	cstsada	mapR2N	mapN2R	stops	gstMFSbv	gstMNodos	gstMRamas
+rutas	stops	cstsada	mapR2N	mapN2R	stops	gstMFSbv	gstMNodos	gstMRamas
+rutas	stops	cstsada	mapR2N	mapN2R	stops	gstMFSbv	gstMNodos	gstMRamas
