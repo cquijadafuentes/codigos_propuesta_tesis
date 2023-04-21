@@ -10,7 +10,7 @@
 #include <sdsl/suffix_trees.hpp>
 #include <sdsl/bit_vectors.hpp>
 #include <sdsl/cst_iterators.hpp>
-#include <omp.h>                    // OpenMP para el paralelismo
+#include <omp.h>                    // OpenMP: paralelismo en construcción
 #include "TopoRel_Cons.hpp"
 
 using namespace std;
