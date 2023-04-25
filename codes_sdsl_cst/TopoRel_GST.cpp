@@ -82,8 +82,8 @@ TopoRelGST::TopoRelGST(vector<vector<int>> &rutas, int cant_stops){
         vPorcMap[iParalelo] = vector<cst_sada<>::node_type>(porciones);
         int base = iParalelo * porciones;
         int tope = base + porciones;
-        if(tope > n_rutas * 2){
-            tope = n_rutas * 2;
+        if(tope > n_rutas){
+            tope = n_rutas;
         }
         for(int i = base; i < tope; i++){
             auto v = cst.root();

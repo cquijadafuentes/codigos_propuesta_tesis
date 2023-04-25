@@ -31,7 +31,7 @@ int desplegarMenu(){
 		cout << " ***** Navegación en Nodos ****" << endl;
 		cout << "14 - Weiner Link de un nodo" << endl;
 		cout << "15 - Mostrar contenido de gstMapNodo2Ruta" << endl;
-		cout << "16 - ." << endl;
+		cout << "16 - Mostrar todas las rutas." << endl;
 		cout << "17 - ." << endl;
 		cout << "18 - Mostrar gstMapNodo2Ruta de un nodo" << endl;
 		cout << "19 - " << endl;
@@ -306,7 +306,7 @@ void weinerLink(TopoRelGST gst){
 	cout << endl;
 }
 
-//--------------	CASE 	------------//
+//--------------	CASE 15	------------//
 void nodo2Rutas(TopoRelGST gst){
 	cout << "gstMapNodo2Ruta contiene " << gst.gstMapNodo2Ruta.size() << " elementos." << endl;
 	for(auto it=gst.gstMapNodo2Ruta.begin(); it != gst.gstMapNodo2Ruta.end(); it++){
@@ -314,6 +314,18 @@ void nodo2Rutas(TopoRelGST gst){
 	}
 	cout << endl;
 }
+
+//--------------	CASE 15	------------//
+void mostrarRutas(TopoRelGST gst){
+	cout << "Mostrando las " << gst.n_rutas << " rutas de la estructura:" << endl;
+	for(int i=0; i<gst.n_rutas; i++){
+		cout << "Ruta " << i << ": ";
+		gst.printRuta(i);
+		cout << endl;
+	}
+	cout << endl;
+}
+
 
 //--------------	CASE 18	------------//
 void nodo2RutasEnNodo(TopoRelGST gst){
@@ -396,7 +408,7 @@ int main(int argc, char const *argv[]){
 	    		nodo2Rutas(gst);
 	    		break;
 	    	case 16:
-	    		cout << "No implementada ... " << endl;
+	    		mostrarRutas(gst);
 	    		break;
 	    	case 17:
 	    		cout << "No implementada ... " << endl;
