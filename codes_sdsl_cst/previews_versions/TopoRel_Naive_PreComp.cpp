@@ -184,26 +184,28 @@ bool TopoRelNaivePreComp::overlaps(int i, int j){
 }
 
 bool TopoRelNaivePreComp::within(int i, int j){
-	if(relaciones[i][j] == 3){
+	int rel = relaciones[i][j];
+	if(rel == 3){
 		return true;
 	}
-	if(relaciones[i][j] == 0){
+	if(rel == 0){
 		return true;
 	}
-	if(relaciones[i][j] == 5){
+	if(rel == 5){
 		return true;
 	}
 	return false;
 }
 
 bool TopoRelNaivePreComp::contains(int i, int j){	
-	if(relaciones[i][j] == 3){
+	int rel = relaciones[i][j];
+	if(rel == 3){
 		return true;
 	}
-	if(relaciones[i][j] == 1){
+	if(rel == 1){
 		return true;
 	}
-	if(relaciones[i][j] == 4){
+	if(rel == 4){
 		return true;
 	}
 	return false;
@@ -237,6 +239,16 @@ vector<int> TopoRelNaivePreComp::allContained(int x){
 	vector<int> res;
 	for(int i=0; i<n_rutas; i++){
 		if(contains(x, i)){
+			res.push_back(i);
+		}
+	}
+	return res;
+}
+
+vector<int> TopoRelNaivePreComp::allIntersect(int x){
+	vector<int> res;
+	for(int i=0; i<n_rutas; i++){
+		if(intersect(x, i)){
 			res.push_back(i);
 		}
 	}

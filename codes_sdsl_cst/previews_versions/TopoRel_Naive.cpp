@@ -599,3 +599,13 @@ vector<int> tr_allContained(vector<vector<int>> &r, int x){
     }
     return res;
 }
+
+vector<int> tr_allIntersect(vector<vector<int>> &r, int x){
+    vector<int> res;
+    for(int i=0; i<r.size(); i++){
+        if(tr_intersect(r[x], r[i])){
+            res.push_back(i);
+        }
+    }
+    return res;
+}

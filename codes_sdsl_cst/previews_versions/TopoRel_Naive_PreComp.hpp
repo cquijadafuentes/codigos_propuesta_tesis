@@ -43,6 +43,7 @@ public:
     vector<int> allContain(int);
     vector<int> allEqual(int);
     vector<int> allContained(int);
+    vector<int> allIntersect(int);
 
     // Relaciones topológicas binarias agregadas
     bool within(int, int);

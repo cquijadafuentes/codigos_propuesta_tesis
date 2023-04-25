@@ -14,7 +14,7 @@
 #include <cstdlib>
 #include "TopoRel_Naive.hpp"
 #include "TopoRel_Naive_PreComp.hpp"
-#include "TopoRel_GST.hpp"
+#include "TopoRel_GST_6.hpp"
 
 using namespace std;
 
@@ -48,7 +48,7 @@ int main(int argc, char const *argv[]){
 	TopoRelNaivePreComp tpnPC(argv[2]);
 
 	// Cargando estructura GST6
-	TopoRelGST gst(argv[3]);
+	TopoRelGST_6 gst(argv[3]);
 
 	cout << "Cargando consultas..." << endl;
 	ifstream qFile(argv[4], ifstream::in);
@@ -112,7 +112,7 @@ int main(int argc, char const *argv[]){
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
 	    for(int i=0; i<queries.size(); i++){
-	    	gst.tr_allContained(queries[i]);
+	    	gst.tr_allContained6(queries[i]);
 	    }
 	}
 	t1 = clock();

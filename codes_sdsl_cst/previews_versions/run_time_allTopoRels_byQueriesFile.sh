@@ -12,14 +12,14 @@ OUTPUTFILE=$3
 REPETICIONES=$4
 
 
-echo "Fecha INICIO experimentos: $(date +'%Y/%m/%d %H:%M:%S') allContainedByQueriesFile_GST" > ${OUTPUTFILE}
+echo "Fecha INICIO experimentos: $(date +'%Y/%m/%d %H:%M:%S') allContainedByQueriesFile_GST6" > ${OUTPUTFILE}
 echo "Experimentos de todas las relaciones tipo all en dos datasets." >> ${OUTPUTFILE}
 
 for i in 1 2 3 
 do
 	for filename in gst_tripsMadrid_0005k gst_tripsMadrid_0010k gst_tripsMadrid_0015k gst_tripsMadrid_0020k gst_tripsMadrid_0025k
 	do
-		./time_allTopoRels_byQueriesFile ${DATAFOLDER1}${filename}.txt ${DATAFOLDER1}${filename}.naivepc ${DATAFOLDER1}${filename}.gst ${DATAFOLDER1}${filename}.queries.${i} ${REPETICIONES} >> ${OUTPUTFILE}
+		./time_allTopoRels_byQueriesFile ${DATAFOLDER1}${filename}.txt ${DATAFOLDER1}${filename}.naivepc ${DATAFOLDER1}${filename}.gst6 ${DATAFOLDER1}${filename}.queries.${i} ${REPETICIONES} >> ${OUTPUTFILE}
 	done
 	echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
 done
@@ -34,7 +34,7 @@ for i in 1 2 3
 do
 	for filename in 20stops_min_05k  20stops_min_10k  20stops_min_15k  20stops_min_20k  20stops_min_25k
 	do
-		./time_allTopoRels_byQueriesFile ${DATAFOLDER2}${filename}.txt ${DATAFOLDER2}${filename}.naivepc ${DATAFOLDER2}${filename}.gst ${DATAFOLDER2}${filename}.queries.${i} ${REPETICIONES} >> ${OUTPUTFILE}
+		./time_allTopoRels_byQueriesFile ${DATAFOLDER2}${filename}.txt ${DATAFOLDER2}${filename}.naivepc ${DATAFOLDER2}${filename}.gst6 ${DATAFOLDER2}${filename}.queries.${i} ${REPETICIONES} >> ${OUTPUTFILE}
 	done
 	echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
 done

@@ -13,7 +13,7 @@
 #include <cstdlib>
 #include "TopoRel_Naive.hpp"
 #include "TopoRel_Naive_PreComp.hpp"
-#include "TopoRel_GST.hpp"
+#include "TopoRel_GST_6.hpp"
 
 using namespace std;
 
@@ -62,7 +62,7 @@ int main(int argc, char const *argv[]){
 	TopoRelNaivePreComp npc(argv[2]);
 
 	cout << "Cargando estructura GST6 desde " << argv[3] << endl;
-	TopoRelGST gst(argv[3]);
+	TopoRelGST_6 gst(argv[3]);
 	if(num_queries > gst.n_rutas){
 		num_queries = gst.n_rutas;
 	}
@@ -217,14 +217,14 @@ int main(int argc, char const *argv[]){
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
 	    for(int i=0; i<queries.size(); i++){
-	    	gst.tr_allContained(queries[i]);
+	    	gst.tr_allContained6(queries[i]);
 	    }
 	}
 	t1 = clock();
 	tGST6 = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
 
 
-	cout << "operacion\trutas\tqueries\ttnaive\ttnpc\ttgst" << endl;
+	cout << "operacion\trutas\tqueries\ttnaive\ttnpc\ttgst6" << endl;
 	cout << "allContained\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tNaivePC << "\t" << tGST6 << "\t[us]" << endl;
 
 	return 0;
