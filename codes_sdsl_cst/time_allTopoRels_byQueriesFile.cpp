@@ -29,7 +29,7 @@ int main(int argc, char const *argv[]){
 	int repeticiones = (int) atoi(argv[4]);
 
 	cout << "Cargando consultas desde " << argv[3] << endl;
-	ifstream qFile(argv[4], ifstream::in);
+	ifstream qFile(argv[3], ifstream::in);
 	int num_queries;
 	qFile >> num_queries;
 	vector<int> queries(num_queries);
