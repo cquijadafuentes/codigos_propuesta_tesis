@@ -7,19 +7,13 @@ using namespace sdsl;
 
 int main(int argc, char const *argv[]){
 	// Verifica los resultados de la versión de allContained que se especifique
-	if(argc < 5){
+	if(argc < 4){
 		cout << "Error! faltan argumentos." << endl;
-		cout << argv[0] << " <input_filename.gst6> <queries_file> <results_file> <version>" << endl;
+		cout << argv[0] << " <input_filename.gst> <queries_file> <results_file>" << endl;
 		cout << endl;
 		return 0;
 	}
 
-	// Cargando versión
-	int version = (int) atoi(argv[4]);
-	if(version < 1 || version > 6){
-		cout << "Error! la versión indicada no es correcta. Se usará la versión 6" << endl;
-		version = 6;
-	}
 	// Creando GST
 	TopoRelGST gst(argv[1]);
 	// Cargando consultas
@@ -74,7 +68,7 @@ int main(int argc, char const *argv[]){
 				cout << resNaive[j] << "\t";
 			}
 			cout << endl;
-			cout << "Resultados GST_v" << version << " (" << resGST.size() << "):\t";
+			cout << "Resultados GST_v (" << resGST.size() << "):\t";
 			for(int j=0; j<resGST.size(); j++){
 				cout << resGST[j] << "\t";
 			}
@@ -104,6 +98,6 @@ int main(int argc, char const *argv[]){
 		}
 	}
 	cout << "------------------------" << endl;
-	cout << "Total fallas en version " << version << ": " << cantFallas << endl;
+	cout << "Total fallas: " << cantFallas << endl;
     return 0;
 }

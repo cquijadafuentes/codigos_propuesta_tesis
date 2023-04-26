@@ -35,3 +35,103 @@ Error en la carga!
 rutas	stops	cstsada	mapR2N	mapN2R	stops	gstMFSbv	gstMNodos	gstMRamas
 28463729	16	254	0	0	0	42	42	42	
 Fecha FIN experimentos: 2023/04/20 13:10:58
+
+
+
+************************************************************
+----------------------------GST6----------------------------
+************************************************************
+--- Información del conjunto ---
+Nº de rutas: 5
+Largo de la secuencia total: 22
+Nº de stops: 6
+Largo de secuencia más corta: 3
+Largo de secuencia más larga: 5
+Marca de fin de secuenica: 7
+Largo de gstMapRuta2Nodo: 10
+Largo de gstMapNodo2Ruta: 10
+Largo de gstStops: 5 x 7
+Largo de gstMFSbv (Marcas fin de secuencia): 44
+--- Información del CompressedSuffixTree ---
+Cantidad de nodos: 69
+Cantidad de hojas: 45
+Cantidad de nodos del CST: 69
+Largo del Suffix Array: 45
+Largo del LCP Array: 45
+--- Información de la raíz del CST ---
+Hojas del árbol: 45
+Cantidad de hijos: 8
+--- Hijos de la raíz ---
+id	ed_1	deg	dep	ndep	size	lb	rb	sun	leaf	text
+0	'0'	0	1	1	1	0	0	44	1	0	
+46	'1'	3	1	1	6	1	6	17	0	1	
+50	'2'	4	1	1	8	7	14	40	0	2	
+55	'3'	3	1	1	6	15	20	39	0	3	
+59	'4'	3	1	1	4	21	24	16	0	4	
+61	'5'	4	1	1	4	25	28	26	0	5	
+62	'6'	3	1	1	6	29	34	38	0	6	
+65	'7'	7	1	1	10	35	44	43	0	7	
+**** Tamaño en bytes ****
+cst_sada [B]: 708
+rutas [B]: 85
+stops [B]: 854
+gstMapRuta2Nodo [B]: 40
+gstMapNodo2Ruta [B]: 80
+gstMFSbv [B]: 206
+gstMFS_rank_1 [B]: 0
+gstMFS_select_1 [B]: 0
+gstMNodos [B]: 198
+gstMRamas [B]: 198
+**** Elementos ****
+Nº Rutas: 5
+Nº Nodos cst_sada: 69
+Nº Hojas cst_sada: 45
+Nº 1s/length en marcas: 17/35 (48.5714%)
+
+
+*************************************************************
+-------------------------- GST def --------------------------
+*************************************************************
+
+--- Información del conjunto ---
+Nº de rutas: 5
+Largo de la secuencia total: 22
+Nº de stops: 6
+Largo de secuencia más corta: 3
+Largo de secuencia más larga: 5
+Marca de fin de secuenica: 7
+Largo de gstMapRuta2Nodo: 5
+Largo de gstMapNodo2Ruta: 5
+Largo de gstMFSbv (Marcas fin de secuencia): 22
+--- Información del CompressedSuffixTree ---
+Cantidad de nodos: 36
+Cantidad de hojas: 23
+Cantidad de nodos del CST: 36
+Largo del Suffix Array: 23
+Largo del LCP Array: 23
+--- Información de la raíz del CST ---
+Hojas del árbol: 23
+Cantidad de hijos: 8
+--- Hijos de la raíz ---
+id	ed_1	deg	dep	ndep	size	lb	rb	sun	leaf	text
+0	'0'	0	1	1	1	0	0	22	1	0	
+24	'1'	2	2	1	3	1	3	17	0	12	
+26	'2'	2	1	1	4	4	7	18	0	2	
+29	'3'	2	1	1	3	8	10	19	0	3	
+31	'4'	2	1	1	2	11	12	16	0	4	
+32	'5'	2	1	1	2	13	14	9	0	5	
+33	'6'	3	2	1	3	15	17	20	0	67	
+34	'7'	4	1	1	5	18	22	21	0	7	
+**** Tamaño en bytes ****
+cst_sada [B]: 660
+gstMapRuta2Nodo [B]: 20
+gstMapNodo2Ruta [B]: 40
+gstMFSbv [B]: 190
+gstMFS_rank_1 [B]: 0
+gstMFS_select_1 [B]: 0
+gstMNodos [B]: 182
+gstMRamas [B]: 182
+**** Elementos ****
+Nº Rutas: 5
+Nº Nodos cst_sada: 36
+Nº Hojas cst_sada: 23

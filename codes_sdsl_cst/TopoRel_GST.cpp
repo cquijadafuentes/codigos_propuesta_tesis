@@ -216,15 +216,15 @@ vector<int> TopoRelGST::tr_allContain(int x){
     if(x > n_rutas) return y;
 
     auto nX = gstMapRuta2Nodo[x];
-    auto idLChST = cst.leftmost_leaf(nX);
-    auto idRChST = cst.rightmost_leaf(nX);
+    auto idLChST = cst.lb(nX);
+    auto idRChST = cst.rb(nX);
     auto nParentX = cst.parent(nX);
 
     if(cst.depth(nParentX) == getLargoRuta(x)){
-        idLChST = cst.leftmost_leaf(nParentX);
-        idRChST = cst.rightmost_leaf(nParentX);
+        idLChST = cst.lb(nParentX);
+        idRChST = cst.rb(nParentX);
     }
-    for(int i=cst.id(idLChST); i <= cst.id(idRChST); i++){
+    for(int i=idLChST; i <= idRChST; i++){
         int idAux = idRutaDesdeCeldaDeSecConcat(cst.csa[i]);
         y.push_back(idAux);
     }

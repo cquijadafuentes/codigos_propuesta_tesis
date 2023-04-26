@@ -6,7 +6,6 @@ POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
 BINS=TopoRel_GST_time_allContained\
 		TopoRel_GST_check_allContained time_allTopoRels_byQueriesFile\
-		TopoRel_Naive_allContained_byQueries\
 		TopoRel_GST_size TopoRel_GST_allContained\
 		TopoRel_GST_test_allContained_byQueries\
 		TopoRel_GST_test_allIntersect_byQueries\
@@ -15,13 +14,10 @@ BINS=TopoRel_GST_time_allContained\
 		TopoRel_Naive_allIntersect_byQueries\
 		TopoRel_Naive_time_allContained\
 		time_TopoRel_allContained_naive_gst_byQueriesFile\
-		TopoRel_Naive_test  TopoRel_Naive_PreComp_test\
-		TopoRel_Naive_PreComp_save-load-test\
-		TopoRel_Naive_PreComp_build TopoRel_Naive_PreComp_load\
+		TopoRel_Naive_test
 
 OBJECTS=TopoRel_GST.o\
-		TopoRel_Naive.o\
-		TopoRel_Naive_PreComp.o
+		TopoRel_Naive.o
 
 %.o: %.cpp
 	$(CPP) $(PREFLAGS) -c $< -o $@ $(POSFLAGS)
@@ -36,9 +32,6 @@ time_allTopoRels_byQueriesFile:
 
 time_TopoRel_allContained_naive_gst_byQueriesFile:
 	$(CPP) $(PREFLAGS) -o time_TopoRel_allContained_naive_gst_byQueriesFile time_TopoRel_allContained_naive_gst_byQueriesFile.cpp $(OBJECTS) $(POSFLAGS)
-
-TopoRel_Naive_allContained_byQueries:
-	$(CPP) $(PREFLAGS) -o TopoRel_Naive_allContained_byQueries TopoRel_Naive_allContained_byQueries.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_Naive_allIntersect_byQueries:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_allIntersect_byQueries TopoRel_Naive_allIntersect_byQueries.cpp $(OBJECTS) $(POSFLAGS)
@@ -66,18 +59,6 @@ TopoRel_GST_test_allIntersect_byQueries:
 
 TopoRel_GST_time_allContained:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_time_allContained TopoRel_GST_time_allContained.cpp $(OBJECTS) $(POSFLAGS)
-
-TopoRel_Naive_PreComp_load:
-	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_load TopoRel_Naive_PreComp_load.cpp $(OBJECTS) $(POSFLAGS)
-
-TopoRel_Naive_PreComp_build:
-	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_build TopoRel_Naive_PreComp_build.cpp $(OBJECTS) $(POSFLAGS)
-
-TopoRel_Naive_PreComp_test:
-	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_test TopoRel_Naive_PreComp_test.cpp $(OBJECTS) $(POSFLAGS)
-
-TopoRel_Naive_PreComp_save-load-test:
-	$(CPP) $(PREFLAGS) -o TopoRel_Naive_PreComp_save-load-test TopoRel_Naive_PreComp_save-load-test.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_Naive_allContained_byQueries:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_allContained_byQueries TopoRel_Naive_allContained_byQueries.cpp $(OBJECTS) $(POSFLAGS)
