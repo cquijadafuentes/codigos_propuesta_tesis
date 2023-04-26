@@ -39,7 +39,7 @@ int main(int argc, char const *argv[]){
 	qFile.close();
 
 	if(num_queries < 1 || repeticiones < 1){
-		cout << "Error! en la cantidad de num_queries/repeticiones: " << num_queries << endl;
+		cout << "Error! en la cantidad de num_queries/repeticiones: " << num_queries << "/" << repeticiones << endl;
 		return 0;
 	}
 	
