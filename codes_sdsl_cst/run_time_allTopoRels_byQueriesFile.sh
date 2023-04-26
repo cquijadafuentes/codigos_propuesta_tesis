@@ -8,8 +8,8 @@ fi
 
 DATAFOLDER1=$1
 DATAFOLDER2=$2
-OUTPUTFILE=$3
-REPETICIONES=$4
+REPETICIONES=$3
+OUTPUTFILE=$4
 
 
 echo "Fecha INICIO experimentos: $(date +'%Y/%m/%d %H:%M:%S') allContainedByQueriesFile_GST" > ${OUTPUTFILE}

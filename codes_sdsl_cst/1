@@ -1,0 +1,72 @@
+Fecha INICIO experimentos: 2023/04/26 03:01:02 allContainedByQueriesFile_GST
+Experimentos de todas las relaciones tipo all en dos datasets.
+Cargando consultas desde ../../datasets/gst_tripsMadrid_0005k.queries.1
+Error! en la cantidad de num_queries/repeticiones: 50/0
+Cargando consultas desde ../../datasets/gst_tripsMadrid_0010k.queries.1
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/gst_tripsMadrid_0015k.queries.1
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/gst_tripsMadrid_0020k.queries.1
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/gst_tripsMadrid_0025k.queries.1
+Error! en la cantidad de num_queries/repeticiones: 0/0
+ ----------------------------------------------------- 
+Cargando consultas desde ../../datasets/gst_tripsMadrid_0005k.queries.2
+Error! en la cantidad de num_queries/repeticiones: 500/0
+Cargando consultas desde ../../datasets/gst_tripsMadrid_0010k.queries.2
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/gst_tripsMadrid_0015k.queries.2
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/gst_tripsMadrid_0020k.queries.2
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/gst_tripsMadrid_0025k.queries.2
+Error! en la cantidad de num_queries/repeticiones: 0/0
+ ----------------------------------------------------- 
+Cargando consultas desde ../../datasets/gst_tripsMadrid_0005k.queries.3
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/gst_tripsMadrid_0010k.queries.3
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/gst_tripsMadrid_0015k.queries.3
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/gst_tripsMadrid_0020k.queries.3
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/gst_tripsMadrid_0025k.queries.3
+Error! en la cantidad de num_queries/repeticiones: 0/0
+ ----------------------------------------------------- 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************** DATASET = ../../datasets/ ****************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Cargando consultas desde ../../datasets/20stops_min_05k.queries.1
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/20stops_min_10k.queries.1
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/20stops_min_15k.queries.1
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/20stops_min_20k.queries.1
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/20stops_min_25k.queries.1
+Error! en la cantidad de num_queries/repeticiones: 0/0
+ ----------------------------------------------------- 
+Cargando consultas desde ../../datasets/20stops_min_05k.queries.2
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/20stops_min_10k.queries.2
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/20stops_min_15k.queries.2
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/20stops_min_20k.queries.2
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/20stops_min_25k.queries.2
+Error! en la cantidad de num_queries/repeticiones: 0/0
+ ----------------------------------------------------- 
+Cargando consultas desde ../../datasets/20stops_min_05k.queries.3
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/20stops_min_10k.queries.3
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/20stops_min_15k.queries.3
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/20stops_min_20k.queries.3
+Error! en la cantidad de num_queries/repeticiones: 0/0
+Cargando consultas desde ../../datasets/20stops_min_25k.queries.3
+Error! en la cantidad de num_queries/repeticiones: 0/0
+ ----------------------------------------------------- 
+Fecha FIN experimentos: 2023/04/26 03:01:02
