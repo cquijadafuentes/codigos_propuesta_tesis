@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -ne 4 ]; then
-	echo "$(basename $0) <data_folder_1> <data_folder_2> <output_file> <repeticiones1>"
+	echo "$(basename $0) <data_folder_1> <data_folder_2> <repeticiones1> <output_file>"
 	echo "Ejecuta time_allTopoRels_byQueriesFile para los archivos de trips (<data_folder_1>) y trips20+ (<data_folder_2>)."
 	exit 1
 fi
