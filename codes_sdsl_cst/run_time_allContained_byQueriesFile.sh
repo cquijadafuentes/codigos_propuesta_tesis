@@ -22,7 +22,7 @@ for i in 1 2 3
 do
 	for filename in gst_tripsMadrid_0005k gst_tripsMadrid_0010k gst_tripsMadrid_0015k gst_tripsMadrid_0020k gst_tripsMadrid_0025k
 	do
-		./time_TopoRel_allContained_naive_gst_byQueriesFile ${DATAFOLDER1}${filename}.txt ${DATAFOLDER1}${filename}.naivepc ${DATAFOLDER1}${filename}.gst ${DATAFOLDER1}${filename}.queries.${i} ${REPETICIONES} >> ${OUTPUTFILE}
+		./time_TopoRel_allContained_naive_gst_byQueriesFile ${DATAFOLDER1}${filename}.txt ${DATAFOLDER1}${filename}.gst ${DATAFOLDER1}${filename}.queries.${i} ${REPETICIONES} >> ${OUTPUTFILE}
 	done
 	echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
 done
@@ -35,7 +35,7 @@ for i in 1 2 3
 do
 	for filename in 20stops_min_05k  20stops_min_10k  20stops_min_15k  20stops_min_20k  20stops_min_25k
 	do
-		./time_TopoRel_allContained_naive_gst_byQueriesFile ${DATAFOLDER2}${filename}.txt ${DATAFOLDER2}${filename}.naivepc ${DATAFOLDER2}${filename}.gst ${DATAFOLDER2}${filename}.queries.${i} ${REPETICIONES} >> ${OUTPUTFILE}
+		./time_TopoRel_allContained_naive_gst_byQueriesFile ${DATAFOLDER2}${filename}.txt ${DATAFOLDER2}${filename}.gst ${DATAFOLDER2}${filename}.queries.${i} ${REPETICIONES} >> ${OUTPUTFILE}
 	done
 	echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
 done

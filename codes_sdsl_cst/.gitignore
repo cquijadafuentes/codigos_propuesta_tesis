@@ -10,9 +10,9 @@ TopoRel_*_test
 TopoRel_GST_allContained
 TopoRel_GST_build
 TopoRel_GST_check_allContained
+TopoRel_GST_check_allIntersect
 TopoRel_GST_size
 TopoRel_GST_test_allContained_byQueries
-TopoRel_GST_test_allIntersect_byQueries
 TopoRel_GST_time_allContained
 TopoRel_Naive_PreComp_build
 TopoRel_Naive_PreComp_load

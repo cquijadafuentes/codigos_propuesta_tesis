@@ -8,7 +8,7 @@ BINS=TopoRel_GST_time_allContained\
 		TopoRel_GST_check_allContained time_allTopoRels_byQueriesFile\
 		TopoRel_GST_size TopoRel_GST_allContained\
 		TopoRel_GST_test_allContained_byQueries\
-		TopoRel_GST_test_allIntersect_byQueries\
+		TopoRel_GST_check_allIntersect\
 		TopoRel_GST_build TopoRel_GST_test\
 		TopoRel_Naive_allContained_byQueries\
 		TopoRel_Naive_allIntersect_byQueries\
@@ -54,8 +54,8 @@ TopoRel_GST_size:
 TopoRel_GST_test_allContained_byQueries:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_test_allContained_byQueries TopoRel_GST_test_allContained_byQueries.cpp $(OBJECTS) $(POSFLAGS)
 
-TopoRel_GST_test_allIntersect_byQueries:
-	$(CPP) $(PREFLAGS) -o TopoRel_GST_test_allIntersect_byQueries TopoRel_GST_test_allIntersect_byQueries.cpp $(OBJECTS) $(POSFLAGS)
+TopoRel_GST_check_allIntersect:
+	$(CPP) $(PREFLAGS) -o TopoRel_GST_check_allIntersect TopoRel_GST_check_allIntersect.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_GST_time_allContained:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_time_allContained TopoRel_GST_time_allContained.cpp $(OBJECTS) $(POSFLAGS)
