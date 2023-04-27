@@ -1,0 +1,32 @@
+Fecha INICIO: 2023/04/26 02:14:39
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas
+5000	11010	165970	20000	40000	4080	4520	6512	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas
+10000	11010	284745	40000	80000	7955	8539	16090	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas
+15000	11010	397106	60000	120000	12436	11068	32861	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas
+20000	11010	499753	80000	160000	15713	15913	44192	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas
+25000	11010	600977	100000	200000	21515	18145	50723	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas
+30000	11010	693736	120000	240000	24780	20290	58214	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas
+35000	11010	783333	140000	280000	37333	25523	72312	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas
+40000	11010	868027	160000	320000	39942	27836	77195	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas
+45000	11010	950160	180000	360000	33991	30068	81605	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas
+50007	11010	1036654	200028	400056	51553	41573	85422	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas
+5000	11010	295999	20000	40000	4704	4824	12116	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas
+10000	11010	500919	40000	80000	9203	8496	25436	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas
+15000	11010	682524	60000	120000	14316	12427	47447	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas
+20000	11010	845654	80000	160000	18217	14788	53970	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas
+25000	11010	1006295	100000	200000	24643	16860	59532	
+Fecha FIN: 2023/04/26 02:14:41
