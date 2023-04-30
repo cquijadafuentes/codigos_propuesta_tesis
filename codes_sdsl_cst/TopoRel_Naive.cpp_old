@@ -4,7 +4,7 @@
 // ************* RELACIONES TOPOLÓGICAS NAIVE ************* //
 //////////////////////////////////////////////////////////////
 
-bool bordesSeg_touches(int_vector<> &a, int_vector<> &b){
+bool bordesSeg_touches(vector<int> &a, vector<int> &b){
     // Comprueba si hay segmentos finales que se intersecan
     // Esto implica una intersección Interior-Interior entre los bordes
     // que se considera como un touches falso-positivo
@@ -28,7 +28,7 @@ bool bordesSeg_touches(int_vector<> &a, int_vector<> &b){
 
 // Find occurrences of txt[] in pat[]
 // Retorna: <posición,largo> de la coincidencia
-pair<int,int> KMPSearch(int_vector<> &pat, int_vector<> &txt){
+pair<int,int> KMPSearch(vector<int> &pat, vector<int> &txt){
     int M = pat.size();
     int N = txt.size();
   
@@ -71,7 +71,7 @@ pair<int,int> KMPSearch(int_vector<> &pat, int_vector<> &txt){
 }
   
 // Fills lps[] for given patttern pat[0..M-1]
-void computeLPSArray(int_vector<> &pat, int M, int* lps){
+void computeLPSArray(vector<int> &pat, int M, int* lps){
     // length of the previous longest prefix suffix
     int len = 0;
   
@@ -106,7 +106,7 @@ void computeLPSArray(int_vector<> &pat, int M, int* lps){
 }
 
 // Retorna: <largo_mayor_coindicencia,intersección_interior-interior>;
-pair<int,bool> lcs_info(int_vector<> &s, int_vector<> &t){
+pair<int,bool> lcs_info(vector<int> &s, vector<int> &t){
     int n = s.size();
     int m = t.size();
     // Create DP table
@@ -158,7 +158,7 @@ pair<int,bool> lcs_info(int_vector<> &s, int_vector<> &t){
 *******************************************************/
 
 
-bool tr_equals(int_vector<> &a, int_vector<> &b){
+bool tr_equals(vector<int> &a, vector<int> &b){
     if(a.size() != b.size()){
         return false;
     }
@@ -175,7 +175,7 @@ bool tr_equals(int_vector<> &a, int_vector<> &b){
 *******************************************************/
 
 
-bool tr_within(int_vector<> &a, int_vector<> &b){
+bool tr_within(vector<int> &a, vector<int> &b){
     if(a.size() > b.size()){
         return false;
     }    
@@ -183,7 +183,7 @@ bool tr_within(int_vector<> &a, int_vector<> &b){
     return (kmp.first != -1);
 }
 
-bool tr_contains(int_vector<> &a, int_vector<> &b){
+bool tr_contains(vector<int> &a, vector<int> &b){
     if(b.size() > a.size()){
         return false;
     }
@@ -191,7 +191,7 @@ bool tr_contains(int_vector<> &a, int_vector<> &b){
     return (kmp.first != -1);
 }
 
-bool tr_intersect(int_vector<> &a, int_vector<> &b){
+bool tr_intersect(vector<int> &a, vector<int> &b){
     // Verificacición de bordes O(c)
     if(a[0] == b[0] || a[0] == b[b.size()-1] 
         || a[a.size()-1] == b[0] || a[a.size()-1] == b[b.size()-1]){
@@ -224,7 +224,7 @@ bool tr_intersect(int_vector<> &a, int_vector<> &b){
     return false;
 }
 
-vector<int> tr_allContain(vector<int_vector<>> &r, int x){
+vector<int> tr_allContain(vector<vector<int>> &r, int x){
     vector<int> res;
     for(int i=0; i<r.size(); i++){
         if(tr_within(r[x], r[i])){
@@ -234,7 +234,7 @@ vector<int> tr_allContain(vector<int_vector<>> &r, int x){
     return res;
 }
 
-vector<int> tr_allEqual(vector<int_vector<>> &r, int x){
+vector<int> tr_allEqual(vector<vector<int>> &r, int x){
     vector<int> res;
     for(int i=0; i<r.size(); i++){
         if(tr_equals(r[x], r[i])){
@@ -244,7 +244,7 @@ vector<int> tr_allEqual(vector<int_vector<>> &r, int x){
     return res;
 }
 
-vector<int> tr_allContained(vector<int_vector<>> &r, int x){
+vector<int> tr_allContained(vector<vector<int>> &r, int x){
     vector<int> res;
     for(int i=0; i<r.size(); i++){
         if(tr_contains(r[x], r[i])){
@@ -254,7 +254,7 @@ vector<int> tr_allContained(vector<int_vector<>> &r, int x){
     return res;
 }
 
-vector<int> tr_allIntersect(vector<int_vector<>> &r, int x){
+vector<int> tr_allIntersect(vector<vector<int>> &r, int x){
     vector<int> res;
     for(int i=0; i<r.size(); i++){
         if(tr_intersect(r[x], r[i])){

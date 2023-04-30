@@ -47,13 +47,15 @@ int main(int argc, char const *argv[]){
 	ifstream naive(argv[1], ifstream::in);
 	int n, x, aux, max;
 	naive >> n >> max;
-	vector<vector<int>> rutas(n);
+	vector<int_vector<>> rutas(n);
 	for(int i = 0; i < n; i++){
 		naive >> x;
+		rutas[i] = int_vector<>(x);
 		for(int j=0; j<x; j++){
 			naive >> aux;
-			rutas[i].push_back(aux);
+			rutas[i][j] = aux;
 		}
+		util::bit_compress(rutas[i]);
 	}
 	naive.close();
 

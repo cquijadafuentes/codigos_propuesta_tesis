@@ -33,13 +33,15 @@ int main(int argc, char const *argv[]){
 
 	int n, x, aux, max;
 	entrada >> n >> max;
-	vector<vector<int>> lx(n);
+	vector<int_vector<>> rutas(n);
 	for(int i = 0; i < n; i++){
 		entrada >> x;
+		rutas[i] = int_vector<>(x);
 		for(int j=0; j<x; j++){
 			entrada >> aux;
-			lx[i].push_back(aux);
+			rutas[i][j] = aux;
 		}
+		util::bit_compress(rutas[i]);
 	}
 	entrada.close();
 
@@ -80,7 +82,7 @@ int main(int argc, char const *argv[]){
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
 	    for(int i=0; i<queries.size(); i++){
-	    	tr_allContained(lx, i);
+	    	tr_allContained(rutas, i);
 	    }
 	}
 	t1 = clock();

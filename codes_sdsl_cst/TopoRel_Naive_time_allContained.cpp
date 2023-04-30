@@ -19,13 +19,15 @@ int main(int argc, char const *argv[]){
 
 	int n, x, aux, max;
 	entrada >> n >> max;
-	vector<vector<int>> lx(n);
+	vector<int_vector<>> rutas(n);
 	for(int i = 0; i < n; i++){
 		entrada >> x;
+		rutas[i] = int_vector<>(x);
 		for(int j=0; j<x; j++){
 			entrada >> aux;
-			lx[i].push_back(aux);
+			rutas[i][j] = aux;
 		}
+		util::bit_compress(rutas[i]);
 	}
 	entrada.close();
 
@@ -37,7 +39,7 @@ int main(int argc, char const *argv[]){
 	auto t0 = clock();
 	for(int i=0; i<nQueries; i++){
 		consultas >> x;
-		vector<int> res = tr_allContained(lx, x);
+		vector<int> res = tr_allContained(rutas, x);
 		cantRutasRetorna += res.size();
 	}
 	auto t1 = clock();

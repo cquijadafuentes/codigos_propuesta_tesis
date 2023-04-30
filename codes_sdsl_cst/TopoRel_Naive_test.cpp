@@ -25,24 +25,27 @@ int main(int argc, char const *argv[]){
 		return 0;
 	}
 
-	ifstream txtInput(argv[1], ifstream::in);
+	ifstream entrada(argv[1], ifstream::in);
 
 	int n, x, aux, max;
-	txtInput >> n >> max;
-	vector<vector<int>> lx(n);
+	entrada >> n >> max;
+	vector<int_vector<>> rutas(n);
 	for(int i = 0; i < n; i++){
-		txtInput >> x;
+		entrada >> x;
+		rutas[i] = int_vector<>(x);
 		for(int j=0; j<x; j++){
-			txtInput >> aux;
-			lx[i].push_back(aux);
+			entrada >> aux;
+			rutas[i][j] = aux;
 		}
+		util::bit_compress(rutas[i]);
 	}
+	entrada.close();
 
-	cout << lx.size() << endl;
-	for(int i=0; i<lx.size(); i++){
-		cout << lx[i].size() << ": ";
-		for(int j=0; j<lx[i].size(); j++){
-			cout << lx[i][j] << " ";
+	cout << rutas.size() << endl;
+	for(int i=0; i<rutas.size(); i++){
+		cout << rutas[i].size() << ": ";
+		for(int j=0; j<rutas[i].size(); j++){
+			cout << rutas[i][j] << " ";
 		}
 		cout << endl;
 	}
