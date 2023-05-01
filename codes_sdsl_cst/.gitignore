@@ -3,7 +3,7 @@ nohup.out
 extras/dataset_lineasmadrid_repetidos/genera_repeticiones
 extras/dataset_madrid/procesa_linesStops
 extras/dataset_madrid/procesa_madrid_trips
-time_TopoRel_allContained_naive_gst_byQueriesFile
+time_TopoRel_allContained_byQueriesFile
 time_TopoRel_allContained_vsGST6_byQueriesFile
 time_allTopoRels_byQueriesFile
 TopoRel_*_test
@@ -21,4 +21,5 @@ TopoRel_Naive_allContained_byQueries
 TopoRel_Naive_allIntersect_byQueries
 TopoRel_Naive_allContained_byQueries
 TopoRel_Naive_allRelation_byQueries
+TopoRel_Naive_size
 TopoRel_Naive_time_allContained

@@ -10,6 +10,9 @@ DATAFOLDER=$1
 DATAFOLDER2=$2
 
 echo "Fecha INICIO construcción: $(date +'%Y/%m/%d %H:%M:%S')"
+echo "Directorio de inicio: "
+pwd
+echo ""
 
 for filename in gst_tripsMadrid_0005k  gst_tripsMadrid_0015k  gst_tripsMadrid_0025k  gst_tripsMadrid_0035k  gst_tripsMadrid_0045k gst_tripsMadrid_0010k  gst_tripsMadrid_0020k  gst_tripsMadrid_0030k  gst_tripsMadrid_0040k  gst_tripsMadrid_0050k
 do

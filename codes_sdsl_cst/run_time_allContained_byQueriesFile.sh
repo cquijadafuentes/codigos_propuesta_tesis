@@ -13,6 +13,9 @@ OUTPUTFILE=$4
 
 
 echo "Fecha INICIO experimentos: $(date +'%Y/%m/%d %H:%M:%S') allContainedByQueriesFile_naive_gst" > ${OUTPUTFILE}
+echo "Directorio de inicio: " >> ${OUTPUTFILE}
+pwd >> ${OUTPUTFILE}
+echo "" >> ${OUTPUTFILE}
 
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFILE}
 echo "**************** DATASET = ${DATAFOLDER1} ****************" >> ${OUTPUTFILE}

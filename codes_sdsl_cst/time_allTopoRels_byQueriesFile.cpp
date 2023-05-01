@@ -43,7 +43,7 @@ int main(int argc, char const *argv[]){
 		return 0;
 	}
 	
-	cout << "Leyendo " << argv[1] << endl;
+	cout << "Leyendo rutas desde " << argv[1] << endl;
 	ifstream naive(argv[1], ifstream::in);
 	int n, x, aux, max;
 	naive >> n >> max;

@@ -14,6 +14,9 @@ OUTPUTFILE=$4
 
 echo "Fecha INICIO experimentos: $(date +'%Y/%m/%d %H:%M:%S') allContainedByQueriesFile_GST" > ${OUTPUTFILE}
 echo "Experimentos de todas las relaciones tipo all en dos datasets." >> ${OUTPUTFILE}
+echo "Directorio de inicio: " >> ${OUTPUTFILE}
+pwd >> ${OUTPUTFILE}
+echo "" >> ${OUTPUTFILE}
 
 for i in 1 2 3 
 do

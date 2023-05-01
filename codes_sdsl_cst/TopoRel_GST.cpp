@@ -527,8 +527,15 @@ void TopoRelGST::sizeToPlot(){
     for(int i=0; i<gstMapNodo2Ruta.size(); i++){
         bytesMapaNodo2Ruta += sizeof(int)*2;
     }
+    int bytesTotales = 0;
+    bytesTotales += size_in_bytes(cst);
+    bytesTotales += bytesMapaRuta2Nodo;
+    bytesTotales += bytesMapaNodo2Ruta;
+    bytesTotales += size_in_bytes(gstMFSbv);
+    bytesTotales += size_in_bytes(gstMNodos);
+    bytesTotales += size_in_bytes(gstMRamas);
 
-    cout << "rutas\tstops\tcstsada\tmapR2N\tmapN2R\tgstMFSbv\tgstMNodos\tgstMRamas" << endl;
+    cout << "rutas\tstops\tcstsada\tmapR2N\tmapN2R\tgstMFSbv\tgstMNodos\tgstMRamas\tTOTAL" << endl;
     cout << n_rutas << "\t"; 
     cout << n_stops << "\t"; 
     cout << size_in_bytes(cst) << "\t";
@@ -537,6 +544,7 @@ void TopoRelGST::sizeToPlot(){
     cout << size_in_bytes(gstMFSbv) << "\t";
     cout << size_in_bytes(gstMNodos) << "\t";
     cout << size_in_bytes(gstMRamas) << "\t";
+    cout << bytesTotales << "\t";
     cout << endl;
 }
 

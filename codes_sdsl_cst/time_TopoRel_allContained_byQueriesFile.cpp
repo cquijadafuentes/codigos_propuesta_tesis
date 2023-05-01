@@ -1,6 +1,6 @@
 /*
 	Toma de tiempo promedio para consultas allContained sobre implementaciones
-	GST6 (versión original recorriendo SA, versión 2 reccoriendo desde raíz y
+	GST (versión original recorriendo SA, versión 2 reccoriendo desde raíz y
 	versión 3 utilizando wl)
 	Las consultas provienen de un archivo de consulta generado con 
 	./extras/generador_consultas
