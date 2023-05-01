@@ -236,7 +236,7 @@ vector<int> TopoRelGST::tr_allEqual(int x){
     vector<int> y;
     if(x > n_rutas) return y;
 
-    auto nX = gstMapRuta2Nodo[x];
+    int nX = cst.id(gstMapRuta2Nodo[x]);
     int count = gstMapNodo2Ruta.count(nX);
     auto rango = gstMapNodo2Ruta.equal_range(nX);
     for(auto j=rango.first; j!=rango.second; j++){

@@ -7,10 +7,18 @@ using namespace sdsl;
 
 int main(int argc, char const *argv[]){
 	// Verifica los resultados de allIntersect
-	if(argc < 4){
+	if(argc < 5){
 		cout << "Error! faltan argumentos." << endl;
-		cout << argv[0] << " <input_filename.gst> <queries_file> <results_file>" << endl;
+		cout << argv[0] << " <input_filename.gst> <queries_file> <results_file> <id_operacion>" << endl;
+		cout << "Donde <id_operacion> es: ";
+		cout << "(1) allContain - (2) allContained - (3) allEqual - (4) allIntersect" << endl;
 		cout << endl;
+		return 0;
+	}
+
+	int id_operacion = (int) atoi(argv[4]);
+	if(id_operacion < 1 || id_operacion > 4){
+		cout << "Error! <id_operacion> no corresponde." << endl;
 		return 0;
 	}
 
@@ -47,7 +55,24 @@ int main(int argc, char const *argv[]){
 		}
 		// Obtener resultados desde GST
 		gst.statsReset();
-		vector<int> resGST = gst.tr_allIntersect(x);
+		vector<int> resGST;		
+		switch(id_operacion){
+			case 1:
+				resGST = gst.tr_allContain(x);
+				break;
+			case 2:
+				resGST = gst.tr_allContained(x);
+				break;
+			case 3:
+				resGST = gst.tr_allEqual(x);
+				break;
+			case 4:
+				resGST = gst.tr_allIntersect(x);
+				break;
+			default:
+				cout << "Error! Operación no definida." << endl;
+				return 0;
+		}
 		// Comparar los resultados
 		sort(resGST.begin(), resGST.end());
 		if(resGST.size() != resNaive.size()){

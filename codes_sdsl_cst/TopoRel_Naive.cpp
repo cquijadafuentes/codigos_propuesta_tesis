@@ -8,7 +8,10 @@ bool bordesSeg_touches(int_vector<> &a, int_vector<> &b){
     // Comprueba si hay segmentos finales que se intersecan
     // Esto implica una intersección Interior-Interior entre los bordes
     // que se considera como un touches falso-positivo
-
+    if(a.size() == 1 || b.size() == 1){
+    //  Rutas de largo 1 no pueden tener touch del segmento final.
+        return false;
+    }
     int bff = b.size() - 1;
     int bpf = bff - 1;
     if((a[0] == b[1] && a[1] == b[0]) ||
