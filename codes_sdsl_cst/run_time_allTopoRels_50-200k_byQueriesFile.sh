@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -ne 4 ]; then
+if [ $# -ne 3 ]; then
 	echo "$(basename $0) <data_folder> <repeticiones> <output_file>"
 	echo "Ejecuta time_allTopoRels_byQueriesFile para los archivos de trips de 50k-100k-150k-200k."
 	exit 1
