@@ -27,23 +27,25 @@ int main(int argc, char const *argv[]){
 			entrada >> aux;
 			rutas[i][j] = aux;
 		}
-		util::bit_compress(rutas[i]);
+		//util::bit_compress(rutas[i]); // Borrado para experimentos con y sin bit_compress
 	}
 	entrada.close();
 
 	ifstream consultas(argv[2], ifstream::in);
 	int nQueries;
 	consultas >> nQueries;
+	vector<int> queries(nQueries);
+	for(int i=0; i<nQueries; i++){
+		consultas >> queries[i];
+	}
+	consultas.close();
 
 	int cantRutasRetorna = 0;
 	auto t0 = clock();
 	for(int i=0; i<nQueries; i++){
-		consultas >> x;
-		vector<int> res = tr_allContained(rutas, x);
-		cantRutasRetorna += res.size();
+		cantRutasRetorna += tr_allContained(rutas, queries[i]).size();
 	}
 	auto t1 = clock();
-	consultas.close();
 	
 	double time = ((double)(t1 - t0) / CLOCKS_PER_SEC)* 1000000;
 	double timeProm = time / nQueries;
@@ -55,10 +57,23 @@ int main(int argc, char const *argv[]){
 	cout << "Rutas del conjunto: " << n << endl;
 	cout << "Stops del conjunto: " << max << endl;
 	cout << "Cantidad de consultas: " << nQueries << endl;
-	cout << "+ Tiempo total de consultas: " << time << "[us]" << endl;
-	cout << "+ Tiempo promedio de consulta: " << timeProm << "[us]" << endl;
 	cout << "Total de rutas retornadas: " << cantRutasRetorna << endl;
 	cout << "Promedio de rutas retornadas: " << cantPromResp << endl;
+	cout << "+ Tiempo total de consultas (sin bit_compress): " << time << "[us]" << endl;
+	cout << "+ Tiempo promedio de consulta (sin bit_compress): " << timeProm << "[us]" << endl;
 
+
+	for(int i = 0; i < n; i++){
+		util::bit_compress(rutas[i]);
+	}
+	t0 = clock();
+	for(int i=0; i<nQueries; i++){
+		cantRutasRetorna += tr_allContained(rutas, queries[i]).size();
+	}
+	t1 = clock();	
+	time = ((double)(t1 - t0) / CLOCKS_PER_SEC)* 1000000;
+	timeProm = time / nQueries;
+	cout << "+ Tiempo total de consultas (con bit_compress): " << time << "[us]" << endl;
+	cout << "+ Tiempo promedio de consulta (con bit_compress): " << timeProm << "[us]" << endl;
 	return 0;
 }

@@ -16,7 +16,7 @@ int main(int argc, char const *argv[]){
 
 	if(argc < 3){
 		cout << "Error! faltan argumentos." << endl;
-		cout << argv[0] << "<input_filename.txt> <output_filename.gst6>" << endl;
+		cout << argv[0] << " <input_filename.txt> <output_filename.gst>" << endl;
 		cout << "Input_File format:" << endl;
 		cout << "cant_rutas max_stop" << endl;
 		cout << "cant_stops_r1 r1_st1 r1_st2 ···" << endl;
