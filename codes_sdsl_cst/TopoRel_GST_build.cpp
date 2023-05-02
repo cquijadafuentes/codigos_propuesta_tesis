@@ -4,6 +4,10 @@
 using namespace std;
 using namespace sdsl;
 
+/*
+	Construye archivos gst desde rutas en formato txt
+*/
+
 void print_bool(bool x){
 	if(x){
 		cout << "true";
@@ -25,7 +29,6 @@ int main(int argc, char const *argv[]){
 		return 0;
 	}
 
-
 	ifstream txtInput(argv[1], ifstream::in);
 	
 	int nr, max;
@@ -42,23 +45,12 @@ int main(int argc, char const *argv[]){
 		vi.push_back(v);
 	}
 	txtInput.close();
-/*	
-	cout << "mostrando entrada" << endl;
-	cout << vi.size() << endl;
-	for(int i = 0; i < vi.size(); i++){
-		cout << vi[i].size() << " -> ";
-		for(int j = 0; j < vi[i].size(); j++){
-			cout << vi[i][j] << " " ;
-		}
-		cout << endl;
-	}
-	cout << endl;
-*/	
+
 	TopoRelGST gst(vi, max);
 
 	string filename(argv[2]);
 	if(gst.save(filename)){
-		cout << "Se ha guardado exitosamente." << endl;
+		cout << "Se ha guardado exitosamente " << argv[2] << endl;
 	}else{
 		cout << "Falla en el guardado." << endl;
 	}	

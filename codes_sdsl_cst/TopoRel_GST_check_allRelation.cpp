@@ -33,9 +33,9 @@ int main(int argc, char const *argv[]){
 	int nResults;
 	results >> nResults;
 	if(nQueries != nResults){
-		cout << "Error! El número de consultas del archivo " << argv[1];
+		cout << "Error! El número de consultas del archivo " << argv[2];
 		cout << "(" << nQueries << ") no coincide con ";
-		cout << "la cantidad de resultados del archivo " << argv[2];
+		cout << "la cantidad de resultados del archivo " << argv[3];
 		cout << "(" << nResults << ")" << endl;
 		return 0;
 	}
@@ -123,6 +123,21 @@ int main(int argc, char const *argv[]){
 		}
 	}
 	cout << "------------------------" << endl;
-	cout << "Total fallas allIntersect: " << cantFallas << endl;
+	cout << "Total fallas ";
+	switch(id_operacion){
+			case 1:
+				cout << "allContain";
+				break;
+			case 2:
+				cout << "allContained";
+				break;
+			case 3:
+				cout << "allEqual";
+				break;
+			case 4:
+				cout << "allIntersect";
+				break;
+		}
+	cout << ": " << cantFallas << endl;
     return 0;
 }
