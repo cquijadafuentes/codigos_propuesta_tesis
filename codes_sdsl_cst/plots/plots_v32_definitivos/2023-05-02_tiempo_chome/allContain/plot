@@ -1,0 +1,29 @@
+red = "#FF0000"; green = "#00FF00"; blue = "#0000FF"; skyblue = "#87CEEB"; black = "#000000";
+set grid ytics
+set key out horiz
+set terminal png size 800,400
+
+set xrange [0:5]
+set ylabel "Tiempo [us]"
+set xlabel "Rutas"
+
+
+
+set output 'tiempo_allContain_random.png'
+set title 'Tiempo en Operación AllContain [d:trips - q:random [5000-5r] - s:chome]'
+plot 'data_random_allContain' using 4:xtic(2) title 'Naive_{1+}' with linespoints pt 4 lc rgb red,   \
+     'data_random_allContain' using 5 title 'GST_{1+}' with linespoints pt 4 lc rgb blue
+
+
+
+set output 'tiempo_allContain_largests.png'
+set title 'Tiempo en Operación AllContain [d:trips - q:largests [1000-5r] - s:chome]'
+plot 'data_largests_allContain' using 4:xtic(2) title 'Naive_{1+}' with linespoints pt 4 lc rgb red,   \
+     'data_largests_allContain' using 5 title 'GST_{1+}' with linespoints pt 4 lc rgb blue
+
+
+
+set output 'tiempo_allContain_shortests.png'
+set title 'Tiempo en Operación AllContain [d:trips - q:shortests [1000-5r] - s:chome]'
+plot 'data_shortests_allContain' using 4:xtic(2) title 'Naive_{1+}' with linespoints pt 4 lc rgb red,   \
+     'data_shortests_allContain' using 5 title 'GST_{1+}' with linespoints pt 4 lc rgb blue

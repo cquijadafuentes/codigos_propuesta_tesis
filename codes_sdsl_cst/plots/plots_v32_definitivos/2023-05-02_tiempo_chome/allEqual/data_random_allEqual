@@ -1,0 +1,5 @@
+operacion	rutas	queries	tnaive	tgst
+allEqual	50007	5000	664.282	0.9626	[us]
+allEqual	100000	5000	1330.37	1.22252	[us]
+allEqual	150007	5000	1994.57	1.51096	[us]
+allEqual	200007	5000	2672.2	1.76848	[us]

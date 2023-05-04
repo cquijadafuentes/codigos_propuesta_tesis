@@ -1,0 +1,5 @@
+operacion	rutas	queries	tnaive	tgst
+allContained	50007	1000	98068.9	656027	[us]
+allContained	100000	1000	214857	88619	[us]
+allContained	150007	1000	339325	270155	[us]
+allContained	200007	1000	467827	367350	[us]
