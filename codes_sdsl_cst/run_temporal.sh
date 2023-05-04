@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -ne 2 ]; then
+if [ $# -ne 1 ]; then
 	echo "Usage: $(basename $0) <folder>"
 	echo "Generará archivos en formato gst"
 	exit 1
