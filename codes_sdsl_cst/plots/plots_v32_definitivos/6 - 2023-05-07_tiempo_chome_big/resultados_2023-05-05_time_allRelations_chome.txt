@@ -1,0 +1,489 @@
+Fecha INICIO experimentos: 2023/05/05 10:31:12 allContainedByQueriesFile_GST
+Experimentos de todas las relaciones tipo all en dos datasets.
+Directorio de inicio: 
+/home/cquijada/codigos_propuesta_tesis/codes_sdsl_cst
+
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0050k.queries.1
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0050k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0050k.queries.1
+Rutas: 50007
+Ruta más corta: 1
+Ruta más larga: 59
+Consultas a realizar: 5000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	50007	5000	26078.2	10384.3	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	50007	5000	25996.5	125214	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	50007	5000	663.386	0.93384	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0100k.queries.1
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0100k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0100k.queries.1
+Rutas: 100000
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 5000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	100000	5000	52343.7	19296	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	100000	5000	51514.1	142054	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	100000	5000	1332.95	1.2374	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0150k.queries.1
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0150k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0150k.queries.1
+Rutas: 150007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 5000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	150007	5000	77399.4	28415.1	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	150007	5000	79711.1	151684	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	150007	5000	2057.36	1.53272	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0200k.queries.1
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0200k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0200k.queries.1
+Rutas: 200007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 5000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	200007	5000	104464	35832.9	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	200007	5000	103432	144463	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	200007	5000	2667.56	1.71936	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0400k.queries.1
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0400k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0400k.queries.1
+Rutas: 400824
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 5000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	400824	5000	38331.1	68960.6	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	400824	5000	33662.4	148612	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	400824	5000	5525.7	2.71132	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0800k.queries.1
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0800k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0800k.queries.1
+Rutas: 800650
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 5000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	800650	5000	77165.8	128427	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	800650	5000	71026.9	151963	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	800650	5000	12756.2	4.45036	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_1600k.queries.1
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_1600k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_1600k.queries.1
+Rutas: 1601315
+Ruta más corta: 1
+Ruta más larga: 69
+Consultas a realizar: 5000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	1601315	5000	150745	85980.4	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	1601315	5000	160814	3714.7	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	1601315	5000	26791.1	7.90652	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_3200k.queries.1
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_3200k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_3200k.queries.1
+Rutas: 3204779
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 5000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	3204779	5000	145491	156032	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	3204779	5000	150259	26688.8	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	3204779	5000	52420.3	14.4136	[us]
+ ----------------------------------------------------- 
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0050k.queries.2
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0050k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0050k.queries.2
+Rutas: 50007
+Ruta más corta: 1
+Ruta más larga: 59
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	50007	1000	1974.66	2440.17	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	50007	1000	98126	656316	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	50007	1000	484.659	0.7046	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0100k.queries.2
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0100k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0100k.queries.2
+Rutas: 100000
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	100000	1000	2650.83	4273.61	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	100000	1000	214908	90082.2	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	100000	1000	947.377	0.8692	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0150k.queries.2
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0150k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0150k.queries.2
+Rutas: 150007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	150007	1000	3174.21	5336.51	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	150007	1000	339802	270445	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	150007	1000	1470.82	1.127	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0200k.queries.2
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0200k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0200k.queries.2
+Rutas: 200007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	200007	1000	3712.82	6846.98	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	200007	1000	468031	369036	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	200007	1000	1892.6	1.4108	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0400k.queries.2
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0400k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0400k.queries.2
+Rutas: 400824
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	400824	1000	5837.58	17261.1	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	400824	1000	169324	840444	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	400824	1000	3785.85	3.6042	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0800k.queries.2
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0800k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0800k.queries.2
+Rutas: 800650
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	800650	1000	9809.11	11104.6	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	800650	1000	534355	509095	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	800650	1000	8881.97	1.4104	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_1600k.queries.2
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_1600k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_1600k.queries.2
+Rutas: 1601315
+Ruta más corta: 1
+Ruta más larga: 69
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	1601315	1000	20965.9	26399.5	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	1601315	1000	765837	205541	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	1601315	1000	15433.1	1.624	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_3200k.queries.2
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_3200k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_3200k.queries.2
+Rutas: 3204779
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	3204779	1000	34054.2	29723.1	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	3204779	1000	368383	274826	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	3204779	1000	30644.4	1.8738	[us]
+ ----------------------------------------------------- 
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0050k.queries.3
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0050k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0050k.queries.3
+Rutas: 50007
+Ruta más corta: 1
+Ruta más larga: 59
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	50007	1000	32796.2	24238.4	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	50007	1000	1043.49	7113.98	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	50007	1000	660.489	1.5828	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0100k.queries.3
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0100k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0100k.queries.3
+Rutas: 100000
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	100000	1000	65320.5	52016.1	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	100000	1000	2002.24	8524.34	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	100000	1000	1289.29	3.1742	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0150k.queries.3
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0150k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0150k.queries.3
+Rutas: 150007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	150007	1000	97353.5	81287	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	150007	1000	2861.52	8156.28	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	150007	1000	1893.02	5.3452	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0200k.queries.3
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0200k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0200k.queries.3
+Rutas: 200007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	200007	1000	129364	112995	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	200007	1000	3621.95	8268.44	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	200007	1000	2467.8	8.177	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0400k.queries.3
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0400k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0400k.queries.3
+Rutas: 400824
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	400824	1000	255595	282359	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	400824	1000	5817.55	6679.94	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	400824	1000	4473.33	27.847	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_0800k.queries.3
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_0800k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_0800k.queries.3
+Rutas: 800650
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	800650	1000	502836	701494	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	800650	1000	7879.61	1893.67	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	800650	1000	7766.12	90.3298	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_1600k.queries.3
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_1600k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_1600k.queries.3
+Rutas: 1601315
+Ruta más corta: 1
+Ruta más larga: 69
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	1601315	1000	148807	531838	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	1601315	1000	15856	2487.47	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	1601315	1000	15687.3	184.283	[us]
+Cargando consultas desde /home/cquijada/datasets/gst_tripsMadrid_3200k.queries.3
+Leyendo rutas desde /home/cquijada/datasets/gst_tripsMadrid_3200k.txt
+Cargando estructura GST desde /home/cquijada/datasets/gst_tripsMadrid_3200k.queries.3
+Rutas: 3204779
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 1000
+Repeticiones a realizar: 5
+Ejecutando allContain Naive...
+Ejecutando allContain GST6...
+operacion	rutas	queries	tnaive	tgst
+allContain	3204779	1000	301921	212656	[us]
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tnaive	tgst
+allContained	3204779	1000	31826.1	3243.59	[us]
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tnaive	tgst
+allEqual	3204779	1000	31386.2	366.961	[us]
+ ----------------------------------------------------- 
+Fecha FIN experimentos: 2023/05/10 19:03:10
