@@ -8,6 +8,7 @@ time_TopoRel_allContained_vsGST6_byQueriesFile
 time_allTopoRels_byQueriesFile
 TopoRel_*_test
 TopoRel_GST_allContained
+TopoRel_GST_allRelation_time
 TopoRel_GST_build
 TopoRel_GST_check_allContained
 TopoRel_GST_check_allRelation
@@ -21,5 +22,6 @@ TopoRel_Naive_allContained_byQueries
 TopoRel_Naive_allIntersect_byQueries
 TopoRel_Naive_allContained_byQueries
 TopoRel_Naive_allRelation_byQueries
+TopoRel_Naive_allRelation_time
 TopoRel_Naive_size
 TopoRel_Naive_time_allContained

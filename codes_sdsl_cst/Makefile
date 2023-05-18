@@ -4,21 +4,24 @@ PREFLAGS=-std=c++11 -g -O0 -DNDEBUG -fopenmp -I ~/include -L ~/lib
 
 POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
-BINS=TopoRel_GST_time_allContained\
-		TopoRel_GST_check_allContained\
-		time_allTopoRels_byQueriesFile\
-		TopoRel_GST_size\
+BINS=time_allTopoRels_byQueriesFile\
+		time_TopoRel_allContained_byQueriesFile\
 		TopoRel_GST_allContained\
-		TopoRel_GST_test_allContained_byQueries\
+		TopoRel_GST_allRelation_time\
+		TopoRel_GST_build\
 		TopoRel_GST_check_allRelation\
-		TopoRel_GST_build TopoRel_GST_test\
+		TopoRel_GST_check_allContained\
+		TopoRel_GST_size\
+		TopoRel_GST_test\
+		TopoRel_GST_test_allContained_byQueries\
+		TopoRel_GST_time_allContained\
 		TopoRel_Naive_allContained_byQueries\
 		TopoRel_Naive_allIntersect_byQueries\
 		TopoRel_Naive_allRelation_byQueries\
-		TopoRel_Naive_time_allContained\
-		time_TopoRel_allContained_byQueriesFile\
+		TopoRel_Naive_allRelation_time\
 		TopoRel_Naive_size\
-		TopoRel_Naive_test
+		TopoRel_Naive_test\
+		TopoRel_Naive_time_allContained
 
 OBJECTS=TopoRel_GST.o\
 		TopoRel_Naive.o
@@ -42,6 +45,9 @@ TopoRel_Naive_allIntersect_byQueries:
 
 TopoRel_GST_allContained:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_allContained TopoRel_GST_allContained.cpp $(OBJECTS) $(POSFLAGS)
+
+TopoRel_GST_allRelation_time:
+	$(CPP) $(PREFLAGS) -o TopoRel_GST_allRelation_time TopoRel_GST_allRelation_time.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_GST_build:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_build TopoRel_GST_build.cpp $(OBJECTS) $(POSFLAGS)
@@ -69,6 +75,9 @@ TopoRel_Naive_allContained_byQueries:
 
 TopoRel_Naive_allRelation_byQueries:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_allRelation_byQueries TopoRel_Naive_allRelation_byQueries.cpp $(OBJECTS) $(POSFLAGS)
+
+TopoRel_Naive_allRelation_time:
+	$(CPP) $(PREFLAGS) -o TopoRel_Naive_allRelation_time TopoRel_Naive_allRelation_time.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_Naive_size:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_size TopoRel_Naive_size.cpp $(OBJECTS) $(POSFLAGS)
