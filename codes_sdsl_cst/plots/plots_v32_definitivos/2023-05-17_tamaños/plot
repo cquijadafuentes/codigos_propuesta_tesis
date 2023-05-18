@@ -17,3 +17,6 @@ plot 'size_trips_madrid_xl.txt' using 2:xtic(1) title 'cst_{sada}' with linespoi
      '' using 7 title 'gstMRamas' with linespoints lt 2 pt 7 lc rgb skyblue,   \
      '' using 8 title 'GST' with linespoints lt 2 pt 7 lc rgb black,   \
      '' using 9 title 'Naive' with linespoints lt 2 pt 7 lc rgb gold
+
+
+

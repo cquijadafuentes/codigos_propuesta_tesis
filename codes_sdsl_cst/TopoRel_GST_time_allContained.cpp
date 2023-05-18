@@ -6,19 +6,12 @@ using namespace std;
 using namespace sdsl;
 
 int main(int argc, char const *argv[]){
-	// Toma el tiempo de obtener los resultados de la versión de allContained que se especifique
-	if(argc < 4){
+	// Toma el tiempo de obtener los resultados de la operación allContained
+	if(argc < 3){
 		cout << "Error! faltan argumentos." << endl;
-		cout << argv[0] << " <input_filename.gst6> <queries_file> <version>" << endl;
+		cout << argv[0] << " <input_filename.gst6> <queries_file>" << endl;
 		cout << endl;
 		return 0;
-	}
-
-	// Cargando versión
-	int version = (int) atoi(argv[3]);
-	if(version < 1 || version > 6){
-		cout << "Error! la versión indicada no es correcta. Se usará la versión 6" << endl;
-		version = 6;
 	}
 	// Creando GST
 	TopoRelGST gst(argv[1]);
@@ -41,10 +34,9 @@ int main(int argc, char const *argv[]){
 	double time = ((double)(t1 - t0) / CLOCKS_PER_SEC)* 1000000;
 	double timeProm = time / nQueries;
 	double cantPromResp = (cantRutasRetorna + 0.0) / nQueries;
-	cout << "************************** RESULTADOS GST6 **************************" << endl;
+	cout << "************************** RESULTADOS GST **************************" << endl;
 	cout << "Archivo entrada: " << argv[1] << endl;
 	cout << "Archivo consultas: " << argv[2] << endl;
-	cout << "Usando allContained versión " << version << endl;
 	cout << "Rutas del conjunto: " << gst.n_rutas << endl;
 	cout << "Stops del conjunto: " << gst.n_stops << endl;
 	cout << "Ruta más corta: " << gst.len_min << endl;
