@@ -1,0 +1,19 @@
+red = "#FF0000"; green = "#00FF00"; blue = "#0000FF"; skyblue = "#87CEEB"; black = "#000000"; darkgreen = "#006400"; darkred = "#8b0000"; gold = "#ffd700";
+set grid ytics
+set key out horiz
+set terminal png size 800,400
+
+set xrange [0.5:8.5]
+
+set output 'img_size_gst_trips_xl.png'
+set title 'Tamaño GST'
+set ylabel "Tamaño [MB]"
+set xlabel "Rutas"
+plot 'size_trips_madrid_xl.txt' using 2:xtic(1) title 'cst_{sada}' with linespoints lt 2 pt 3 lc rgb red,   \
+     '' using 5 title 'gstMFSbv' with linespoints lt 2 pt 6 lc rgb darkred,   \
+     '' using 4 title 'mapN2R' with linespoints lt 2 pt 5 lc rgb darkgreen,   \
+     '' using 3 title 'mapR2N' with linespoints lt 2 pt 4 lc rgb green,   \
+     '' using 6 title 'gstMNodos' with linespoints lt 2 pt 7 lc rgb blue,   \
+     '' using 7 title 'gstMRamas' with linespoints lt 2 pt 7 lc rgb skyblue,   \
+     '' using 8 title 'GST' with linespoints lt 2 pt 7 lc rgb black,   \
+     '' using 9 title 'Naive' with linespoints lt 2 pt 7 lc rgb gold
