@@ -35,7 +35,7 @@ set xrange [0.5:8.5]
 set ylabel "Cantidad de resultados"
 set xlabel "Cantidad de rutas"
 set output 'cantidad_resultados_allContain.png'
-set title 'Tiempo en Operación AllContain [d:trips - q:random [1000-3r] - s:tumbes]'
+set title 'Resultados en Operación AllContain [d:trips - s:tumbes]'
 plot 'data_random_allEqual' using 8:xtic(2) title 'random' with linespoints pt 4 lc rgb darkgreen,   \
      'data_largests_allEqual' using 8 title 'largest' with linespoints pt 4 lc rgb skyblue,   \
      'data_shortests_allEqual' using 8 title 'shortest' with linespoints pt 4 lc rgb gold
