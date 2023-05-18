@@ -10,7 +10,7 @@ DATAFOLDER=$1
 
 g++ -o histograma histograma.cpp
 
-for filename in gst_tripsMadrid_0005k.txt  gst_tripsMadrid_0010k.txt  gst_tripsMadrid_0015k.txt  gst_tripsMadrid_0020k.txt  gst_tripsMadrid_0025k.txt
+for filename in gst_tripsMadrid_0050k.txt gst_tripsMadrid_0100k.txt gst_tripsMadrid_0150k.txt gst_tripsMadrid_0200k.txt gst_tripsMadrid_0400k.txt gst_tripsMadrid_0800k.txt gst_tripsMadrid_1600k.txt gst_tripsMadrid_3200k.txt
 do
 	./histograma < ${DATAFOLDER}${filename} > histo_${filename}
 done
