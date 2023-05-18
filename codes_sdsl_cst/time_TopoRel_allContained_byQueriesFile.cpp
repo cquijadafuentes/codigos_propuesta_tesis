@@ -20,10 +20,10 @@ using namespace std;
 vector<int> generarQueries(int n_rutas, int num_queries);
 
 int main(int argc, char const *argv[]){
-	if(argc < 4){
-		cout << "Programa para medir tiempo promedio en la operación allContained en implementaciones naive, naivepc y gst6." << endl;
+	if(argc < 5){
+		cout << "Programa para medir tiempo promedio en la operación allContained en implementaciones naive y gst." << endl;
 		cout << "Error! faltan argumentos:" << endl;
-		cout << argv[0] << " <input_file.txt> <intput_file.gst6> <queries_file> repeticiones" << endl;
+		cout << argv[0] << " <input_file.txt> <intput_file.gst> <queries_file> repeticiones" << endl;
 		return 0;
 	}
 	
@@ -92,7 +92,7 @@ int main(int argc, char const *argv[]){
 
 
 	gst.statsReset();
-	cout << "Ejecutando consultas en implementación GST6 versión 6..." << endl;
+	cout << "Ejecutando consultas en implementación GST..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
 	    for(int i=0; i<queries.size(); i++){

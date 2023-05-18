@@ -9,7 +9,7 @@ int main(int argc, char const *argv[]){
 	// Toma el tiempo de obtener los resultados de la operación allContained
 	if(argc < 3){
 		cout << "Error! faltan argumentos." << endl;
-		cout << argv[0] << " <input_filename.gst6> <queries_file>" << endl;
+		cout << argv[0] << " <input_filename.gst> <queries_file>" << endl;
 		cout << endl;
 		return 0;
 	}
