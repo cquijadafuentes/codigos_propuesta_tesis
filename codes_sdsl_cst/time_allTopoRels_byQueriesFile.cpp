@@ -71,11 +71,11 @@ int main(int argc, char const *argv[]){
 	cout << "Consultas a realizar: " << num_queries << endl;
 	cout << "Repeticiones a realizar: " << repeticiones << endl;
 
-	unsigned t0, t1;
+	unsigned long long t0, t1;
 	double tNaive, tNaivePC, tGST;
 	int resNaive, resGST;
-
-	/*****************	allContain 	*****************/
+/*
+	//////////////////	allContain 	//////////////////
 
 	resNaive = 0;
 	resGST = 0;
@@ -102,8 +102,8 @@ int main(int argc, char const *argv[]){
 	
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
 	cout << "allContain\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
-
-	/*****************	allContained 	*****************/
+*/
+	//////////////////	allContained 	//////////////////
 
 	resNaive = 0;
 	resGST = 0;
@@ -131,8 +131,8 @@ int main(int argc, char const *argv[]){
 
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
 	cout << "allContained\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
-
-	/*****************	allEqual 	*****************/
+/*
+	//////////////////	allEqual 	//////////////////
 
 	resNaive = 0;
 	resGST = 0;
@@ -161,9 +161,7 @@ int main(int argc, char const *argv[]){
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
 	cout << "allEqual\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
 
-	return 0;
-
-	/*****************	allIntersect 	*****************/
+	//////////////////	allIntersect 	//////////////////
 
 	resNaive = 0;
 	resGST = 0;
@@ -191,6 +189,6 @@ int main(int argc, char const *argv[]){
 
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
 	cout << "allIntersect\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
-
+*/
 	return 0;
 }

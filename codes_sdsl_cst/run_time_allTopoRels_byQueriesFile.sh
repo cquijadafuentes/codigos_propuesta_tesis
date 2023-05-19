@@ -2,7 +2,7 @@
 
 if [ $# -ne 4 ]; then
 	echo "$(basename $0) <data_folder_1> <data_folder_2> <repeticiones1> <output_file>"
-	echo "Ejecuta time_allTopoRels_byQueriesFile para los archivos de trips (<data_folder_1>) y trips20+ (<data_folder_2>)."
+	echo "Ejecuta time_allTopoRels_byQueriesFile para los archivos de trips (<data_folder_1>), trips20+ (<data_folder_2>) y trips XL (<data_folder_1>)."
 	exit 1
 fi
 
@@ -18,6 +18,9 @@ echo "Directorio de inicio: " >> ${OUTPUTFILE}
 pwd >> ${OUTPUTFILE}
 echo "" >> ${OUTPUTFILE}
 
+echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFILE}
+echo "**************** DATASET TRIPS = ${DATAFOLDER2} ****************" >> ${OUTPUTFILE}
+echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFILE}
 for i in 1 2 3 
 do
 	for filename in gst_tripsMadrid_0005k gst_tripsMadrid_0010k gst_tripsMadrid_0015k gst_tripsMadrid_0020k gst_tripsMadrid_0025k
@@ -27,17 +30,33 @@ do
 	echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
 done
 
+
+
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFILE}
-echo "**************** DATASET = ${DATAFOLDER2} ****************" >> ${OUTPUTFILE}
+echo "**************** DATASET TRIPS 20+ = ${DATAFOLDER2} ****************" >> ${OUTPUTFILE}
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFILE}
-
-
-
 for i in 1 2 3 
 do
 	for filename in 20stops_min_05k  20stops_min_10k  20stops_min_15k  20stops_min_20k  20stops_min_25k
 	do
 		./time_allTopoRels_byQueriesFile ${DATAFOLDER2}${filename}.txt ${DATAFOLDER2}${filename}.gst ${DATAFOLDER2}${filename}.queries.${i} ${REPETICIONES} >> ${OUTPUTFILE}
+	done
+	echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
+done
+
+echo "Fecha FIN experimentos: $(date +'%Y/%m/%d %H:%M:%S')" >> ${OUTPUTFILE}
+done
+
+
+
+echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFILE}
+echo "**************** DATASET TRIPS XL = ${DATAFOLDER1} ****************" >> ${OUTPUTFILE}
+echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFILE}
+for i in 1 2 3 
+do
+	for filename in gst_tripsMadrid_0050k gst_tripsMadrid_0100k gst_tripsMadrid_0150k gst_tripsMadrid_0200k gst_tripsMadrid_0400k gst_tripsMadrid_0800k gst_tripsMadrid_1600k gst_tripsMadrid_3200k
+	do
+		./time_allTopoRels_byQueriesFile ${DATAFOLDER1}${filename}.txt ${DATAFOLDER1}${filename}.gst ${DATAFOLDER1}${filename}.queries.${i} ${REPETICIONES} >> ${OUTPUTFILE}
 	done
 	echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
 done
