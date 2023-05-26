@@ -1,0 +1,378 @@
+Fecha INICIO experimentos: 2023/05/19 22:44:20 allContainedByQueriesFile_GST
+Experimentos de todas las relaciones tipo all en dos datasets.
+Directorio de inicio: 
+/home/users/caquijada/udec_doc/codigos
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************** DATASET TRIPS = ../datasets/20stops_min/ ****************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Cargando consultas desde ../datasets/gst_tripsMadrid_0005k.queries.1
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0005k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0005k.queries.1
+Rutas: 5000
+Ruta más corta: 1
+Ruta más larga: 54
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	5000	1000	2702.87	57279.3	[us]	7773	7773
+Cargando consultas desde ../datasets/gst_tripsMadrid_0010k.queries.1
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0010k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0010k.queries.1
+Rutas: 10000
+Ruta más corta: 1
+Ruta más larga: 54
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	10000	1000	5316.4	76720.8	[us]	12135	12135
+Cargando consultas desde ../datasets/gst_tripsMadrid_0015k.queries.1
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0015k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0015k.queries.1
+Rutas: 15000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	15000	1000	8138.71	85404.7	[us]	16623	16623
+Cargando consultas desde ../datasets/gst_tripsMadrid_0020k.queries.1
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0020k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0020k.queries.1
+Rutas: 20000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	20000	1000	11522.4	106775	[us]	22194	22194
+Cargando consultas desde ../datasets/gst_tripsMadrid_0025k.queries.1
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0025k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0025k.queries.1
+Rutas: 25000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	25000	1000	14192.2	112595	[us]	27117	27117
+ ----------------------------------------------------- 
+Cargando consultas desde ../datasets/gst_tripsMadrid_0005k.queries.2
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0005k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0005k.queries.2
+Rutas: 5000
+Ruta más corta: 1
+Ruta más larga: 54
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	5000	500	7697.2	156487	[us]	7224	7224
+Cargando consultas desde ../datasets/gst_tripsMadrid_0010k.queries.2
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0010k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0010k.queries.2
+Rutas: 10000
+Ruta más corta: 1
+Ruta más larga: 54
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	10000	500	17451.8	282515	[us]	14919	14919
+Cargando consultas desde ../datasets/gst_tripsMadrid_0015k.queries.2
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0015k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0015k.queries.2
+Rutas: 15000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	15000	500	28305.9	355416	[us]	22449	22449
+Cargando consultas desde ../datasets/gst_tripsMadrid_0020k.queries.2
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0020k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0020k.queries.2
+Rutas: 20000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	20000	500	38902.3	442004	[us]	30762	30762
+Cargando consultas desde ../datasets/gst_tripsMadrid_0025k.queries.2
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0025k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0025k.queries.2
+Rutas: 25000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	25000	500	50330.8	511843	[us]	39414	39414
+ ----------------------------------------------------- 
+Cargando consultas desde ../datasets/gst_tripsMadrid_0005k.queries.3
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0005k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0005k.queries.3
+Rutas: 5000
+Ruta más corta: 1
+Ruta más larga: 54
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	5000	500	157.727	7125.8	[us]	2184	2184
+Cargando consultas desde ../datasets/gst_tripsMadrid_0010k.queries.3
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0010k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0010k.queries.3
+Rutas: 10000
+Ruta más corta: 1
+Ruta más larga: 54
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	10000	500	229.631	4985.56	[us]	2733	2733
+Cargando consultas desde ../datasets/gst_tripsMadrid_0015k.queries.3
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0015k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0015k.queries.3
+Rutas: 15000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	15000	500	333.253	5629.61	[us]	3198	3198
+Cargando consultas desde ../datasets/gst_tripsMadrid_0020k.queries.3
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0020k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0020k.queries.3
+Rutas: 20000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	20000	500	446.624	6167.88	[us]	3807	3807
+Cargando consultas desde ../datasets/gst_tripsMadrid_0025k.queries.3
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0025k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0025k.queries.3
+Rutas: 25000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	25000	500	548.745	6872.47	[us]	4722	4722
+ ----------------------------------------------------- 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************** DATASET TRIPS 20+ = ../datasets/20stops_min/ ****************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Cargando consultas desde ../datasets/20stops_min/20stops_min_05k.queries.1
+Leyendo rutas desde ../datasets/20stops_min/20stops_min_05k.txt
+Cargando estructura GST desde ../datasets/20stops_min/20stops_min_05k.queries.1
+Rutas: 5000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 2000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	5000	2000	6214.39	37165.8	[us]	26148	26148
+Cargando consultas desde ../datasets/20stops_min/20stops_min_10k.queries.1
+Leyendo rutas desde ../datasets/20stops_min/20stops_min_10k.txt
+Cargando estructura GST desde ../datasets/20stops_min/20stops_min_10k.queries.1
+Rutas: 10000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 2000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	10000	2000	12425.8	45348.5	[us]	45915	45915
+Cargando consultas desde ../datasets/20stops_min/20stops_min_15k.queries.1
+Leyendo rutas desde ../datasets/20stops_min/20stops_min_15k.txt
+Cargando estructura GST desde ../datasets/20stops_min/20stops_min_15k.queries.1
+Rutas: 15000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 2000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	15000	2000	18418.6	54644.8	[us]	64875	64875
+Cargando consultas desde ../datasets/20stops_min/20stops_min_20k.queries.1
+Leyendo rutas desde ../datasets/20stops_min/20stops_min_20k.txt
+Cargando estructura GST desde ../datasets/20stops_min/20stops_min_20k.queries.1
+Rutas: 20000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 2000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	20000	2000	24727.6	58001.2	[us]	84948	84948
+Cargando consultas desde ../datasets/20stops_min/20stops_min_25k.queries.1
+Leyendo rutas desde ../datasets/20stops_min/20stops_min_25k.txt
+Cargando estructura GST desde ../datasets/20stops_min/20stops_min_25k.queries.1
+Rutas: 25000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 2000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	25000	2000	30736.2	55875.9	[us]	103137	103137
+ ----------------------------------------------------- 
+Cargando consultas desde ../datasets/20stops_min/20stops_min_05k.queries.2
+Leyendo rutas desde ../datasets/20stops_min/20stops_min_05k.txt
+Cargando estructura GST desde ../datasets/20stops_min/20stops_min_05k.queries.2
+Rutas: 5000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	5000	100	16543.3	428449	[us]	6891	6891
+Cargando consultas desde ../datasets/20stops_min/20stops_min_10k.queries.2
+Leyendo rutas desde ../datasets/20stops_min/20stops_min_10k.txt
+Cargando estructura GST desde ../datasets/20stops_min/20stops_min_10k.queries.2
+Rutas: 10000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	10000	100	35785.3	728411	[us]	13347	13347
+Cargando consultas desde ../datasets/20stops_min/20stops_min_15k.queries.2
+Leyendo rutas desde ../datasets/20stops_min/20stops_min_15k.txt
+Cargando estructura GST desde ../datasets/20stops_min/20stops_min_15k.queries.2
+Rutas: 15000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	15000	100	55309.3	1.00735e+06	[us]	20325	20325
+Cargando consultas desde ../datasets/20stops_min/20stops_min_20k.queries.2
+Leyendo rutas desde ../datasets/20stops_min/20stops_min_20k.txt
+Cargando estructura GST desde ../datasets/20stops_min/20stops_min_20k.queries.2
+Rutas: 20000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	20000	100	75995.4	1.08211e+06	[us]	26700	26700
+Cargando consultas desde ../datasets/20stops_min/20stops_min_25k.queries.2
+Leyendo rutas desde ../datasets/20stops_min/20stops_min_25k.txt
+Cargando estructura GST desde ../datasets/20stops_min/20stops_min_25k.queries.2
+Rutas: 25000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	25000	100	97398.3	1.14268e+06	[us]	36063	36063
+ ----------------------------------------------------- 
+Cargando consultas desde ../datasets/20stops_min/20stops_min_05k.queries.3
+Leyendo rutas desde ../datasets/20stops_min/20stops_min_05k.txt
+Cargando estructura GST desde ../datasets/20stops_min/20stops_min_05k.queries.3
+Rutas: 5000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	5000	100	2098.07	2887.15	[us]	432	432
+Cargando consultas desde ../datasets/20stops_min/20stops_min_10k.queries.3
+Leyendo rutas desde ../datasets/20stops_min/20stops_min_10k.txt
+Cargando estructura GST desde ../datasets/20stops_min/20stops_min_10k.queries.3
+Rutas: 10000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	10000	100	4186.16	3340.44	[us]	525	525
+Cargando consultas desde ../datasets/20stops_min/20stops_min_15k.queries.3
+Leyendo rutas desde ../datasets/20stops_min/20stops_min_15k.txt
+Cargando estructura GST desde ../datasets/20stops_min/20stops_min_15k.queries.3
+Rutas: 15000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	15000	100	6328.45	3438.32	[us]	636	636
+Cargando consultas desde ../datasets/20stops_min/20stops_min_20k.queries.3
+Leyendo rutas desde ../datasets/20stops_min/20stops_min_20k.txt
+Cargando estructura GST desde ../datasets/20stops_min/20stops_min_20k.queries.3
+Rutas: 20000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	20000	100	8381.57	2999.47	[us]	780	780
+Cargando consultas desde ../datasets/20stops_min/20stops_min_25k.queries.3
+Leyendo rutas desde ../datasets/20stops_min/20stops_min_25k.txt
+Cargando estructura GST desde ../datasets/20stops_min/20stops_min_25k.queries.3
+Rutas: 25000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	25000	100	10405.2	2960.3	[us]	918	918
+ ----------------------------------------------------- 
+Fecha FIN experimentos: 2023/05/20 00:54:32

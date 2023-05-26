@@ -44,9 +44,6 @@ do
 	echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
 done
 
-echo "Fecha FIN experimentos: $(date +'%Y/%m/%d %H:%M:%S')" >> ${OUTPUTFILE}
-done
-
 
 
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFILE}
