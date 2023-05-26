@@ -1,0 +1,296 @@
+Fecha INICIO experimentos: 2023/05/24 15:24:04 allContainedByQueriesFile_naive_gst
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************** DATASET = ../datasets/ ****************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Cargando consultas desde ../datasets/gst_tripsMadrid_0050k.queries.1
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0050k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0050k.queries.1
+Rutas: 50007
+Ruta más corta: 1
+Ruta más larga: 59
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	50007	1000	27740.6	134400	[us]	50388	50388
+Cargando consultas desde ../datasets/gst_tripsMadrid_0100k.queries.1
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0100k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0100k.queries.1
+Rutas: 100000
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	100000	1000	55151.7	151333	[us]	98163	98163
+Cargando consultas desde ../datasets/gst_tripsMadrid_0150k.queries.1
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0150k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0150k.queries.1
+Rutas: 150007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	150007	1000	79557.9	145611	[us]	136074	136074
+Cargando consultas desde ../datasets/gst_tripsMadrid_0200k.queries.1
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0200k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0200k.queries.1
+Rutas: 200007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	200007	1000	112135	162670	[us]	193596	193596
+Cargando consultas desde ../datasets/gst_tripsMadrid_0400k.queries.1
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0400k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0400k.queries.1
+Rutas: 400824
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	400824	1000	208475	150294	[us]	363222	363222
+Cargando consultas desde ../datasets/gst_tripsMadrid_0800k.queries.1
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0800k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0800k.queries.1
+Rutas: 800650
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	800650	1000	423995	151892	[us]	713829	713829
+Cargando consultas desde ../datasets/gst_tripsMadrid_1600k.queries.1
+Leyendo rutas desde ../datasets/gst_tripsMadrid_1600k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_1600k.queries.1
+Rutas: 1601315
+Ruta más corta: 1
+Ruta más larga: 69
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	1601315	1000	865644	178551	[us]	1483800	1483800
+Cargando consultas desde ../datasets/gst_tripsMadrid_3200k.queries.1
+Leyendo rutas desde ../datasets/gst_tripsMadrid_3200k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_3200k.queries.1
+Rutas: 3204779
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	3204779	1000	1.68882e+06	195193	[us]	2973657	2973657
+ ----------------------------------------------------- 
+Cargando consultas desde ../datasets/gst_tripsMadrid_0050k.queries.2
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0050k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0050k.queries.2
+Rutas: 50007
+Ruta más corta: 1
+Ruta más larga: 59
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	50007	500	111402	793874	[us]	88374	88374
+Cargando consultas desde ../datasets/gst_tripsMadrid_0100k.queries.2
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0100k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0100k.queries.2
+Rutas: 100000
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	100000	500	243903	1.16399e+06	[us]	192783	192783
+Cargando consultas desde ../datasets/gst_tripsMadrid_0150k.queries.2
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0150k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0150k.queries.2
+Rutas: 150007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	150007	500	384623	1.39412e+06	[us]	298878	298878
+Cargando consultas desde ../datasets/gst_tripsMadrid_0200k.queries.2
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0200k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0200k.queries.2
+Rutas: 200007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	200007	500	529711	1.52898e+06	[us]	425895	425895
+Cargando consultas desde ../datasets/gst_tripsMadrid_0400k.queries.2
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0400k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0400k.queries.2
+Rutas: 400824
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	400824	500	1.16442e+06	2.03713e+06	[us]	913806	913806
+Cargando consultas desde ../datasets/gst_tripsMadrid_0800k.queries.2
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0800k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0800k.queries.2
+Rutas: 800650
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	800650	500	2.55369e+06	2.59525e+06	[us]	2045589	2045589
+Cargando consultas desde ../datasets/gst_tripsMadrid_1600k.queries.2
+Leyendo rutas desde ../datasets/gst_tripsMadrid_1600k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_1600k.queries.2
+Rutas: 1601315
+Ruta más corta: 1
+Ruta más larga: 69
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	1601315	500	5.5283e+06	3.25419e+06	[us]	4512483	4512483
+Cargando consultas desde ../datasets/gst_tripsMadrid_3200k.queries.2
+Leyendo rutas desde ../datasets/gst_tripsMadrid_3200k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_3200k.queries.2
+Rutas: 3204779
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	3204779	500	1.17014e+07	4.41158e+06	[us]	9431001	9431001
+ ----------------------------------------------------- 
+Cargando consultas desde ../datasets/gst_tripsMadrid_0050k.queries.3
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0050k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0050k.queries.3
+Rutas: 50007
+Ruta más corta: 1
+Ruta más larga: 59
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	50007	500	1051.26	6782.46	[us]	11490	11490
+Cargando consultas desde ../datasets/gst_tripsMadrid_0100k.queries.3
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0100k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0100k.queries.3
+Rutas: 100000
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	100000	500	1903.43	7976.5	[us]	35355	35355
+Cargando consultas desde ../datasets/gst_tripsMadrid_0150k.queries.3
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0150k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0150k.queries.3
+Rutas: 150007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	150007	500	2573.22	6687.44	[us]	70038	70038
+Cargando consultas desde ../datasets/gst_tripsMadrid_0200k.queries.3
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0200k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0200k.queries.3
+Rutas: 200007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	200007	500	3070.14	6126.94	[us]	120126	120126
+Cargando consultas desde ../datasets/gst_tripsMadrid_0400k.queries.3
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0400k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0400k.queries.3
+Rutas: 400824
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	400824	500	4061.39	1746.62	[us]	413898	413898
+Cargando consultas desde ../datasets/gst_tripsMadrid_0800k.queries.3
+Leyendo rutas desde ../datasets/gst_tripsMadrid_0800k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_0800k.queries.3
+Rutas: 800650
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	800650	500	8181.25	1920.96	[us]	841503	841503
+Cargando consultas desde ../datasets/gst_tripsMadrid_1600k.queries.3
+Leyendo rutas desde ../datasets/gst_tripsMadrid_1600k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_1600k.queries.3
+Rutas: 1601315
+Ruta más corta: 1
+Ruta más larga: 69
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	1601315	500	16767	2438.36	[us]	1736604	1736604
+Cargando consultas desde ../datasets/gst_tripsMadrid_3200k.queries.3
+Leyendo rutas desde ../datasets/gst_tripsMadrid_3200k.txt
+Cargando estructura GST desde ../datasets/gst_tripsMadrid_3200k.queries.3
+Rutas: 3204779
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	3204779	500	33643.4	3032.59	[us]	3459126	3459126
+ ----------------------------------------------------- 
+Fecha FIN experimentos: 2023/05/25 11:50:49
