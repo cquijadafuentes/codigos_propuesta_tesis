@@ -227,6 +227,30 @@ bool tr_intersect(int_vector<> &a, int_vector<> &b){
     return false;
 }
 
+int tr_intersectPP(int_vector<> &a, int_vector<> &b){
+    // Indica el largo de la subsecuencia común más extensa
+    int m = a.size();
+    int n = b.size();
+
+    vector<vector<int>> mat(m + 1, vector<int>(n + 1, 0));
+    int maxLen = 0;
+    int endIndex = 0;
+
+    for (int i = 1; i<=m; i++) {
+        for (int j = 1; j<=n; j++) {
+            if (a[i-1] == b[j-1]) {
+                mat[i][j] = mat[i-1][j-1] + 1;
+                if (mat[i][j] > maxLen) {
+                    maxLen = mat[i][j];
+                    endIndex = i-1;
+                }
+            }
+        }
+    }
+
+    return maxLen;
+}
+
 vector<int> tr_allContain(vector<int_vector<>> &r, int x){
     vector<int> res;
     for(int i=0; i<r.size(); i++){
@@ -265,4 +289,15 @@ vector<int> tr_allIntersect(vector<int_vector<>> &r, int x){
         }
     }
     return res;
+}
+
+unordered_map<int,int> tr_allIntersectPP(vector<int_vector<>> &r, int x){
+    unordered_map<int,int> res;
+    for(int i=0; i<r.size(); i++){
+        int k = tr_intersectPP(r[x], r[i]);
+        if(k > 0){
+            res[i] = k;
+        }
+    }
+    return res;   
 }

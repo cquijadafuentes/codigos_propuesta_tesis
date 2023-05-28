@@ -53,5 +53,12 @@ int main(int argc, char const *argv[]){
 
 	cout << "Por implementar..." << endl;
 
+	cout << "Ingresar IDs de la secuencia a usar para consulta: ";
+	int idS;
+	cin >> idS;
+	unordered_map<int,int> r = tr_allIntersectPP(rutas, idS);
+	for (const auto& pair:r) {
+        std::cout << pair.first << ": " << pair.second << std::endl;
+    }
 	return 0;
 }
