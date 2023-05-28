@@ -74,7 +74,7 @@ int main(int argc, char const *argv[]){
 	unsigned long long t0, t1;
 	double tNaive, tNaivePC, tGST;
 	int resNaive, resGST;
-/*
+
 	//////////////////	allContain 	//////////////////
 
 	resNaive = 0;
@@ -90,7 +90,7 @@ int main(int argc, char const *argv[]){
 	tNaive = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
 	
 
-	cout << "Ejecutando allContain GST6..." << endl;
+	cout << "Ejecutando allContain GST..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
 	    for(int i=0; i<queries.size(); i++){
@@ -102,9 +102,9 @@ int main(int argc, char const *argv[]){
 	
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
 	cout << "allContain\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
-*/
-	//////////////////	allContained 	//////////////////
 
+	//////////////////	allContained 	//////////////////
+/*
 	resNaive = 0;
 	resGST = 0;
 	cout << "Ejecutando allContained Naive..." << endl;
@@ -131,9 +131,9 @@ int main(int argc, char const *argv[]){
 
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
 	cout << "allContained\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
-/*
+*/
 	//////////////////	allEqual 	//////////////////
-
+/*
 	resNaive = 0;
 	resGST = 0;
 	cout << "Ejecutando allEqual Naive..." << endl;
@@ -160,9 +160,9 @@ int main(int argc, char const *argv[]){
 
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
 	cout << "allEqual\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
-
+*/
 	//////////////////	allIntersect 	//////////////////
-
+/*
 	resNaive = 0;
 	resGST = 0;
 	cout << "Ejecutando allIntersect Naive..." << endl;

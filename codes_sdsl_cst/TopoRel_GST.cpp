@@ -330,6 +330,73 @@ vector<int> TopoRelGST::tr_allIntersect(int x){
     return res;
 }
 
+unordered_map<int,int> TopoRelGST::tr_allIntersectPP(int){
+    unordered_map<int,int> res;
+    /*
+
+    int ls = getLargoRuta(x);
+    auto nodo = gstMapRuta2Nodo[x];
+    if(!cst.is_leaf(nodo)){
+        nodo = cst.rightmost_leaf(nodo);
+    }
+    // TO-DO: ADAPTAR DESDE AQUÍ EL CÓDIGO PARA DETERMINAR INTERSECCIÓN
+    for(int i=0; i < ls; i++){
+        int idHoja = cst.id(nodo);
+        int pos = cst.csa[idHoja];
+        if((pos == 0 || gstMFSbv[pos-1] == 1)){
+            // En la celda pos inicia una secuencia
+            int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
+            if(getLargoRuta(idSecCand) <= ls-i){
+                y.insert(idSecCand);
+            }
+        }
+        // Se realizan operaciones de suffix link mientras el largo 
+        // del sufijo sea mayor que el largo de la secuencia más corta
+        // Revisión del SA hacia el inicio
+        int idNav = idHoja;
+        int min_coincidencia = cst.lcp[idNav];
+        while(min_coincidencia >= len_min){
+            int pos = cst.csa[idNav-1];
+            if(pos == 0 || gstMFSbv[pos-1] == 1){
+                // Corresponde a una secuencia completamente contenida
+                int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
+                int largoSecCand = getLargoRuta(idSecCand);
+                if(largoSecCand <= min_coincidencia && largoSecCand <= (ls - i)){
+                    y.insert(idSecCand);
+                }
+            }
+            idNav--;
+            if(cst.lcp[idNav] < min_coincidencia){
+                min_coincidencia = cst.lcp[idNav];
+            }
+        }
+
+        // Revisión del SA hacia el final
+        idNav = idHoja+1;
+        min_coincidencia = cst.lcp[idNav];
+        while(min_coincidencia >= len_min){
+            int pos = cst.csa[idNav];
+            if(pos == 0 || gstMFSbv[pos-1] == 1){
+                // Corresponde a una secuencia completamente contenida
+                int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
+                int largoSecCand = getLargoRuta(idSecCand);
+                if(largoSecCand <= min_coincidencia && largoSecCand <= (ls - i)){
+                    y.insert(idSecCand);
+                }
+            }
+            idNav++;
+            if(cst.lcp[idNav] < min_coincidencia){
+                min_coincidencia = cst.lcp[idNav];
+            }
+        }
+
+        // Suffix link para el siguiente ciclo
+        nodo = cst.sl(nodo);
+    }
+*/
+    return res;
+}
+
 /*******************************************************
             Otras funcionalidades
 *******************************************************/

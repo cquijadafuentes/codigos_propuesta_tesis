@@ -53,6 +53,7 @@ public:
     vector<int> tr_allEqual(int);
     vector<int> tr_allContained(int);
     vector<int> tr_allIntersect(int);
+    unordered_map<int,int> tr_allIntersectPP(int);
 
     void navega(int);
     void sizeEstructura();
