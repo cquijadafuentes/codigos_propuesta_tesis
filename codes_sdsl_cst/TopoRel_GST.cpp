@@ -330,70 +330,56 @@ vector<int> TopoRelGST::tr_allIntersect(int x){
     return res;
 }
 
-unordered_map<int,int> TopoRelGST::tr_allIntersectPP(int){
+unordered_map<int,int> TopoRelGST::tr_allIntersectPP(int x){
     unordered_map<int,int> res;
-    /*
-
     int ls = getLargoRuta(x);
-    auto nodo = gstMapRuta2Nodo[x];
-    if(!cst.is_leaf(nodo)){
-        nodo = cst.rightmost_leaf(nodo);
-    }
+    auto nodoSL = gstMapRuta2Nodo[x];
+    res[x] = ls;
+    
     // TO-DO: ADAPTAR DESDE AQUÍ EL CÓDIGO PARA DETERMINAR INTERSECCIÓN
     for(int i=0; i < ls; i++){
+        // Se realizan operaciones de suffix link para recorrer intersecciones
+        auto nodo = cst.rightmost_leaf(nodoSL);
         int idHoja = cst.id(nodo);
-        int pos = cst.csa[idHoja];
-        if((pos == 0 || gstMFSbv[pos-1] == 1)){
-            // En la celda pos inicia una secuencia
-            int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
-            if(getLargoRuta(idSecCand) <= ls-i){
-                y.insert(idSecCand);
-            }
-        }
-        // Se realizan operaciones de suffix link mientras el largo 
-        // del sufijo sea mayor que el largo de la secuencia más corta
         // Revisión del SA hacia el inicio
         int idNav = idHoja;
-        int min_coincidencia = cst.lcp[idNav];
-        while(min_coincidencia >= len_min){
+        int coincidencia = cst.lcp[idNav];
+        if(coincidencia > ls-i){
+            coincidencia = ls-i;
+        }
+        while(coincidencia > 0){
             int pos = cst.csa[idNav-1];
-            if(pos == 0 || gstMFSbv[pos-1] == 1){
-                // Corresponde a una secuencia completamente contenida
-                int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
-                int largoSecCand = getLargoRuta(idSecCand);
-                if(largoSecCand <= min_coincidencia && largoSecCand <= (ls - i)){
-                    y.insert(idSecCand);
-                }
+            int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
+            if(res[idSecCand] < coincidencia){
+                res[idSecCand] = coincidencia;
             }
             idNav--;
-            if(cst.lcp[idNav] < min_coincidencia){
-                min_coincidencia = cst.lcp[idNav];
+            if(cst.lcp[idNav] < coincidencia){
+                coincidencia = cst.lcp[idNav];
             }
         }
 
         // Revisión del SA hacia el final
         idNav = idHoja+1;
-        min_coincidencia = cst.lcp[idNav];
-        while(min_coincidencia >= len_min){
+        coincidencia = cst.lcp[idNav];
+        if(coincidencia > ls-i){
+            coincidencia = ls-i;
+        }
+        while(coincidencia > 0){
             int pos = cst.csa[idNav];
-            if(pos == 0 || gstMFSbv[pos-1] == 1){
-                // Corresponde a una secuencia completamente contenida
-                int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
-                int largoSecCand = getLargoRuta(idSecCand);
-                if(largoSecCand <= min_coincidencia && largoSecCand <= (ls - i)){
-                    y.insert(idSecCand);
-                }
+            int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
+            if(res[idSecCand] < coincidencia){
+                res[idSecCand] = coincidencia;
             }
             idNav++;
-            if(cst.lcp[idNav] < min_coincidencia){
-                min_coincidencia = cst.lcp[idNav];
+            if(cst.lcp[idNav] < coincidencia){
+                coincidencia = cst.lcp[idNav];
             }
         }
 
         // Suffix link para el siguiente ciclo
-        nodo = cst.sl(nodo);
+        nodoSL = cst.sl(nodoSL);
     }
-*/
     return res;
 }
 

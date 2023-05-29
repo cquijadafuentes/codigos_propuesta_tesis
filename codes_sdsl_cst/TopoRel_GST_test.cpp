@@ -26,7 +26,7 @@ int desplegarMenu(){
 		cout << "9 - Mostrar Marcas de Nodos y Ramas." << endl;
 		cout << "10 - Arrays en columnas." << endl;
 		cout << "11 - Operación allContained." << endl;
-		cout << "12 - ." << endl;
+		cout << "12 - Operación allIntersectPP." << endl;
 		cout << "13 - ." << endl;
 		cout << " ***** Navegación en Nodos ****" << endl;
 		cout << "14 - Weiner Link de un nodo" << endl;
@@ -288,6 +288,21 @@ void allContainedOperation(TopoRelGST gst){
 	cout << endl;
 }
 
+//--------------	CASE 11	------------//
+void allIntersectionPPOperation(TopoRelGST gst){
+	cout << "All Intersection PlusPlus" << endl;
+	cout << "Ingrese la id de la ruta (entre 0 y " << (gst.n_rutas-1) << "): ";
+	int x;
+	cin >> x;
+	cout << endl;
+	unordered_map<int,int> res = gst.tr_allIntersectPP(x);
+	cout << "El resultado contiene " << res.size() << " elementos: " << endl;
+	for (const auto& pair:res) {
+        cout << pair.first << ": " << pair.second << endl;
+    }
+	cout << endl;
+}
+
 //--------------	CASE 	------------//
 void weinerLink(TopoRelGST gst){
 	cout << "Weiner Link de un nodo" << endl;
@@ -396,7 +411,7 @@ int main(int argc, char const *argv[]){
 	    		allContainedOperation(gst);
 	    		break;
 	    	case 12:
-	    		cout << "No implementada ... " << endl;
+	    		allIntersectionPPOperation(gst);
 	    		break;
 	    	case 13:
 	    		cout << "No implementada ... " << endl;

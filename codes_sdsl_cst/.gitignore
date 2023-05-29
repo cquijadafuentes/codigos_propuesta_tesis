@@ -8,6 +8,7 @@ time_TopoRel_allContained_vsGST6_byQueriesFile
 time_allTopoRels_byQueriesFile
 TopoRel_*_test
 TopoRel_GST_allContained
+TopoRel_GST_allIntersectPP
 TopoRel_GST_build
 TopoRel_GST_check
 TopoRel_GST_size
@@ -19,6 +20,7 @@ TopoRel_Naive_PreComp_load
 TopoRel_Naive_PreComp_save-load-test
 TopoRel_Naive_allContained_byQueries
 TopoRel_Naive_allIntersect_byQueries
+TopoRel_Naive_allIntersectPP_byQueries
 TopoRel_Naive_allContained_byQueries
 TopoRel_Naive_allRelation_byQueries
 TopoRel_Naive_compareTime_allContained
