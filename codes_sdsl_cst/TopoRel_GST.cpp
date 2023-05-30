@@ -320,7 +320,7 @@ vector<int> TopoRelGST::tr_allIntersect(int x){
         int idL = cst.lb(nodo);
         int idR = cst.rb(nodo);
         for(int j=idL; j<=idR; j++){
-            setRes.insert(idRutaDesdeCeldaDeSecConcat(cst.csa[j]));
+            setRes.insert(gstMFSrank(cst.csa[j]));
             howManyIfs++;
         }
         howManyIfs++;
@@ -364,7 +364,7 @@ unordered_map<int,int> TopoRelGST::tr_allIntersectPP(int x){
         }
         while(coincidencia > 0){
             int pos = cst.csa[idNav];
-            int idSecCand = gstMFSrank(pos);
+            int idSecCand = gstMFSrank(pos); // Para determinar el ID de la ruta
             if(res[idSecCand] < coincidencia){
                 res[idSecCand] = coincidencia;
             }
