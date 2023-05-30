@@ -343,20 +343,17 @@ unordered_map<int,int> TopoRelGST::tr_allIntersectPP(int x){
         int idHoja = cst.id(nodo);
         // Revisión del SA hacia el inicio
         int idNav = idHoja;
-        int coincidencia = cst.lcp[idNav];
-        if(coincidencia > ls-i){
-            coincidencia = ls-i;
-        }
+        int coincidencia = ls-i;
         while(coincidencia > 0){
-            int pos = cst.csa[idNav-1];
-            int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
+            int pos = cst.csa[idNav];
+            int idSecCand = gstMFSrank(pos); // Para determinar el ID de la ruta
             if(res[idSecCand] < coincidencia){
                 res[idSecCand] = coincidencia;
             }
-            idNav--;
             if(cst.lcp[idNav] < coincidencia){
                 coincidencia = cst.lcp[idNav];
             }
+            idNav--;
         }
 
         // Revisión del SA hacia el final
@@ -367,7 +364,7 @@ unordered_map<int,int> TopoRelGST::tr_allIntersectPP(int x){
         }
         while(coincidencia > 0){
             int pos = cst.csa[idNav];
-            int idSecCand = idRutaDesdeCeldaDeSecConcat(pos);
+            int idSecCand = gstMFSrank(pos);
             if(res[idSecCand] < coincidencia){
                 res[idSecCand] = coincidencia;
             }
