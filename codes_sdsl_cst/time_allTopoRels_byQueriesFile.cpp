@@ -59,7 +59,7 @@ int main(int argc, char const *argv[]){
 	}
 	naive.close();
 
-	cout << "Cargando estructura GST desde " << argv[3] << endl;
+	cout << "Cargando estructura GST desde " << argv[2] << endl;
 	TopoRelGST gst(argv[2]);
 	if(num_queries > gst.n_rutas){
 		num_queries = gst.n_rutas;
