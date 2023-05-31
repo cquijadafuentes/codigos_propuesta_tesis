@@ -1,0 +1,6 @@
+operacion   rutas   queries tNaive  tGST    [us]    rNaive  rGST
+allContained    5000    100 2098.07 2887.15 [us]    432 432
+allContained    10000   100 4186.16 3340.44 [us]    525 525
+allContained    15000   100 6328.45 3438.32 [us]    636 636
+allContained    20000   100 8381.57 2999.47 [us]    780 780
+allContained    25000   100 10405.2 2960.3  [us]    918 918
