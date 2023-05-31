@@ -487,3 +487,19 @@ operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
 allEqual	3204779	500	33892.3	279.015	[us]	3459126	3459126
  ----------------------------------------------------- 
 Fecha FIN experimentos: 2023/05/17 15:48:01
+
+
+Agregando información
+para operación en random.
+Cargando consultas desde ../../datasets/gst_tripsMadrid_3200k.queries.1
+Leyendo rutas desde ../../datasets/gst_tripsMadrid_3200k.txt
+Cargando estructura GST desde ../../datasets/gst_tripsMadrid_3200k.queries.1
+Rutas: 3204779
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	3204779	1000	1.76811e+06	545823	[us]	3124920	3124920

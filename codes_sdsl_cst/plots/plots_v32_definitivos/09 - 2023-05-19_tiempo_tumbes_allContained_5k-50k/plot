@@ -40,7 +40,7 @@ plot 'data_trips1+_shortests_allContained' using 4:xtic(2) title 'Naive_{1+}' wi
 set logscale y
 set ylabel "Cantidad de resultados"
 set xlabel "Cantidad de rutas"
-set output 'cantidad_resultados_k5-50k_allContained.png'
+set output 'cantidad_resultados_allContained_5k-50k.png'
 set title 'Resultados en Operación AllContained [d:trips - s:tumbes]'
 plot 'data_trips1+_random_allContained' using 8:xtic(2) title 'random_{1+}' with linespoints pt 4 lc rgb darkgreen,   \
      'data_trips20+_random_allContained' using 8 title 'random_{20+}' with linespoints pt 5 lc rgb darkgreen,   \
