@@ -1,0 +1,6 @@
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allIntersectPP	5000	100	90218.9	681441	[us]	27051	27051
+allIntersectPP	10000	100	180023	1.23375e+06	[us]	53784	53784
+allIntersectPP	15000	100	269383	1.84597e+06	[us]	80424	80424
+allIntersectPP	20000	100	363279	2.23089e+06	[us]	107412	107412
+allIntersectPP	25000	100	450441	2.73616e+06	[us]	133779	133779
