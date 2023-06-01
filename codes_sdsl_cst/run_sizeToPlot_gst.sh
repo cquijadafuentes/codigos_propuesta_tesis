@@ -14,8 +14,11 @@ OUTPUTFILE=$3
 echo "Fecha INICIO: $(date +'%Y/%m/%d %H:%M:%S')" > ${OUTPUTFILE}
 echo "Directorio de inicio: " >> ${OUTPUTFILE}
 pwd >> ${OUTPUTFILE}
+
+
 echo "" >> ${OUTPUTFILE}
 echo "**********  GST  **********" >> ${OUTPUTFILE}
+
 echo "Datafolder: ${DATAFOLDER}" >> ${OUTPUTFILE}
 for filename in gst_tripsMadrid_0005k gst_tripsMadrid_0010k gst_tripsMadrid_0015k gst_tripsMadrid_0020k gst_tripsMadrid_0025k gst_tripsMadrid_0030k gst_tripsMadrid_0035k gst_tripsMadrid_0040k gst_tripsMadrid_0045k gst_tripsMadrid_0050k
 do
@@ -27,6 +30,14 @@ for filename in 20stops_min_05k  20stops_min_10k  20stops_min_15k  20stops_min_2
 do
 	./TopoRel_GST_size ${DATAFOLDER2}${filename}.gst >> ${OUTPUTFILE}
 done
+
+echo "Datafolder: ${DATAFOLDER}" >> ${OUTPUTFILE}
+for filename in gst_tripsMadrid_0050k gst_tripsMadrid_0100k gst_tripsMadrid_0150k gst_tripsMadrid_0200k gst_tripsMadrid_0400k gst_tripsMadrid_0800k gst_tripsMadrid_1600k gst_tripsMadrid_3200k
+do
+	./TopoRel_GST_size ${DATAFOLDER}${filename}.gst >> ${OUTPUTFILE}
+done
+
+
 
 echo "" >> ${OUTPUTFILE}
 echo "********** NAIVE **********" >> ${OUTPUTFILE}
@@ -41,6 +52,14 @@ for filename in 20stops_min_05k  20stops_min_10k  20stops_min_15k  20stops_min_2
 do
 	./TopoRel_Naive_size ${DATAFOLDER2}${filename}.txt >> ${OUTPUTFILE}
 done
+
+echo "Datafolder: ${DATAFOLDER}" >> ${OUTPUTFILE}
+for filename in gst_tripsMadrid_0050k gst_tripsMadrid_0100k gst_tripsMadrid_0150k gst_tripsMadrid_0200k gst_tripsMadrid_0400k gst_tripsMadrid_0800k gst_tripsMadrid_1600k gst_tripsMadrid_3200k
+do
+	./TopoRel_Naive_size ${DATAFOLDER}${filename}.txt >> ${OUTPUTFILE}
+done
+
+
 
 echo "Fecha FIN: $(date +'%Y/%m/%d %H:%M:%S')" >> ${OUTPUTFILE}
 exit 0
