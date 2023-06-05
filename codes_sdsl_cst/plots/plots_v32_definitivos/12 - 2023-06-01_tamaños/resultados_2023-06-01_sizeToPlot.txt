@@ -1,0 +1,106 @@
+Fecha INICIO: 2023/06/04 20:42:08
+Directorio de inicio: 
+/home/cquijada/codigos_propuesta_tesis/codes_sdsl_cst
+
+**********  GST  **********
+Datafolder: /home/cquijada/datasets/
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+5000	11010	165970	20000	40000	4080	4520	6512	241082	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+10000	11010	284745	40000	80000	7955	8539	16090	437329	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+15000	11010	397106	60000	120000	12436	11068	32861	633471	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+20000	11010	499753	80000	160000	15713	15913	44192	815571	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+25000	11010	600977	100000	200000	21515	18145	50723	991360	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+30000	11010	693736	120000	240000	24780	20290	58214	1157020	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+35000	11010	783333	140000	280000	37333	25523	72312	1338501	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+40000	11010	868027	160000	320000	39942	27836	77195	1493000	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+45000	11010	950160	180000	360000	33991	30068	81605	1635824	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+50007	11010	1036654	200028	400056	51553	41573	85422	1815286	
+Datafolder: /home/cquijada/datasets/20stops_min/
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+5000	11010	295999	20000	40000	4704	4824	12116	377643	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+10000	11010	500919	40000	80000	9203	8496	25436	664054	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+15000	11010	682524	60000	120000	14316	12427	47447	936714	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+20000	11010	845654	80000	160000	18217	14788	53970	1172629	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+25000	11010	1006295	100000	200000	24643	16860	59532	1407330	
+Datafolder: /home/cquijada/datasets/
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+50007	11010	1036654	200028	400056	51553	41573	85422	1815286	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+100000	11010	1780347	400000	800000	94797	64763	132515	3272422	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+150007	11010	2469469	600028	1200056	129425	90856	169761	4659595	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+200007	11010	3153161	800028	1600056	180805	103940	181550	6019540	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+400824	11010	5836447	1603296	3206592	352934	162888	237671	11399828	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+800650	11010	11141898	3202600	6405200	695616	228941	302935	21977190	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+1601315	11010	21783995	6405260	12810520	1381011	311520	359029	43051335	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+3204779	11010	43287953	12819116	25638232	2752971	379529	414241	85292042	
+
+********** NAIVE **********
+Datafolder: /home/cquijada/datasets/
+rutas	stops	naive
+5000	11010	147656
+rutas	stops	naive
+10000	11010	295848
+rutas	stops	naive
+15000	11010	445072
+rutas	stops	naive
+20000	11010	593544
+rutas	stops	naive
+25000	11010	743584
+rutas	stops	naive
+30000	11010	892728
+rutas	stops	naive
+35000	11010	1040552
+rutas	stops	naive
+40000	11010	1188352
+rutas	stops	naive
+45000	11010	1337032
+rutas	stops	naive
+50007	11010	1486271
+Datafolder: /home/cquijada/datasets/20stops_min/
+rutas	stops	naive
+5000	11010	266656
+rutas	stops	naive
+10000	11010	532976
+rutas	stops	naive
+15000	11010	799768
+rutas	stops	naive
+20000	11010	1066304
+rutas	stops	naive
+25000	11010	1333640
+Datafolder: /home/cquijada/datasets/
+rutas	stops	naive
+50007	11010	1486271
+rutas	stops	naive
+100000	11010	2974424
+rutas	stops	naive
+150007	11010	4457655
+rutas	stops	naive
+200007	11010	5943439
+rutas	stops	naive
+400824	11010	11908504
+rutas	stops	naive
+800650	11010	23798058
+rutas	stops	naive
+1601315	11010	47585067
+rutas	stops	naive
+3204779	11010	95235779
+Fecha FIN: 2023/06/04 20:42:51
