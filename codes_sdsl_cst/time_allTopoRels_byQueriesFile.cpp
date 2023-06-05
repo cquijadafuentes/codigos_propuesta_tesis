@@ -76,7 +76,7 @@ int main(int argc, char const *argv[]){
 	int resNaive, resGST;
 
 	//////////////////	allContain 	//////////////////
-/*
+
 	resNaive = 0;
 	resGST = 0;
 	cout << "Ejecutando allContain Naive..." << endl;
@@ -102,7 +102,7 @@ int main(int argc, char const *argv[]){
 	
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
 	cout << "allContain\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
-*/
+
 	//////////////////	allContained 	//////////////////
 /*
 	resNaive = 0;
@@ -133,7 +133,7 @@ int main(int argc, char const *argv[]){
 	cout << "allContained\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
 */
 	//////////////////	allEqual 	//////////////////
-/*
+
 	resNaive = 0;
 	resGST = 0;
 	cout << "Ejecutando allEqual Naive..." << endl;
@@ -160,7 +160,7 @@ int main(int argc, char const *argv[]){
 
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
 	cout << "allEqual\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
-*/
+
 	//////////////////	allIntersect 	//////////////////
 /*
 	resNaive = 0;
@@ -191,7 +191,7 @@ int main(int argc, char const *argv[]){
 	cout << "allIntersect\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
 */
 	//////////////////	allIntersectPP 	//////////////////
-
+/*
 	resNaive = 0;
 	resGST = 0;
 	cout << "Ejecutando allIntersectPP Naive..." << endl;
@@ -218,6 +218,6 @@ int main(int argc, char const *argv[]){
 
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
 	cout << "allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
-
+*/
 	return 0;
 }

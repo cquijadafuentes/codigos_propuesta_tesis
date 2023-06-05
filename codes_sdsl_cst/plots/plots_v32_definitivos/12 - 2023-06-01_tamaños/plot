@@ -6,10 +6,10 @@ set terminal png size 800,400
 set xrange [0.5:8.5]
 
 set output 'img_size_gst_trips_xl.png'
-set title 'Tamaño GST'
+set title 'Tamaño GST [d:tripsXL]'
 set ylabel "Tamaño [MB]"
 set xlabel "Rutas"
-plot 'size_trips_xl' using 2:xtic(1) title 'cst_{sada}' with linespoints lt 2 pt 3 lc rgb red,   \
+plot 'size_trips_xl' using 2:xtic(1) title 'CST' with linespoints lt 2 pt 3 lc rgb red,   \
      '' using 5 title 'gstMFSbv' with linespoints lt 2 pt 6 lc rgb darkred,   \
      '' using 4 title 'mapN2R' with linespoints lt 2 pt 5 lc rgb darkgreen,   \
      '' using 3 title 'mapR2N' with linespoints lt 2 pt 4 lc rgb green,   \
@@ -20,10 +20,34 @@ set output 'img_size_naive_vs_gst_trips_xl.png'
 plot 'size_trips_xl' using 8 title 'GST' with linespoints lt 2 pt 7 lc rgb black,   \
      '' using 9 title 'Naive' with linespoints lt 2 pt 7 lc rgb gold
 
+
+set title 'Tamaño GST vs Naive [d:trips]'
+set output 'img_size_naive_vs_gst_trips.png'
+plot 'size_trips' using 8:xtic(1) title 'GST' with linespoints lt 2 pt 7 lc rgb black,   \
+     '' using 9 title 'Naive' with linespoints lt 2 pt 7 lc rgb gold,   \
+     'size_trips20+' using 8 title 'GST{20+}' with linespoints lt 2 pt 6 lc rgb black,   \
+     '' using 9 title 'Naive{20+}' with linespoints lt 2 pt 6 lc rgb gold
+
 set logscale y
-set output 'img_size_gst_trips_xl_log.png'
 set ylabel "Tamaño [MB(log)]"
-plot 'size_trips_xl' using 2:xtic(1) title 'cst_{sada}' with linespoints lt 2 pt 3 lc rgb red,   \
+set output 'img_size_gst_trips_xl_log.png'
+plot 'size_trips_xl' using 2:xtic(1) title 'CST' with linespoints lt 2 pt 3 lc rgb red,   \
+     '' using 5 title 'gstMFSbv' with linespoints lt 2 pt 6 lc rgb darkred,   \
+     '' using 4 title 'mapN2R' with linespoints lt 2 pt 5 lc rgb darkgreen,   \
+     '' using 3 title 'mapR2N' with linespoints lt 2 pt 4 lc rgb green,   \
+     '' using 6 title 'gstMNodos' with linespoints lt 2 pt 7 lc rgb blue,   \
+     '' using 7 title 'gstMRamas' with linespoints lt 2 pt 7 lc rgb skyblue
+
+set output 'img_size_gst_trips_log.png'
+plot 'size_trips' using 2:xtic(1) title 'CST' with linespoints lt 2 pt 3 lc rgb red,   \
+     '' using 5 title 'gstMFSbv' with linespoints lt 2 pt 6 lc rgb darkred,   \
+     '' using 4 title 'mapN2R' with linespoints lt 2 pt 5 lc rgb darkgreen,   \
+     '' using 3 title 'mapR2N' with linespoints lt 2 pt 4 lc rgb green,   \
+     '' using 6 title 'gstMNodos' with linespoints lt 2 pt 7 lc rgb blue,   \
+     '' using 7 title 'gstMRamas' with linespoints lt 2 pt 7 lc rgb skyblue
+
+set output 'img_size_gst_trips20+_log.png'
+plot 'size_trips' using 2:xtic(1) title 'CST' with linespoints lt 2 pt 3 lc rgb red,   \
      '' using 5 title 'gstMFSbv' with linespoints lt 2 pt 6 lc rgb darkred,   \
      '' using 4 title 'mapN2R' with linespoints lt 2 pt 5 lc rgb darkgreen,   \
      '' using 3 title 'mapR2N' with linespoints lt 2 pt 4 lc rgb green,   \
@@ -31,6 +55,6 @@ plot 'size_trips_xl' using 2:xtic(1) title 'cst_{sada}' with linespoints lt 2 pt
      '' using 7 title 'gstMRamas' with linespoints lt 2 pt 7 lc rgb skyblue
 
 set output 'img_size_naive_vs_gst_trips_xl_log.png'
-plot 'size_trips_xl' using 8 title 'GST' with linespoints lt 2 pt 7 lc rgb black,   \
+plot 'size_trips_xl' using 8:xtic(1) title 'GST' with linespoints lt 2 pt 7 lc rgb black,   \
      '' using 9 title 'Naive' with linespoints lt 2 pt 7 lc rgb gold
 
