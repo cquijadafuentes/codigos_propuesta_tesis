@@ -7,7 +7,7 @@ set xrange [0.5:8.5]
 
 set output 'img_size_gst_trips_xl.png'
 set title 'Tamaño GST [d:tripsXL]'
-set ylabel "Tamaño [MB]"
+set ylabel "Tamaño [KB]"
 set xlabel "Rutas"
 plot 'size_trips_xl' using 2:xtic(1) title 'CST' with linespoints lt 2 pt 3 lc rgb red,   \
      '' using 5 title 'gstMFSbv' with linespoints lt 2 pt 6 lc rgb darkred,   \
@@ -29,7 +29,7 @@ plot 'size_trips' using 8:xtic(1) title 'GST' with linespoints lt 2 pt 7 lc rgb 
      '' using 9 title 'Naive{20+}' with linespoints lt 2 pt 6 lc rgb gold
 
 set logscale y
-set ylabel "Tamaño [MB(log)]"
+set ylabel "Tamaño [KB(log)]"
 set output 'img_size_gst_trips_xl_log.png'
 plot 'size_trips_xl' using 2:xtic(1) title 'CST' with linespoints lt 2 pt 3 lc rgb red,   \
      '' using 5 title 'gstMFSbv' with linespoints lt 2 pt 6 lc rgb darkred,   \
