@@ -19,7 +19,7 @@ pwd >> ${OUTPUTFILE}
 echo "" >> ${OUTPUTFILE}
 
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFILE}
-echo "**************** DATASET TRIPS = ${DATAFOLDER2} ****************" >> ${OUTPUTFILE}
+echo "**************** DATASET TRIPS = ${DATAFOLDER1} ****************" >> ${OUTPUTFILE}
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFILE}
 for i in 1 2 3 
 do
