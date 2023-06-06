@@ -1,0 +1,888 @@
+Fecha INICIO experimentos: 2023/06/04 20:50:36 allContainedByQueriesFile_GST
+Experimentos de todas las relaciones tipo all en dos datasets.
+Directorio de inicio: 
+/home/users/caquijada/udec_doc/codigos_propuesta_tesis/codes_sdsl_cst
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************** DATASET TRIPS = /home/users/caquijada/udec_doc/datasets/20stops_min/ ****************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0005k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0005k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0005k.gst
+Rutas: 5000
+Ruta más corta: 1
+Ruta más larga: 54
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	5000	1000	2666.04	2253.42	[us]	7512	7512
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	5000	1000	67.1547	0.612667	[us]	3393	3393
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0010k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0010k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0010k.gst
+Rutas: 10000
+Ruta más corta: 1
+Ruta más larga: 54
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	10000	1000	5379	3376.64	[us]	12312	12312
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	10000	1000	133.651	0.664333	[us]	3783	3783
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0015k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0015k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0015k.gst
+Rutas: 15000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	15000	1000	8042.71	4233.77	[us]	16977	16977
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	15000	1000	201.13	0.676	[us]	4110	4110
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0020k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0020k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0020k.gst
+Rutas: 20000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	20000	1000	10564.1	4961.84	[us]	21072	21072
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	20000	1000	268.614	0.743667	[us]	4521	4521
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0025k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0025k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0025k.gst
+Rutas: 25000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	25000	1000	13316.3	5793.9	[us]	24597	24597
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	25000	1000	340.158	0.744	[us]	4899	4899
+ ----------------------------------------------------- 
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0005k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0005k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0005k.gst
+Rutas: 5000
+Ruta más corta: 1
+Ruta más larga: 54
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	5000	500	630.951	1433.02	[us]	1848	1848
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	5000	500	55.8813	0.565333	[us]	1539	1539
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0010k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0010k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0010k.gst
+Rutas: 10000
+Ruta más corta: 1
+Ruta más larga: 54
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	10000	500	756.685	1607.77	[us]	2160	2160
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	10000	500	107.912	0.573333	[us]	1542	1542
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0015k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0015k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0015k.gst
+Rutas: 15000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	15000	500	861.096	1664.48	[us]	2424	2424
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	15000	500	159.593	0.576	[us]	1614	1614
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0020k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0020k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0020k.gst
+Rutas: 20000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	20000	500	936.439	1905.48	[us]	2667	2667
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	20000	500	211.017	0.614	[us]	1638	1638
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0025k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0025k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0025k.gst
+Rutas: 25000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	25000	500	1015.69	1851.21	[us]	3003	3003
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	25000	500	262.206	0.603333	[us]	1701	1701
+ ----------------------------------------------------- 
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0005k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0005k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0005k.gst
+Rutas: 5000
+Ruta más corta: 1
+Ruta más larga: 54
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	5000	500	3386.47	3695.62	[us]	6975	6975
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	5000	500	69.2853	0.656667	[us]	1989	1989
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0010k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0010k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0010k.gst
+Rutas: 10000
+Ruta más corta: 1
+Ruta más larga: 54
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	10000	500	6736	6061.41	[us]	12894	12894
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	10000	500	135.958	0.787333	[us]	2730	2730
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0015k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0015k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0015k.gst
+Rutas: 15000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	15000	500	10176.5	8377.01	[us]	18636	18636
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	15000	500	201.31	0.876667	[us]	3189	3189
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0020k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0020k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0020k.gst
+Rutas: 20000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	20000	500	13633.8	10931.9	[us]	24345	24345
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	20000	500	268.821	0.946667	[us]	3792	3792
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0025k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0025k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0025k.gst
+Rutas: 25000
+Ruta más corta: 1
+Ruta más larga: 56
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	25000	500	17001.6	13725.3	[us]	30621	30621
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	25000	500	334.825	1.03333	[us]	4704	4704
+ ----------------------------------------------------- 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************** DATASET TRIPS 20+ = /home/users/caquijada/udec_doc/datasets/20stops_min/ ****************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_05k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_05k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_05k.gst
+Rutas: 5000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 2000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	5000	2000	6235.23	3297.33	[us]	26340	26340
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	5000	2000	86.2522	0.6885	[us]	8565	8565
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_10k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_10k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_10k.gst
+Rutas: 10000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 2000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	10000	2000	12448.7	5104.15	[us]	45081	45081
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	10000	2000	172.39	0.8005	[us]	11280	11280
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_15k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_15k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_15k.gst
+Rutas: 15000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 2000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	15000	2000	18818.5	7542.61	[us]	66165	66165
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	15000	2000	260.014	0.896667	[us]	14406	14406
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_20k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_20k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_20k.gst
+Rutas: 20000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 2000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	20000	2000	25002.1	9084.79	[us]	87558	87558
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	20000	2000	348.845	1.009	[us]	18018	18018
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_25k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_25k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_25k.gst
+Rutas: 25000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 2000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	25000	2000	31362.7	10592.2	[us]	106812	106812
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	25000	2000	439.501	1.05933	[us]	20544	20544
+ ----------------------------------------------------- 
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_05k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_05k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_05k.gst
+Rutas: 5000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	5000	100	272.807	2157.98	[us]	795	795
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	5000	100	53.64	0.666667	[us]	378	378
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_10k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_10k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_10k.gst
+Rutas: 10000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	10000	100	345.087	2455.76	[us]	1173	1173
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	10000	100	105.78	0.673333	[us]	396	396
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_15k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_15k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_15k.gst
+Rutas: 15000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	15000	100	407.003	4604.87	[us]	1488	1488
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	15000	100	156.97	0.686667	[us]	399	399
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_20k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_20k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_20k.gst
+Rutas: 20000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	20000	100	468.77	3757.22	[us]	1758	1758
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	20000	100	208.973	0.703333	[us]	414	414
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_25k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_25k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_25k.gst
+Rutas: 25000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	25000	100	525.497	3822.15	[us]	1842	1842
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	25000	100	260.793	0.706667	[us]	438	438
+ ----------------------------------------------------- 
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_05k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_05k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_05k.gst
+Rutas: 5000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	5000	100	10276.7	3408.92	[us]	1338	1338
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	5000	100	111.02	0.696667	[us]	432	432
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_10k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_10k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_10k.gst
+Rutas: 10000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	10000	100	20499.8	4953.06	[us]	2265	2265
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	10000	100	221.1	0.8	[us]	525	525
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_15k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_15k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_15k.gst
+Rutas: 15000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	15000	100	30754	7200.45	[us]	3252	3252
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	15000	100	332.097	0.87	[us]	636	636
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_20k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_20k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_20k.gst
+Rutas: 20000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	20000	100	41094.7	8925.18	[us]	4236	4236
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	20000	100	445.347	0.983333	[us]	780	780
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_25k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_25k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/20stops_min/20stops_min_25k.gst
+Rutas: 25000
+Ruta más corta: 20
+Ruta más larga: 65
+Consultas a realizar: 100
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	25000	100	51225.8	10143.6	[us]	5178	5178
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	25000	100	558.813	1.03667	[us]	918	918
+ ----------------------------------------------------- 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************** DATASET TRIPS XL = /home/users/caquijada/udec_doc/datasets/ ****************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.gst
+Rutas: 50007
+Ruta más corta: 1
+Ruta más larga: 59
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	50007	1000	26883.4	10833.5	[us]	49659	49659
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	50007	1000	685.802	0.904333	[us]	7233	7233
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0100k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0100k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0100k.gst
+Rutas: 100000
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	100000	1000	53865	19595.4	[us]	93555	93555
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	100000	1000	1368.6	1.16633	[us]	11580	11580
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0150k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0150k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0150k.gst
+Rutas: 150007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	150007	1000	81823.6	29213	[us]	143571	143571
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	150007	1000	2059.28	1.37333	[us]	14937	14937
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0200k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0200k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0200k.gst
+Rutas: 200007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	200007	1000	107141	37021.2	[us]	187680	187680
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	200007	1000	2741.97	1.614	[us]	19206	19206
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0400k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0400k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0400k.gst
+Rutas: 400824
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	400824	1000	220726	73031.4	[us]	384795	384795
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	400824	1000	5864.71	2.46467	[us]	36531	36531
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0800k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0800k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0800k.gst
+Rutas: 800650
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	800650	1000	441715	131153	[us]	741078	741078
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	800650	1000	12967.4	3.71833	[us]	62457	62457
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_1600k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_1600k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_1600k.gst
+Rutas: 1601315
+Ruta más corta: 1
+Ruta más larga: 69
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	1601315	1000	876601	267161	[us]	1479687	1479687
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	1601315	1000	27226.1	7.16867	[us]	141306	141306
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.queries.1
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.gst
+Rutas: 3204779
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 1000
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	3204779	1000	1.77469e+06	557556	[us]	3124920	3124920
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	3204779	1000	54849.3	12.5457	[us]	267309	267309
+ ----------------------------------------------------- 
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.gst
+Rutas: 50007
+Ruta más corta: 1
+Ruta más larga: 59
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	50007	500	1358.07	2404.97	[us]	5016	5016
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	50007	500	521.6	0.78	[us]	2289	2289
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0100k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0100k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0100k.gst
+Rutas: 100000
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	100000	500	1953.03	4985.08	[us]	9723	9723
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	100000	500	1038.82	1.054	[us]	4797	4797
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0150k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0150k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0150k.gst
+Rutas: 150007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	150007	500	2517.41	5777.9	[us]	13446	13446
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	150007	500	1555.79	1.362	[us]	7725	7725
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0200k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0200k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0200k.gst
+Rutas: 200007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	200007	500	3061.97	7610.34	[us]	18288	18288
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	200007	500	2072.25	1.77733	[us]	12708	12708
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0400k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0400k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0400k.gst
+Rutas: 400824
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	400824	500	5164.1	6795.51	[us]	15726	15726
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	400824	500	4131.12	0.943333	[us]	3450	3450
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0800k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0800k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0800k.gst
+Rutas: 800650
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	800650	500	9352.6	11409.7	[us]	30942	30942
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	800650	500	8264.53	1.13867	[us]	5022	5022
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_1600k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_1600k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_1600k.gst
+Rutas: 1601315
+Ruta más corta: 1
+Ruta más larga: 69
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	1601315	500	17889.7	16747.3	[us]	41265	41265
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	1601315	500	16783.4	1.26467	[us]	6042	6042
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.gst
+Rutas: 3204779
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	3204779	500	34652.3	19540.5	[us]	53505	53505
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	3204779	500	33729.7	1.64333	[us]	9948	9948
+ ----------------------------------------------------- 
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.gst
+Rutas: 50007
+Ruta más corta: 1
+Ruta más larga: 59
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	50007	500	33873.1	26035.3	[us]	63843	63843
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	50007	500	671.291	1.79133	[us]	11415	11415
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0100k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0100k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0100k.gst
+Rutas: 100000
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	100000	500	67266.9	61895	[us]	150354	150354
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	100000	500	1286.54	3.89933	[us]	35223	35223
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0150k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0150k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0150k.gst
+Rutas: 150007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	150007	500	100014	100436	[us]	250215	250215
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	150007	500	1851.27	6.88133	[us]	69984	69984
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0200k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0200k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0200k.gst
+Rutas: 200007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	200007	500	132533	144419	[us]	375039	375039
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	200007	500	2364.99	11.0847	[us]	120123	120123
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0400k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0400k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0400k.gst
+Rutas: 400824
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	400824	500	260636	375456	[us]	996936	996936
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	400824	500	4167.04	35.3613	[us]	413898	413898
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0800k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0800k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0800k.gst
+Rutas: 800650
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	800650	500	522903	704742	[us]	1984233	1984233
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	800650	500	8479.76	70.328	[us]	841503	841503
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_1600k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_1600k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_1600k.gst
+Rutas: 1601315
+Ruta más corta: 1
+Ruta más larga: 69
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	1601315	500	1.04743e+06	1.39868e+06	[us]	3931071	3931071
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	1601315	500	17130	143.375	[us]	1736604	1736604
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.queries.3
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.gst
+Rutas: 3204779
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 500
+Repeticiones a realizar: 3
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	3204779	500	2.09621e+06	2.8602e+06	[us]	7879680	7879680
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	3204779	500	34508.4	283.516	[us]	3459126	3459126
+ ----------------------------------------------------- 
+Fecha FIN experimentos: 2023/06/05 05:29:14

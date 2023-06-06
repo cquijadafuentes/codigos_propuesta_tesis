@@ -1,0 +1,6 @@
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	5000	100	53.64	0.666667	[us]	378	378
+allEqual	10000	100	105.78	0.673333	[us]	396	396
+allEqual	15000	100	156.97	0.686667	[us]	399	399
+allEqual	20000	100	208.973	0.703333	[us]	414	414
+allEqual	25000	100	260.793	0.706667	[us]	438	438
