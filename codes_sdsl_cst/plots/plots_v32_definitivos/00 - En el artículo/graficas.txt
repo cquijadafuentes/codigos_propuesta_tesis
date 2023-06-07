@@ -1,4 +1,17 @@
-allContain XL: desde '07 - 2023-05-18_tiempo_tumbes_big'
-allContained XL: desde '10 - 2023-05-20_tiempo_tumbes_allContained_xl'
-allContained 5k-50k: desde '09 - 2023-05-19_tiempo_tumbes_allContained_5k-50k'
+allContain XL:
+	'13 - 2023-06-4_tiempo_tumbes_allContainEqual'
+	
+allEqual:
+	'13 - 2023-06-4_tiempo_tumbes_allContainEqual'
+	
+allContained XL:
+	'10 - 2023-05-20_tiempo_tumbes_allContained_xl'
+
+allContained 5k-50k:
+	'09 - 2023-05-19_tiempo_tumbes_allContained_5k-50k'
+
+allIntersectPP:
+	'11 - 2023-05-30_tiempo_tumbes_allIntersectPP
+
 sizes: desde '12 - 2023-06-01_tamaños'
+
