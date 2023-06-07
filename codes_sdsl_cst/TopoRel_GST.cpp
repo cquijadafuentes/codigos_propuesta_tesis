@@ -330,21 +330,23 @@ vector<int> TopoRelGST::tr_allIntersect(int x){
     return res;
 }
 
-unordered_map<int,int> TopoRelGST::tr_allIntersectPP(int x){
+unordered_map<int,int> TopoRelGST::tr_allIntersectPP(int x, int minimo){
     unordered_map<int,int> res;
     int ls = getLargoRuta(x);
     auto nodoSL = gstMapRuta2Nodo[x];
-    res[x] = ls;
+    if(ls >= minimo){
+        res[x] = ls;
+    }
     
     // TO-DO: ADAPTAR DESDE AQUÍ EL CÓDIGO PARA DETERMINAR INTERSECCIÓN
-    for(int i=0; i < ls; i++){
+    for(int i=0; i <= ls - minimo; i++){
         // Se realizan operaciones de suffix link para recorrer intersecciones
         auto nodo = cst.rightmost_leaf(nodoSL);
         int idHoja = cst.id(nodo);
         // Revisión del SA hacia el inicio
         int idNav = idHoja;
         int coincidencia = ls-i;
-        while(coincidencia > 0){
+        while(coincidencia >= minimo){
             int pos = cst.csa[idNav];
             int idSecCand = gstMFSrank(pos); // Para determinar el ID de la ruta
             if(res[idSecCand] < coincidencia){
@@ -362,7 +364,7 @@ unordered_map<int,int> TopoRelGST::tr_allIntersectPP(int x){
         if(coincidencia > ls-i){
             coincidencia = ls-i;
         }
-        while(coincidencia > 0){
+        while(coincidencia >= minimo){
             int pos = cst.csa[idNav];
             int idSecCand = gstMFSrank(pos); // Para determinar el ID de la ruta
             if(res[idSecCand] < coincidencia){

@@ -14,8 +14,13 @@ using namespace std;
 int main(int argc, char const *argv[]){
 	if(argc < 3){
 		cout << "Error! Faltan argumentos." << endl;
-		cout << argv[0] << " <input_file> <queries_file>" << endl;
+		cout << argv[0] << " <input_file> <queries_file> [<min_intersection>]" << endl;
 		return 0;
+	}
+
+	int minIntersection = 1;
+	if(argc > 3){
+		minIntersection = (int) atoi(argv[3]);
 	}
 
 	ifstream entrada(argv[1], ifstream::in);
@@ -39,7 +44,7 @@ int main(int argc, char const *argv[]){
 	consultas >> n_consultas;
 	for(int i=0; i<n_consultas; i++){
 		consultas >> x;
-		unordered_map<int,int> res = tr_allIntersectPP(rutas, x);
+		unordered_map<int,int> res = tr_allIntersectPP(rutas, x, minIntersection);
 		cout << "id:" << x << "(" << res.size() << ")" << endl;
 		for(const auto& pair:res){
 	        cout << pair.first << ": " << pair.second << endl;

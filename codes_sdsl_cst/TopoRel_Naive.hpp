@@ -34,7 +34,7 @@ vector<int> tr_allContain(vector<int_vector<>> &r, int x);
 vector<int> tr_allEqual(vector<int_vector<>> &r, int x);
 vector<int> tr_allContained(vector<int_vector<>> &r, int x);
 vector<int> tr_allIntersect(vector<int_vector<>> &r, int x);
-unordered_map<int,int> tr_allIntersectPP(vector<int_vector<>> &r, int x);
+unordered_map<int,int> tr_allIntersectPP(vector<int_vector<>> &r, int x, int minimo=1);
 
 // Relaciones topológicas binarias agregadas
 bool tr_within(int_vector<> &a, int_vector<> &b);

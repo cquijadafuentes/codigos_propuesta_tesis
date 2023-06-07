@@ -12,16 +12,15 @@ OUTPUTFILE=$3
 
 
 echo "Fecha INICIO experimentos: $(date +'%Y/%m/%d %H:%M:%S') allContainedByQueriesFile_GST" > ${OUTPUTFILE}
-echo "Experimentos de todas las relaciones tipo all en dos datasets." >> ${OUTPUTFILE}
 echo "Directorio de inicio: " >> ${OUTPUTFILE}
 pwd >> ${OUTPUTFILE}
 echo "" >> ${OUTPUTFILE}
 
-for i in 1 2 3 
+for filename in gst_tripsMadrid_0050k gst_tripsMadrid_3200k
 do
-	for filename in gst_tripsMadrid_0400k gst_tripsMadrid_0800k gst_tripsMadrid_1600k gst_tripsMadrid_3200k
+	for i in 1 3 5 10 15
 	do
-		./time_allTopoRels_byQueriesFile ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.gst ${DATAFOLDER}${filename}.queries.${i} ${REPETICIONES} >> ${OUTPUTFILE}
+		./time_allTopoRels_byQueriesFile ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.gst ${DATAFOLDER}${filename}.queries.2 ${REPETICIONES} ${i} >> ${OUTPUTFILE}
 	done
 	echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
 done

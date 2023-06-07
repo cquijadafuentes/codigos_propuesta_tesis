@@ -291,11 +291,11 @@ vector<int> tr_allIntersect(vector<int_vector<>> &r, int x){
     return res;
 }
 
-unordered_map<int,int> tr_allIntersectPP(vector<int_vector<>> &r, int x){
+unordered_map<int,int> tr_allIntersectPP(vector<int_vector<>> &r, int x, int minimo){
     unordered_map<int,int> res;
     for(int i=0; i<r.size(); i++){
         int k = tr_intersectPP(r[x], r[i]);
-        if(k > 0){
+        if(k >= minimo){
             res[i] = k;
         }
     }

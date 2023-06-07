@@ -22,11 +22,16 @@ int main(int argc, char const *argv[]){
 	if(argc < 5){
 		cout << "Programa para medir tiempo promedio operaciones all*" << endl;
 		cout << "Error! faltan argumentos:" << endl;
-		cout << argv[0] << " <input_file.txt> <input_file.gst> <queries_file> repeticiones" << endl;
+		cout << argv[0] << " <input_file.txt> <input_file.gst> <queries_file> repeticiones [<min_intersetion>]" << endl;
 		return 0;
 	}
 
 	int repeticiones = (int) atoi(argv[4]);
+
+	int minIntersection = 1;
+	if(argc > 5){
+		minIntersection = (int) atoi(argv[5]);
+	}
 
 	cout << "Cargando consultas desde " << argv[3] << endl;
 	ifstream qFile(argv[3], ifstream::in);
@@ -162,7 +167,7 @@ int main(int argc, char const *argv[]){
 	cout << "allEqual\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
 */
 	//////////////////	allIntersect 	//////////////////
-
+/*
 	resNaive = 0;
 	resGST = 0;
 	cout << "Ejecutando allIntersect Naive..." << endl;
@@ -189,16 +194,16 @@ int main(int argc, char const *argv[]){
 
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
 	cout << "allIntersect\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
-
+*/
 	//////////////////	allIntersectPP 	//////////////////
-/*
+
 	resNaive = 0;
 	resGST = 0;
 	cout << "Ejecutando allIntersectPP Naive..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
 	    for(int i=0; i<queries.size(); i++){
-	    	resNaive += tr_allIntersectPP(rutas, queries[i]).size();
+	    	resNaive += tr_allIntersectPP(rutas, queries[i], minIntersection).size();
 	    }
 	}
 	t1 = clock();
@@ -206,18 +211,19 @@ int main(int argc, char const *argv[]){
 	
 
 	cout << "Ejecutando allIntersectPP GST6..." << endl;
+	cout << "Longitud mínima de intersección: " << minIntersection << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
 	    for(int i=0; i<queries.size(); i++){
-	    	resGST += gst.tr_allIntersectPP(queries[i]).size();
+	    	resGST += gst.tr_allIntersectPP(queries[i], minIntersection).size();
 	    }
 	}
 	t1 = clock();
 	tGST = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
 
 
-	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
-	cout << "allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
-*/
+	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST\tmin_intersetion" << endl;
+	cout << "allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << "\t" << minIntersection << endl;
+
 	return 0;
 }
