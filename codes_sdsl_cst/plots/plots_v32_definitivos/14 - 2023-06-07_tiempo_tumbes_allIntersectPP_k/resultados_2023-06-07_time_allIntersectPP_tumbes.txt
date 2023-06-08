@@ -1,0 +1,79 @@
+Fecha INICIO experimentos: 2023/06/07 11:45:51 allContainedByQueriesFile_GST
+Directorio de inicio: 
+/home/users/caquijada/udec_doc/codigos_propuesta_tesis/codes_sdsl_cst
+
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.gst
+Rutas: 50007
+Ruta más corta: 1
+Ruta más larga: 59
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Ejecutando allIntersectPP Naive...
+Ejecutando allIntersectPP GST6...
+Longitud mínima de intersección: 1
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	min_intersetion
+allIntersectPP	50007	500	762464	3.60227e+06	[us]	279833	279833	1
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.gst
+Rutas: 50007
+Ruta más corta: 1
+Ruta más larga: 59
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Ejecutando allIntersectPP Naive...
+Ejecutando allIntersectPP GST6...
+Longitud mínima de intersección: 3
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	min_intersetion
+allIntersectPP	50007	500	762990	1.85136e+06	[us]	120604	120604	3
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.gst
+Rutas: 50007
+Ruta más corta: 1
+Ruta más larga: 59
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Ejecutando allIntersectPP Naive...
+Ejecutando allIntersectPP GST6...
+Longitud mínima de intersección: 5
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	min_intersetion
+allIntersectPP	50007	500	762177	1.2915e+06	[us]	68296	68296	5
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.gst
+Rutas: 50007
+Ruta más corta: 1
+Ruta más larga: 59
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Ejecutando allIntersectPP Naive...
+Ejecutando allIntersectPP GST6...
+Longitud mínima de intersección: 10
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	min_intersetion
+allIntersectPP	50007	500	763905	666492	[us]	28285	28285	10
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.gst
+Rutas: 50007
+Ruta más corta: 1
+Ruta más larga: 59
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Ejecutando allIntersectPP Naive...
+Ejecutando allIntersectPP GST6...
+Longitud mínima de intersección: 15
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	min_intersetion
+allIntersectPP	50007	500	764423	358609	[us]	15540	15540	15
+ ----------------------------------------------------- 
+Cargando consultas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.queries.2
+Leyendo rutas desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.txt
+Cargando estructura GST desde /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.gst
+Rutas: 3204779
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Ejecutando allIntersectPP Naive...
