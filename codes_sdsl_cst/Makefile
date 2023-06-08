@@ -6,6 +6,7 @@ POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
 BINS=time_allTopoRels_byQueriesFile\
 		time_TopoRel_allContained_byQueriesFile\
+		time_allIntersectPPk_byQueriesFile\
 		TopoRel_GST_allContained\
 		TopoRel_GST_allIntersectPP\
 		TopoRel_GST_build\
@@ -40,6 +41,9 @@ time_allTopoRels_byQueriesFile:
 
 time_TopoRel_allContained_byQueriesFile:
 	$(CPP) $(PREFLAGS) -o time_TopoRel_allContained_byQueriesFile time_TopoRel_allContained_byQueriesFile.cpp $(OBJECTS) $(POSFLAGS)
+
+time_allIntersectPPk_byQueriesFile:
+	$(CPP) $(PREFLAGS) -o time_allIntersectPPk_byQueriesFile time_allIntersectPPk_byQueriesFile.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_GST_allContained:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_allContained TopoRel_GST_allContained.cpp $(OBJECTS) $(POSFLAGS)

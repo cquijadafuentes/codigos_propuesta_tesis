@@ -1,7 +1,5 @@
 /*
-	Toma de tiempo promedio para consultas allContained sobre implementaciones
-	GST (versión original recorriendo SA, versión 2 reccoriendo desde raíz y
-	versión 3 utilizando wl)
+	Toma de tiempo promedio para consultas allIntersectPPk
 	Las consultas provienen de un archivo de consulta generado con 
 	./extras/generador_consultas
 */
@@ -21,7 +19,7 @@ vector<int> generarQueries(int n_rutas, int num_queries);
 
 int main(int argc, char const *argv[]){
 	if(argc < 5){
-		cout << "Programa para medir tiempo promedio en la operación allContained en implementaciones naive y gst." << endl;
+		cout << "Programa para medir tiempo promedio en la operación allIntersect en implementaciones naive y gst." << endl;
 		cout << "Error! faltan argumentos:" << endl;
 		cout << argv[0] << " <input_file.txt> <intput_file.gst> <queries_file> repeticiones" << endl;
 		return 0;
@@ -76,13 +74,15 @@ int main(int argc, char const *argv[]){
 	cout << "Repeticiones a realizar: " << repeticiones << endl;
 
 	unsigned t0, t1;
+	int resNaive = 0;
+	int resGST = 0;
 
 	gst.statsReset();
 	cout << "Ejecutando consultas en implementación Naive..." << endl;
 	t0 = clock();
 	for(int j=0; j<repeticiones; j++){
 	    for(int i=0; i<queries.size(); i++){
-	    	tr_allContained(rutas, queries[i]);
+	    	resNaive += tr_allIntersectPP(rutas, queries[i]).size();
 	    }
 	}
 	t1 = clock();
@@ -93,19 +93,22 @@ int main(int argc, char const *argv[]){
 
 	gst.statsReset();
 	cout << "Ejecutando consultas en implementación GST..." << endl;
-	t0 = clock();
-	for(int j=0; j<repeticiones; j++){
-	    for(int i=0; i<queries.size(); i++){
-	    	gst.tr_allContained(queries[i]);
-	    }
-	}
-	t1 = clock();
-	double tGST6v6 = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
-	double cantLCPGST6v6 = (0.0 + gst.howManyLCP) / queries.size() / repeticiones;
-	double cantNodosGST6v6 = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
+	vector<int> ks = {1, 3, 5, 10, 15};
+	for(int k=0; k<ks.size(); k++){
+		t0 = clock();
+		for(int j=0; j<repeticiones; j++){
+		    for(int i=0; i<queries.size(); i++){
+		    	resGST += gst.tr_allIntersectPP(queries[i], k).size();
+		    }
+		}
+		t1 = clock();
+		double tGST = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
+		double cantLCPGST = (0.0 + gst.howManyLCP) / queries.size() / repeticiones;
+		double cantNodosGST = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
 
-	cout << "rutas\tqueries\tt_{n}\tt_{gst}" << endl;
-	cout << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST6v6 << "\t[us]" << endl;
-	cout << endl;
+		cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST\tmin_intersetion" << endl;
+		cout << "allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\tN/A\t" << resGST << "\t" << k << endl;
+		cout << endl;
+	}
 	return 0;
 }
