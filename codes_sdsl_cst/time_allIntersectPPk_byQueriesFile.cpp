@@ -98,7 +98,7 @@ int main(int argc, char const *argv[]){
 		t0 = clock();
 		for(int j=0; j<repeticiones; j++){
 		    for(int i=0; i<queries.size(); i++){
-		    	resGST += gst.tr_allIntersectPP(queries[i], k).size();
+		    	resGST += gst.tr_allIntersectPP(queries[i], ks[k]).size();
 		    }
 		}
 		t1 = clock();
@@ -107,7 +107,7 @@ int main(int argc, char const *argv[]){
 		double cantNodosGST = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
 
 		cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST\tmin_intersetion" << endl;
-		cout << "allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\tN/A\t" << resGST << "\t" << k << endl;
+		cout << "allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\tN/A\t" << resGST << "\t" << ks[k] << endl;
 		cout << endl;
 	}
 	return 0;
