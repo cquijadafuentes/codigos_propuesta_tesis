@@ -337,8 +337,7 @@ unordered_map<int,int> TopoRelGST::tr_allIntersectPP(int x, int minimo){
     if(ls >= minimo){
         res[x] = ls;
     }
-    
-    // TO-DO: ADAPTAR DESDE AQUÍ EL CÓDIGO PARA DETERMINAR INTERSECCIÓN
+    int lcpAux;
     for(int i=0; i <= ls - minimo; i++){
         // Se realizan operaciones de suffix link para recorrer intersecciones
         auto nodo = cst.rightmost_leaf(nodoSL);
@@ -352,14 +351,17 @@ unordered_map<int,int> TopoRelGST::tr_allIntersectPP(int x, int minimo){
             if(res[idSecCand] < coincidencia){
                 res[idSecCand] = coincidencia;
             }
-            if(cst.lcp[idNav] < coincidencia){
-                coincidencia = cst.lcp[idNav];
+            howManyLCP++;
+            lcpAux = cst.lcp[idNav];
+            if(lcpAux < coincidencia){
+                coincidencia = lcpAux;
             }
             idNav--;
         }
 
         // Revisión del SA hacia el final
         idNav = idHoja+1;
+        howManyLCP++;
         coincidencia = cst.lcp[idNav];
         if(coincidencia > ls-i){
             coincidencia = ls-i;
@@ -371,8 +373,10 @@ unordered_map<int,int> TopoRelGST::tr_allIntersectPP(int x, int minimo){
                 res[idSecCand] = coincidencia;
             }
             idNav++;
-            if(cst.lcp[idNav] < coincidencia){
-                coincidencia = cst.lcp[idNav];
+            howManyLCP++;
+            lcpAux = cst.lcp[idNav];
+            if(lcpAux < coincidencia){
+                coincidencia = lcpAux;
             }
         }
 
