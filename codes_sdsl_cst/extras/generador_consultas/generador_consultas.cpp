@@ -15,7 +15,8 @@ int main(int argc, char const *argv[]){
 	if(argc < 4){
 		cout << "Error! faltan argumentos:" << endl;
 		cout << argv[0] << " <inputfile_txt> <outputfile> <num_queries> [<op_queries>]" << endl;
-		cout << "op_queries:\n\t1 - random (default)" << endl;
+		cout << "op_queries:" << endl;
+		cout << "\t1 - random (default)" << endl;
 		cout << "\t2 - las <num_queries> más largas" << endl;
 		cout << "\t3 - las <num_queries> más cortas" << endl;
 		return 0;
