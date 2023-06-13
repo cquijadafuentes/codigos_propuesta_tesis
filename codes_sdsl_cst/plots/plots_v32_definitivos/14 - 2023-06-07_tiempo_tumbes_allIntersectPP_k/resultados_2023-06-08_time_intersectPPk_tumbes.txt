@@ -1,0 +1,24 @@
+Cargando estructuras...
+Cargando consultas...
+Rutas: 400824
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 500
+Repeticiones a realizar: 1
+Ejecutando consultas en implementación Naive...
+Ejecutando consultas en implementación GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	min_intersetion
+allIntersectPP	400824	500	8.22177e+06	4.6879e+06	[us]	N/A	2509433	1
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	min_intersetion
+allIntersectPP	400824	500	8.22177e+06	6.78095e+06	[us]	N/A	3522803	3
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	min_intersetion
+allIntersectPP	400824	500	8.22177e+06	2.561e+06	[us]	N/A	4135060	5
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	min_intersetion
+allIntersectPP	400824	500	8.22177e+06	6.14717e+06	[us]	N/A	4420792	10
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	min_intersetion
+allIntersectPP	400824	500	8.22177e+06	3.52691e+06	[us]	N/A	4577630	15
+

@@ -11,16 +11,24 @@ set xlabel "k"
 
 set output 'tiempo_allIntersectPP_k_xl_random.png'
 set title 'Tiempo en Operación AllIntersectPP_k [d:tripsXL - q:largest [1000-1r] - s:tumbes]'
-plot 'data_50k' using 4:xtic(9) title 'Naive_{50k}' with linespoints pt 4 lc rgb red,   \
-     'data_50k' using 5 title 'GST_{50k}' with linespoints pt 4 lc rgb blue
+plot 'data_50k' using 4:xtic(9) title 'Naive_{50k}' with linespoints pt 5 lc rgb red,   \
+     '' using 5 title 'GST_{50k}' with linespoints pt 4 lc rgb red,   \
+     'data_400k' using 4 title 'Naive_{400k}' with linespoints pt 5 lc rgb blue,   \
+     '' using 5 title 'GST_{400k}' with linespoints pt 4 lc rgb blue,   \
+     'data_1600k' using 4 title 'Naive_{1600k}' with linespoints pt 5 lc rgb green,   \
+     '' using 5 title 'GST_{1600k}' with linespoints pt 4 lc rgb green
 
 
 
 set logscale y
 set output 'tiempo_allIntersectPP_k_xl_random_log.png'
 set title 'Tiempo en Operación AllIntersectPP_k [d:tripsXL - q:largest [1000-1r] - s:tumbes]'
-plot 'data_50k' using 4:xtic(9) title 'Naive_{50k}' with linespoints pt 4 lc rgb red,   \
-     'data_50k' using 5 title 'GST_{50k}' with linespoints pt 4 lc rgb blue
+plot 'data_50k' using 4:xtic(9) title 'Naive_{50k}' with linespoints pt 5 lc rgb red,   \
+     '' using 5 title 'GST_{50k}' with linespoints pt 4 lc rgb red,   \
+     'data_400k' using 4 title 'Naive_{400k}' with linespoints pt 5 lc rgb blue,   \
+     '' using 5 title 'GST_{400k}' with linespoints pt 4 lc rgb blue,   \
+     'data_1600k' using 4 title 'Naive_{1600k}' with linespoints pt 5 lc rgb green,   \
+     '' using 5 title 'GST_{1600k}' with linespoints pt 4 lc rgb green
 
 
 

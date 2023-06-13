@@ -1,0 +1,6 @@
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	min_intersetion
+allIntersectPP	1601315	500	5.51834e+06	6.4425e+06	[us]	N/A	11608024	1
+allIntersectPP	1601315	500	5.51834e+06	5.30414e+06	[us]	N/A	16139775	3
+allIntersectPP	1601315	500	5.51834e+06	5.42585e+06	[us]	N/A	19019477	5
+allIntersectPP	1601315	500	5.51834e+06	952402	[us]	N/A	20351969	10
+allIntersectPP	1601315	500	5.51834e+06	7.1762e+06	[us]	N/A	21053823	15
