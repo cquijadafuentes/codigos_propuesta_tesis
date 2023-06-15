@@ -73,7 +73,7 @@ int main(int argc, char const *argv[]){
 	cout << "Consultas a realizar: " << num_queries << endl;
 	cout << "Repeticiones a realizar: " << repeticiones << endl;
 
-	unsigned t0, t1;
+	unsigned long long t0, t1;
 	int resNaive = 0;
 
 	gst.statsReset();
