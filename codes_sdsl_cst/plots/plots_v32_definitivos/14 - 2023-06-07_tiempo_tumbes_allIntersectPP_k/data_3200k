@@ -1,6 +1,0 @@
-operacion   rutas   queries tNaive  tGST    [us]    rNaive  rGST    min_intersetion
-allIntersectPP  50007   500 762464  3.60227e+06 [us]    279833  279833  1
-allIntersectPP  50007   500 762990  1.85136e+06 [us]    120604  120604  3
-allIntersectPP  50007   500 762177  1.2915e+06  [us]    68296   68296   5
-allIntersectPP  50007   500 763905  666492  [us]    28285   28285   10
-allIntersectPP  50007   500 764423  358609  [us]    15540   15540   15
