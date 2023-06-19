@@ -10,8 +10,8 @@ allContained XL:
 allContained 5k-50k:
 	'09 - 2023-05-19_tiempo_tumbes_allContained_5k-50k'
 
-allIntersectPP:
-	'11 - 2023-05-30_tiempo_tumbes_allIntersectPP
+allIntersectPP_k:
+	'14 - 2023-06-15_tiempo_tumbes_allIntersectPP_k'
 
 sizes: desde '12 - 2023-06-01_tamaños'
 
