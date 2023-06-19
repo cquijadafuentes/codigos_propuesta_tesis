@@ -1,4 +1,11 @@
-red = "#FF0000"; green = "#00FF00"; blue = "#0000FF"; skyblue = "#87CEEB"; black = "#000000"; gold = "#ffd700"; darkgreen = "#006400";
+rojo = "#FF0000";
+verde = "#00FF00";
+azul = "#0000FF";
+naranja = "#FFA500";
+violeta = "#800080";
+amarillo = "#FFD700";
+verdeoscuro = "#008000";
+
 set grid ytics
 set key out horiz
 set terminal png size 800,400
@@ -11,31 +18,37 @@ set xlabel "k"
 
 set output 'tiempo_allIntersectPP_k_xl_largest.png'
 set title 'Tiempo en Operación AllIntersectPP_k [d:tripsXL - q:largest [200-1r] - s:tumbes]'
-plot 'data_050k' using 5:xtic(9) title 'GST_{50k}' with linespoints pt 5 lc rgb red,   \
-     '' using 4:xtic(9) title 'Naive_{50k}' with linespoints pt 4 lc rgb red,   \
-     'data_100k' using 5 title 'GST_{100k}' with linespoints pt 5 lc rgb green,   \
-     '' using 4 title 'Naive_{100k}' with linespoints pt 4 lc rgb green,   \
-     'data_200k' using 5 title 'GST_{200k}' with linespoints pt 5 lc rgb blue,   \
-     '' using 4 title 'Naive_{200k}' with linespoints pt 4 lc rgb blue,   \
-     'data_400k' using 5 title 'GST_{400k}' with linespoints pt 5 lc rgb skyblue,   \
-     '' using 4 title 'Naive_{400k}' with linespoints pt 4 lc rgb skyblue,   \
-     'data_800k' using 5 title 'GST_{800k}' with linespoints pt 5 lc rgb darkgreen,   \
-     '' using 4 title 'Naive_{800k}' with linespoints pt 4 lc rgb darkgreen
+plot 'data_0050k' using 5:xtic(9) title 'GST_{50k}' with linespoints pt 5 lc rgb rojo,   \
+     '' using 4:xtic(9) title 'Naive_{50k}' with line lt 1 lc rgb rojo,   \
+     'data_0100k' using 5 title 'GST_{100k}' with linespoints pt 5 lc rgb verde,   \
+     '' using 4 title 'Naive_{100k}' with line lt 1 lc rgb verde,   \
+     'data_0200k' using 5 title 'GST_{200k}' with linespoints pt 5 lc rgb azul,   \
+     '' using 4 title 'Naive_{200k}' with line lt 1 lc rgb azul,   \
+     'data_0400k' using 5 title 'GST_{400k}' with linespoints pt 5 lc rgb naranja,   \
+     '' using 4 title 'Naive_{400k}' with line lt 1 lc rgb naranja,   \
+     'data_0800k' using 5 title 'GST_{800k}' with linespoints pt 5 lc rgb violeta,   \
+     '' using 4 title 'Naive_{800k}' with line lt 1 lc rgb violeta,   \
+     'data_1600k' using 5 title 'GST_{1600k}' with linespoints pt 5 lc rgb amarillo,   \
+     '' using 4 title 'Naive_{1600k}' with line lt 1 lc rgb amarillo,   \
+     'data_3200k' using 5 title 'GST_{3200k}' with linespoints pt 5 lc rgb verdeoscuro,   \
+     '' using 4 title 'Naive_{3200k}' with line lt 1 lc rgb verdeoscuro
 
 
 set logscale y
 set output 'tiempo_allIntersectPP_k_xl_largest_log.png'
 set title 'Tiempo en Operación AllIntersectPP_k [d:tripsXL - q:largest [200-1r] - s:tumbes]'
-plot 'data_050k' using 5:xtic(9) title 'GST_{50k}' with linespoints pt 5 lc rgb red,   \
-     '' using 4:xtic(9) title 'Naive_{50k}' with linespoints pt 4 lc rgb red,   \
-     'data_100k' using 5 title 'GST_{100k}' with linespoints pt 5 lc rgb green,   \
-     '' using 4 title 'Naive_{100k}' with linespoints pt 4 lc rgb green,   \
-     'data_200k' using 5 title 'GST_{200k}' with linespoints pt 5 lc rgb blue,   \
-     '' using 4 title 'Naive_{200k}' with linespoints pt 4 lc rgb blue,   \
-     'data_400k' using 5 title 'GST_{400k}' with linespoints pt 5 lc rgb skyblue,   \
-     '' using 4 title 'Naive_{400k}' with linespoints pt 4 lc rgb skyblue,   \
-     'data_800k' using 5 title 'GST_{800k}' with linespoints pt 5 lc rgb darkgreen,   \
-     '' using 4 title 'Naive_{800k}' with linespoints pt 4 lc rgb darkgreen
-
-
+plot 'data_0050k' using 5:xtic(9) title 'GST_{50k}' with linespoints pt 5 lc rgb rojo,   \
+     '' using 4:xtic(9) title 'Naive_{50k}' with line lt 1 lc rgb rojo,   \
+     'data_0100k' using 5 title 'GST_{100k}' with linespoints pt 5 lc rgb verde,   \
+     '' using 4 title 'Naive_{100k}' with line lt 1 lc rgb verde,   \
+     'data_0200k' using 5 title 'GST_{200k}' with linespoints pt 5 lc rgb azul,   \
+     '' using 4 title 'Naive_{200k}' with line lt 1 lc rgb azul,   \
+     'data_0400k' using 5 title 'GST_{400k}' with linespoints pt 5 lc rgb naranja,   \
+     '' using 4 title 'Naive_{400k}' with line lt 1 lc rgb naranja,   \
+     'data_0800k' using 5 title 'GST_{800k}' with linespoints pt 5 lc rgb violeta,   \
+     '' using 4 title 'Naive_{800k}' with line lt 1 lc rgb violeta,   \
+     'data_1600k' using 5 title 'GST_{1600k}' with linespoints pt 5 lc rgb amarillo,   \
+     '' using 4 title 'Naive_{1600k}' with line lt 1 lc rgb amarillo,   \
+     'data_3200k' using 5 title 'GST_{3200k}' with linespoints pt 5 lc rgb verdeoscuro,   \
+     '' using 4 title 'Naive_{3200k}' with line lt 1 lc rgb verdeoscuro
 

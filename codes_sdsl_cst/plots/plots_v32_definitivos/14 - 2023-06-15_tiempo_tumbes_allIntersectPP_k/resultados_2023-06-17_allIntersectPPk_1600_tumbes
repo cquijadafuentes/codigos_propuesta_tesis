@@ -1,0 +1,27 @@
+Cargando estructuras...
+Cargando consultas...
+Rutas: 1601315
+Ruta más corta: 1
+Ruta más larga: 69
+Consultas a realizar: 200
+Repeticiones a realizar: 1
+Ejecutando consultas en implementación Naive...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	1601315	200	4.32197e+07	N/A	[us]	4902210	N/A	1
+Ejecutando consultas en implementación GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	1601315	200	N/A	1.30465e+08	[us]	N/A	4902210	1	25092399
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	1601315	200	N/A	6.67024e+07	[us]	N/A	1862058	3	12954266
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	1601315	200	N/A	4.96452e+07	[us]	N/A	1164622	5	9650771
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	1601315	200	N/A	2.75621e+07	[us]	N/A	538467	10	5373773
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	1601315	200	N/A	1.65466e+07	[us]	N/A	283758	15	3248099
+
+---------------------- Fin ----------------------
