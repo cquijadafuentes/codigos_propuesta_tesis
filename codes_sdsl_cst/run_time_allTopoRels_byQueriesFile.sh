@@ -51,7 +51,7 @@ echo "**************** DATASET TRIPS XL = ${DATAFOLDER1} ****************" >> ${
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFILE}
 for i in 1 2 3 
 do
-	for filename in gst_tripsMadrid_0050k gst_tripsMadrid_0100k gst_tripsMadrid_0150k gst_tripsMadrid_0200k gst_tripsMadrid_0400k gst_tripsMadrid_0800k gst_tripsMadrid_1600k gst_tripsMadrid_3200k
+	for filename in gst_tripsMadrid_0050k gst_tripsMadrid_0100k gst_tripsMadrid_0200k gst_tripsMadrid_0400k gst_tripsMadrid_0800k gst_tripsMadrid_1600k gst_tripsMadrid_3200k
 	do
 		./time_allTopoRels_byQueriesFile ${DATAFOLDER1}${filename}.txt ${DATAFOLDER1}${filename}.gst ${DATAFOLDER1}${filename}.queries.${i} ${REPETICIONES} >> ${OUTPUTFILE}
 	done
