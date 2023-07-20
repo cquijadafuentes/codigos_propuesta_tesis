@@ -225,7 +225,7 @@ vector<int> TopoRelGST::tr_allContain(int x){
         idRChST = cst.rb(nParentX);
     }
     for(int i=idLChST; i <= idRChST; i++){
-        int idAux = idRutaDesdeCeldaDeSecConcat(cst.csa[i]);
+        int idAux = gstMFSrank(cst.csa[i]); // Equivalente a la función idRutaDesdeCeldaDeSecConcat(cst.csa[i])
         y.push_back(idAux);
     }
     return y;
@@ -240,7 +240,7 @@ vector<int> TopoRelGST::tr_allEqual(int x){
     int count = gstMapNodo2Ruta.count(nX);
     auto rango = gstMapNodo2Ruta.equal_range(nX);
     for(auto j=rango.first; j!=rango.second; j++){
-        y.push_back((j->second)%n_rutas);
+        y.push_back(j->second);
         howManyInserts++;
         howManyIfs++;
     }
@@ -285,7 +285,7 @@ vector<int> TopoRelGST::tr_allContained(int x){
                 int count = gstMapNodo2Ruta.count(nodoExpID);
                 auto rango = gstMapNodo2Ruta.equal_range(nodoExpID);
                 for(auto j=rango.first; j!=rango.second; j++){
-                    setRes.insert((j->second)%n_rutas);
+                    setRes.insert(j->second);
                     howManyInserts++;
                     howManyIfs++;
                 }
