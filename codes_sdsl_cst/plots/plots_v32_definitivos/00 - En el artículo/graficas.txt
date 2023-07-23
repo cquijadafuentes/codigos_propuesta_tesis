@@ -1,17 +1,17 @@
 allContain XL:
-	'13 - 2023-06-4_tiempo_tumbes_allContainEqual'
+	'17'
 	
 allEqual:
-	'13 - 2023-06-4_tiempo_tumbes_allContainEqual'
+	'17'
 	
 allContained XL:
-	'10 - 2023-05-20_tiempo_tumbes_allContained_xl'
+	'17'
 
 allContained 5k-50k:
-	'09 - 2023-05-19_tiempo_tumbes_allContained_5k-50k'
+	'17'
 
 allIntersectPP_k:
-	'14 - 2023-06-15_tiempo_tumbes_allIntersectPP_k'
+	'15 - 2023-06-15_tiempo_tumbes_allIntersectPP_k'
 
 sizes: desde '12 - 2023-06-01_tamaños'
 
