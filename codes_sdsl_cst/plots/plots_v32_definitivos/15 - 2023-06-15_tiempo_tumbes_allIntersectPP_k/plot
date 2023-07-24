@@ -13,8 +13,10 @@ set xlabel "Trajectories"
 
 set output 'tiempo_allIntersectPP_xl_largests.png'
 #set title 'Tiempo en Operación AllIntersectPP [d:tripsXL - q:largests [200-1r] - s:tumbes]'
-plot 'data_xl' using 4:xtic(2) title 'Baseline_{XL}' with linespoints pt 4 lc rgb red,   \
-     'data_xl' using 5 title 'TRGST_{XL}' with linespoints pt 4 lc rgb blue
+plot 'data_xl' using 4:xtic(2) title 'Baseline' with linespoints pt 4 lc rgb red,   \
+     'data_xl' using 5 title 'TRGST_{k=1}' with linespoints pt 4 lc rgb blue,   \
+     'data_xl_k05' using 5 title 'TRGST_{k=5}' with linespoints pt 4 lc rgb green,   \
+     'data_xl_k10' using 5 title 'TRGST_{k=10}' with linespoints pt 4 lc rgb darkgreen
 
 
 set ylabel "Cantidad de resultados"
