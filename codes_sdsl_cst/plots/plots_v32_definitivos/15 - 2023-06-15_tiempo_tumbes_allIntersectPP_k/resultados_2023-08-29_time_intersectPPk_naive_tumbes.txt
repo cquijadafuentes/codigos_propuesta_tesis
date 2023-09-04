@@ -1,0 +1,132 @@
+Fecha INICIO experimentos: 2023/08/29 11:19:08 allContainedByQueriesFile_naive_gst
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************** DATASET = /home/users/caquijada/udec_doc/datasets/ ****************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Cargando estructuras...
+Cargando consultas...
+Rutas: 3204779
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 200
+Repeticiones a realizar: 1
+Ejecutando consultas en implementación Naive...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	3204779	200	9.01458e+07	N/A	[us]	10254286	N/A	1
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	3204779	200	9.01518e+07	N/A	[us]	13920452	N/A	3
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	3204779	200	9.0138e+07	N/A	[us]	16089338	N/A	5
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	3204779	200	9.01471e+07	N/A	[us]	17122901	N/A	10
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	3204779	200	9.01529e+07	N/A	[us]	17687227	N/A	15
+Cargando estructuras...
+Cargando consultas...
+Rutas: 1601315
+Ruta más corta: 1
+Ruta más larga: 69
+Consultas a realizar: 200
+Repeticiones a realizar: 1
+Ejecutando consultas en implementación Naive...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	1601315	200	4.32328e+07	N/A	[us]	4902210	N/A	1
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	1601315	200	4.32509e+07	N/A	[us]	6764268	N/A	3
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	1601315	200	4.32595e+07	N/A	[us]	7928890	N/A	5
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	1601315	200	4.32855e+07	N/A	[us]	8467357	N/A	10
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	1601315	200	4.3277e+07	N/A	[us]	8751115	N/A	15
+Cargando estructuras...
+Cargando consultas...
+Rutas: 800650
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 200
+Repeticiones a realizar: 1
+Ejecutando consultas en implementación Naive...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	800650	200	2.04108e+07	N/A	[us]	2346301	N/A	1
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	800650	200	2.04308e+07	N/A	[us]	3265845	N/A	3
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	800650	200	2.04483e+07	N/A	[us]	3856282	N/A	5
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	800650	200	2.04362e+07	N/A	[us]	4129861	N/A	10
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	800650	200	2.04589e+07	N/A	[us]	4272143	N/A	15
+Cargando estructuras...
+Cargando consultas...
+Rutas: 400824
+Ruta más corta: 1
+Ruta más larga: 68
+Consultas a realizar: 200
+Repeticiones a realizar: 1
+Ejecutando consultas en implementación Naive...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	400824	200	9.45063e+06	N/A	[us]	1131623	N/A	1
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	400824	200	9.45652e+06	N/A	[us]	1567038	N/A	3
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	400824	200	9.46138e+06	N/A	[us]	1850538	N/A	5
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	400824	200	9.47206e+06	N/A	[us]	1980307	N/A	10
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	400824	200	9.48773e+06	N/A	[us]	2049818	N/A	15
+Cargando estructuras...
+Cargando consultas...
+Rutas: 200007
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 200
+Repeticiones a realizar: 1
+Ejecutando consultas en implementación Naive...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	200007	200	4.23512e+06	N/A	[us]	517039	N/A	1
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	200007	200	4.24915e+06	N/A	[us]	723984	N/A	3
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	200007	200	4.25456e+06	N/A	[us]	849916	N/A	5
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	200007	200	4.26047e+06	N/A	[us]	908156	N/A	10
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	200007	200	4.26872e+06	N/A	[us]	940796	N/A	15
+Cargando estructuras...
+Cargando consultas...
+Rutas: 100000
+Ruta más corta: 1
+Ruta más larga: 65
+Consultas a realizar: 200
+Repeticiones a realizar: 1
+Ejecutando consultas en implementación Naive...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	100000	200	1.93888e+06	N/A	[us]	243463	N/A	1
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	100000	200	1.94505e+06	N/A	[us]	344755	N/A	3
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	100000	200	1.94754e+06	N/A	[us]	403587	N/A	5
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	100000	200	1.94929e+06	N/A	[us]	430041	N/A	10
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	100000	200	1.94898e+06	N/A	[us]	445658	N/A	15
+Cargando estructuras...
+Cargando consultas...
+Rutas: 50007
+Ruta más corta: 1
+Ruta más larga: 59
+Consultas a realizar: 200
+Repeticiones a realizar: 1
+Ejecutando consultas en implementación Naive...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	50007	200	876591	N/A	[us]	121394	N/A	1
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	50007	200	878420	N/A	[us]	172805	N/A	3
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	50007	200	878818	N/A	[us]	201732	N/A	5
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	50007	200	878383	N/A	[us]	214412	N/A	10
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	50007	200	878272	N/A	[us]	221759	N/A	15
+ ----------------------------------------------------- 
+Fecha FIN experimentos: 2023/08/31 10:41:46
