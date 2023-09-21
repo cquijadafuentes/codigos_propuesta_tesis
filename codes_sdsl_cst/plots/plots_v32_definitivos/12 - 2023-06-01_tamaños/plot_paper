@@ -53,7 +53,7 @@ set xrange [0.5:7.5]
 set logscale y
 
 
-set ylabel "Tamaño [KB(log)]"
+set ylabel "Size [KB(log)]"
 set output 'img_size_gst_trips_xl_log.png'
 plot 'size_trips_xl' using 2:xtic(1) title 'CST' with linespoints lt 2 pt 3 lc rgb red,   \
      '' using 5 title 'gstMFSbv' with linespoints lt 2 pt 6 lc rgb darkred,   \
