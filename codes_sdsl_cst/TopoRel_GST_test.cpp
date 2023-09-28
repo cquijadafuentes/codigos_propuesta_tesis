@@ -60,13 +60,16 @@ void infoGralConjunto(TopoRelGST gst){
 	cout << "Largo de secuencia más corta: " << gst.len_min << endl;
 	cout << "Largo de secuencia más larga: " << gst.len_max << endl;
 	cout << "Marca de fin de secuenica: " << gst.finSec << endl;
-	cout << "Largo de gstMapRuta2Nodo: " << gst.gstMapRuta2Nodo.size() << endl;
+	cout << "Largo de gstMapRuta2Nodo: " << gst.gstMapRuta2Nodo.size();
 	cout << "Largo de gstMapNodo2Ruta: " << gst.gstMapNodo2Ruta.size() << endl;
 	cout << "Largo de gstMFSbv (Marcas fin de secuencia): " << gst.gstMFSbv.size() << endl;
 	cout << "--- Información del CompressedSuffixTree ---" << endl;
-    cout << "Cantidad de nodos: " << gst.cst.nodes() << endl;
-    cout << "Cantidad de hojas: " << gst.cst.size() << endl;
     cout << "Cantidad de nodos del CST: " << gst.cst.nodes() << endl;
+    cout << "Cantidad de hojas del CST: " << gst.cst.size() << endl;
+    sd_vector<>::rank_1_type nodesRank(&gst.gstMNodos);
+    cout << "Cantidad de 1s en markNodes: " << nodesRank.rank(gst.cst.nodes()) << endl;
+    sd_vector<>::rank_1_type branchesRank(&gst.gstMRamas);
+    cout << "Cantidad de 1s en markRamas: " << branchesRank.rank(gst.cst.nodes()) << endl;
     cout << "Largo del Suffix Array: " << gst.cst.csa.size() << endl;
     cout << "Largo del LCP Array: " << gst.cst.lcp.size() << endl;
 }
