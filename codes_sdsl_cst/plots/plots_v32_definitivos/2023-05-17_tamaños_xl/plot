@@ -10,11 +10,11 @@ set title 'Tamaño GST'
 set ylabel "Tamaño [MB]"
 set xlabel "Rutas"
 plot 'size_trips_madrid_xl.txt' using 2:xtic(1) title 'cst_{sada}' with linespoints lt 2 pt 3 lc rgb red,   \
-     '' using 5 title 'gstMFSbv' with linespoints lt 2 pt 6 lc rgb darkred,   \
-     '' using 4 title 'mapN2R' with linespoints lt 2 pt 5 lc rgb darkgreen,   \
-     '' using 3 title 'mapR2N' with linespoints lt 2 pt 4 lc rgb green,   \
-     '' using 6 title 'gstMNodos' with linespoints lt 2 pt 7 lc rgb blue,   \
-     '' using 7 title 'gstMRamas' with linespoints lt 2 pt 7 lc rgb skyblue,   \
+     '' using 5 title 'markEndSequence' with linespoints lt 2 pt 6 lc rgb darkred,   \
+     '' using 4 title 'mapNode2Path' with linespoints lt 2 pt 5 lc rgb darkgreen,   \
+     '' using 3 title 'mapPath2Node' with linespoints lt 2 pt 4 lc rgb green,   \
+     '' using 6 title 'markNode' with linespoints lt 2 pt 7 lc rgb blue,   \
+     '' using 7 title 'markBranch' with linespoints lt 2 pt 7 lc rgb skyblue,   \
      '' using 8 title 'GST' with linespoints lt 2 pt 7 lc rgb black,   \
      '' using 9 title 'Naive' with linespoints lt 2 pt 7 lc rgb gold
 
@@ -22,11 +22,11 @@ set logscale y
 set output 'img_size_gst_trips_xl_log.png'
 set ylabel "Tamaño [MB(log)]"
 plot 'size_trips_madrid_xl.txt' using 2:xtic(1) title 'cst_{sada}' with linespoints lt 2 pt 3 lc rgb red,   \
-     '' using 5 title 'gstMFSbv' with linespoints lt 2 pt 6 lc rgb darkred,   \
-     '' using 4 title 'mapN2R' with linespoints lt 2 pt 5 lc rgb darkgreen,   \
-     '' using 3 title 'mapR2N' with linespoints lt 2 pt 4 lc rgb green,   \
-     '' using 6 title 'gstMNodos' with linespoints lt 2 pt 7 lc rgb blue,   \
-     '' using 7 title 'gstMRamas' with linespoints lt 2 pt 7 lc rgb skyblue,   \
+     '' using 5 title 'markEndSequence' with linespoints lt 2 pt 6 lc rgb darkred,   \
+     '' using 4 title 'mapNode2Path' with linespoints lt 2 pt 5 lc rgb darkgreen,   \
+     '' using 3 title 'mapPath2Node' with linespoints lt 2 pt 4 lc rgb green,   \
+     '' using 6 title 'markNode' with linespoints lt 2 pt 7 lc rgb blue,   \
+     '' using 7 title 'markBranch' with linespoints lt 2 pt 7 lc rgb skyblue,   \
      '' using 8 title 'GST' with linespoints lt 2 pt 7 lc rgb black,   \
      '' using 9 title 'Naive' with linespoints lt 2 pt 7 lc rgb gold
 

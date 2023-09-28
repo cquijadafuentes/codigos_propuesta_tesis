@@ -15,3 +15,5 @@ allIntersectPP_k:
 
 sizes: desde '12 - 2023-06-01_tamaños'
 
+histograma_nodos: desde '2023-09-28_histogramas_nodos'
+
