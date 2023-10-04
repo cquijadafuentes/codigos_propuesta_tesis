@@ -13,7 +13,9 @@ allContained 5k-50k:
 allIntersectPP_k:
 	'15 - 2023-06-15_tiempo_tumbes_allIntersectPP_k'
 
-sizes: desde '12 - 2023-06-01_tamaños'
+sizes:
+	'12 - 2023-06-01_tamaños'
 
-histograma_nodos: desde '2023-09-28_histogramas_nodos'
+histograma_nodos:
+	'2023-09-28_histogramas_nodos'
 

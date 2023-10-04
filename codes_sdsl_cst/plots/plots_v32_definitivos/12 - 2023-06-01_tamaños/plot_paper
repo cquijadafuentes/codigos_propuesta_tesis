@@ -4,7 +4,7 @@ set key out horiz
 set terminal png size 800,400
 
 set ylabel "Size [KB]"
-set xlabel "Trajectories"
+set xlabel "Number of Paths"
 
 set xrange [0.5:7.5]
 

@@ -7,7 +7,7 @@ set xrange [0.5:7.5]
 set logscale y
 
 set ylabel "Time [us]"
-set xlabel "Trajectories"
+set xlabel "Number of Paths"
 
 
 

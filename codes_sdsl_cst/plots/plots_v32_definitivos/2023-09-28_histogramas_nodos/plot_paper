@@ -4,8 +4,8 @@ set grid xtics
 set key out horiz
 set terminal png size 800,400
 
-set ylabel "Number of Trajectories"
-set xlabel "Id Node"
+set ylabel "Number of Paths"
+set xlabel "ID Node"
 
 set xrange [1:11010]
 
