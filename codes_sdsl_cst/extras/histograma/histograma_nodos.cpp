@@ -6,7 +6,7 @@ using namespace std;
 int main(int argc, char const *argv[]){
 	int nr, max;
 	cin >> nr >> max;
-	vector<int> m(max,0);
+	vector<int> m(max+1,0);
 	for(int i = 0; i < nr; i++){
 		int n, x;
 		cin >> n;
