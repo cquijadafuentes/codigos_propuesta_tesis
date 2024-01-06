@@ -18,6 +18,13 @@ using namespace std;
 vector<int> generarQueries(int n_rutas, int num_queries);
 
 int main(int argc, char const *argv[]){
+
+	cout << "Ejecutando: ";
+	for(int i=0; i<argc; i++){
+		cout << argv[i] << " "
+	}
+	cout << endl;
+	
 	if(argc < 5){
 		cout << "Programa para medir tiempo promedio en la operación allIntersect en implementaciones naive y gst." << endl;
 		cout << "Error! faltan argumentos:" << endl;
