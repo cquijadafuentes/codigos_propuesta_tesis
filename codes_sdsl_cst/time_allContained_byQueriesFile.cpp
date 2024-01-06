@@ -23,7 +23,7 @@ int main(int argc, char const *argv[]){
 
 	cout << "Ejecutando: ";
 	for(int i=0; i<argc; i++){
-		cout << argv[i] << " "
+		cout << argv[i] << " ";
 	}
 	cout << endl;
 	
