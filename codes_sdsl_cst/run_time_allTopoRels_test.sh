@@ -18,11 +18,7 @@ echo "" >> ${OUTPUTFILE}
 
 for filename in gst_tripsMadrid_0050k gst_tripsMadrid_3200k
 do
-	for i in 1 3 5 10 15
-	do
-		./time_allTopoRels_byQueriesFile ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.gst ${DATAFOLDER}${filename}.queries.2 ${REPETICIONES} ${i} >> ${OUTPUTFILE}
-	done
-	echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
+	./time_allTopoRels_byQueriesFile ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.gst ${DATAFOLDER}${filename}.queries.2 ${REPETICIONES} >> ${OUTPUTFILE}
 done
 
 echo "Fecha FIN experimentos: $(date +'%Y/%m/%d %H:%M:%S')" >> ${OUTPUTFILE}
