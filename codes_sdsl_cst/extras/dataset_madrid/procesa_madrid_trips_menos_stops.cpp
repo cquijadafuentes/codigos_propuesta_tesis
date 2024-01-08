@@ -9,6 +9,7 @@
 
 /*
 	Este código se crea con el fin de obtener un archivo con los trips de xctrdata (madrid)
+	reduciendo la cantidad de stops utilizados por el dataset.
 	Se tiene como entrada el archivo lineStops.txt que indica los stops de cada línea
 	y el archivo madrid_trips.txt que corresponde a los datos generados
 	El archivo indica código de la línea, dos puntos (:) luego los stops separados por espacio
@@ -21,8 +22,9 @@ using namespace std;
 int main(int argc, char const *argv[]){
 	if(argc < 3){
 		cout << "Faltan argumentos. Indique nombre del archivo" << endl;
-		cout << argv[0] << " <lineStops.txt> <madrid_trips.txt> [<cant_max_trips>]" << endl;
+		cout << argv[0] << " <lineStops.txt> <madrid_trips.txt> [<cant_max_trips> [<divisor_stops>]]" << endl;
 		cout << "<cant_max_trips> indica la cantidad máxima de trips que se entregan como salida" << endl;
+		cout << "<divisor_stops> corresponde al divisor para reducir la cantidad de stops de la salida" << endl;
 		return -1;
 	}
 	int tope = 100;
@@ -30,6 +32,15 @@ int main(int argc, char const *argv[]){
 		tope = (int) atoi(argv[3]);
 
 	}
+	int divisor = 1;
+	if(argc >= 5){
+		divisor = (int) atoi(argv[4]);
+		if(divisor < 1){
+			cout << "Error en el argumento <divisor>: " << divisor << endl;
+			return -1;
+		}
+	}
+
 	int respaldoTope = tope;
 
 	fstream streamLineas;
@@ -114,12 +125,15 @@ int main(int argc, char const *argv[]){
 			}
 		}
 		vector<int> stopstrip;
+		int idDividido;
 		if(pStopI < pStopF){
 			for(int i=pStopI; i<=pStopF; i++){
+				idDividido = (stopsXlinea[pL][i] + (divisor-1)) / divisor;
 				stopstrip.push_back(stopsXlinea[pL][i]);
 			}
 		}else{
 			for(int i=pStopF; i<=pStopI; i++){
+				idDividido = (stopsXlinea[pL][i] + (divisor-1)) / divisor;
 				stopstrip.push_back(stopsXlinea[pL][i]);
 			}
 		}
@@ -157,7 +171,8 @@ int main(int argc, char const *argv[]){
 	cout << trips.size() << " trips identificados." << endl;
 
 	fstream outfileTrips("gst_tripsMadrid.txt", fstream::out);
-	outfileTrips << trips.size() << " " << mapIdsStops.size() << endl;
+	int newCantStops = (mapIdsStops.size() + (divisor-1)) / divisor;
+	outfileTrips << trips.size() << " " << newCantStops << endl;
 	for(int i = 0; i < trips.size(); i++){
 		outfileTrips << trips[i].size();
 		for(int j = 0; j < trips[i].size(); j++){
