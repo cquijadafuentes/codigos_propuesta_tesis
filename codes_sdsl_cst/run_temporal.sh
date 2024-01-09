@@ -20,7 +20,7 @@ for filename in gst_tripsMadrid_1350stops_1600ktrips gst_tripsMadrid_2700stops_1
 do
 	./TopoRel_GST_build ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.gst
 	./extras/generador_consultas/generador_consultas ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.queries.1 5000 1
-	./time_allTopoRels_byQueriesFile ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.gst ${DATAFOLDER}${filename}.queries.1 1 > ~/resultados_2024-01-09_allTopoRels_stops_variables_1rep.txt &
+	./time_allTopoRels_byQueriesFile ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.gst ${DATAFOLDER}${filename}.queries.1 1 > ~/resultados_2024-01-09_allTopoRels_stops_variables_1rep.txt
 done
 
 echo "Fecha FIN construcción: $(date +'%Y/%m/%d %H:%M:%S')"
