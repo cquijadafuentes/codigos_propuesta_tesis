@@ -129,12 +129,12 @@ int main(int argc, char const *argv[]){
 		int idDividido;
 		if(pStopI < pStopF){
 			for(int i=pStopI; i<=pStopF; i++){
-				idDividido = (stopsXlinea[pL][i] + (divisor-1)) / divisor;
+				idDividido = (mapIdsStops[stopsXlinea[pL][i]] + (divisor-1)) / divisor;
 				stopstrip.push_back(idDividido);
 			}
 		}else{
 			for(int i=pStopF; i<=pStopI; i++){
-				idDividido = (stopsXlinea[pL][i] + (divisor-1)) / divisor;
+				idDividido = (mapIdsStops[stopsXlinea[pL][i]] + (divisor-1)) / divisor;
 				stopstrip.push_back(idDividido);
 			}
 		}
@@ -161,11 +161,6 @@ int main(int argc, char const *argv[]){
 			// Se elimina la línea
 			trips.erase(trips.begin() + i);
 			i--;
-		}else{
-			// Se actualizan los id por los generados consecutivamente
-			for(int j = 0; j < trips[i].size(); j++){
-				trips[i][j] = mapIdsStops[trips[i][j]];
-			}
 		}
 	}
 	cout << cantRedFlags << " trips eliminados en el proceso." << endl;
