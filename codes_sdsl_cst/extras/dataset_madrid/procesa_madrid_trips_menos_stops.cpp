@@ -54,12 +54,12 @@ int main(int argc, char const *argv[]){
 	set<int> set_stops;
 	int maxIdStop = -1;
 	while(getline(streamLineas, stln)){		
-		cout << stln << endl;
+//		cout << stln << endl;
 		string idLinea;
 		string stopsAux;
 		stringstream ss_linea(stln);
 		getline(ss_linea, idLinea, ' ');
-		cout << "--> " << idLinea << endl;
+//		cout << "--> " << idLinea << endl;
 		vector<int> stops;
 		int x;
 		while(getline(ss_linea, stopsAux, ',')){
@@ -72,13 +72,14 @@ int main(int argc, char const *argv[]){
 		idsXlinea[idLinea.substr(0,idLinea.length()-1)] = cantLineas++;
 	}
 	streamLineas.close();
-	cout << stln << endl;
+//	cout << stln << endl;
 	int lp = stopsXlinea.size() - 1;
+/*
 	for(int i = 0; i < stopsXlinea[lp].size(); i++){
 		cout << " " << stopsXlinea[lp][i];
 	}
 	cout << endl;
-
+*/
 	cout << set_stops.size() << " stops distintos." << endl;
 	cout << maxIdStop << " maxIdStop." << endl;
 	cout << stopsXlinea.size() << " líneas identificadas." << endl;
