@@ -13,8 +13,9 @@ echo "Directorio de inicio: " >> ${OUTPUTFILE}
 pwd >> ${OUTPUTFILE}
 echo "" >> ${OUTPUTFILE}
 
-for filename in gst_tripsMadrid_1350stops_1600ktrips gst_tripsMadrid_2700stops_1600ktrips gst_tripsMadrid_5500stops_1600ktrips gst_tripsMadrid_11000stops_1600ktrips
+for filename in gst_800ktrips_02kstops.txt gst_800ktrips_04kstops.txt gst_800ktrips_06kstops.txt gst_800ktrips_08kstops.txt gst_800ktrips_10kstops.txt
 do
+	./TopoRel_GST_build ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.gst
 	./TopoRel_GST_size ${DATAFOLDER}${filename}.gst >> ${OUTPUTFILE}
 	./TopoRel_Naive_size ${DATAFOLDER}${filename}.txt >> ${OUTPUTFILE}
 	./time_allTopoRels_byQueriesFile ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.gst ${DATAFOLDER}${filename}.queries.1 1 >> ${OUTPUTFILE}
