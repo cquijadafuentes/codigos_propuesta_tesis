@@ -20,21 +20,21 @@
 using namespace std;
 
 int main(int argc, char const *argv[]){
-	if(argc < 3){
+	if(argc < 4){
 		cout << "Faltan argumentos. Indique nombre del archivo" << endl;
-		cout << argv[0] << " <lineStops.txt> <madrid_trips.txt> [<cant_max_trips> [<divisor_stops>]]" << endl;
+		cout << argv[0] << " <lineStops.txt> <madrid_trips.txt> <outputfile> [<cant_max_trips> [<divisor_stops>]]" << endl;
 		cout << "<cant_max_trips> indica la cantidad máxima de trips que se entregan como salida" << endl;
 		cout << "<divisor_stops> corresponde al divisor para reducir la cantidad de stops de la salida" << endl;
 		return -1;
 	}
 	int tope = 100;
-	if(argc >= 4){
-		tope = (int) atoi(argv[3]);
+	if(argc >= 5){
+		tope = (int) atoi(argv[4]);
 
 	}
 	int divisor = 1;
-	if(argc >= 5){
-		divisor = (int) atoi(argv[4]);
+	if(argc >= 6){
+		divisor = (int) atoi(argv[5]);
 		if(divisor < 1){
 			cout << "Error en el argumento <divisor>: " << divisor << endl;
 			return -1;
@@ -44,7 +44,6 @@ int main(int argc, char const *argv[]){
 	int respaldoTope = tope;
 
 	fstream streamLineas;
-	streamLineas.open(argv[1], fstream::in);
 	string stln;
 	vector<vector<int>> stopsXlinea;
 	map<string,int> idsXlinea;
@@ -53,6 +52,7 @@ int main(int argc, char const *argv[]){
 		// para luego hacer un map de la id_real con un id_generado que es correlativo
 	set<int> set_stops;
 	int maxIdStop = -1;
+	streamLineas.open(argv[1], fstream::in);
 	while(getline(streamLineas, stln)){		
 //		cout << stln << endl;
 		string idLinea;
@@ -92,14 +92,14 @@ int main(int argc, char const *argv[]){
 		mapIdsStops[idaux] = idGen;
 		idGen++;
 	}
-
+/*
 	for(map<string,int>::iterator it = idsXlinea.begin(); it != idsXlinea.end(); it++){
 		cout << it->first << " >> " << it->second << endl;
 	}
-
+*/
 	cout << ".. Procesando Trips .." << endl;
-	streamLineas.open(argv[2], fstream::in);
 	vector<vector<int>> trips;
+	streamLineas.open(argv[2], fstream::in);
 	while(getline(streamLineas, stln) && 0 < tope--){		
 		//cout << stln << endl;
 		string idLinea;
@@ -140,6 +140,7 @@ int main(int argc, char const *argv[]){
 		}
 		trips.push_back(stopstrip);
 	}
+	streamLineas.close();
 
 	cout << ".. LIMPIEZA TRIPS.. (" << trips.size() << ")" << endl;
 	// Verificar que las lineas son equivalentes a segmentos de linea simples
@@ -166,7 +167,7 @@ int main(int argc, char const *argv[]){
 	cout << cantRedFlags << " trips eliminados en el proceso." << endl;
 	cout << trips.size() << " trips identificados." << endl;
 
-	fstream outfileTrips("gst_tripsMadrid.txt", fstream::out);
+	fstream outfileTrips(argv[3], fstream::out);
 	int newCantStops = (mapIdsStops.size() + (divisor-1)) / divisor;
 	outfileTrips << trips.size() << " " << newCantStops << endl;
 	for(int i = 0; i < trips.size(); i++){
