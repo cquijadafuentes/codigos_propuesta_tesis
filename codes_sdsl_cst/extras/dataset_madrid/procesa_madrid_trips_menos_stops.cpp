@@ -129,12 +129,12 @@ int main(int argc, char const *argv[]){
 		if(pStopI < pStopF){
 			for(int i=pStopI; i<=pStopF; i++){
 				idDividido = (stopsXlinea[pL][i] + (divisor-1)) / divisor;
-				stopstrip.push_back(stopsXlinea[pL][i]);
+				stopstrip.push_back(idDividido);
 			}
 		}else{
 			for(int i=pStopF; i<=pStopI; i++){
 				idDividido = (stopsXlinea[pL][i] + (divisor-1)) / divisor;
-				stopstrip.push_back(stopsXlinea[pL][i]);
+				stopstrip.push_back(idDividido);
 			}
 		}
 		trips.push_back(stopstrip);
