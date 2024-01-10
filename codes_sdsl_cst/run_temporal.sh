@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]; then
+if [ $# -ne 2 ]; then
 	echo "Usage: $(basename $0) <folder> <output_file>"
 	exit 1
 fi
