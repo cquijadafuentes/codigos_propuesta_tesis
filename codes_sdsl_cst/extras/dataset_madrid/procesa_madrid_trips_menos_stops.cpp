@@ -156,7 +156,7 @@ int main(int argc, char const *argv[]){
 		}
 		if(redFlag){
 			cantRedFlags++;
-			cout << "TRIP con intersección consigo mismo" << endl;
+			cout << "TRIP con intersección consigo mismo [" << cantRedFlags << "]" << endl;
 			// Se elimina la línea
 			trips.erase(trips.begin() + i);
 			i--;
