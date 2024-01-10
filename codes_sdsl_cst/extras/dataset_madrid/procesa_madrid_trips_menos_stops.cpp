@@ -22,9 +22,9 @@ using namespace std;
 int main(int argc, char const *argv[]){
 	if(argc < 4){
 		cout << "Faltan argumentos. Indique nombre del archivo" << endl;
-		cout << argv[0] << " <lineStops.txt> <madrid_trips.txt> <outputfile> [<cant_max_trips> [<divisor_stops>]]" << endl;
+		cout << argv[0] << " <lineStops.txt> <madrid_trips.txt> <outputfile> [<cant_max_trips> [<cant_stops>]]" << endl;
 		cout << "<cant_max_trips> indica la cantidad máxima de trips que se entregan como salida" << endl;
-		cout << "<divisor_stops> corresponde al divisor para reducir la cantidad de stops de la salida" << endl;
+		cout << "<cant_stops> indica la cantidad de stops para la salida" << endl;
 		return -1;
 	}
 	int tope = 100;
@@ -32,11 +32,11 @@ int main(int argc, char const *argv[]){
 		tope = (int) atoi(argv[4]);
 
 	}
-	int divisor = 1;
+	int newCantStops = 0;
 	if(argc >= 6){
-		divisor = (int) atoi(argv[5]);
-		if(divisor < 1){
-			cout << "Error en el argumento <divisor>: " << divisor << endl;
+		newCantStops = (int) atoi(argv[5]);
+		if(newCantStops < 1){
+			cout << "Error en el argumento <cant_stops>: " << newCantStops << endl;
 			return -1;
 		}
 	}
@@ -50,7 +50,7 @@ int main(int argc, char const *argv[]){
 	int cantLineas = 0;
 		// SET se utiliza para determinar cuántas son las paradas existentes
 		// para luego hacer un map de la id_real con un id_generado que es correlativo
-	set<int> set_stops;
+	map<int,int> mapIdsStops;
 	int maxIdStop = -1;
 	streamLineas.open(argv[1], fstream::in);
 	while(getline(streamLineas, stln)){		
@@ -65,7 +65,9 @@ int main(int argc, char const *argv[]){
 		while(getline(ss_linea, stopsAux, ',')){
 			x = stoi(stopsAux);
 			stops.push_back(x);
-			set_stops.insert(x);
+			if(mapIdsStops[x] == 0){
+				mapIdsStops[x] = mapIdsStops.size();
+			}
 			maxIdStop = (x > maxIdStop) ? x : maxIdStop;
 		}
 		stopsXlinea.push_back(stops);
@@ -80,18 +82,9 @@ int main(int argc, char const *argv[]){
 	}
 	cout << endl;
 */
-	cout << set_stops.size() << " stops distintos." << endl;
+	cout << mapIdsStops.size() << " stops distintos." << endl;
 	cout << maxIdStop << " maxIdStop." << endl;
 	cout << stopsXlinea.size() << " líneas identificadas." << endl;
-	// Crear mapa que relacione id_real con id_generada que es correlativa
-	map<int,int> mapIdsStops;
-	int idGen = 1;
-	int idaux;
-	for(set<int>::iterator it=set_stops.begin(); it!=set_stops.end(); it++){
-		idaux = *it;
-		mapIdsStops[idaux] = idGen;
-		idGen++;
-	}
 /*
 	for(map<string,int>::iterator it = idsXlinea.begin(); it != idsXlinea.end(); it++){
 		cout << it->first << " >> " << it->second << endl;
@@ -126,16 +119,16 @@ int main(int argc, char const *argv[]){
 			}
 		}
 		vector<int> stopstrip;
-		int idDividido;
+		int idCorregido;
 		if(pStopI < pStopF){
 			for(int i=pStopI; i<=pStopF; i++){
-				idDividido = (mapIdsStops[stopsXlinea[pL][i]] + (divisor-1)) / divisor;
-				stopstrip.push_back(idDividido);
+				idCorregido = (mapIdsStops[stopsXlinea[pL][i]] % newCantStops) + 1;
+				stopstrip.push_back(idCorregido);
 			}
 		}else{
 			for(int i=pStopF; i<=pStopI; i++){
-				idDividido = (mapIdsStops[stopsXlinea[pL][i]] + (divisor-1)) / divisor;
-				stopstrip.push_back(idDividido);
+				idCorregido = (mapIdsStops[stopsXlinea[pL][i]] % newCantStops) + 1;
+				stopstrip.push_back(idCorregido);
 			}
 		}
 		trips.push_back(stopstrip);
@@ -168,7 +161,6 @@ int main(int argc, char const *argv[]){
 	cout << trips.size() << " trips identificados." << endl;
 
 	fstream outfileTrips(argv[3], fstream::out);
-	int newCantStops = (mapIdsStops.size() + (divisor-1)) / divisor;
 	outfileTrips << trips.size() << " " << newCantStops << endl;
 	for(int i = 0; i < trips.size(); i++){
 		outfileTrips << trips[i].size();
