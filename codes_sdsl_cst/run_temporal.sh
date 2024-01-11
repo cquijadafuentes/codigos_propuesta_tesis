@@ -13,7 +13,7 @@ echo "Directorio de inicio: " >> ${OUTPUTFILE}
 pwd >> ${OUTPUTFILE}
 echo "" >> ${OUTPUTFILE}
 
-for filename in gst_800ktrips_02kstops.txt gst_800ktrips_04kstops.txt gst_800ktrips_06kstops.txt gst_800ktrips_08kstops.txt gst_800ktrips_10kstops.txt
+for filename in gst_800ktrips_02kstops gst_800ktrips_04kstops gst_800ktrips_06kstops gst_800ktrips_08kstops gst_800ktrips_10kstops
 do
 	./TopoRel_GST_build ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.gst
 	./TopoRel_GST_size ${DATAFOLDER}${filename}.gst >> ${OUTPUTFILE}
