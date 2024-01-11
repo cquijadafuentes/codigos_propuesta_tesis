@@ -17,7 +17,7 @@ for filename in gst_tripsMadrid_0010k.txt gst_tripsMadrid_0020k.txt gst_tripsMad
 
 do
 	echo "Procesando ${filename}..." >> ${OUTPUTFILE}
-	./time_allTopoRels_byQueriesFile ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.gst ${DATAFOLDER}${filename}.queries.1 10 >> ${OUTPUTFILE}
+	./TopoRel_Naive_allAnswers ${DATAFOLDER}${filename} >> ${OUTPUTFILE}
 done
 
 echo "Fecha FIN construcción: $(date +'%Y/%m/%d %H:%M:%S')"
