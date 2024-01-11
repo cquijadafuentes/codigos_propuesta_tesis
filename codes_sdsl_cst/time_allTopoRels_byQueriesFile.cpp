@@ -240,7 +240,7 @@ int main(int argc, char const *argv[]){
 		double cantNodosGST = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
 		
 		cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST\tk" << endl;
-		cout << "allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << "\t" << minIntersection << endl;
+		cout << "allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << "\t" << ks[k] << endl;
 		cout << endl;
 	}		
 

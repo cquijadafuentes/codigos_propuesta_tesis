@@ -16,6 +16,7 @@ BINS=time_allContained_byQueriesFile\
 		TopoRel_GST_test_allContained_byQueries\
 		TopoRel_GST_time\
 		TopoRel_GST_time_allContained\
+		TopoRel_Naive_allAnswers\
 		TopoRel_Naive_allContained_byQueries\
 		TopoRel_Naive_allIntersect_byQueries\
 		TopoRel_Naive_allIntersectPP_byQueries\
@@ -71,6 +72,9 @@ TopoRel_GST_test_allContained_byQueries:
 
 TopoRel_GST_time_allContained:
 	$(CPP) $(PREFLAGS) -o TopoRel_GST_time_allContained TopoRel_GST_time_allContained.cpp $(OBJECTS) $(POSFLAGS)
+
+TopoRel_Naive_allAnswers:
+	$(CPP) $(PREFLAGS) -o TopoRel_Naive_allAnswers TopoRel_Naive_allAnswers.cpp $(OBJECTS) $(POSFLAGS)
 
 TopoRel_Naive_allContained_byQueries:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_allContained_byQueries TopoRel_Naive_allContained_byQueries.cpp $(OBJECTS) $(POSFLAGS)

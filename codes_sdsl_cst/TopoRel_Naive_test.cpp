@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include "TopoRel_Naive.hpp"
 
 using namespace std;
