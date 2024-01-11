@@ -8,7 +8,7 @@ fi
 DATAFOLDER=$1
 OUTPUTFILE=$2
 
-echo "Fecha INICIO construcción: $(date +'%Y/%m/%d %H:%M:%S')" > ${OUTPUTFILE}
+echo "Fecha INICIO ejecución: $(date +'%Y/%m/%d %H:%M:%S')" > ${OUTPUTFILE}
 echo "Directorio de inicio: " >> ${OUTPUTFILE}
 pwd >> ${OUTPUTFILE}
 echo "" >> ${OUTPUTFILE}
@@ -20,6 +20,6 @@ do
 	./TopoRel_Naive_allAnswers ${DATAFOLDER}${filename} >> ${OUTPUTFILE}
 done
 
-echo "Fecha FIN construcción: $(date +'%Y/%m/%d %H:%M:%S')"
+echo "Fecha FIN ejecución: $(date +'%Y/%m/%d %H:%M:%S')" >> ${OUTPUTFILE}
 exit 0
 
