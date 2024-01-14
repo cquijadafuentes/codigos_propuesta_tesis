@@ -81,10 +81,10 @@ int main(int argc, char const *argv[]){
 	cout << "Repeticiones a realizar: " << repeticiones << endl;
 
 	unsigned long long t0, t1;
-	int resNaive = 0;
-
-	gst.statsReset();
 	vector<int> ks = {1, 3, 5, 10, 15};
+/*
+	int resNaive = 0;
+	gst.statsReset();
 	cout << "Ejecutando consultas en implementación Naive..." << endl;
 	for(int k=0; k<ks.size(); k++){
 		t0 = clock();
@@ -101,8 +101,7 @@ int main(int argc, char const *argv[]){
 		cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST\tk" << endl;
 		cout << "Naive_allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\tN/A\t[us]\t" << resNaive << "\tN/A\t" << ks[k] << endl;
 	}
-
-	return 0;
+*/
 
 	gst.statsReset();
 	cout << "Ejecutando consultas en implementación GST..." << endl;
