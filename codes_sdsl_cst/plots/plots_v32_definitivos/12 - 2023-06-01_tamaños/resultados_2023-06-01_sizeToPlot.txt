@@ -52,6 +52,8 @@ rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
 1601315	11010	21783995	6405260	12810520	1381011	311520	359029	43051335	
 rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
 3204779	11010	43287953	12819116	25638232	2752971	379529	414241	85292042	
+rutas	stops	cstsada	mapR2N	mapN2R	gstMFSbv	gstMNodos	gstMRamas	TOTAL
+6449617	11010	87452608	25798468	51596936	5521283	453431	468180	171290906
 
 ********** NAIVE **********
 Datafolder: /home/cquijada/datasets/
@@ -103,4 +105,6 @@ rutas	stops	naive
 1601315	11010	47585067
 rutas	stops	naive
 3204779	11010	95235779
+rutas	stops	naive
+6449617	11010	191634441
 Fecha FIN: 2023/06/04 20:42:51
