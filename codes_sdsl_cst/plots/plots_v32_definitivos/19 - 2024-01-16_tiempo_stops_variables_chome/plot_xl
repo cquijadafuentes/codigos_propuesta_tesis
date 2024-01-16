@@ -37,7 +37,7 @@ set output 'tiempo_allIntersect_xl_stops_variables.png'
 plot 'data_tripsxl_random_allIntersect_k1' using 5:xtic(3) title 'Baseline' with linespoints pt 5 lc rgb gold,   \
      '' using 6 title 'TRGST_{1}' with linespoints pt 4 lc rgb red,   \
      'data_tripsxl_random_allIntersect_k5' using 6:xtic(3) title 'TRGST_{5}' with linespoints pt 4 lc rgb green,   \
-     'data_tripsxl_random_allIntersect_k15' using 6:xtic(3) title 'TRGST_{10}' with linespoints pt 4 lc rgb blue
+     'data_tripsxl_random_allIntersect_k15' using 6:xtic(3) title 'TRGST_{15}' with linespoints pt 4 lc rgb blue
 
 
 
