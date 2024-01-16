@@ -149,19 +149,27 @@ void print_search(TrieNode* root, int* seq) {
         printf("Found!\n");
 }
 
-using namespace std;
-
 int main(int argc, char const *argv[]){
+    if(argc < 2){
+        printf("Error! Faltan argumentos.");
+        printf("%s <input_file>", argv[0]);
+        return 0;
+    }
+    FILE* file = fopen(argv[1], "r");
+    if(file == NULL){
+        printf("Error! En la lectura del archivo\n");
+        return 0;
+    }
     TrieNode* root = make_trienode(0);
     // Cargando datos
     int n, x, aux, max;
     int* path = (int*) malloc((N+1)*(sizeof(int)));
-    scanf("%d %d", &n, &max);
+    fscanf(file, "%d %d", &n, &max);
     for(int i = 0; i < n; i++){
-        scanf("%d", &x);
+        fscanf(file, "%d", &x);
         path[0] = x;
         for(int j=1; j<=x; j++){
-            scanf("%d", &aux);
+            fscanf(file, "%d", &aux);
             path[j] = aux;
         }
         root = insert_trie(root, path);
