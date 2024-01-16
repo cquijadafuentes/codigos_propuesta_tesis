@@ -116,7 +116,7 @@ int main(int argc, char const *argv[]){
 	}
 	entrada.close();
 
-	cout << "rutas\tbytesTST" << endl;
+	cout << "rutas\tbytesSuffixTST" << endl;
 	cout << n << "\t" << sizeBytes << endl;
 	return 0; 
 } 
