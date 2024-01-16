@@ -13,22 +13,22 @@ set logscale y
 
 set output 'tiempo_allContain_xl_stops_variables.png'
 #set title 'Time en Operación AllContain [d:tripsXL - q:random [1000-3r] - s:tumbes]'
-plot 'data_tripsxl_random_allContain' using 5:xtic(3) title 'Baseline_{XL}' with linespoints pt 4 lc rgb red,   \
-     '' using 6 title 'TRGST_{XL}' with linespoints pt 4 lc rgb blue
+plot 'data_tripsxl_random_allContain' using 5:xtic(3) title 'Baseline' with linespoints pt 4 lc rgb red,   \
+     '' using 6 title 'TRGST' with linespoints pt 4 lc rgb blue
 
 
 
 set output 'tiempo_allContained_xl_stops_variables.png'
 #set title 'Time en Operación AllContained [d:tripsXL - q:random [1000-3r] - s:tumbes]'
-plot 'data_tripsxl_random_allContained' using 5:xtic(3) title 'Baseline_{XL}' with linespoints pt 4 lc rgb red,   \
-     '' using 6 title 'TRGST_{XL}' with linespoints pt 4 lc rgb blue
+plot 'data_tripsxl_random_allContained' using 5:xtic(3) title 'Baseline' with linespoints pt 4 lc rgb red,   \
+     '' using 6 title 'TRGST' with linespoints pt 4 lc rgb blue
 
 
 
 set output 'tiempo_allEqual_xl_stops_variables.png'
 #set title 'Time en Operación AllEqual [d:tripsXL - q:random [1000-3r] - s:tumbes]'
-plot 'data_tripsxl_random_allEqual' using 5:xtic(3) title 'Baseline_{XL}' with linespoints pt 4 lc rgb red,   \
-     '' using 6 title 'TRGST_{XL}' with linespoints pt 4 lc rgb blue
+plot 'data_tripsxl_random_allEqual' using 5:xtic(3) title 'Baseline' with linespoints pt 4 lc rgb red,   \
+     '' using 6 title 'TRGST' with linespoints pt 4 lc rgb blue
 
 
 
