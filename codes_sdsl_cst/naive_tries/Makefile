@@ -4,6 +4,7 @@ BINS=intTernarySearchTree\
 intTrie\
 pathsTernarySearchTree\
 pathsTrie\
+suffixPathsTernarySearchTree\
 ternarySearchTree\
 trie
 
@@ -23,6 +24,9 @@ pathsTernarySearchTree:
 
 pathsTrie:
 	$(CPP) -o pathsTrie pathsTrie.cpp
+
+suffixPathsTernarySearchTree:
+	$(CPP) -o suffixPathsTernarySearchTree suffixPathsTernarySearchTree.cpp
 
 ternarySearchTree:
 	$(CPP) -o ternarySearchTree ternarySearchTree.cpp
