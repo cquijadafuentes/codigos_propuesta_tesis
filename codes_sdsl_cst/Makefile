@@ -4,7 +4,8 @@ PREFLAGS=-std=c++11 -g -O0 -DNDEBUG -fopenmp -I ~/include -L ~/lib
 
 POSFLAGS=-lsdsl -ldivsufsort -ldivsufsort64
 
-BINS=time_allContained_byQueriesFile\
+BINS=pathsTernarySearchTree\
+		time_allContained_byQueriesFile\
 		time_allIntersectPPk_byQueriesFile\
 		time_allTopoRels_byQueriesFile\
 		TopoRel_GST_allContained\
@@ -36,6 +37,9 @@ OBJECTS=TopoRel_GST.o\
 all: bin
 
 bin: $(OBJECTS) $(BINS)
+
+pathsTernarySearchTree:
+	$(CPP) -o pathsTernarySearchTree pathsTernarySearchTree.cpp
 
 time_allContained_byQueriesFile:
 	$(CPP) $(PREFLAGS) -o time_allContained_byQueriesFile time_allContained_byQueriesFile.cpp $(OBJECTS) $(POSFLAGS)

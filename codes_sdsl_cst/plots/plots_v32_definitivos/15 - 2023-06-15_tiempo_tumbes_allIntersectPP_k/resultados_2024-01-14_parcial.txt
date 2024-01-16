@@ -1,0 +1,38 @@
+Fecha INICIO experimentos: 2024/01/14 19:55:02 allContainedByQueriesFile_naive_gst
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************** DATASET = /home/users/caquijada/udec_doc/datasets/ ****************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Ejecutando: ./time_allIntersectPPk_byQueriesFile /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_6400k.txt /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_6400k.gst /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_6400k.queries.interPP_k 1 
+Cargando estructuras...
+Cargando consultas...
+Rutas: 6449617
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 200
+Repeticiones a realizar: 1
+Ejecutando consultas en implementación GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	6449617	200	N/A	9.86039e+07	[us]	N/A	5790568	1	19130472
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	6449617	200	N/A	4.48847e+07	[us]	N/A	2369820	3	8684935
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	6449617	200	N/A	2.41974e+07	[us]	N/A	1251346	5	4664903
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	6449617	200	N/A	5.18694e+06	[us]	N/A	273211	10	994837
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	6449617	200	N/A	935655	[us]	N/A	61822	15	178574
+
+---------------------- Fin ----------------------
+Ejecutando: ./time_allIntersectPPk_byQueriesFile /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.txt /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.gst /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.queries.interPP_k 1 
+Cargando estructuras...
+Cargando consultas...
+Rutas: 3204779
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 200
+Repeticiones a realizar: 1
+Ejecutando consultas en implementación GST...

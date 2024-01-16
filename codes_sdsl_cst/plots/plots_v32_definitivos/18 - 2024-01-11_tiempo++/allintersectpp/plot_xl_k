@@ -16,7 +16,7 @@ set ylabel "Time [us]"
 set xlabel "k"
 
 
-set output 'tiempo_allIntersectPP_k_xl_largest.png'
+set output 'tiempo_allIntersectPP_k_xl.png'
 #set title 'Tiempo en Operación AllIntersectPP_k [d:tripsXL - q:largest [200-1r] - s:tumbes]'
 plot 'data_0050k' using 5:xtic(9) title 'TRGST_{50k}' with linespoints pt 5 lc rgb rojo,   \
      '' using 4:xtic(9) title 'Baseline_{50k}' with line lt 1 lc rgb rojo,   \
@@ -31,7 +31,7 @@ plot 'data_0050k' using 5:xtic(9) title 'TRGST_{50k}' with linespoints pt 5 lc r
 
 
 set logscale y
-set output 'tiempo_allIntersectPP_k_xl_largest_log.png'
+set output 'tiempo_allIntersectPP_k_xl_log.png'
 #set title 'Tiempo en Operación AllIntersectPP_k [d:tripsXL - q:largest [200-1r] - s:tumbes]'
 plot 'data_0050k' using 5:xtic(9) title 'TRGST_{50k}' with linespoints pt 5 lc rgb rojo,   \
      '' using 4:xtic(9) title 'Baseline_{50k}' with line lt 1 lc rgb rojo,   \
