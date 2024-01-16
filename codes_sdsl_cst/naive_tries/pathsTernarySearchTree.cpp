@@ -103,10 +103,8 @@ int main(int argc, char const *argv[]){
 	}
 	entrada.close();
 
-	cout << "Rutas: " << n << endl;
-	cout << "sizeBytes: " << sizeBytes << endl;
-	searchTST(root, caminos) ? cout << "Found\n"
-						: cout << "Not Found\n"; 
+	cout << "rutas\tbytesTST" << endl;
+	cout << n << "\t" << sizeBytes << endl;
 	return 0; 
 } 
 
