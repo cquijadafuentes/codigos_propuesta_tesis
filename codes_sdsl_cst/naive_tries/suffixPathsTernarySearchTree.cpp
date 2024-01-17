@@ -6,7 +6,7 @@ using namespace std;
 
 // A node of ternary search tree 
 struct Node { 
-	int data; 
+	short data; 
 
 	// True if this character is last character of one of 
 	// the words 
@@ -14,14 +14,11 @@ struct Node {
 	Node *left, *eq, *right; 
 }; 
 
-long long int sizeBytes = 0;
-
 // A utility function to create a new ternary search tree 
 // node 
-Node* newNode(int data) 
+Node* newNode(short data) 
 { 
 	Node* temp = new Node(); 
-	sizeBytes += sizeof(int) + sizeof(bool) + sizeof(NULL)*3;
 	temp->data = data; 
 	temp->isEndOfString = false; 
 	temp->left = temp->eq = temp->right = NULL; 
@@ -29,7 +26,7 @@ Node* newNode(int data)
 } 
 
 // Function to insert a new word in a Ternary Search Tree 
-void insert(Node** root, int* word) 
+void insert(Node** root, short* word) 
 { 
 	// Base Case: Tree is empty 
 	if (!(*root)) 
@@ -60,7 +57,7 @@ void insert(Node** root, int* word)
 } 
 
 // Function to search a given word in TST 
-bool searchTST(Node* root, int* word) 
+bool searchTST(Node* root, short* word) 
 { 
 	if (!root) 
 		return 0; 
@@ -79,7 +76,18 @@ bool searchTST(Node* root, int* word)
 	} 
 }
 
-void print(int* x){
+long long int dfsSizeInBytes(Node* node){
+	long long int size = (int)sizeof(node);
+	if(node != NULL){
+		size += (int)(sizeof(node->data)+sizeof(node->isEndOfString));
+		size += dfsSizeInBytes(node->left);
+		size += dfsSizeInBytes(node->right);
+		size += dfsSizeInBytes(node->eq);
+	}
+	return size;
+}
+
+void print(short* x){
 	int p = 0;
 	while(x[p] != 0){
 		cout << x[p++] << " ";
@@ -99,8 +107,8 @@ int main(int argc, char const *argv[]){
 	ifstream entrada(argv[1], ifstream::in);
 	int n, x, aux, max;
 	entrada >> n >> max;
-	int caminos[100];	// En gstTripsMadrid_6400 la ruta más larga es de 71 stops
-	int ruta105[100];
+	short caminos[100];	// En gstTripsMadrid_6400 la ruta más larga es de 71 stops
+	short ruta105[100];
 	for(int i = 0; i < n; i++){
 		entrada >> x;
 		caminos[x] = 0;
@@ -117,7 +125,7 @@ int main(int argc, char const *argv[]){
 	entrada.close();
 
 	cout << "rutas\tbytesSuffixTST" << endl;
-	cout << n << "\t" << sizeBytes << endl;
+	cout << n << "\t" << dfsSizeInBytes(root) << endl;
 
 	searchTST(root, ruta105) ? cout << "Found\n"
 						: cout << "Not Found\n";
