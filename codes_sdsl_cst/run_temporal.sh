@@ -22,6 +22,6 @@ do
 	./time_allTopoRels_byQueriesFile ${DATAFOLDER}${filename}.txt ${DATAFOLDER}${filename}.gst ${DATAFOLDER}${filename}.queries.1 10 >> ${OUTPUTFILE}
 done
 
-echo "Fecha FIN construcción: $(date +'%Y/%m/%d %H:%M:%S')"
+echo "Fecha FIN construcción: $(date +'%Y/%m/%d %H:%M:%S')" >> ${OUTPUTFILE}
 exit 0
 

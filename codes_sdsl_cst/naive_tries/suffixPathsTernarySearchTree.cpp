@@ -100,6 +100,7 @@ int main(int argc, char const *argv[]){
 	int n, x, aux, max;
 	entrada >> n >> max;
 	int caminos[100];	// En gstTripsMadrid_6400 la ruta más larga es de 71 stops
+	int ruta105[100];
 	for(int i = 0; i < n; i++){
 		entrada >> x;
 		caminos[x] = 0;
@@ -107,8 +108,7 @@ int main(int argc, char const *argv[]){
 			entrada >> aux;
 			caminos[j] = aux;
 		}
-		//insert(&root, caminos);
-		
+		// Se insertan el camino y todos sus sufijos
 		for(int j=0; j<x; j++){
 			insert(&root, caminos+j);
 		}
@@ -118,6 +118,16 @@ int main(int argc, char const *argv[]){
 
 	cout << "rutas\tbytesSuffixTST" << endl;
 	cout << n << "\t" << sizeBytes << endl;
+
+	searchTST(root, ruta105) ? cout << "Found\n"
+						: cout << "Not Found\n";
+	for(int i=0; i<15; i++){
+		ruta105[i] = i+3;
+	}
+	ruta105[15] = 0;
+	searchTST(root, ruta105) ? cout << "Found\n"
+						: cout << "Not Found\n";
+
 	return 0; 
 } 
 
