@@ -1,13 +1,13 @@
 #!/bin/bash
 
 if [ $# -ne 3 ]; then
-	echo "Usage: $(basename $0) <folder> <output_file> <exec_to_run>"
+	echo "Usage: $(basename $0) <folder> <exec_to_run> <output_file>"
 	exit 1
 fi
 
 DATAFOLDER=$1
-OUTPUTFILE=$2
-RUN=$3
+RUN=$2
+OUTPUTFILE=$3
 
 rm ${RUN}
 g++ -o ${RUN} ${RUN}.cpp
