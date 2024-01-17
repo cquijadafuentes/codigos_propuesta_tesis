@@ -82,26 +82,23 @@ int main(int argc, char const *argv[]){
 
 	unsigned long long t0, t1;
 	vector<int> ks = {1, 3, 5, 10, 15};
-/*
+
 	int resNaive = 0;
-	gst.statsReset();
 	cout << "Ejecutando consultas en implementación Naive..." << endl;
-	for(int k=0; k<ks.size(); k++){
-		t0 = clock();
-		for(int j=0; j<repeticiones; j++){
-		    for(int i=0; i<queries.size(); i++){
-		    	resNaive += tr_allIntersectPP(rutas, queries[i], ks[k]).size();
-		    }
-		}
-		t1 = clock();
-		resNaive /= repeticiones;
-		double tNaive = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
-		double cantLCPNaive = (0.0 + gst.howManyLCP) / queries.size() / repeticiones;
-		double cantNodosNaive = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
-		cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST\tk" << endl;
-		cout << "Naive_allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\tN/A\t[us]\t" << resNaive << "\tN/A\t" << ks[k] << endl;
+	t0 = clock();
+	for(int j=0; j<repeticiones; j++){
+	    for(int i=0; i<queries.size(); i++){
+	    	resNaive += tr_allIntersectPP(rutas, queries[i], 1).size();
+	    }
 	}
-*/
+	t1 = clock();
+	resNaive /= repeticiones;
+	double tNaive = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
+	double cantLCPNaive = (0.0 + gst.howManyLCP) / queries.size() / repeticiones;
+	double cantNodosNaive = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
+	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST\tk" << endl;
+	cout << "Naive_allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\tN/A\t[us]\t" << resNaive << "\tN/A\t" << ks[k] << endl;
+
 
 	gst.statsReset();
 	cout << "Ejecutando consultas en implementación GST..." << endl;
@@ -121,7 +118,7 @@ int main(int argc, char const *argv[]){
 		double cantLCPGST = (0.0 + gst.howManyLCP) / queries.size() / repeticiones;
 		double cantNodosGST = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
 		cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST\tk\thowManyLCP" << endl;
-		cout << "GST_allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\tN/A\t" << tGST << "\t[us]\tN/A\t" << resGST << "\t" << ks[k] << "\t" << gst.howManyLCP << endl;
+		cout << "GST_allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\tN/A\t" << resGST << "\t" << ks[k] << "\t" << gst.howManyLCP << endl;
 		cout << endl;
 	}
 	cout << "---------------------- Fin ----------------------" << endl;
