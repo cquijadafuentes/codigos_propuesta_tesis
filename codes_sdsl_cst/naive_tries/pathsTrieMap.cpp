@@ -162,7 +162,10 @@ int main(int argc, char const *argv[]){
             fscanf(file, "%d", &aux);
             path[j] = aux;
         }
-        root = insert_trie(root, path);
+        // Se insertan el camino y todos sus sufijos
+        for(int j=0; j<x; j++){
+            root = insert_trie(root, path+1);
+        }
     }
     printf("rutas\tbytesTrie\n");
     printf("%d\t%lld\n", n, size_in_bytes(root));
