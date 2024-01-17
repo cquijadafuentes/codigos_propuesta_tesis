@@ -167,7 +167,7 @@ int main(int argc, char const *argv[]){
             root = insert_trie(root, path+1);
         }
     }
-    printf("rutas\tbytesTrie\n");
+    printf("rutas\tbytesTrieMap\n");
     printf("%d\t%lld\n", n, size_in_bytes(root));
     //print_trie(root);
     return 0; 

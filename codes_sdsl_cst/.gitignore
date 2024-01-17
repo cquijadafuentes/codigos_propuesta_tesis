@@ -15,6 +15,7 @@ TopoRel_GST_size
 TopoRel_GST_test_allContained_byQueries
 TopoRel_GST_time
 TopoRel_GST_time_allContained
+TopoRel_Naive_allAnswers
 TopoRel_Naive_PreComp_build
 TopoRel_Naive_PreComp_load
 TopoRel_Naive_PreComp_save-load-test
@@ -24,5 +25,6 @@ TopoRel_Naive_allIntersectPP_byQueries
 TopoRel_Naive_allContained_byQueries
 TopoRel_Naive_allRelation_byQueries
 TopoRel_Naive_compareTime_allContained
+TopoRel_Naive_lengthQueries
 TopoRel_Naive_size
 TopoRel_Naive_time

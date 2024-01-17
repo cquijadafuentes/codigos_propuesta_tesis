@@ -21,10 +21,11 @@ BINS=time_allContained_byQueriesFile\
 		TopoRel_Naive_allIntersect_byQueries\
 		TopoRel_Naive_allIntersectPP_byQueries\
 		TopoRel_Naive_allRelation_byQueries\
+		TopoRel_Naive_compareTime_allContained\
+		TopoRel_Naive_lengthQueries\
 		TopoRel_Naive_time\
 		TopoRel_Naive_size\
-		TopoRel_Naive_test\
-		TopoRel_Naive_compareTime_allContained
+		TopoRel_Naive_test
 
 OBJECTS=TopoRel_GST.o\
 		TopoRel_Naive.o
@@ -88,6 +89,12 @@ TopoRel_Naive_allIntersectPP_byQueries:
 TopoRel_Naive_allRelation_byQueries:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_allRelation_byQueries TopoRel_Naive_allRelation_byQueries.cpp $(OBJECTS) $(POSFLAGS)
 
+TopoRel_Naive_compareTime_allContained:
+	$(CPP) $(PREFLAGS) -o TopoRel_Naive_compareTime_allContained TopoRel_Naive_compareTime_allContained.cpp $(OBJECTS) $(POSFLAGS)
+
+TopoRel_Naive_lengthQueries:
+	$(CPP) $(PREFLAGS) -o TopoRel_Naive_lengthQueries TopoRel_Naive_lengthQueries.cpp $(OBJECTS) $(POSFLAGS)
+
 TopoRel_Naive_time:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_time TopoRel_Naive_time.cpp $(OBJECTS) $(POSFLAGS)
 
@@ -96,9 +103,6 @@ TopoRel_Naive_size:
 
 TopoRel_Naive_test:
 	$(CPP) $(PREFLAGS) -o TopoRel_Naive_test TopoRel_Naive_test.cpp $(OBJECTS) $(POSFLAGS)
-
-TopoRel_Naive_compareTime_allContained:
-	$(CPP) $(PREFLAGS) -o TopoRel_Naive_compareTime_allContained TopoRel_Naive_compareTime_allContained.cpp $(OBJECTS) $(POSFLAGS)
 
 clean:
 	rm -f $(BINS) $(OBJECTS)
