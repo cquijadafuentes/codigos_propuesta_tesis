@@ -37,6 +37,7 @@ set output 'tiempo_allIntersect_xl_stops_variables.png'
 plot 'data_tripsxl_random_allIntersect_k1' using 5:xtic(3) title 'Baseline' with linespoints pt 5 lc rgb gold,   \
      '' using 6 title 'TRGST_{1}' with linespoints pt 4 lc rgb red,   \
      'data_tripsxl_random_allIntersect_k5' using 6:xtic(3) title 'TRGST_{5}' with linespoints pt 4 lc rgb green,   \
+     'data_tripsxl_random_allIntersect_k10' using 6:xtic(3) title 'TRGST_{10}' with linespoints pt 4 lc rgb skyblue,   \
      'data_tripsxl_random_allIntersect_k15' using 6:xtic(3) title 'TRGST_{15}' with linespoints pt 4 lc rgb blue
 
 
@@ -44,8 +45,18 @@ plot 'data_tripsxl_random_allIntersect_k1' using 5:xtic(3) title 'Baseline' with
 set ylabel "Cantidad de resultados"
 set xlabel "Cantidad de stops"
 set output 'cantidad_resultados_stops_variables.png'
-set title 'Resultados en Operación AllContain [d:tripsXL - s:tumbes]'
+set title 'Resultados en Operación allContain-allContained-allEqual'
 plot 'data_tripsxl_random_allContain' using 8:xtic(3) title 'allContain' with linespoints pt 4 lc rgb red, \
      'data_tripsxl_random_allContained' using 8:xtic(3) title 'allContained' with linespoints pt 4 lc rgb green, \
      'data_tripsxl_random_allEqual' using 8:xtic(3) title 'allEqual' with linespoints pt 4 lc rgb blue
+
+
+set ylabel "Cantidad de resultados"
+set xlabel "Cantidad de stops"
+set output 'cantidad_resultados_stops_variables_intersection_k.png'
+set title 'Resultados en Operación allIntersect k[1,5,15]'
+plot 'data_tripsxl_random_allIntersect_k1' using 8:xtic(3) title 'TRGST_{1}' with linespoints pt 4 lc rgb red,   \
+     'data_tripsxl_random_allIntersect_k5' using 8:xtic(3) title 'TRGST_{5}' with linespoints pt 4 lc rgb green,   \
+     'data_tripsxl_random_allIntersect_k10' using 8:xtic(3) title 'TRGST_{10}' with linespoints pt 4 lc rgb skyblue,   \
+     'data_tripsxl_random_allIntersect_k15' using 8:xtic(3) title 'TRGST_{15}' with linespoints pt 4 lc rgb blue
 
