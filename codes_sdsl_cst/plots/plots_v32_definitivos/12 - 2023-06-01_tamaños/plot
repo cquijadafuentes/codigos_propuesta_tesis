@@ -106,5 +106,6 @@ set title 'Tamaño cst vs suffixTST'
 set output 'img_size_cst_vs_suffixTST_log.png'
 plot 'size_trips_xl' using 2:xtic(1) title 'cst' with linespoints lt 2 pt 7 lc rgb red,   \
      '' using 12 title 'suffTST' with linespoints lt 2 pt 7 lc rgb blue,   \
-     '' using 13 title 'suffTrieM' with linespoints lt 2 pt 7 lc rgb skyblue
+     '' using 13 title 'TrieMap' with linespoints lt 2 pt 7 lc rgb skyblue,   \
+     '' using 14 title 'suffTrieMap' with linespoints lt 2 pt 7 lc rgb green
 

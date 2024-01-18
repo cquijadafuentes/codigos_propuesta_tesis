@@ -1,0 +1,58 @@
+Fecha INICIO: 2024/01/18 01:06:29
+Directorio de inicio: 
+/home/users/caquijada/udec_doc/codigos_propuesta_tesis/codes_sdsl_cst/naive_tries
+Directorio de datos: /home/users/caquijada/udec_doc/datasets/
+
+Corriendo pathsTrieMap
+Procesando gst_tripsMadrid_0005k.txt...
+rutas	bytesTrieMap
+5000	2799863
+Procesando gst_tripsMadrid_0010k.txt...
+rutas	bytesTrieMap
+10000	4914443
+Procesando gst_tripsMadrid_0015k.txt...
+rutas	bytesTrieMap
+15000	6569863
+Procesando gst_tripsMadrid_0020k.txt...
+rutas	bytesTrieMap
+20000	7893393
+Procesando gst_tripsMadrid_0025k.txt...
+rutas	bytesTrieMap
+25000	8948993
+Procesando gst_tripsMadrid_0030k.txt...
+rutas	bytesTrieMap
+30000	9829743
+Procesando gst_tripsMadrid_0035k.txt...
+rutas	bytesTrieMap
+35000	10566973
+Procesando gst_tripsMadrid_0040k.txt...
+rutas	bytesTrieMap
+40000	11190973
+Procesando gst_tripsMadrid_0045k.txt...
+rutas	bytesTrieMap
+45000	11737883
+Procesando gst_tripsMadrid_0050k.txt...
+rutas	bytesTrieMap
+50007	12232078
+Procesando gst_tripsMadrid_0100k.txt...
+rutas	bytesTrieMap
+100000	15217723
+Procesando gst_tripsMadrid_0200k.txt...
+rutas	bytesTrieMap
+200007	17587493
+Procesando gst_tripsMadrid_0400k.txt...
+rutas	bytesTrieMap
+400824	19642728
+Procesando gst_tripsMadrid_0800k.txt...
+rutas	bytesTrieMap
+800650	21187778
+Procesando gst_tripsMadrid_1600k.txt...
+rutas	bytesTrieMap
+1601315	22361093
+Procesando gst_tripsMadrid_3200k.txt...
+rutas	bytesTrieMap
+3204779	23176323
+Procesando gst_tripsMadrid_6400k.txt...
+rutas	bytesTrieMap
+6449617	23755018
+Fecha FIN: 2024/01/18 01:07:04
