@@ -1,0 +1,45 @@
+Fecha INICIO ejecución: 2024/01/11 05:32:31
+Directorio de inicio: 
+/home/users/caquijada/udec_doc/codigos_propuesta_tesis/codes_sdsl_cst
+
+Procesando gst_tripsMadrid_0010k.txt...
+allContain 
+allContained
+allEqual 
+allIntersect 
+calculando tamaño
+rutas	stops	snaive	srels
+10000	11010	295848	87725129
+Procesando gst_tripsMadrid_0020k.txt...
+allContain 
+allContained
+allEqual 
+allIntersect 
+calculando tamaño
+rutas	stops	snaive	srels
+20000	11010	593544	375719721
+Procesando gst_tripsMadrid_0030k.txt...
+allContain 
+allContained
+allEqual 
+allIntersect 
+calculando tamaño
+rutas	stops	snaive	srels
+30000	11010	892728	845189849
+Procesando gst_tripsMadrid_0040k.txt...
+allContain 
+allContained
+allEqual 
+allIntersect 
+calculando tamaño
+rutas	stops	snaive	srels
+40000	11010	1188352	1602568089
+Procesando gst_tripsMadrid_0050k.txt...
+allContain 
+allContained
+allEqual 
+allIntersect 
+calculando tamaño
+rutas	stops	snaive	srels
+50007	11010	1486271	2504527489
+Fecha FIN ejecución: 2024/01/11 11:07:09

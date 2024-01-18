@@ -109,3 +109,14 @@ plot 'size_trips_xl' using 2:xtic(1) title 'cst' with linespoints lt 2 pt 7 lc r
      '' using 13 title 'TrieMap' with linespoints lt 2 pt 7 lc rgb skyblue,   \
      '' using 14 title 'suffTrieMap' with linespoints lt 2 pt 7 lc rgb green
 
+
+
+set xrange [0.5:5.5]
+
+
+
+set title 'Tamaño naive answers'
+set output 'img_size_naive_answers.png'
+plot 'size_naive_answers' using 3:xtic(1) title 'naive' with linespoints lt 2 pt 7 lc rgb red,   \
+     '' using 4 title 'answers' with linespoints lt 2 pt 7 lc rgb blue
+
