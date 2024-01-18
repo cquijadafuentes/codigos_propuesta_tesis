@@ -97,7 +97,7 @@ int main(int argc, char const *argv[]){
 	double cantLCPNaive = (0.0 + gst.howManyLCP) / queries.size() / repeticiones;
 	double cantNodosNaive = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST\tk" << endl;
-	cout << "Naive_allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\tN/A\t[us]\t" << resNaive << "\tN/A\t" << ks[k] << endl;
+	cout << "Naive_allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\tN/A\t[us]\t" << resNaive << "\tN/A\t1" << endl;
 
 
 	gst.statsReset();
