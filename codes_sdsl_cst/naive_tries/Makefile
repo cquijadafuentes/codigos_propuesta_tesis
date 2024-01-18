@@ -6,6 +6,7 @@ pathsTernarySearchTree\
 pathsTrie\
 pathsTrieMap\
 suffixPathsTernarySearchTree\
+suffixPathsTrieMap\
 ternarySearchTree\
 trie
 
@@ -31,6 +32,9 @@ pathsTrieMap:
 
 suffixPathsTernarySearchTree:
 	$(CPP) -o suffixPathsTernarySearchTree suffixPathsTernarySearchTree.cpp
+
+suffixPathsTrieMap:
+	$(CPP) -o suffixPathsTrieMap suffixPathsTrieMap.cpp
 
 ternarySearchTree:
 	$(CPP) -o ternarySearchTree ternarySearchTree.cpp

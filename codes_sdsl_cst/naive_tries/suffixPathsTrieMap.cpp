@@ -162,8 +162,11 @@ int main(int argc, char const *argv[]){
             fscanf(file, "%d", &aux);
             path[j] = aux;
         }
-        
-        root = insert_trie(root, path);
+        // Se insertan el camino y todos sus sufijos
+        for(int j=0; j<x; j++){
+            root = insert_trie(root, path+j);
+            path[j+1] = path[j]-1;
+        }
     }
     printf("rutas\tbytesTrieMap\n");
     printf("%d\t%lld\n", n, size_in_bytes(root));
