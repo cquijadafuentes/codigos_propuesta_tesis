@@ -102,7 +102,7 @@ plot 'size_trips_xl' using 8:xtic(1) title 'GST' with linespoints lt 2 pt 7 lc r
 
 
 
-set title 'Tamaño cst vs suffixTST'
+set title 'Tamaño cst vs otros'
 set output 'img_size_cst_vs_suffixTST_log.png'
 plot 'size_trips_xl' using 2:xtic(1) title 'cst' with linespoints lt 2 pt 7 lc rgb red,   \
      '' using 12 title 'suffTST' with linespoints lt 2 pt 7 lc rgb blue,   \
