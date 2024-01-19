@@ -5,6 +5,7 @@ intTrie\
 pathsTernarySearchTree\
 pathsTrie\
 pathsTrieMap\
+suffixArrayEstimation\
 suffixPathsTernarySearchTree\
 suffixPathsTrieMap\
 ternarySearchTree\
@@ -29,6 +30,9 @@ pathsTrie:
 
 pathsTrieMap:
 	$(CPP) -o pathsTrieMap pathsTrieMap.cpp
+
+suffixArrayEstimation:
+	$(CPP) -o suffixArrayEstimation suffixArrayEstimation.cpp
 
 suffixPathsTernarySearchTree:
 	$(CPP) -o suffixPathsTernarySearchTree suffixPathsTernarySearchTree.cpp
