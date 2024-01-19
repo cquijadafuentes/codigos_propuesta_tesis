@@ -17,9 +17,9 @@ echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFI
 echo "**************** DATASET = ${DATAFOLDER1} ****************" >> ${OUTPUTFILE}
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" >> ${OUTPUTFILE}
 
-for filename in gst_tripsMadrid_6400k gst_tripsMadrid_3200k gst_tripsMadrid_1600k gst_tripsMadrid_0800k gst_tripsMadrid_0400k gst_tripsMadrid_0200k gst_tripsMadrid_0100k gst_tripsMadrid_0050k
+for filename in gst_800ktrips_02kstops gst_800ktrips_04kstops gst_800ktrips_06kstops gst_800ktrips_08kstops gst_800ktrips_10kstops
 do
-	./time_allIntersectPPk_byQueriesFile ${DATAFOLDER1}${filename}.txt ${DATAFOLDER1}${filename}.gst ${DATAFOLDER1}${filename}.queries.interPP_k ${REPETICIONES} >> ${OUTPUTFILE}
+	./time_allIntersectPPk_byQueriesFile ${DATAFOLDER1}${filename}.txt ${DATAFOLDER1}${filename}.gst ${DATAFOLDER1}${filename}.queries.intersect ${REPETICIONES} >> ${OUTPUTFILE}
 done
 echo " ----------------------------------------------------- " >> ${OUTPUTFILE}
 
