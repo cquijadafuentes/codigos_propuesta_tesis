@@ -81,7 +81,7 @@ int main(int argc, char const *argv[]){
 	cout << "Repeticiones a realizar: " << repeticiones << endl;
 
 	unsigned long long t0, t1;
-	vector<int> ks = {1, 3, 5, 10, 15};
+	vector<int> ks = {1, 5, 10, 15};
 
 	int resNaive = 0;
 	cout << "Ejecutando consultas en implementación Naive..." << endl;
