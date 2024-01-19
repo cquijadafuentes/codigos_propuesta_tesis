@@ -25,8 +25,9 @@ int main(int argc, char const *argv[]){
 	cantSeqConcat += 1; 		// El caracter de fin de secuencia (0)
 	entrada.close();
 	double logaritmo = log2(cantSeqConcat);
-	double bytes = ceil(logaritmo)/8;
-	cout << "rutas\tsecConcat\tbytes" << endl;
-	cout << n << "\t" << cantSeqConcat << "\t" << bytes << endl;
+	double cielo = ceil(logaritmo);
+	double bytes = (cielo * cantSeqConcat)/8;
+	cout << "rutas\tsecConcat\tbitsxNum\tbytes" << endl;
+	cout << n << "\t" << cantSeqConcat << "\t" << cielo << "\t" << bytes << endl;
 	return 0; 
 }

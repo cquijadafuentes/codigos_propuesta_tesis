@@ -1,0 +1,58 @@
+Fecha INICIO: 2024/01/19 01:50:54
+Directorio de inicio: 
+/home/carlos/codigos_propuesta_tesis/codes_sdsl_cst/naive_tries
+Directorio de datos: /home/carlos/datasets/trips/
+
+Corriendo suffixArrayEstimation
+Procesando gst_tripsMadrid_0005k.txt...
+rutas	secConcat	bitsxNum	bytes
+5000	54646	16	109292
+Procesando gst_tripsMadrid_0010k.txt...
+rutas	secConcat	bitsxNum	bytes
+10000	109783	17	233289
+Procesando gst_tripsMadrid_0015k.txt...
+rutas	secConcat	bitsxNum	bytes
+15000	165758	18	372956
+Procesando gst_tripsMadrid_0020k.txt...
+rutas	secConcat	bitsxNum	bytes
+20000	220913	18	497054
+Procesando gst_tripsMadrid_0025k.txt...
+rutas	secConcat	bitsxNum	bytes
+25000	277057	19	658010
+Procesando gst_tripsMadrid_0030k.txt...
+rutas	secConcat	bitsxNum	bytes
+30000	332808	19	790419
+Procesando gst_tripsMadrid_0035k.txt...
+rutas	secConcat	bitsxNum	bytes
+35000	387951	19	921384
+Procesando gst_tripsMadrid_0040k.txt...
+rutas	secConcat	bitsxNum	bytes
+40000	442884	19	1.05185e+06
+Procesando gst_tripsMadrid_0045k.txt...
+rutas	secConcat	bitsxNum	bytes
+45000	498209	19	1.18325e+06
+Procesando gst_tripsMadrid_0050k.txt...
+rutas	secConcat	bitsxNum	bytes
+50007	554035	20	1.38509e+06
+Procesando gst_tripsMadrid_0100k.txt...
+rutas	secConcat	bitsxNum	bytes
+100000	1108637	21	2.91017e+06
+Procesando gst_tripsMadrid_0200k.txt...
+rutas	secConcat	bitsxNum	bytes
+200007	2213126	22	6.0861e+06
+Procesando gst_tripsMadrid_0400k.txt...
+rutas	secConcat	bitsxNum	bytes
+400824	4432215	23	1.27426e+07
+Procesando gst_tripsMadrid_0800k.txt...
+rutas	secConcat	bitsxNum	bytes
+800650	8859760	24	2.65793e+07
+Procesando gst_tripsMadrid_1600k.txt...
+rutas	secConcat	bitsxNum	bytes
+1601315	17715131	25	5.53598e+07
+Procesando gst_tripsMadrid_3200k.txt...
+rutas	secConcat	bitsxNum	bytes
+3204779	35451325	26	1.15217e+08
+Procesando gst_tripsMadrid_6400k.txt...
+rutas	secConcat	bitsxNum	bytes
+0	1	0	0
+Fecha FIN: 2024/01/19 01:51:02
