@@ -1,17 +1,17 @@
 allContain XL:
-	'17'
+	'18'
 	
 allEqual:
-	'17'
+	'18'
 	
 allContained XL:
-	'17'
+	'18'
 
 allContained 5k-50k:
 	'17'
 
 allIntersectPP_k:
-	'15 - 2023-06-15_tiempo_tumbes_allIntersectPP_k'
+	'17 - 2023-06-15_tiempo_tumbes_allIntersectPP_k'
 
 sizes:
 	'12 - 2023-06-01_tamaños'
