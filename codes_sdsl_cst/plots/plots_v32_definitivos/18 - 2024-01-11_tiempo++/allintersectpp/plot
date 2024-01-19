@@ -6,7 +6,7 @@ set terminal png size 800,400
 set xrange [0.5:8.5]
 set logscale y
 
-set ylabel "Time [us]"
+set ylabel "Time [us](log)"
 set xlabel "Number of Paths"
 
 
