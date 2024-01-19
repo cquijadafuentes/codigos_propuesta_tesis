@@ -34,11 +34,11 @@ plot 'data_tripsxl_random_allEqual' using 5:xtic(3) title 'Baseline' with linesp
 
 set output 'tiempo_allIntersect_xl_stops_variables.png'
 #set title 'Time en Operación AllIntersect [d:tripsXL - q:random [1000-3r] - s:tumbes]'
-plot 'data_tripsxl_random_allIntersect_k1' using 5:xtic(3) title 'Baseline' with linespoints pt 5 lc rgb gold,   \
-     '' using 6 title 'TRGST_{1}' with linespoints pt 4 lc rgb red,   \
+plot 'data_tripsxl_random_allIntersect_k1' using 5:xtic(3) title 'Baseline' with linespoints pt 5 lc rgb red,   \
+     '' using 6 title 'TRGST_{1}' with linespoints pt 4 lc rgb blue,   \
      'data_tripsxl_random_allIntersect_k5' using 6:xtic(3) title 'TRGST_{5}' with linespoints pt 4 lc rgb green,   \
-     'data_tripsxl_random_allIntersect_k10' using 6:xtic(3) title 'TRGST_{10}' with linespoints pt 4 lc rgb skyblue,   \
-     'data_tripsxl_random_allIntersect_k15' using 6:xtic(3) title 'TRGST_{15}' with linespoints pt 4 lc rgb blue
+     'data_tripsxl_random_allIntersect_k10' using 6:xtic(3) title 'TRGST_{10}' with linespoints pt 4 lc rgb darkgreen,   \
+     'data_tripsxl_random_allIntersect_k15' using 6:xtic(3) title 'TRGST_{15}' with linespoints pt 4 lc rgb skyblue
 
 
 

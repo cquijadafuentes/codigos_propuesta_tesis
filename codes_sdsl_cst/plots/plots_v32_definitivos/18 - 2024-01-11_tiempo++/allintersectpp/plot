@@ -16,7 +16,8 @@ set output 'tiempo_allIntersectPP_xl.png'
 plot 'data_xl' using 4:xtic(2) title 'Baseline' with linespoints pt 4 lc rgb red,   \
      'data_xl' using 5 title 'TRGST_{k=1}' with linespoints pt 4 lc rgb blue,   \
      'data_xl_k05' using 5 title 'TRGST_{k=5}' with linespoints pt 4 lc rgb green,   \
-     'data_xl_k10' using 5 title 'TRGST_{k=10}' with linespoints pt 4 lc rgb darkgreen
+     'data_xl_k10' using 5 title 'TRGST_{k=10}' with linespoints pt 4 lc rgb darkgreen,   \
+     'data_xl_k15' using 5 title 'TRGST_{k=15}' with linespoints pt 4 lc rgb skyblue
 
 
 set ylabel "Cantidad de resultados"
