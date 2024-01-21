@@ -175,6 +175,8 @@ int main(int argc, char const *argv[]){
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
 	cout << "allEqual\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
 
+	return 0;
+
 	//////////////////	allIntersect 	//////////////////
 /*
 	resNaive = 0;
