@@ -19,8 +19,8 @@ echo "" >> ${OUTPUTFILE}
 ./extras/generador_consultas/generador_consultas ${DATAFOLDER}${FILENAME}.txt ${DATAFOLDER}${FILENAME}.queries.1 50 1
 ./extras/generador_consultas/generador_consultas ${DATAFOLDER}${FILENAME}.txt ${DATAFOLDER}${FILENAME}.queries.intersect 50 2
 
-./time_allTopoRels_byQueriesFile ${DATAFOLDER}${FILENAME}.txt ${DATAFOLDER}${FILENAME}.gst ${DATAFOLDER}${FILENAME}.queries.1 1 >> ${OUTPUTFILE}.tumbes.allTopoRels.10M
-./time_allIntersectPPk_byQueriesFile ${DATAFOLDER}${FILENAME}.txt ${DATAFOLDER}${FILENAME}.gst ${DATAFOLDER}${FILENAME}.queries.intersect 1 >> ${OUTPUTFILE}.tumbes.allTopoRels.10M
+./time_allTopoRels_byQueriesFile ${DATAFOLDER}${FILENAME}.txt ${DATAFOLDER}${FILENAME}.gst ${DATAFOLDER}${FILENAME}.queries.1 1 >> ${OUTPUTFILE}
+./time_allIntersectPPk_byQueriesFile ${DATAFOLDER}${FILENAME}.txt ${DATAFOLDER}${FILENAME}.gst ${DATAFOLDER}${FILENAME}.queries.intersect 1 >> ${OUTPUTFILE}
 
 echo "Fecha FIN construcción: $(date +'%Y/%m/%d %H:%M:%S')" >> ${OUTPUTFILE}
 
