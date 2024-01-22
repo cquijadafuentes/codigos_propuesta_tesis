@@ -67,6 +67,31 @@ int main(int argc, char const *argv[]){
 		newStop++;
 	}
 	cout << "Cantidad de elementos en el map: " << newIds.size() << endl;
+
+	cout << "Limpiando trips... (" << paths.size() << ")" << endl;
+	// Verificar que las lineas son equivalentes a segmentos de linea simples
+	// No hay intersección consigo mismos, ni en interior ni en bordes
+	int cantRedFlags = 0;
+	for(int i = 0; i < paths.size(); i++){
+		// Comprobar que si cumple con un segmento de línea simple
+		bool redFlag = false;
+		for(int j = 0; j < paths[i].size()-1; j++){
+			for(int k = j + 1; k < paths[i].size(); k++){
+				if(paths[i][j] == paths[i][k]){
+					redFlag = true;
+				}
+			}
+		}
+		if(redFlag){
+			cantRedFlags++;
+			//cout << "TRIP con intersección consigo mismo" << endl;
+			// Se elimina la línea
+			paths.erase(paths.begin() + i);
+			i--;
+		}
+	}
+	cout << cantRedFlags << " Trips eliminados en el proceso." << endl;
+	cout << paths.size() << " Trips identificados." << endl;
 	
 	cout << "Generando archivo de salida..." << endl;
 	fstream salida(argv[3], fstream::out);
