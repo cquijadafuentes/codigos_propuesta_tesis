@@ -1,13 +1,13 @@
 #!/bin/bash
 
 if [ $# -ne 2 ]; then
-	echo "Usage: $(basename $0) <data_folder> <output_file> <data_basefilename>"
+	echo "Usage: $(basename $0) <data_folder> <data_basefilename> <output_file>"
 	exit 1
 fi
 
 DATAFOLDER=$1
-OUTPUTFILE=$2
-FILENAME=$3
+FILENAME=$2
+OUTPUTFILE=$3
 
 echo "Fecha INICIO construcción: $(date +'%Y/%m/%d %H:%M:%S')" > ${OUTPUTFILE}
 echo "Directorio de inicio: " >> ${OUTPUTFILE}
