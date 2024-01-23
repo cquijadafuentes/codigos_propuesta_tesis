@@ -14,7 +14,8 @@ echo "Directorio de inicio: " >> ${OUTPUTFILE}
 pwd >> ${OUTPUTFILE}
 echo "" >> ${OUTPUTFILE}
 
-./extras/dataset_madrid/procesa_madrid_trips ${DATAFOLDER}lineStops.txt ${DATAFOLDER}madrid_trips.txt 10000000 > ${DATAFOLDER}${FILENAME}.txt
+./extras/dataset_madrid/procesa_madrid_trips ${DATAFOLDER}lineStops.txt ${DATAFOLDER}madrid_trips.txt 10000000
+mv gst_tripsMadrid.txt ${DATAFOLDER}${FILENAME}.txt
 ./TopoRel_GST_build ${DATAFOLDER}${FILENAME}.txt ${DATAFOLDER}${FILENAME}.gst
 ./extras/generador_consultas/generador_consultas ${DATAFOLDER}${FILENAME}.txt ${DATAFOLDER}${FILENAME}.queries.1 50 1
 ./extras/generador_consultas/generador_consultas ${DATAFOLDER}${FILENAME}.txt ${DATAFOLDER}${FILENAME}.queries.intersect 50 2
