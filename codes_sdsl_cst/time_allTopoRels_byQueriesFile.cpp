@@ -179,6 +179,8 @@ int main(int argc, char const *argv[]){
 
 	//////////////////	allIntersectPP 	//////////////////
 
+	return 0;
+
 	vector<int> ks = {1, 5, 10, 15};
 	resNaive = 0;
 	cout << "Ejecutando allIntersectPP Naive..." << endl;
