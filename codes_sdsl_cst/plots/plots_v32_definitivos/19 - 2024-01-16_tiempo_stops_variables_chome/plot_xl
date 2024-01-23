@@ -55,8 +55,8 @@ set ylabel "Cantidad de resultados"
 set xlabel "Cantidad de stops"
 set output 'cantidad_resultados_stops_variables_intersection_k.png'
 set title 'Resultados en Operación allIntersect k[1,5,10,15]'
-plot 'data_tripsxl_random_allIntersect_k1' using 8:xtic(3) title 'TRGST_{1}' with linespoints pt 4 lc rgb red,   \
-     'data_tripsxl_random_allIntersect_k5' using 8:xtic(3) title 'TRGST_{5}' with linespoints pt 4 lc rgb green,   \
-     'data_tripsxl_random_allIntersect_k10' using 8:xtic(3) title 'TRGST_{10}' with linespoints pt 4 lc rgb skyblue,   \
-     'data_tripsxl_random_allIntersect_k15' using 8:xtic(3) title 'TRGST_{15}' with linespoints pt 4 lc rgb blue
+plot 'data_tripsxl_random_allIntersect_k1' using 9:xtic(3) title 'TRGST_{1}' with linespoints pt 4 lc rgb red,   \
+     'data_tripsxl_random_allIntersect_k5' using 9:xtic(3) title 'TRGST_{5}' with linespoints pt 4 lc rgb green,   \
+     'data_tripsxl_random_allIntersect_k10' using 9:xtic(3) title 'TRGST_{10}' with linespoints pt 4 lc rgb skyblue,   \
+     'data_tripsxl_random_allIntersect_k15' using 9:xtic(3) title 'TRGST_{15}' with linespoints pt 4 lc rgb blue
 

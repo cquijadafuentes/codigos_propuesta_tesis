@@ -4,6 +4,7 @@
 	Las consultas provienen de un archivo de consulta generado con 
 	./extras/generador_consultas
 */
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -78,6 +79,7 @@ int main(int argc, char const *argv[]){
 	}
 
 	cout << "Rutas: " << gst.n_rutas << endl;
+	cout << "Stops: " << gst.n_stops << endl;
 	cout << "Ruta más corta: " << gst.len_min << endl;
 	cout << "Ruta más larga: " << gst.len_max << endl;
 	cout << "Consultas a realizar: " << num_queries << endl;
@@ -175,40 +177,9 @@ int main(int argc, char const *argv[]){
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
 	cout << "allEqual\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
 
-	return 0;
-
-	//////////////////	allIntersect 	//////////////////
-/*
-	resNaive = 0;
-	cout << "Ejecutando allIntersect Naive..." << endl;
-	t0 = clock();
-	for(int j=0; j<repeticiones; j++){
-	    for(int i=0; i<queries.size(); i++){
-	    	resNaive += tr_allIntersect(rutas, queries[i]).size();
-	    }
-	}
-	t1 = clock();
-	resNaive /= repeticiones;
-	tNaive = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;	
-
-	resGST = 0;
-	cout << "Ejecutando allIntersect GST6..." << endl;
-	t0 = clock();
-	for(int j=0; j<repeticiones; j++){
-	    for(int i=0; i<queries.size(); i++){
-	    	resGST += gst.tr_allIntersect(queries[i]).size();
-	    }
-	}
-	t1 = clock();
-	resGST /= repeticiones;
-	tGST = ((((double)(t1 - t0)) / CLOCKS_PER_SEC) / queries.size() / repeticiones)* 1000000;
-
-	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
-	cout << "allIntersect\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
-*/
 	//////////////////	allIntersectPP 	//////////////////
 
-	vector<int> ks = {1, 3, 5, 10, 15};
+	vector<int> ks = {1, 5, 10, 15};
 	resNaive = 0;
 	cout << "Ejecutando allIntersectPP Naive..." << endl;
 
@@ -242,7 +213,14 @@ int main(int argc, char const *argv[]){
 		double cantNodosGST = (0.0 + gst.howManyNodes) / queries.size() / repeticiones;
 		
 		cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST\tk" << endl;
-		cout << "allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << "\t" << ks[k] << endl;
+		cout << "allIntersectPP\t";
+		cout << gst.n_rutas << "\t";
+		cout << num_queries << "\t";
+		cout << tNaive << "\t";
+		cout << tGST << "\t[us]\t";
+		cout << resNaive << "\t";
+		cout << resGST << "\t";
+		cout << ks[k] << endl;
 		cout << endl;
 	}		
 

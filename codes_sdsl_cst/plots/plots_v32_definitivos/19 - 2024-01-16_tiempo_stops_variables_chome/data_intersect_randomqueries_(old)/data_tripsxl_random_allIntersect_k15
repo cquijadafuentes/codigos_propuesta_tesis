@@ -1,0 +1,6 @@
+operacion	rutas	stops	queries	tNaive	tGST	[us]	rNaive	rGST	k
+allIntersectPP	794884	2000	200	3.57229e+06	44611.8	[us]	4392	4392	15
+allIntersectPP	798431	4000	200	3.84862e+06	123718	[us]	7873	7873	15
+allIntersectPP	798617	6000	200	3.85773e+06	117582	[us]	7972	7972	15
+allIntersectPP	798665	8000	200	3.70226e+06	96856.6	[us]	5520	5520	15
+allIntersectPP	798665	10000	200	3.76171e+06	131975	[us]	6695	6695	15

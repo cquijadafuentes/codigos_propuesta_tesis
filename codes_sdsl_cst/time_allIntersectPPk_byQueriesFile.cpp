@@ -75,6 +75,7 @@ int main(int argc, char const *argv[]){
 
 	// Mostrando información de los datos:
 	cout << "Rutas: " << gst.n_rutas << endl;
+	cout << "Stops: " << gst.n_stops << endl;
 	cout << "Ruta más corta: " << gst.len_min << endl;
 	cout << "Ruta más larga: " << gst.len_max << endl;
 	cout << "Consultas a realizar: " << num_queries << endl;
