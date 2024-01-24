@@ -1,0 +1,5 @@
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	64574	50	1.25241e+07	3.04809e+07	[us]	N/A	175074	1	1259289
+GST_allIntersectPP	64574	50	1.25241e+07	1.51877e+07	[us]	N/A	80149	5	628072
+GST_allIntersectPP	64574	50	1.25241e+07	7.44824e+06	[us]	N/A	34948	10	309722
+GST_allIntersectPP	64574	50	1.25241e+07	4.18865e+06	[us]	N/A	15989	15	176025

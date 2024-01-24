@@ -1,0 +1,26 @@
+Ejecutando: /home/users/caquijada/udec_doc/codigos_propuesta_tesis/codes_sdsl_cst/time_allIntersectPPk_byQueriesFile gst_tripsCompressDataset.txt gst_tripsCompressDataset.gst gst_tripsCompressDataset.queries.intersect 1 
+Cargando estructuras...
+Cargando consultas...
+Rutas: 64574
+Stops: 62584
+Ruta más corta: 2
+Ruta más larga: 348
+Consultas a realizar: 50
+Repeticiones a realizar: 1
+Ejecutando consultas en implementación Naive...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	64574	50	1.25241e+07	N/A	[us]	175074	N/A	1
+Ejecutando consultas en implementación GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	64574	50	1.25241e+07	3.04809e+07	[us]	N/A	175074	1	1259289
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	64574	50	1.25241e+07	1.51877e+07	[us]	N/A	80149	5	628072
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	64574	50	1.25241e+07	7.44824e+06	[us]	N/A	34948	10	309722
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	64574	50	1.25241e+07	4.18865e+06	[us]	N/A	15989	15	176025
+
+---------------------- Fin ----------------------

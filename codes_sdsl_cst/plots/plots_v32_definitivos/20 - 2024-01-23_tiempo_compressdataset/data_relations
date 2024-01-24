@@ -1,0 +1,4 @@
+operacion	nombre	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	Contains	64574	200	93742.9	468405	[us]	642	642
+allContain	Within	64574	200	98362.4	2858.62	[us]	684	684
+allEqual	Equals	64574	200	753.51	0.72	[us]	206	206

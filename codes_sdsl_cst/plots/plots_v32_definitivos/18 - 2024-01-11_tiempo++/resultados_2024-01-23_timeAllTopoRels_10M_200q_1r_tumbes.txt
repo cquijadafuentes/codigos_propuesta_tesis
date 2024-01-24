@@ -1,0 +1,22 @@
+Ejecutando: /home/users/caquijada/udec_doc/codigos_propuesta_tesis/codes_sdsl_cst/time_allTopoRels_byQueriesFile gst_tripsMadrid_10M.txt gst_tripsMadrid_10M.gst gst_tripsMadrid_10M.queries.1 1 
+Cargando consultas desde gst_tripsMadrid_10M.queries.1
+Leyendo rutas desde gst_tripsMadrid_10M.txt
+Cargando estructura GST desde gst_tripsMadrid_10M.gst
+Rutas: 9922566
+Stops: 11010
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 200
+Repeticiones a realizar: 1
+Ejecutando allContain Naive...
+Ejecutando allContain GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContain	9922566	200	5.29773e+06	1.59661e+06	[us]	638366	638366
+Ejecutando allContained Naive...
+Ejecutando allContained GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allContained	9922566	200	5.61639e+06	266930	[us]	620360	620360
+Ejecutando allEqual Naive...
+Ejecutando allEqual GST6...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST
+allEqual	9922566	200	168896	32.075	[us]	50105	50105
