@@ -19,5 +19,5 @@ set xrange [0.8:4.2]
 set xlabel "k"
 set output 'fit_tiempo_allIntersectPP_k_compress.png'
 #set title 'Tiempo en Operación AllIntersectPP_k [d:tripsXL - q:largest [200-1r] - s:tumbes]'
-plot 'data_intersect' using 5:xtic(9) title 'Baseline' with linespoints pt 5 lc rgb red,   \
-     '' using 4 title 'TRGST' with line lt 1 lc rgb blue
+plot 'data_intersect' using 4:xtic(9) title 'Baseline' with line lt 1 lc rgb red,   \
+     '' using 5 title 'TRGST' with linespoints pt 5 lc rgb blue
