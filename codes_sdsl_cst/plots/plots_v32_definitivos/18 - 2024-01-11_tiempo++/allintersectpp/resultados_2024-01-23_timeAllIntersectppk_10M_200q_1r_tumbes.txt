@@ -1,0 +1,26 @@
+Ejecutando: /home/users/caquijada/udec_doc/codigos_propuesta_tesis/codes_sdsl_cst/time_allIntersectPPk_byQueriesFile gst_tripsMadrid_10M.txt gst_tripsMadrid_10M.gst gst_tripsMadrid_10M.queries.intersect 1 
+Cargando estructuras...
+Cargando consultas...
+Rutas: 9922566
+Stops: 11010
+Ruta más corta: 1
+Ruta más larga: 71
+Consultas a realizar: 50
+Repeticiones a realizar: 1
+Ejecutando consultas en implementación Naive...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	9922566	50	3.05353e+08	N/A	[us]	8318306	N/A	1
+Ejecutando consultas en implementación GST...
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	9922566	50	3.05353e+08	8.30826e+08	[us]	N/A	8318306	1	43165578
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	9922566	50	3.05353e+08	3.28093e+08	[us]	N/A	1808221	5	17183346
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	9922566	50	3.05353e+08	1.92328e+08	[us]	N/A	948067	10	10072322
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	9922566	50	3.05353e+08	1.20784e+08	[us]	N/A	516276	15	6318172
+
+---------------------- Fin ----------------------
