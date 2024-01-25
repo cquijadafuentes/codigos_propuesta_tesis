@@ -22,13 +22,13 @@ plot 'histo_20stops_min_05k.txt' using 1:2 title '05k' with linespoints lt 2 pt 
      'histo_20stops_min_25k.txt' using 1:2 title '25k' with linespoints lt 2 pt 3 lc "cyan"
 
 set output 'histograma_trips_xl.png'
-plot 'histo_gst_tripsMadrid_9900k.txt' using 1:2 title '9900k' with linespoints lt 2 pt 3 lc "magenta",   \
-     'histo_gst_tripsMadrid_6400k.txt' using 1:2 title '6400k' with linespoints lt 2 pt 3 lc "orange",   \
-     'histo_gst_tripsMadrid_3200k.txt' using 1:2 title '3200k' with linespoints lt 2 pt 3 lc "purple",   \
-     'histo_gst_tripsMadrid_1600k.txt' using 1:2 title '1600k' with linespoints lt 2 pt 3 lc "gold",   \
-     'histo_gst_tripsMadrid_0800k.txt' using 1:2 title '800k' with linespoints lt 2 pt 3 lc "royalblue",   \
-     'histo_gst_tripsMadrid_0400k.txt' using 1:2 title '400k' with linespoints lt 2 pt 3 lc "green",   \
-     'histo_gst_tripsMadrid_0200k.txt' using 1:2 title '200k' with linespoints lt 2 pt 3 lc "cyan",   \
-     'histo_gst_tripsMadrid_0100k.txt' using 1:2 title '100k' with linespoints lt 2 pt 3 lc "chartreuse",   \
-     'histo_gst_tripsMadrid_0050k.txt' using 1:2 title '50k' with linespoints lt 2 pt 3 lc "red"
+plot 'histo_gst_tripsMadrid_9900k.txt' using 1:2 title '9.9 M' with linespoints lt 2 pt 3 lc "magenta",   \
+     'histo_gst_tripsMadrid_6400k.txt' using 1:2 title '6.4 M' with linespoints lt 2 pt 3 lc "orange",   \
+     'histo_gst_tripsMadrid_3200k.txt' using 1:2 title '3.2 M' with linespoints lt 2 pt 3 lc "purple",   \
+     'histo_gst_tripsMadrid_1600k.txt' using 1:2 title '1.6 M' with linespoints lt 2 pt 3 lc "gold",   \
+     'histo_gst_tripsMadrid_0800k.txt' using 1:2 title '0.8 M' with linespoints lt 2 pt 3 lc "royalblue",   \
+     'histo_gst_tripsMadrid_0400k.txt' using 1:2 title '0.4 M' with linespoints lt 2 pt 3 lc "green",   \
+     'histo_gst_tripsMadrid_0200k.txt' using 1:2 title '0.2 M' with linespoints lt 2 pt 3 lc "cyan",   \
+     'histo_gst_tripsMadrid_0100k.txt' using 1:2 title '0.1 M' with linespoints lt 2 pt 3 lc "chartreuse",   \
+     'histo_gst_tripsMadrid_0050k.txt' using 1:2 title '0.05 M' with linespoints lt 2 pt 3 lc "red"
 
