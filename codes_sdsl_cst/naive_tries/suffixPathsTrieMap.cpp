@@ -168,7 +168,7 @@ int main(int argc, char const *argv[]){
             path[j+1] = path[j]-1;
         }
     }
-    printf("rutas\tbytesTrieMap\n");
+    printf("rutas\tbytesSuffTrieMap\n");
     printf("%d\t%lld\n", n, size_in_bytes(root));
     //print_trie(root);
     return 0; 
