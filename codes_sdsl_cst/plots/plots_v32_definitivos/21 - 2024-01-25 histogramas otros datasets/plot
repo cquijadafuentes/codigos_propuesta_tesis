@@ -1,0 +1,47 @@
+red = "#FF0000"; green = "#00FF00"; blue = "#0000FF"; skyblue = "#87CEEB"; black = "#000000";
+set grid ytics
+set grid xtics
+set key out horiz
+set terminal png size 800,400
+
+set output 'histograma_stops.png'
+set title 'Histograma largos de camino [dataset:stops]'
+set ylabel "Cantidad Rutas"
+set xlabel "Largo Rutas"
+plot 'data_histo_10k' using 1:2 title '10 k' with linespoints lt 2 pt 3 lc "orange",   \
+     'data_histo_08k' using 1:2 title '08 k' with linespoints lt 2 pt 3 lc "red",   \
+     'data_histo_06k' using 1:2 title '06 k' with linespoints lt 2 pt 3 lc "green",   \
+     'data_histo_04k' using 1:2 title '04 k' with linespoints lt 2 pt 3 lc "brown",   \
+     'data_histo_02k' using 1:2 title '02 k' with linespoints lt 2 pt 3 lc "cyan"
+
+set output 'histograma_nodos_stops.png'
+set title 'Histograma caminos por nodo [dataset:stops]'
+set ylabel "Cantidad Rutas"
+set xlabel "ID de stop"
+plot 'data_histo_nodos_10k' using 1:2 title '10 k' with linespoints lt 2 pt 3 lc "orange",   \
+     'data_histo_nodos_08k' using 1:2 title '08 k' with linespoints lt 2 pt 3 lc "red",   \
+     'data_histo_nodos_06k' using 1:2 title '06 k' with linespoints lt 2 pt 3 lc "green",   \
+     'data_histo_nodos_04k' using 1:2 title '04 k' with linespoints lt 2 pt 3 lc "brown",   \
+     'data_histo_nodos_02k' using 1:2 title '02 k' with linespoints lt 2 pt 3 lc "cyan"
+
+set output 'histograma_nodos_stops_v2.png'
+set title 'Histograma caminos por nodo [dataset:stops]'
+set ylabel "Cantidad Rutas"
+set xlabel "ID de stop"
+plot 'data_histo_nodos_02k' using 1:2 title '02 k' with linespoints lt 2 pt 3 lc "orange",   \
+     'data_histo_nodos_04k' using 1:2 title '04 k' with linespoints lt 2 pt 3 lc "red",   \
+     'data_histo_nodos_06k' using 1:2 title '06 k' with linespoints lt 2 pt 3 lc "green",   \
+     'data_histo_nodos_08k' using 1:2 title '08 k' with linespoints lt 2 pt 3 lc "brown",   \
+     'data_histo_nodos_10k' using 1:2 title '10 k' with linespoints lt 2 pt 3 lc "cyan"
+
+set output 'histograma_compress.png'
+set title 'Histograma largos de camino [dataset:compress]'
+set ylabel "Cantidad Rutas"
+set xlabel "Largo Rutas"
+plot 'data_histograma_compress' using 1:2 with linespoints lt 2 pt 3 lc "cyan"
+
+set output 'histograma_nodos_compress.png'
+set title 'Histograma caminos por nodo [dataset:compress]'
+set ylabel "Cantidad Rutas"
+set xlabel "ID de stop"
+plot 'data_histograma_nodos_compress' using 1:2 with linespoints lt 2 pt 3 lc "cyan"
