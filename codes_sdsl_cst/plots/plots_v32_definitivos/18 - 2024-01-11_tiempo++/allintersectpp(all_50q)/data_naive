@@ -1,0 +1,8 @@
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	"0.05 M"	50	1.056e+06	N/A	[us]	121394	N/A	1
+Naive_allIntersectPP	"0.1 M"	50	2.37008e+06	N/A	[us]	243463	N/A	1
+Naive_allIntersectPP	"0.2 M"	50	4.96737e+06	N/A	[us]	517039	N/A	1
+Naive_allIntersectPP	"0.4 M"	50	1.07114e+07	N/A	[us]	1131623	N/A	1
+Naive_allIntersectPP	"0.8 M"	50	2.25003e+07	N/A	[us]	2346301	N/A	1
+Naive_allIntersectPP	"1.6 M"	50	4.6117e+07	N/A	[us]	4902210	N/A	1
+Naive_allIntersectPP	"3.2 M"	50	9.53534e+07	N/A	[us]	10254286	N/A	1

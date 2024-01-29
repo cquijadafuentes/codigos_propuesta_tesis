@@ -1,0 +1,27 @@
+red = "#FF0000"; green = "#00FF00"; blue = "#0000FF"; skyblue = "#87CEEB"; black = "#000000"; gold = "#ffd700"; darkgreen = "#006400";
+set grid ytics
+set key out horiz
+set terminal png size 800,400
+
+set xrange [0.5:9.5]
+set logscale y
+
+set ylabel "Time [us](log)"
+set xlabel "Number of Paths"
+
+
+
+set output 'tiempo_allIntersectPP_xl.png'
+#set title 'Tiempo en Operación AllIntersectPP [d:tripsXL - q:largests [200-1r] - s:tumbes]'
+plot 'data_xl' using 4:xtic(2) title 'Baseline' with linespoints pt 4 lc rgb red,   \
+     'data_xl' using 5 title 'TRGST_{k=1}' with linespoints pt 4 lc rgb blue,   \
+     'data_xl_k05' using 5 title 'TRGST_{k=5}' with linespoints pt 4 lc rgb green,   \
+     'data_xl_k10' using 5 title 'TRGST_{k=10}' with linespoints pt 4 lc rgb darkgreen,   \
+     'data_xl_k15' using 5 title 'TRGST_{k=15}' with linespoints pt 4 lc rgb skyblue
+
+
+set ylabel "Cantidad de resultados"
+set xlabel "Cantidad de rutas"
+set output 'cantidad_resultados_allIntersectPP_xl.png'
+set title 'Resultados en Operación AllContain [d:tripsXL - s:tumbes]'
+plot 'data_xl' using 8:xtic(2) title 'random' with linespoints pt 4 lc rgb darkgreen

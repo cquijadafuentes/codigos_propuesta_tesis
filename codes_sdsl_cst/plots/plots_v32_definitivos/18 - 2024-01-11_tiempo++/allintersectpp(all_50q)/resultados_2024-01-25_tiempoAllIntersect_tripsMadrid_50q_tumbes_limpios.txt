@@ -1,0 +1,90 @@
+Fecha INICIO experimentos: 2024/01/25 12:43:01 allContainedByQueriesFile_naive_gst
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+**************** DATASET = /home/users/caquijada/udec_doc/datasets/ ****************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Ejecutando: ./time_allIntersectPPk_byQueriesFile /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.txt /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.gst /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_3200k.queries.interPP_k.50q 1 
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	3204779	50	9.53534e+07	N/A	[us]	2626767	N/A	1
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	3204779	50	9.53534e+07	2.77058e+08	[us]	N/A	2626767	1	13368014
+GST_allIntersectPP	3204779	50	9.53534e+07	1.0393e+08	[us]	N/A	515651	5	5066914
+GST_allIntersectPP	3204779	50	9.53534e+07	6.14905e+07	[us]	N/A	277546	10	3019929
+GST_allIntersectPP	3204779	50	9.53534e+07	3.85985e+07	[us]	N/A	154091	15	1909024
+
+---------------------- Fin ----------------------
+Ejecutando: ./time_allIntersectPPk_byQueriesFile /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_1600k.txt /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_1600k.gst /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_1600k.queries.interPP_k.50q 1 
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	1601315	50	4.6117e+07	N/A	[us]	1401557	N/A	1
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	1601315	50	4.6117e+07	1.40782e+08	[us]	N/A	1401557	1	6701751
+GST_allIntersectPP	1601315	50	4.6117e+07	4.66063e+07	[us]	N/A	281406	5	2242006
+GST_allIntersectPP	1601315	50	4.6117e+07	2.60157e+07	[us]	N/A	119480	10	1255639
+GST_allIntersectPP	1601315	50	4.6117e+07	1.6047e+07	[us]	N/A	65488	15	779524
+
+---------------------- Fin ----------------------
+Ejecutando: ./time_allIntersectPPk_byQueriesFile /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0800k.txt /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0800k.gst /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0800k.queries.interPP_k.50q 1 
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	800650	50	2.25003e+07	N/A	[us]	657490	N/A	1
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	800650	50	2.25003e+07	6.75092e+07	[us]	N/A	657490	1	3276930
+GST_allIntersectPP	800650	50	2.25003e+07	2.53504e+07	[us]	N/A	145567	5	1231582
+GST_allIntersectPP	800650	50	2.25003e+07	1.44479e+07	[us]	N/A	68211	10	699853
+GST_allIntersectPP	800650	50	2.25003e+07	8.93646e+06	[us]	N/A	36256	15	430396
+
+---------------------- Fin ----------------------
+Ejecutando: ./time_allIntersectPPk_byQueriesFile /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0400k.txt /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0400k.gst /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0400k.queries.interPP_k.50q 1 
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	400824	50	1.07114e+07	N/A	[us]	312923	N/A	1
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	400824	50	1.07114e+07	3.55457e+07	[us]	N/A	312923	1	1588292
+GST_allIntersectPP	400824	50	1.07114e+07	1.38002e+07	[us]	N/A	73305	5	603326
+GST_allIntersectPP	400824	50	1.07114e+07	7.75749e+06	[us]	N/A	33419	10	336353
+GST_allIntersectPP	400824	50	1.07114e+07	4.76059e+06	[us]	N/A	17823	15	203940
+
+---------------------- Fin ----------------------
+Ejecutando: ./time_allIntersectPPk_byQueriesFile /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0200k.txt /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0200k.gst /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0200k.queries.interPP_k.50q 1 
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	200007	50	4.96737e+06	N/A	[us]	150294	N/A	1
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	200007	50	4.96737e+06	1.73036e+07	[us]	N/A	150294	1	773881
+GST_allIntersectPP	200007	50	4.96737e+06	6.36971e+06	[us]	N/A	37076	5	288006
+GST_allIntersectPP	200007	50	4.96737e+06	3.45819e+06	[us]	N/A	16035	10	155821
+GST_allIntersectPP	200007	50	4.96737e+06	2.07854e+06	[us]	N/A	8536	15	91944
+
+---------------------- Fin ----------------------
+Ejecutando: ./time_allIntersectPPk_byQueriesFile /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0100k.txt /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0100k.gst /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0100k.queries.interPP_k.50q 1 
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	100000	50	2.37008e+06	N/A	[us]	76160	N/A	1
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	100000	50	2.37008e+06	9.56463e+06	[us]	N/A	76160	1	407558
+GST_allIntersectPP	100000	50	2.37008e+06	3.57345e+06	[us]	N/A	19104	5	151295
+GST_allIntersectPP	100000	50	2.37008e+06	1.97812e+06	[us]	N/A	8286	10	83523
+GST_allIntersectPP	100000	50	2.37008e+06	1.15506e+06	[us]	N/A	4659	15	49502
+
+---------------------- Fin ----------------------
+Ejecutando: ./time_allIntersectPPk_byQueriesFile /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.txt /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.gst /home/users/caquijada/udec_doc/datasets/gst_tripsMadrid_0050k.queries.interPP_k.50q 1 
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k
+Naive_allIntersectPP	50007	50	1.056e+06	N/A	[us]	33040	N/A	1
+
+operacion	rutas	queries	tNaive	tGST	[us]	rNaive	rGST	k	howManyLCP
+GST_allIntersectPP	50007	50	1.056e+06	4.42806e+06	[us]	N/A	33040	1	187071
+GST_allIntersectPP	50007	50	1.056e+06	1.56838e+06	[us]	N/A	8017	5	66488
+GST_allIntersectPP	50007	50	1.056e+06	898139	[us]	N/A	3606	10	37897
+GST_allIntersectPP	50007	50	1.056e+06	539683	[us]	N/A	2116	15	22980
+
+---------------------- Fin ----------------------
+ ----------------------------------------------------- 
+Fecha FIN experimentos: 2024/01/26 04:21:33
