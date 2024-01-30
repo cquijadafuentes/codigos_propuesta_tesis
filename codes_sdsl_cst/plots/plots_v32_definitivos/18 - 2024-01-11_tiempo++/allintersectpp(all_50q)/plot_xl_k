@@ -17,7 +17,6 @@ set xlabel "k"
 
 
 set output 'tiempo_allIntersectPP_k_xl.png'
-#set title 'Tiempo en Operación AllIntersectPP_k [d:tripsXL - q:largest [200-1r] - s:tumbes]'
 plot 'data_0050k' using 5:xtic(9) title 'TRGST_{0.05 M}' with linespoints pt 5 lc rgb naranja,   \
      '' using 4:xtic(9) title 'Baseline_{0.05 M}' with line lt 1 lc rgb naranja,   \
      'data_0200k' using 5 title 'TRGST_{0.2 M}' with linespoints pt 5 lc rgb azul,   \
@@ -32,13 +31,14 @@ set logscale y
 set ylabel "Time [us](log)"
 
 set output 'tiempo_allIntersectPP_k_xl_log.png'
-#set title 'Tiempo en Operación AllIntersectPP_k [d:tripsXL - q:largest [200-1r] - s:tumbes]'
 plot 'data_0050k' using 5:xtic(9) title 'TRGST_{0.05 M}' with linespoints pt 5 lc rgb naranja,   \
      '' using 4:xtic(9) title 'Baseline_{0.05 M}' with line lt 1 lc rgb naranja,   \
      'data_0200k' using 5 title 'TRGST_{0.2 M}' with linespoints pt 5 lc rgb azul,   \
      '' using 4 title 'Baseline_{0.2 M}' with line lt 1 lc rgb azul,   \
      'data_0800k' using 5 title 'TRGST_{0.8 M}' with linespoints pt 5 lc rgb violeta,   \
      '' using 4 title 'Baseline_{0.8 M}' with line lt 1 lc rgb violeta,   \
-     'data_6400k' using 5 title 'TRGST_{6.4 M}' with linespoints pt 5 lc rgb verdeoscuro,   \
-     '' using 4 title 'Baseline_{6.4 M}' with line lt 1 lc rgb verdeoscuro
+     'data_3200k' using 5 title 'TRGST_{3.2 M}' with linespoints pt 5 lc rgb verdeoscuro,   \
+     '' using 4 title 'Baseline_{3.2 M}' with line lt 1 lc rgb verdeoscuro,   \
+     'data_9900k' using 5 title 'TRGST_{9.9 M}' with linespoints pt 5 lc rgb verde,   \
+     '' using 4 title 'Baseline_{9.9 M}' with line lt 1 lc rgb verde
 
