@@ -21,3 +21,18 @@ set output 'fig_tiempo_allIntersectPP_k_compress.png'
 #set title 'Tiempo en Operación AllIntersectPP_k [d:tripsXL - q:largest [200-1r] - s:tumbes]'
 plot 'data_intersect' using 4:xtic(9) title 'Baseline' with line lt 1 lc rgb red,   \
      '' using 5 title 'TRGST' with linespoints pt 5 lc rgb blue
+
+
+
+
+set style data histograms
+set style histogram cluster gap 3
+set style fill solid border -1
+set boxwidth 0.7
+set xrange [0.5:3.5]
+set yrange [0.1:1000000]
+set xlabel "Operation"
+set output "fig_tiempo_allTopoRels_compress.barras.png"
+plot "data_relations" using 5:xtic(2) title "Baseline" lc rgb red, \
+     '' using 6 title "TRGST" lc rgb blue
+
